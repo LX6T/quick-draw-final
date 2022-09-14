@@ -24,7 +24,7 @@ public class App extends Application {
    * @return The node of the input file.
    * @throws IOException If the file is not found.
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
+  protected static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
@@ -36,7 +36,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    final Scene scene = new Scene(loadFxml("canvas"), 840, 680);
+    final Scene scene = new Scene(loadFxml("menu"));
 
     stage.setScene(scene);
     stage.show();
