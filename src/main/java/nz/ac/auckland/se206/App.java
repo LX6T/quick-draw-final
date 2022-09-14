@@ -11,6 +11,7 @@ import javafx.stage.Stage;
  * This is the entry point of the JavaFX application, while you can change this class, it should
  * remain as the class that runs the JavaFX application.
  */
+//some comments//
 public class App extends Application {
   public static void main(final String[] args) {
     launch();
