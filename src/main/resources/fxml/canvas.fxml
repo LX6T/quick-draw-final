@@ -1,37 +1,252 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/18"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController"
-  style="-fx-background-color: white;">
-  <children>
-    <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0"
-      text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
-      <font>
-        <Font size="18.0"/>
-      </font>
-    </Label>
-    <Canvas fx:id="canvas" height="243.0" layoutX="101.0" layoutY="65.0" width="400.0">
-      <cursor>
-        <Cursor fx:constant="HAND"/>
-      </cursor>
-    </Canvas>
-    <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="400.0">
-      <children>
-        <Button fx:id="predictButton" mnemonicParsing="false" onAction="#onPredict" text="Predict"/>
-        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" text="Clear"/>
-      </children>
-    </HBox>
 
-  </children>
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-</VBox>
+<GridPane maxHeight="1.7976931348623157E308"
+	maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="641.0" prefWidth="602.0"
+	style="-fx-background-color: radial-gradient(focus-angle 5.91deg, focus-distance 0.0% , center 48.893% 70.1893%, radius 66.4122%, #6fc5a3 0.0%, #6cc7a3 0.6711%, #236048 100.0%);"
+	xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="nz.ac.auckland.se206.CanvasController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="394.6666259765625" minWidth="10.0"
+			prefWidth="91.33333333333333" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="419.3333333333333" minWidth="10.0"
+			prefWidth="419.3333333333333" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="95.3333740234375" minWidth="10.0"
+			prefWidth="90.66668701171875" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints maxHeight="372.66667683919275"
+			minHeight="10.0" prefHeight="70.00002034505206" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="494.6666259765625"
+			minHeight="10.0" prefHeight="46.00003051757814" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="452.66662597656256"
+			minHeight="10.0" prefHeight="445.99996948242193" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="77.33343505859375"
+			minHeight="10.0" prefHeight="77.33343505859375" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<HBox alignment="CENTER" prefHeight="392.0" prefWidth="400.0"
+			GridPane.columnIndex="1" GridPane.rowIndex="3">
+			<children>
+				<Button fx:id="readyButton" mnemonicParsing="false"
+					onAction="#onReady" text="Ready" textFill="#000000cc" />
+				<Button fx:id="buttonOnBack" mnemonicParsing="false"
+					onAction="#backToMenu" prefHeight="25.0" prefWidth="49.0"
+					text="Back" textFill="#000000cc" />
+				<Button fx:id="clearButton" mnemonicParsing="false"
+					onAction="#onClear" text="Clear" />
+			</children>
+		</HBox>
+		<BorderPane prefHeight="611.0" prefWidth="431.0"
+			GridPane.columnIndex="1" GridPane.rowIndex="2">
+			<center>
+				<Canvas fx:id="canvas" height="419.0"
+					nodeOrientation="INHERIT" style="visibility: #ffffff;"
+					width="398.0">
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</Canvas>
+			</center>
+			<top>
+				<Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0"
+					strokeType="INSIDE" width="422.0" BorderPane.alignment="CENTER">
+					<fill>
+						<LinearGradient endX="1.0" endY="1.0">
+							<stops>
+								<Stop>
+									<color>
+										<Color red="0.4359973967075348"
+											green="0.7719298005104065" blue="0.6375568509101868" />
+									</color>
+								</Stop>
+								<Stop offset="0.006711409395973154">
+									<color>
+										<Color red="0.4240849018096924"
+											green="0.780701756477356" blue="0.6380550265312195" />
+									</color>
+								</Stop>
+								<Stop offset="1.0">
+									<color>
+										<Color red="0.01080000028014183"
+											green="0.019999999552965164" blue="0.01892666704952717"
+											opacity="0.5532994270324707" />
+									</color>
+								</Stop>
+							</stops>
+						</LinearGradient>
+					</fill>
+					<stroke>
+						<LinearGradient endX="1.0" endY="1.0">
+							<stops>
+								<Stop>
+									<color>
+										<Color red="0.03921568766236305"
+											green="0.26274511218070984" blue="0.1725490242242813"
+											opacity="0.550000011920929" />
+									</color>
+								</Stop>
+								<Stop offset="1.0">
+									<color>
+										<Color red="0.04434697702527046"
+											green="0.18421052396297455" blue="0.11427875608205795" />
+									</color>
+								</Stop>
+							</stops>
+						</LinearGradient>
+					</stroke>
+				</Rectangle>
+			</top>
+			<left>
+				<Rectangle arcHeight="5.0" arcWidth="5.0" height="444.0"
+					stroke="BLACK" strokeType="INSIDE" width="13.0"
+					BorderPane.alignment="CENTER">
+					<fill>
+						<LinearGradient endX="1.0" endY="1.0">
+							<stops>
+								<Stop>
+									<color>
+										<Color red="0.4359973967075348"
+											green="0.7719298005104065" blue="0.6375568509101868" />
+									</color>
+								</Stop>
+								<Stop offset="0.006711409395973154">
+									<color>
+										<Color red="0.4240849018096924"
+											green="0.780701756477356" blue="0.6380550265312195" />
+									</color>
+								</Stop>
+								<Stop offset="1.0">
+									<color>
+										<Color red="0.0117647061124444"
+											green="0.019607843831181526" blue="0.019607843831181526"
+											opacity="0.550000011920929" />
+									</color>
+								</Stop>
+							</stops>
+						</LinearGradient>
+					</fill>
+				</Rectangle>
+			</left>
+			<bottom>
+				<Rectangle arcHeight="5.0" arcWidth="5.0" height="12.0"
+					stroke="BLACK" strokeType="INSIDE" width="421.0"
+					BorderPane.alignment="CENTER">
+					<fill>
+						<LinearGradient endX="1.0" endY="1.0">
+							<stops>
+								<Stop>
+									<color>
+										<Color red="0.03921568766236305"
+											green="0.26274511218070984" blue="0.1725490242242813"
+											opacity="0.550000011920929" />
+									</color>
+								</Stop>
+								<Stop offset="1.0">
+									<color>
+										<Color red="0.04434697702527046"
+											green="0.18421052396297455" blue="0.11427875608205795" />
+									</color>
+								</Stop>
+							</stops>
+						</LinearGradient>
+					</fill>
+				</Rectangle>
+			</bottom>
+			<right>
+				<Rectangle arcHeight="5.0" arcWidth="5.0" height="445.0"
+					stroke="BLACK" strokeType="INSIDE" width="11.0"
+					BorderPane.alignment="CENTER">
+					<fill>
+						<LinearGradient endX="1.0" endY="1.0">
+							<stops>
+								<Stop>
+									<color>
+										<Color red="0.03921568766236305"
+											green="0.26274511218070984" blue="0.1725490242242813"
+											opacity="0.550000011920929" />
+									</color>
+								</Stop>
+								<Stop offset="1.0">
+									<color>
+										<Color red="0.04434697702527046"
+											green="0.18421052396297455" blue="0.11427875608205795" />
+									</color>
+								</Stop>
+							</stops>
+						</LinearGradient>
+					</fill>
+				</Rectangle>
+			</right>
+		</BorderPane>
+		<Label fx:id="displayText" alignment="CENTER"
+			contentDisplay="CENTER" prefHeight="11.0" prefWidth="419.0"
+			textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label alignment="CENTER" prefHeight="27.0" prefWidth="422.0"
+			text="Quick, Draw! SE206  Edition" textAlignment="CENTER"
+			textFill="#ffffffb1" GridPane.columnIndex="1">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label fx:id="timerDisplay" alignment="CENTER"
+			contentDisplay="CENTER" prefHeight="70.0" prefWidth="98.0" text="60"
+			textFill="#ffffffcf" GridPane.columnIndex="2">
+			<font>
+				<Font size="27.0" />
+			</font>
+		</Label>
+		<Label fx:id="textToRefresh" alignment="TOP_LEFT"
+			prefHeight="405.0" prefWidth="91.0" textFill="WHITE"
+			GridPane.rowIndex="2">
+			<font>
+				<Font name="Arial Rounded MT Bold" size="11.0" />
+			</font>
+		</Label>
+		<Label alignment="TOP_CENTER" prefHeight="450.0"
+			prefWidth="91.0" text="Predictions" textFill="WHITE"
+			GridPane.rowIndex="2">
+			<font>
+				<Font name="System Bold Italic" size="12.0" />
+			</font>
+		</Label>
+		<Label fx:id="scoreLabel" alignment="BOTTOM_CENTER"
+			prefHeight="450.0" prefWidth="91.0" textFill="WHITE"
+			GridPane.rowIndex="2">
+			<font>
+				<Font size="24.0" />
+			</font>
+		</Label>
+		<Button fx:id="buttonOnReset" mnemonicParsing="false"
+			onAction="#resetButton" prefHeight="25.0" prefWidth="93.0"
+			text="Reset" GridPane.rowIndex="3" />
+		<Button fx:id="buttonOnErase" mnemonicParsing="false"
+			onAction="#eraseAction" prefHeight="25.0" prefWidth="92.0"
+			text="Eraser" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+		<Button fx:id="buttonOnSave" mnemonicParsing="false"
+			onAction="#saveToFiles" prefHeight="25.0" prefWidth="104.0"
+			text="Save" />
+	</children>
+</GridPane>
