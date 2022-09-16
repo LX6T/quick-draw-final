@@ -45,6 +45,8 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 public class CanvasController {
 
   private int interval = 59;
+  private double currentX;
+  private double currentY;
   private Timer timer = new Timer();
   private Boolean score = false;
   private javafx.event.EventHandler<MouseEvent> mouseEvent =
@@ -62,18 +64,31 @@ public class CanvasController {
         @Override
         public void handle(MouseEvent event) {
           // TODO Auto-generated method stub
-          canvas.setOnMouseDragged(
-              e -> {
-                // Brush size (you can change this, it should not be too small or too large).
-                final double size = 5.0;
+            canvas.setOnMousePressed(
+                    e -> {
+                      currentX = e.getX();
+                      currentY = e.getY();
+                    });
 
-                final double x = e.getX() - size / 2;
-                final double y = e.getY() - size / 2;
+                canvas.setOnMouseDragged(
+                    e -> {
+                      // Brush size (you can change this, it should not be too small or too large).
+                      final double size = 6;
 
-                // This is the colour of the brush.
-                graphic.setFill(Color.DARKBLUE);
-                graphic.fillOval(x, y, size, size);
-              });
+                      final double x = e.getX() - size / 2;
+                      final double y = e.getY() - size / 2;
+
+                      // This is the colour of the brush.
+                      graphic.setFill(Color.BLACK);
+                      graphic.setLineWidth(size);
+
+                      // Create a line that goes from the point (currentX, currentY) and (x,y)
+                      graphic.strokeLine(currentX, currentY, x, y);
+
+                      // update the coordinates
+                      currentX = x;
+                      currentY = y;
+                    });
         }
       };
 
@@ -287,18 +302,31 @@ public class CanvasController {
     graphic = canvas.getGraphicsContext2D();
     // initialize the canvas to only allow user to draw after pressing ready
 
-    canvas.setOnMouseDragged(
-        e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 5.0;
+    canvas.setOnMousePressed(
+            e -> {
+              currentX = e.getX();
+              currentY = e.getY();
+            });
 
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
+        canvas.setOnMouseDragged(
+            e -> {
+              // Brush size (you can change this, it should not be too small or too large).
+              final double size = 6;
 
-          // This is the colour of the brush.
-          graphic.setFill(Color.DARKBLUE);
-          graphic.fillOval(x, y, size, size);
-        });
+              final double x = e.getX() - size / 2;
+              final double y = e.getY() - size / 2;
+
+              // This is the colour of the brush.
+              graphic.setFill(Color.BLACK);
+              graphic.setLineWidth(size);
+
+              // Create a line that goes from the point (currentX, currentY) and (x,y)
+              graphic.strokeLine(currentX, currentY, x, y);
+
+              // update the coordinates
+              currentX = x;
+              currentY = y;
+            });
   }
 
   @FXML
@@ -324,19 +352,31 @@ public class CanvasController {
     if (buttonOnErase.getText().equals("Eraser")) {
       // switch the text on the button every time we click on it
       canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-      canvas.setOnMouseDragged(
-          e -> {
-            // Brush size (you can change this, it should not be too small or too large).
-            final double size = 5.0;
+      canvas.setOnMousePressed(
+    	        e -> {
+    	          currentX = e.getX();
+    	          currentY = e.getY();
+    	        });
 
-            final double x = e.getX() - size / 2;
-            final double y = e.getY() - size / 2;
+    	    canvas.setOnMouseDragged(
+    	        e -> {
+    	          // Brush size (you can change this, it should not be too small or too large).
+    	          final double size = 6;
 
-            // This is the colour of the brush.
-            graphic.setFill(Color.TRANSPARENT);
-            // set the color to transparent to effectively stop drawing
-            graphic.fillOval(x, y, size, size);
-          });
+    	          final double x = e.getX() - size / 2;
+    	          final double y = e.getY() - size / 2;
+
+    	          // This is the colour of the brush.
+    	          graphic.setFill(Color.BLACK);
+    	          graphic.setLineWidth(size);
+
+    	          // Create a line that goes from the point (currentX, currentY) and (x,y)
+    	          graphic.strokeLine(currentX, currentY, x, y);
+
+    	          // update the coordinates
+    	          currentX = x;
+    	          currentY = y;
+    	        });
       canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
       buttonOnErase.setText("Pencil");
       // update the text on the button
