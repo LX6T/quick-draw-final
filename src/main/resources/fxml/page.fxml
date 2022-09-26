@@ -21,7 +21,7 @@
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="83.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #c0a865;" text="Sign-In" textFill="#534747">
+            <Button fx:id="buttonOnSignIn" layoutX="83.0" layoutY="316.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #c0a865;" text="Sign-In" textFill="#534747">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
