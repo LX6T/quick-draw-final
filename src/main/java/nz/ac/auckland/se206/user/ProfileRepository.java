@@ -13,7 +13,7 @@ public class ProfileRepository {
 
   private static final Gson gson = new GsonBuilder().create();
   private static final Path repoPathName =
-      Paths.get("src/main/java/nz/ac/auckland/se206/repository");
+      Paths.get("src/main/java/nz/ac/auckland/se206/user profile repository");
   private static HashMap<String, UserProfile> users;
 
   private static UserProfile currentUser;

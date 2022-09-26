@@ -46,53 +46,49 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  */
 public class CanvasController {
 
-  private int interval = 59;
-  private double currentX;
-  private double currentY;
-  private Timer timer = new Timer();
-  private Boolean score = false;
-  private javafx.event.EventHandler<MouseEvent> mouseEvent =
-      new javafx.event.EventHandler<MouseEvent>() {
+	private int interval = 59;
+	private double currentX;
+	private double currentY;
+	private Timer timer = new Timer();
+	private Boolean score = false;
+	private javafx.event.EventHandler<MouseEvent> mouseEvent = new javafx.event.EventHandler<MouseEvent>() {
 
-        @Override
-        public void handle(MouseEvent event) {
-          // TODO Auto-generated method stub
-          graphic.clearRect(event.getX() - 5 / 2, event.getY() - 5 / 2, 10, 10);
-        }
-      };
-  private javafx.event.EventHandler<MouseEvent> mouseEventTwo =
-      new javafx.event.EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			// TODO Auto-generated method stub
+			graphic.clearRect(event.getX() - 5 / 2, event.getY() - 5 / 2, 10, 10);
+		}
+	};
+	private javafx.event.EventHandler<MouseEvent> mouseEventTwo = new javafx.event.EventHandler<MouseEvent>() {
 
-        @Override
-        public void handle(MouseEvent event) {
-          // TODO Auto-generated method stub
-          canvas.setOnMousePressed(
-              e -> {
-                currentX = e.getX();
-                currentY = e.getY();
-              });
+		@Override
+		public void handle(MouseEvent event) {
+			// TODO Auto-generated method stub
+			canvas.setOnMousePressed(e -> {
+				currentX = e.getX();
+				currentY = e.getY();
+			});
 
-          canvas.setOnMouseDragged(
-              e -> {
-                // Brush size (you can change this, it should not be too small or too large).
-                final double size = 6;
+			canvas.setOnMouseDragged(e -> {
+				// Brush size (you can change this, it should not be too small or too large).
+				final double size = 6;
 
-                final double x = e.getX() - size / 2;
-                final double y = e.getY() - size / 2;
+				final double x = e.getX() - size / 2;
+				final double y = e.getY() - size / 2;
 
-                // This is the colour of the brush.
-                graphic.setFill(Color.BLACK);
-                graphic.setLineWidth(size);
+				// This is the colour of the brush.
+				graphic.setFill(Color.BLACK);
+				graphic.setLineWidth(size);
 
-                // Create a line that goes from the point (currentX, currentY) and (x,y)
-                graphic.strokeLine(currentX, currentY, x, y);
+				// Create a line that goes from the point (currentX, currentY) and (x,y)
+				graphic.strokeLine(currentX, currentY, x, y);
 
-                // update the coordinates
-                currentX = x;
-                currentY = y;
-              });
-        }
-      };
+				// update the coordinates
+				currentX = x;
+				currentY = y;
+			});
+		}
+	};
 
   @FXML private Button buttonOnSave;
 
@@ -124,306 +120,299 @@ public class CanvasController {
 
   @FXML private Label textToRefresh;
 
-  // #035526
-  /**
-   * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
-   * the drawing, and we load the ML model.
-   *
-   * @throws ModelException If there is an error in reading the input/output of the DL model.
-   * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException
-   * @throws CsvException
-   */
-  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
-    canvas.setDisable(true);
-    buttonOnReset.setDisable(false);
-    buttonOnSave.setDisable(true);
-    buttonOnErase.setDisable(true);
-    buttonOnClear.setDisable(true);
-    CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
-    this.currentWord = randomWord;
-    displayText.setText(randomWord);
-  }
 
-  /** This method is called when the "Clear" button is pressed. */
-  @FXML
-  private void onClear() {
-    graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-  }
+	// #035526
+	/**
+	 * JavaFX calls this method once the GUI elements are loaded. In our case we
+	 * create a listener for the drawing, and we load the ML model.
+	 *
+	 * @throws ModelException     If there is an error in reading the input/output
+	 *                            of the DL model.
+	 * @throws IOException        If the model cannot be found on the file system.
+	 * @throws URISyntaxException
+	 * @throws CsvException
+	 */
+	public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+		canvas.setDisable(true);
+		buttonOnReset.setDisable(false);
+		buttonOnSave.setDisable(true);
+		buttonOnErase.setDisable(true);
+		buttonOnClear.setDisable(true);
+		CategorySelector categorySelector = new CategorySelector();
+		String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
+		this.currentWord = randomWord;
+		displayText.setText(randomWord);
+	}
 
-  /**
-   * This method executes when the user clicks the "Predict" button. It gets the current drawing,
-   * queries the DL model and prints on the console the top 5 predictions of the DL model and the
-   * elapsed time of the prediction in milliseconds.
-   *
-   * @throws TranslateException If there is an error in reading the input/output of the DL model.
-   */
-  private boolean onPredict() throws TranslateException {
-    Boolean win;
+	/** This method is called when the "Clear" button is pressed. */
+	@FXML
+	private void onClear() {
+		graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+	}
 
-    final long start = System.currentTimeMillis();
-    List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
+	/**
+	 * This method executes when the user clicks the "Predict" button. It gets the
+	 * current drawing, queries the DL model and prints on the console the top 5
+	 * predictions of the DL model and the elapsed time of the prediction in
+	 * milliseconds.
+	 *
+	 * @throws TranslateException If there is an error in reading the input/output
+	 *                            of the DL model.
+	 */
+	private boolean onPredict() throws TranslateException {
+		Boolean win;
 
-    List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
-    StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
-    textToRefresh.setText(sb.toString());
-    win = isWin(result);
-    if (win == true) {
-      this.score = true;
-    }
+		final long start = System.currentTimeMillis();
+		List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
 
-    return this.score;
-  }
+		List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
+		StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
+		textToRefresh.setText(sb.toString());
+		win = isWin(result);
+		if (win == true) {
+			this.score = true;
+		}
 
-  private boolean isWin(List<Classification> classifications) {
-    // this method will tell whether the current prediction has won or not
-    for (Classification classification : classifications) {
-      if (classification.getClassName().equals(currentWord)) {
-        return true;
-      }
-    }
-    return false;
-    // return false if lost and return true if won
-  }
+		return this.score;
+	}
 
-  /**
-   * Get the current snapshot of the canvas.
-   *
-   * @return The BufferedImage corresponding to the current canvas content.
-   */
-  private BufferedImage getCurrentSnapshot() {
-    final Image snapshot = canvas.snapshot(null, null);
-    final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
+	private boolean isWin(List<Classification> classifications) {
+		// this method will tell whether the current prediction has won or not
+		for (Classification classification : classifications) {
+			if (classification.getClassName().equals(currentWord)) {
+				return true;
+			}
+		}
+		return false;
+		// return false if lost and return true if won
+	}
 
-    // Convert into a binary image.
-    final BufferedImage imageBinary =
-        new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+	/**
+	 * Get the current snapshot of the canvas.
+	 *
+	 * @return The BufferedImage corresponding to the current canvas content.
+	 */
+	private BufferedImage getCurrentSnapshot() {
+		final Image snapshot = canvas.snapshot(null, null);
+		final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
 
-    final Graphics2D graphics = imageBinary.createGraphics();
+		// Convert into a binary image.
+		final BufferedImage imageBinary = new BufferedImage(image.getWidth(), image.getHeight(),
+				BufferedImage.TYPE_BYTE_BINARY);
 
-    graphics.drawImage(image, 0, 0, null);
+		final Graphics2D graphics = imageBinary.createGraphics();
 
-    // To release memory we dispose.
-    graphics.dispose();
+		graphics.drawImage(image, 0, 0, null);
 
-    return imageBinary;
-  }
+		// To release memory we dispose.
+		graphics.dispose();
 
-  /**
-   * Save the current snapshot on a bitmap file.
-   *
-   * @return The file of the saved image.
-   * @throws IOException If the image cannot be saved.
-   */
-  private File saveCurrentSnapshotOnFile() throws IOException {
-    // You can change the location as you see fit.
-    final File tmpFolder = new File("tmp");
+		return imageBinary;
+	}
 
-    if (!tmpFolder.exists()) {
-      tmpFolder.mkdir();
-    }
+	/**
+	 * Save the current snapshot on a bitmap file.
+	 *
+	 * @return The file of the saved image.
+	 * @throws IOException If the image cannot be saved.
+	 */
+	private File saveCurrentSnapshotOnFile() throws IOException {
+		// You can change the location as you see fit.
+		final File tmpFolder = new File("tmp");
 
-    // We save the image to a file in the tmp folder.
-    final File imageToClassify =
-        new File(tmpFolder.getName() + "/snapshot" + System.currentTimeMillis() + ".bmp");
+		if (!tmpFolder.exists()) {
+			tmpFolder.mkdir();
+		}
 
-    // Save the image to a file.
-    ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
+		// We save the image to a file in the tmp folder.
+		final File imageToClassify = new File(tmpFolder.getName() + "/snapshot" + System.currentTimeMillis() + ".bmp");
 
-    return imageToClassify;
-  }
+		// Save the image to a file.
+		ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
 
-  @FXML
-  private void backToMenu(ActionEvent event) {
-    timer.cancel();
-    // stop the tasks that are allocated to the timer
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    try {
-      sceneButtonIsIn.setRoot(App.loadFxml("page"));
-      // go back to the original menu with refreshing
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		return imageToClassify;
+	}
 
-  @FXML
-  private void onReady() throws ModelException, IOException, InterruptedException {
-    this.interval = 59;
-    // this variable is set so that every time this method is called, the timer
-    // value can be reset.
-    canvas.setDisable(false);
-    buttonOnReady.setDisable(true);
-    buttonOnErase.setDisable(false);
-    buttonOnClear.setDisable(false);
-    model = new DoodlePrediction();
-    TextToSpeech speaker = new TextToSpeech();
-    speaker.speak("The game starts");
-    speaker.speak("Try to Draw a " + currentWord);
-    ProfileRepository.addWord(currentWord);
+	@FXML
+	private void backToMenu(ActionEvent event) {
+		timer.cancel();
+		// stop the tasks that are allocated to the timer
+		Button button = (Button) event.getSource();
+		Scene sceneButtonIsIn = button.getScene();
+		try {
+			sceneButtonIsIn.setRoot(App.loadFxml("page"));
+			// go back to the original menu with refreshing
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    // when the ready button is pressed, show text to speech feature
+	@FXML
+	private void onReady() throws ModelException, IOException, InterruptedException {
+		this.interval = 59;
+		// this variable is set so that every time this method is called, the timer
+		// value can be reset.
+		canvas.setDisable(false);
+		buttonOnReady.setDisable(true);
+		buttonOnErase.setDisable(false);
+		buttonOnClear.setDisable(false);
+		model = new DoodlePrediction();
+		TextToSpeech speaker = new TextToSpeech();
+		speaker.speak("The game starts");
+		speaker.speak("Try to Draw a " + currentWord);
+		ProfileRepository.addWord(currentWord);
 
-    timer.scheduleAtFixedRate(
-        new TimerTask() {
-          // set a rate that perform once every one second
+		// when the ready button is pressed, show text to speech feature
 
-          private boolean score;
+		timer.scheduleAtFixedRate(new TimerTask() {
+			// set a rate that perform once every one second
 
-          @Override
-          public void run() {
-            // TODO Auto-generated method stub
-            if (interval > 0 && score == false) {
-              // update the text on the Timer Label
-              Platform.runLater(() -> timerDisplay.setText(Integer.toString(interval)));
-              Platform.runLater(
-                  () -> {
-                    try {
-                      score = onPredict();
-                    } catch (TranslateException e) {
-                      // TODO Auto-generated catch block
-                      e.printStackTrace();
-                    }
-                  });
-              // predict to get results refreshing each second
-              interval--;
-            } else {
-              // when the 60 seconds timer is exceeded, everything stops
-              timer.cancel();
-              canvas.setDisable(true);
-              buttonOnSave.setDisable(false);
-              buttonOnErase.setDisable(true);
-              buttonOnClear.setDisable(true);
-              UserProfile currentUser = ProfileRepository.getCurrentUser();
+			private boolean score;
 
-              if (score == false) {
-                // speak to user when detected result is lost
-                TextToSpeech speaker = new TextToSpeech();
-                speaker.speak("You Have Lost");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-                Platform.runLater(() -> scoreLabel.setText("LOST"));
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (interval > 0 && score == false) {
+					// update the text on the Timer Label
+					Platform.runLater(() -> timerDisplay.setText(Integer.toString(interval)));
+					Platform.runLater(() -> {
+						try {
+							score = onPredict();
+						} catch (TranslateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					});
+					// predict to get results refreshing each second
+					interval--;
+				} else {
+					// when the 60 seconds timer is exceeded, everything stops
+					timer.cancel();
+					canvas.setDisable(true);
+					buttonOnSave.setDisable(false);
+					buttonOnErase.setDisable(true);
+					buttonOnClear.setDisable(true);
+					UserProfile currentUser = ProfileRepository.getCurrentUser();
 
-                if (currentUser != null) currentUser.lostTheGame();
+					if (score == false) {
+						// speak to user when detected result is lost
+						TextToSpeech speaker = new TextToSpeech();
+						speaker.speak("You Have Lost");
+						canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+						canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+						Platform.runLater(() -> scoreLabel.setText("LOST"));
 
-              } else {
-                // speak to user when detected result is won
-                TextToSpeech speaker = new TextToSpeech();
-                speaker.speak("You have Won");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-                Platform.runLater(() -> scoreLabel.setText("WON"));
+						currentUser.lostTheGame();
 
-                if (currentUser != null) {
-                  currentUser.wonTheGame();
-                  int timeTaken = 60 - interval;
-                  currentUser.updateRecord(timeTaken + "");
-                }
-              }
+					} else {
+						// speak to user when detected result is won
+						TextToSpeech speaker = new TextToSpeech();
+						speaker.speak("You have Won");
+						canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+						canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+						Platform.runLater(() -> scoreLabel.setText("WON"));
 
-              if (currentUser != null) {
-                ProfileRepository.saveProfile(currentUser);
-                ProfileRepository.updateProfiles();
-                ProfileRepository.setCurrentUser(currentUser);
-              }
-            }
-          }
-        },
-        1000,
-        1000);
+						currentUser.wonTheGame();
+						int timeTaken = 60 - interval;
+						currentUser.updateRecord(timeTaken + "");
+					}
 
-    graphic = canvas.getGraphicsContext2D();
-    // initialize the canvas to only allow user to draw after pressing ready
-    canvas.setOnMousePressed(
-        e -> {
-          currentX = e.getX();
-          currentY = e.getY();
-        });
+					ProfileRepository.saveProfile(currentUser);
+					ProfileRepository.updateProfiles();
+					ProfileRepository.setCurrentUser(currentUser);
+				}
+			}
+		}, 1000, 1000);
 
-    canvas.setOnMouseDragged(
-        e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 6;
+		graphic = canvas.getGraphicsContext2D();
+		// initialize the canvas to only allow user to draw after pressing ready
+		canvas.setOnMousePressed(e -> {
+			currentX = e.getX();
+			currentY = e.getY();
+		});
 
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
+		canvas.setOnMouseDragged(e -> {
+			// Brush size (you can change this, it should not be too small or too large).
+			final double size = 6;
 
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.setLineWidth(size);
+			final double x = e.getX() - size / 2;
+			final double y = e.getY() - size / 2;
 
-          // Create a line that goes from the point (currentX, currentY) and (x,y)
-          graphic.strokeLine(currentX, currentY, x, y);
+			// This is the colour of the brush.
+			graphic.setFill(Color.BLACK);
+			graphic.setLineWidth(size);
 
-          // update the coordinates
-          currentX = x;
-          currentY = y;
-        });
-  }
+			// Create a line that goes from the point (currentX, currentY) and (x,y)
+			graphic.strokeLine(currentX, currentY, x, y);
 
-  @FXML
-  private void resetButton(ActionEvent event) {
-    timer.cancel();
-    // stop the count down timer to count down.
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
-    try {
-      sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
-      // reload the scene and get everything refreshed.
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+			// update the coordinates
+			currentX = x;
+			currentY = y;
+		});
+	}
 
-  @FXML
-  private void eraseAction(ActionEvent event) {
-    graphic = canvas.getGraphicsContext2D();
-    // get the current canvas graphic
+	@FXML
+	private void resetButton(ActionEvent event) {
+		timer.cancel();
+		// stop the count down timer to count down.
+		Button button = (Button) event.getSource();
+		Scene sceneButtonIsIn = button.getScene();
+		try {
+			sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+			// reload the scene and get everything refreshed.
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    if (buttonOnErase.getText().equals("Eraser")) {
-      // switch the text on the button every time we click on it
-      canvas.setOnMousePressed(
-          e -> {
-            currentX = e.getX();
-            currentY = e.getY();
-          });
+	@FXML
+	private void eraseAction(ActionEvent event) {
+		graphic = canvas.getGraphicsContext2D();
+		// get the current canvas graphic
 
-      canvas.setOnMouseDragged(
-          e -> {
-            // Brush size (you can change this, it should not be too small or too large).
-            final double size = 6;
+		if (buttonOnErase.getText().equals("Eraser")) {
+			// switch the text on the button every time we click on it
+			canvas.setOnMousePressed(e -> {
+				currentX = e.getX();
+				currentY = e.getY();
+			});
 
-            final double x = e.getX() - size / 2;
-            final double y = e.getY() - size / 2;
+			canvas.setOnMouseDragged(e -> {
+				// Brush size (you can change this, it should not be too small or too large).
+				final double size = 6;
 
-            // This is the colour of the brush.
-            graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
+				final double x = e.getX() - size / 2;
+				final double y = e.getY() - size / 2;
 
-            // update the coordinates
-            currentX = x;
-            currentY = y;
-          });
+				// This is the colour of the brush.
+				graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
 
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-      buttonOnErase.setText("Pencil");
-      // update the text on the button
-    } else if (buttonOnErase.getText().equals("Pencil")) {
-      // remove event to stop erasing
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+				// update the coordinates
+				currentX = x;
+				currentY = y;
+			});
 
-      buttonOnErase.setText("Eraser");
-      // update the text on the button
-    }
-  }
+			canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+			canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+			buttonOnErase.setText("Pencil");
+			// update the text on the button
+		} else if (buttonOnErase.getText().equals("Pencil")) {
+			// remove event to stop erasing
+			canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+			canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
 
-  @FXML
-  private File saveToFiles(ActionEvent event) throws IOException {
-    return this.saveCurrentSnapshotOnFile();
-    // save the current image to file by clicking this button
-  }
+			buttonOnErase.setText("Eraser");
+			// update the text on the button
+		}
+	}
+
+	@FXML
+	private File saveToFiles(ActionEvent event) throws IOException {
+		return this.saveCurrentSnapshotOnFile();
+		// save the current image to file by clicking this button
+	}
+
+
 }

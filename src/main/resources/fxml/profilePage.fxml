@@ -144,7 +144,14 @@
             </Label>
          </children>
       </GridPane>
-      <Pane layoutX="886.0" layoutY="-1.0" prefHeight="606.0" prefWidth="171.0" style="-fx-background-color: #50ac9e;" />
+      <Pane layoutX="886.0" layoutY="-1.0" prefHeight="606.0" prefWidth="171.0" style="-fx-background-color: #50ac9e;">
+         <children>
+            <Button fx:id="buttonOnBack" layoutX="23.0" layoutY="35.0" mnemonicParsing="false" onAction="#back" prefHeight="52.0" prefWidth="126.0" text="Back">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children></Pane>
       <Label layoutX="336.0" layoutY="34.0" text="History:">
          <font>
             <Font size="20.0" />
