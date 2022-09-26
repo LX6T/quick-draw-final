@@ -57,7 +57,7 @@ public class ProfileRepository {
    *
    * @return true
    */
-  public boolean saveProfiles() {
+  public boolean updateProfiles() {
     String usersJson = gson.toJson(users);
     try {
       Files.writeString(repoPathName, usersJson);
