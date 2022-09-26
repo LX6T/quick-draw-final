@@ -132,7 +132,7 @@
             <Line endX="-14.000015258789062" endY="-80.99999237060547" layoutX="14.0" layoutY="81.0" opacity="0.54" startX="-7.666656494140625" startY="520.0" stroke="WHITE" strokeWidth="3.0" />
          </children>
       </Pane>
-		<Label fx:id="textToRefresh" alignment="TOP_LEFT" layoutX="885.0" layoutY="89.0" prefHeight="465.0" prefWidth="163.0" style="-fx-background-color: #1b3c38;" textFill="WHITE">
+		<Label fx:id="textToRefresh" alignment="TOP_LEFT" layoutX="903.0" layoutY="91.0" prefHeight="463.0" prefWidth="145.0" style="-fx-background-color: #1b3c38;" textFill="WHITE">
 			<font>
 				<Font name="Arial Rounded MT Bold" size="20.0" />
 			</font>

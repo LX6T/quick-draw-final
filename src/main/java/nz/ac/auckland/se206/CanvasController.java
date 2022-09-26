@@ -233,7 +233,7 @@ public class CanvasController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     try {
-      sceneButtonIsIn.setRoot(App.loadFxml("menu"));
+      sceneButtonIsIn.setRoot(App.loadFxml("page"));
       // go back to the original menu with refreshing
     } catch (IOException e) {
       // TODO Auto-generated catch block
@@ -303,7 +303,6 @@ public class CanvasController {
 
     graphic = canvas.getGraphicsContext2D();
     // initialize the canvas to only allow user to draw after pressing ready
-
     canvas.setOnMousePressed(
             e -> {
               currentX = e.getX();
@@ -329,6 +328,9 @@ public class CanvasController {
               currentX = x;
               currentY = y;
             });
+    
+
+
   }
 
   @FXML
@@ -353,32 +355,29 @@ public class CanvasController {
 
     if (buttonOnErase.getText().equals("Eraser")) {
       // switch the text on the button every time we click on it
+    	canvas.setOnMousePressed(
+                e -> {
+                  currentX = e.getX();
+                  currentY = e.getY();
+                });
+
+            canvas.setOnMouseDragged(
+                e -> {
+                  // Brush size (you can change this, it should not be too small or too large).
+                  final double size = 6;
+
+                  final double x = e.getX() - size / 2;
+                  final double y = e.getY() - size / 2;
+
+                  // This is the colour of the brush.
+                  graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
+
+                  // update the coordinates
+                  currentX = x;
+                  currentY = y;
+                });
+    	
       canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-      canvas.setOnMousePressed(
-    	        e -> {
-    	          currentX = e.getX();
-    	          currentY = e.getY();
-    	        });
-
-    	    canvas.setOnMouseDragged(
-    	        e -> {
-    	          // Brush size (you can change this, it should not be too small or too large).
-    	          final double size = 6;
-
-    	          final double x = e.getX() - size / 2;
-    	          final double y = e.getY() - size / 2;
-
-    	          // This is the colour of the brush.
-    	          graphic.setFill(Color.BLACK);
-    	          graphic.setLineWidth(size);
-
-    	          // Create a line that goes from the point (currentX, currentY) and (x,y)
-    	          graphic.strokeLine(currentX, currentY, x, y);
-
-    	          // update the coordinates
-    	          currentX = x;
-    	          currentY = y;
-    	        });
       canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
       buttonOnErase.setText("Pencil");
       // update the text on the button
