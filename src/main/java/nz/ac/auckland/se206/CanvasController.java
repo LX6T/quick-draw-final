@@ -27,6 +27,8 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.user.ProfileRepository;
+import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
