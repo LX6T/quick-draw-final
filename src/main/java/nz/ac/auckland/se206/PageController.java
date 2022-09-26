@@ -15,73 +15,93 @@ import nz.ac.auckland.se206.user.UserProfile;
 
 public class PageController {
 
-  private ProfileRepository repo =
-      new ProfileRepository("src/main/java/nz/ac/auckland/se206/profiles/user profile repository");
-  private HashMap<String, UserProfile> users = repo.getUsers();
+	private ProfileRepository repo = new ProfileRepository(
+			"src/main/java/nz/ac/auckland/se206/profiles/user profile repository");
+	private HashMap<String, UserProfile> users = repo.getUsers();
+	
+	public static String user;
 
-  @FXML private Button buttonOnStart;
-  @FXML private Button buttonOnExit;
-  @FXML private Button buttonOnSignIn;
-  @FXML private Button buttonOnSignUp;
-  @FXML private TextField userName;
+	@FXML
+	private Button buttonOnStart;
+	@FXML
+	private Button buttonOnExit;
+	@FXML
+	private Button buttonOnSignIn;
+	@FXML
+	private Button buttonOnSignUp;
+	@FXML
+	private TextField userName;
 
-  public void initialise() {
-    repo.loadProfiles();
-  }
+	public void initialise() {
+		repo.loadProfiles();
+	}
 
-  @FXML
-  private void exitGame() {
-    Platform.exit();
-    System.exit(0);
-  }
+	@FXML
+	private void exitGame() {
+		Platform.exit();
+		System.exit(0);
+	}
 
-  @FXML
-  private void signInAction(ActionEvent event) throws InterruptedException {
-    if (true) {
-      Button button = (Button) event.getSource();
-      Scene sceneButtonIsIn = button.getScene();
+	@FXML
+	private void signInAction(ActionEvent event) throws InterruptedException {
+		if (users.containsKey(userName.getText())) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Empty username");
+			alert.setHeaderText("Please insert a valid username and try again");
+			alert.showAndWait();
+		}
+		else if (users.containsKey(userName.getText())) {
+			user = userName.getText();
+			Button button = (Button) event.getSource();
+			Scene sceneButtonIsIn = button.getScene();
 
-      try {
-        // load the canvas scene when press this button
-        sceneButtonIsIn.setRoot(App.loadFxml("profilePage"));
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    }
-  }
+			try {
+				// load the canvas scene when press this button
+				sceneButtonIsIn.setRoot(App.loadFxml("profilePage"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("User name does not exist");
+			alert.setHeaderText("Please click on Sign-Up to create your account");
+			alert.showAndWait();
+		}
+	}
 
-  @FXML
-  private void startNewGame(ActionEvent event) throws InterruptedException {
+	@FXML
+	private void startNewGame(ActionEvent event) throws InterruptedException {
 
-    Button button = (Button) event.getSource();
-    Scene sceneButtonIsIn = button.getScene();
+		Button button = (Button) event.getSource();
+		Scene sceneButtonIsIn = button.getScene();
 
-    try {
-      // load the canvas scene when press this button
-      sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		try {
+			// load the canvas scene when press this button
+			sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-  @FXML
-  private void onSignUp() {
-    if (userName.getText().isBlank()) {
-      Alert alert = new Alert(AlertType.ERROR);
-      alert.setTitle("Empty username");
-      alert.setHeaderText("Please insert a valid username and try again");
-      alert.showAndWait();
-    } else if (users.containsKey(userName.getText())) {
-      Alert alert = new Alert(AlertType.ERROR);
-      alert.setTitle("User name already exists");
-      alert.setHeaderText("Please click on Sign-In to start the game");
-      alert.showAndWait();
-    } else {
-      UserProfile newUser = new UserProfile(userName.getText());
-      repo.saveProfile(newUser);
-      repo.saveProfiles();
-    }
-  }
+	@FXML
+	private void onSignUp() {
+		if (userName.getText().isBlank()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Empty username");
+			alert.setHeaderText("Please insert a valid username and try again");
+			alert.showAndWait();
+		} else if (users.containsKey(userName.getText())) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("User name already exists");
+			alert.setHeaderText("Please click on Sign-In to start the game");
+			alert.showAndWait();
+		} else {
+			UserProfile newUser = new UserProfile(userName.getText());
+			repo.saveProfile(newUser);
+			repo.saveProfiles();
+		}
+	}
 }
