@@ -27,6 +27,7 @@ public class UserProfile {
 	 * 
 	 */
 	public void updateRecord(String record) {
+		// automatically update the record based on its value
 		if (this.bestRecord == null) {
 			this.bestRecord = record;
 		} else {
