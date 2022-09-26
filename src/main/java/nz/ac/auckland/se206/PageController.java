@@ -44,7 +44,7 @@ public class PageController {
 
 	@FXML
 	private void signInAction(ActionEvent event) throws InterruptedException {
-		if (users.containsKey(userName.getText())) {
+		if (userName.getText().isBlank()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Empty username");
 			alert.setHeaderText("Please insert a valid username and try again");
