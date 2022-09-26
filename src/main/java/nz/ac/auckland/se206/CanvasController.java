@@ -66,31 +66,31 @@ public class CanvasController {
         @Override
         public void handle(MouseEvent event) {
           // TODO Auto-generated method stub
-            canvas.setOnMousePressed(
-                    e -> {
-                      currentX = e.getX();
-                      currentY = e.getY();
-                    });
+          canvas.setOnMousePressed(
+              e -> {
+                currentX = e.getX();
+                currentY = e.getY();
+              });
 
-                canvas.setOnMouseDragged(
-                    e -> {
-                      // Brush size (you can change this, it should not be too small or too large).
-                      final double size = 6;
+          canvas.setOnMouseDragged(
+              e -> {
+                // Brush size (you can change this, it should not be too small or too large).
+                final double size = 6;
 
-                      final double x = e.getX() - size / 2;
-                      final double y = e.getY() - size / 2;
+                final double x = e.getX() - size / 2;
+                final double y = e.getY() - size / 2;
 
-                      // This is the colour of the brush.
-                      graphic.setFill(Color.BLACK);
-                      graphic.setLineWidth(size);
+                // This is the colour of the brush.
+                graphic.setFill(Color.BLACK);
+                graphic.setLineWidth(size);
 
-                      // Create a line that goes from the point (currentX, currentY) and (x,y)
-                      graphic.strokeLine(currentX, currentY, x, y);
+                // Create a line that goes from the point (currentX, currentY) and (x,y)
+                graphic.strokeLine(currentX, currentY, x, y);
 
-                      // update the coordinates
-                      currentX = x;
-                      currentY = y;
-                    });
+                // update the coordinates
+                currentX = x;
+                currentY = y;
+              });
         }
       };
 
@@ -250,6 +250,8 @@ public class CanvasController {
     TextToSpeech speaker = new TextToSpeech();
     speaker.speak("The game starts");
     speaker.speak("Try to Draw a " + currentWord);
+    ProfileRepository.addWord(currentWord);
+
     // when the ready button is pressed, show text to speech feature
 
     timer.scheduleAtFixedRate(
@@ -279,6 +281,9 @@ public class CanvasController {
               // when the 60 seconds timer is exceeded, everything stops
               timer.cancel();
               canvas.setDisable(true);
+
+              UserProfile currentUser = ProfileRepository.getCurrentUser();
+
               if (score == false) {
                 // speak to user when detected result is lost
                 TextToSpeech speaker = new TextToSpeech();
@@ -287,6 +292,8 @@ public class CanvasController {
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
+                currentUser.lostTheGame();
+
               } else {
                 // speak to user when detected result is won
                 TextToSpeech speaker = new TextToSpeech();
@@ -294,7 +301,13 @@ public class CanvasController {
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
+
+                currentUser.wonTheGame();
               }
+
+              ProfileRepository.saveProfile(currentUser);
+              ProfileRepository.saveProfiles();
+              ProfileRepository.setCurrentUser(currentUser);
             }
           }
         },
@@ -304,33 +317,30 @@ public class CanvasController {
     graphic = canvas.getGraphicsContext2D();
     // initialize the canvas to only allow user to draw after pressing ready
     canvas.setOnMousePressed(
-            e -> {
-              currentX = e.getX();
-              currentY = e.getY();
-            });
+        e -> {
+          currentX = e.getX();
+          currentY = e.getY();
+        });
 
-        canvas.setOnMouseDragged(
-            e -> {
-              // Brush size (you can change this, it should not be too small or too large).
-              final double size = 6;
+    canvas.setOnMouseDragged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 6;
 
-              final double x = e.getX() - size / 2;
-              final double y = e.getY() - size / 2;
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
 
-              // This is the colour of the brush.
-              graphic.setFill(Color.BLACK);
-              graphic.setLineWidth(size);
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.setLineWidth(size);
 
-              // Create a line that goes from the point (currentX, currentY) and (x,y)
-              graphic.strokeLine(currentX, currentY, x, y);
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
 
-              // update the coordinates
-              currentX = x;
-              currentY = y;
-            });
-    
-
-
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
   }
 
   @FXML
@@ -355,28 +365,28 @@ public class CanvasController {
 
     if (buttonOnErase.getText().equals("Eraser")) {
       // switch the text on the button every time we click on it
-    	canvas.setOnMousePressed(
-                e -> {
-                  currentX = e.getX();
-                  currentY = e.getY();
-                });
+      canvas.setOnMousePressed(
+          e -> {
+            currentX = e.getX();
+            currentY = e.getY();
+          });
 
-            canvas.setOnMouseDragged(
-                e -> {
-                  // Brush size (you can change this, it should not be too small or too large).
-                  final double size = 6;
+      canvas.setOnMouseDragged(
+          e -> {
+            // Brush size (you can change this, it should not be too small or too large).
+            final double size = 6;
 
-                  final double x = e.getX() - size / 2;
-                  final double y = e.getY() - size / 2;
+            final double x = e.getX() - size / 2;
+            final double y = e.getY() - size / 2;
 
-                  // This is the colour of the brush.
-                  graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
+            // This is the colour of the brush.
+            graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
 
-                  // update the coordinates
-                  currentX = x;
-                  currentY = y;
-                });
-    	
+            // update the coordinates
+            currentX = x;
+            currentY = y;
+          });
+
       canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
       canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
       buttonOnErase.setText("Pencil");

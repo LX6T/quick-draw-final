@@ -10,14 +10,12 @@ public class UserProfile {
   private Integer numOfLoss;
   private ArrayList<String> wordsHistory;
   private String bestRecord;
-  private Integer score;
 
   public UserProfile(String accountName) {
     this.accountName = accountName;
     this.numOfWin = 0;
     this.numOfLoss = 0;
     this.bestRecord = null;
-    this.score = 0;
 
     this.wordsHistory = new ArrayList<>();
   }
@@ -96,11 +94,6 @@ public class UserProfile {
   }
 
   public Integer getScore() {
-    this.score = numOfWin - numOfLoss;
-    return score;
-  }
-
-  public void setScore(Integer score) {
-    this.score = score;
+    return numOfWin - numOfLoss;
   }
 }

@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,21 +16,11 @@ import nz.ac.auckland.se206.user.UserProfile;
 
 public class PageController {
 
-  private ProfileRepository repo =
-      new ProfileRepository("src/main/java/nz/ac/auckland/se206/profiles/repository");
-  private HashMap<String, UserProfile> users = repo.getUsers();
-
-  public static UserProfile currentUser;
-
   @FXML private Button buttonOnStart;
   @FXML private Button buttonOnExit;
   @FXML private Button buttonOnSignIn;
   @FXML private Button buttonOnSignUp;
   @FXML private TextField userName;
-
-  public void initialise() {
-    repo.loadProfiles();
-  }
 
   @FXML
   private void exitGame() {
@@ -46,8 +35,9 @@ public class PageController {
       alert.setTitle("Empty username");
       alert.setHeaderText("Please insert a valid username and try again");
       alert.showAndWait();
-    } else if (users.containsKey(userName.getText())) {
-      currentUser = users.get(userName.getText());
+    } else if (ProfileRepository.containsKey(userName.getText())) {
+      UserProfile currentUser = ProfileRepository.get(userName.getText());
+      ProfileRepository.setCurrentUser(currentUser);
       Button button = (Button) event.getSource();
       Scene sceneButtonIsIn = button.getScene();
 
@@ -90,15 +80,15 @@ public class PageController {
       alert.setTitle("Empty username");
       alert.setHeaderText("Please insert a valid username and try again");
       alert.showAndWait();
-    } else if (users.containsKey(userName.getText())) {
+    } else if (ProfileRepository.containsKey(userName.getText())) {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("User name already exists");
       alert.setHeaderText("Please click on Sign-In to start the game");
       alert.showAndWait();
     } else {
       UserProfile newUser = new UserProfile(userName.getText());
-      repo.saveProfile(newUser);
-      repo.saveProfiles();
+      ProfileRepository.saveProfile(newUser);
+      ProfileRepository.saveProfiles();
     }
   }
 }

@@ -7,16 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.user.ProfileRepository;
-import nz.ac.auckland.se206.user.UserProfile;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
  * remain as the class that runs the JavaFX application.
  */
-//some comments//
+// some comments//
 public class App extends Application {
   public static void main(final String[] args) {
-      launch();
+    launch();
   }
 
   /**
@@ -39,6 +38,9 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+
+    ProfileRepository.loadProfiles();
+
     final Scene scene = new Scene(loadFxml("page"));
 
     stage.setScene(scene);
