@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -16,7 +18,7 @@ import nz.ac.auckland.se206.user.UserProfile;
 public class PageController {
 
   private ProfileRepository repo =
-      new ProfileRepository("src/main/java/nz/ac/auckland/se206/profiles/user profile repository");
+      new ProfileRepository("src/main/java/nz/ac/auckland/se206/profiles/repository");
   private HashMap<String, UserProfile> users = repo.getUsers();
 
   public static UserProfile currentUser;
@@ -51,7 +53,11 @@ public class PageController {
 
       try {
         // load the canvas scene when press this button
-        sceneButtonIsIn.setRoot(App.loadFxml("profilePage"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
+        Parent root = loader.load();
+        StatsController statsController = loader.getController();
+        statsController.setStats(currentUser);
+        sceneButtonIsIn.setRoot(root);
       } catch (IOException e) {
         e.printStackTrace();
       }

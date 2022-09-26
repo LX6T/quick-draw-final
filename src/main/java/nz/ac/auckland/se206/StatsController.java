@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
+import java.util.Objects;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -15,11 +19,34 @@ public class StatsController {
   @FXML private Button buttonStart;
 
   @FXML
-  public void initialise() {
-    UserProfile user = PageController.currentUser;
-    System.out.println(user.getAccountName());
+  public void setStats(UserProfile user) {
+    if (Objects.equals(user.getWordsHistory(), "")) {
+      labelHistory.setText("N/A");
+    } else {
+      labelHistory.setText(user.getWordsHistory());
+    }
+
+    labelWins.setText(user.getNumOfWin().toString());
+    labelLosses.setText(user.getNumOfLost().toString());
+    labelScore.setText(user.getScore().toString());
+
+    if (user.getBestRecord() == null) {
+      labelRecord.setText("N/A");
+    } else {
+      labelRecord.setText(user.getBestRecord());
+    }
   }
 
   @FXML
-  private void onStart() {}
+  private void onStart(ActionEvent event) {
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+
+    try {
+      // load the canvas scene when press this button
+      sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
