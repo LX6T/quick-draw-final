@@ -1,9 +1,5 @@
 package nz.ac.auckland.se206;
 
-import ai.djl.ModelException;
-import ai.djl.modality.Classifications.Classification;
-import ai.djl.translate.TranslateException;
-import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,6 +8,14 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.imageio.ImageIO;
+
+import com.opencsv.exceptions.CsvException;
+
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications.Classification;
+import ai.djl.translate.TranslateException;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -24,7 +28,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -33,16 +36,20 @@ import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and the corresponding
- * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
- * DL model should be automatically queried in the background every second.
+ * This is the controller of the canvas. You are free to modify this class and
+ * the corresponding FXML file as you see fit. For example, you might no longer
+ * need the "Predict" button because the DL model should be automatically
+ * queried in the background every second.
  *
- * <p>!! IMPORTANT !!
+ * <p>
+ * !! IMPORTANT !!
  *
- * <p>Although we added the scale of the image, you need to be careful when changing the size of the
- * drawable canvas and the brush size. If you make the brush too big or too small with respect to
- * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
- * the canvas and brush sizes, make sure that the prediction works fine.
+ * <p>
+ * Although we added the scale of the image, you need to be careful when
+ * changing the size of the drawable canvas and the brush size. If you make the
+ * brush too big or too small with respect to the canvas size, the ML model will
+ * not work correctly. So be careful. If you make some changes in the canvas and
+ * brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController {
 
@@ -90,36 +97,47 @@ public class CanvasController {
 		}
 	};
 
-  @FXML private Button buttonOnSave;
+	@FXML
+	private Button buttonOnSave;
 
-  @FXML private Button buttonOnReady;
+	@FXML
+	private Button buttonOnReady;
 
-  @FXML private Button buttonOnErase;
+	@FXML
+	private Button buttonOnErase;
 
-  @FXML private Label scoreLabel;
+	@FXML
+	private Label scoreLabel;
 
-  @FXML private Button buttonOnClear;
+	@FXML
+	private Button buttonOnClear;
 
-  @FXML private Canvas canvas;
+	@FXML
+	private Canvas canvas;
 
-  @FXML private Button buttonOnReset;
+	@FXML
+	private Button buttonOnReset;
 
-  private GraphicsContext graphic;
+	private GraphicsContext graphic;
 
-  private DoodlePrediction model;
+	private DoodlePrediction model;
 
-  private String currentWord;
+	private String currentWord;
 
-  @FXML private Button buttonOnBack;
+	@FXML
+	private Button buttonOnBack;
 
-  @FXML private Label displayText;
+	@FXML
+	private Label displayText;
 
-  @FXML private Label timerDisplay;
+	@FXML
+	private Label timerDisplay;
 
-  @FXML private Button readyButton;
+	@FXML
+	private Button readyButton;
 
-  @FXML private Label textToRefresh;
-
+	@FXML
+	private Label textToRefresh;
 
 	// #035526
 	/**
@@ -413,6 +431,5 @@ public class CanvasController {
 		return this.saveCurrentSnapshotOnFile();
 		// save the current image to file by clicking this button
 	}
-
 
 }
