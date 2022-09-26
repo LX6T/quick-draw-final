@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.StatsController">
    <children>
       <VBox layoutX="-1.0" prefHeight="605.0" prefWidth="288.0" style="-fx-background-color: #1b3c38;">
          <children>
@@ -79,7 +79,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="70.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="150.0" text="Start">
+                        <Button fx:id="buttonStart" layoutX="70.0" layoutY="-6.0" mnemonicParsing="false" onAction="#onStart" prefHeight="49.0" prefWidth="150.0" text="Start">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -107,7 +107,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="105.0" prefWidth="283.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1">
+            <Label fx:id="labelWins" alignment="CENTER" prefHeight="105.0" prefWidth="283.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1">
                <font>
                   <Font size="17.0" />
                </font>
@@ -127,17 +127,17 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="122.0" prefWidth="359.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="labelLosses" alignment="CENTER" prefHeight="122.0" prefWidth="359.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="128.0" prefWidth="366.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="labelScore" alignment="CENTER" prefHeight="128.0" prefWidth="366.0" style="-fx-background-color: #acacac;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="168.0" prefWidth="386.0" style="-fx-background-color: #acacac;" text="NA" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="labelRecord" alignment="CENTER" prefHeight="168.0" prefWidth="386.0" style="-fx-background-color: #acacac;" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="17.0" />
                </font>
@@ -150,7 +150,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="334.0" layoutY="89.0" prefHeight="98.0" prefWidth="527.0" style="-fx-background-color: #ffffff;" text="NA">
+      <Label fx:id="labelHistory" alignment="TOP_LEFT" layoutX="334.0" layoutY="89.0" prefHeight="98.0" prefWidth="527.0" style="-fx-background-color: #ffffff;" text="N/A">
          <font>
             <Font size="18.0" />
          </font>
