@@ -23,7 +23,7 @@
                   <Font name="System Bold Italic" size="22.0" />
                </font>
             </Label>
-				<Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReady" prefHeight="86.0" prefWidth="259.0" style="-fx-background-color: #1b3c38;" text="Ready" textFill="#ffffffcc">
+				<Button fx:id="buttonOnReady" mnemonicParsing="false" onAction="#onReady" prefHeight="86.0" prefWidth="259.0" style="-fx-background-color: #1b3c38;" text="Ready" textFill="#ffffffcc">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
@@ -35,14 +35,11 @@
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
                <effect>
                   <Bloom />
                </effect>
             </Button>
-				<Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" prefHeight="92.0" prefWidth="266.0" style="-fx-background-color: #1b3c38;" text="Clear" textFill="WHITE">
+				<Button fx:id="buttonOnClear" mnemonicParsing="false" onAction="#onClear" prefHeight="92.0" prefWidth="266.0" style="-fx-background-color: #1b3c38;" text="Clear" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -81,7 +78,7 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Label alignment="CENTER" layoutX="885.0" layoutY="-2.0" prefHeight="98.0" prefWidth="163.0" style="-fx-background-color: #1b3c38 #1b3c38;" text="Predictions" textFill="WHITE">
+		<Label alignment="CENTER" layoutX="902.0" layoutY="-2.0" prefHeight="98.0" prefWidth="145.0" style="-fx-background-color: #1b3c38 #1b3c38;" text="Predictions" textFill="WHITE">
 			<font>
 				<Font name="System Bold Italic" size="22.0" />
 			</font>
@@ -132,12 +129,12 @@
             <Line endX="-14.000015258789062" endY="-80.99999237060547" layoutX="14.0" layoutY="81.0" opacity="0.54" startX="-7.666656494140625" startY="520.0" stroke="WHITE" strokeWidth="3.0" />
          </children>
       </Pane>
-		<Label fx:id="textToRefresh" alignment="TOP_LEFT" layoutX="903.0" layoutY="91.0" prefHeight="463.0" prefWidth="145.0" style="-fx-background-color: #1b3c38;" textFill="WHITE">
+		<Label fx:id="textToRefresh" alignment="CENTER" contentDisplay="CENTER" layoutX="903.0" layoutY="91.0" prefHeight="463.0" prefWidth="145.0" style="-fx-background-color: #1b3c38;" textFill="WHITE">
 			<font>
-				<Font name="Arial Rounded MT Bold" size="20.0" />
+				<Font name="Arial Rounded MT Bold" size="15.0" />
 			</font>
 		</Label>
-      <Line endX="671.833251953125" endY="-16.666664123535156" layoutX="383.0" layoutY="108.0" opacity="0.42" startX="-383.0" startY="-16.666664123535156" stroke="WHITE" strokeWidth="5.0" />
+      <Line endX="665.0" endY="-17.00000762939453" layoutX="383.0" layoutY="108.0" opacity="0.42" startX="-383.0" startY="-16.666664123535156" stroke="WHITE" strokeWidth="5.0" />
       <Pane layoutX="257.0" layoutY="177.0" prefHeight="377.0" prefWidth="628.0" style="-fx-background-color: #8b865e;">
          <children>
             <Pane layoutX="28.0" layoutY="19.0" prefHeight="332.0" prefWidth="574.0" style="-fx-background-color: #ffffff;">
@@ -164,6 +161,6 @@
             </DropShadow>
          </effect>
       </Pane>
-      <Line endX="-34.99993896484375" endY="-211.45465087890625" layoutX="935.0" layoutY="215.0" opacity="0.45" startX="-34.99993896484375" startY="385.0" stroke="WHITE" strokeWidth="5.0" />
+      <Line endX="-34.99993896484375" endY="-211.45465087890625" layoutX="935.0" layoutY="213.0" opacity="0.45" startX="-35.0" startY="385.0" stroke="WHITE" strokeWidth="5.0" />
    </children>
 </AnchorPane>
