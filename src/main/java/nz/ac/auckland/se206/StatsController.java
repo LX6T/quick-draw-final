@@ -33,7 +33,7 @@ public class StatsController {
     if (user.getBestRecord() == null) {
       labelRecord.setText("N/A");
     } else {
-      labelRecord.setText(user.getBestRecord());
+      labelRecord.setText(user.getBestRecord() + "s");
     }
   }
 

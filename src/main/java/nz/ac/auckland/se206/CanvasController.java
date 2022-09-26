@@ -303,6 +303,8 @@ public class CanvasController {
                 Platform.runLater(() -> scoreLabel.setText("WON"));
 
                 currentUser.wonTheGame();
+                int timeTaken = 60 - interval;
+                currentUser.updateRecord(timeTaken + "");
               }
 
               ProfileRepository.saveProfile(currentUser);
