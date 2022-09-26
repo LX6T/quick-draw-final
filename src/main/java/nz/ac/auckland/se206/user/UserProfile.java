@@ -3,6 +3,10 @@ package nz.ac.auckland.se206.user;
 import java.util.ArrayList;
 
 public class UserProfile {
+	/**
+	 * This Class will store user statistics and allow user statistics to be changed
+	 * and updated
+	 */
 
 	private String accountName;
 	private Integer numOfWin;
@@ -15,6 +19,13 @@ public class UserProfile {
 		this.accountName = accountName;
 	}
 
+	/**
+	 * This method will update the record automatically based on the value of the
+	 * records
+	 * 
+	 * @param record String which should be inputed each time the game is run
+	 * 
+	 */
 	public void updateRecord(String record) {
 		if (this.bestRecord == null) {
 			this.bestRecord = record;
