@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651;">
          <children>
-            <TextField fx:id="userName" layoutX="80.0" layoutY="209.0" prefHeight="25.0" prefWidth="274.0" promptText="User name" style="-fx-background-color: 1;" />
+            <TextField fx:id="userName" layoutX="80.0" layoutY="209.0" prefHeight="25.0" prefWidth="274.0" style="-fx-background-color: 1;" />
             <Line endX="119.0" endY="0.3333282470703125" layoutX="234.0" layoutY="234.0" startX="-154.0" startY="1.33331298828125" stroke="#534747" />
             <Label layoutX="79.0" layoutY="186.0" text="Enter your username:" textFill="#534747">
                <font>
