@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206;
 
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications.Classification;
+import ai.djl.translate.TranslateException;
+import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,14 +12,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.imageio.ImageIO;
-
-import com.opencsv.exceptions.CsvException;
-
-import ai.djl.ModelException;
-import ai.djl.modality.Classifications.Classification;
-import ai.djl.translate.TranslateException;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -28,26 +24,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.user.ProfileRepository;
+import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and
- * the corresponding FXML file as you see fit. For example, you might no longer
- * need the "Predict" button because the DL model should be automatically
- * queried in the background every second.
+ * This is the controller of the canvas. You are free to modify this class and the corresponding
+ * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
+ * DL model should be automatically queried in the background every second.
  *
- * <p>
- * !! IMPORTANT !!
+ * <p>!! IMPORTANT !!
  *
- * <p>
- * Although we added the scale of the image, you need to be careful when
- * changing the size of the drawable canvas and the brush size. If you make the
- * brush too big or too small with respect to the canvas size, the ML model will
- * not work correctly. So be careful. If you make some changes in the canvas and
- * brush sizes, make sure that the prediction works fine.
+ * <p>Although we added the scale of the image, you need to be careful when changing the size of the
+ * drawable canvas and the brush size. If you make the brush too big or too small with respect to
+ * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
+ * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController {
 
@@ -99,47 +94,35 @@ public class CanvasController {
         }
       };
 
-	@FXML
-	private Button buttonOnSave;
+  @FXML private Button buttonOnSave;
 
-	@FXML
-	private Button buttonOnReady;
+  @FXML private Button buttonOnReady;
 
-	@FXML
-	private Button buttonOnErase;
+  @FXML private Button buttonOnErase;
 
-	@FXML
-	private Label scoreLabel;
+  @FXML private Label scoreLabel;
 
-	@FXML
-	private Button buttonOnClear;
+  @FXML private Button buttonOnClear;
 
-	@FXML
-	private Canvas canvas;
+  @FXML private Canvas canvas;
 
-	@FXML
-	private Button buttonOnReset;
+  @FXML private Button buttonOnReset;
 
-	private GraphicsContext graphic;
+  private GraphicsContext graphic;
 
-	private DoodlePrediction model;
+  private DoodlePrediction model;
 
-	private String currentWord;
+  private String currentWord;
 
-	@FXML
-	private Button buttonOnBack;
+  @FXML private Button buttonOnBack;
 
-	@FXML
-	private Label displayText;
+  @FXML private Label displayText;
 
-	@FXML
-	private Label timerDisplay;
+  @FXML private Label timerDisplay;
 
-	@FXML
-	private Button readyButton;
+  @FXML private Button readyButton;
 
-	@FXML
-	private Label textToRefresh;
+  @FXML private Label textToRefresh;
 
   // #035526
   /**
@@ -152,11 +135,11 @@ public class CanvasController {
    * @throws CsvException
    */
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
-		canvas.setDisable(true);
-		buttonOnReset.setDisable(false);
-		buttonOnSave.setDisable(true);
-		buttonOnErase.setDisable(true);
-		buttonOnClear.setDisable(true);
+    canvas.setDisable(true);
+    buttonOnReset.setDisable(false);
+    buttonOnSave.setDisable(true);
+    buttonOnErase.setDisable(true);
+    buttonOnClear.setDisable(true);
     CategorySelector categorySelector = new CategorySelector();
     String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
     this.currentWord = randomWord;
@@ -272,9 +255,9 @@ public class CanvasController {
     // this variable is set so that every time this method is called, the timer
     // value can be reset.
     canvas.setDisable(false);
-		buttonOnReady.setDisable(true);
-		buttonOnErase.setDisable(false);
-		buttonOnClear.setDisable(false);
+    buttonOnReady.setDisable(true);
+    buttonOnErase.setDisable(false);
+    buttonOnClear.setDisable(false);
     model = new DoodlePrediction();
     TextToSpeech speaker = new TextToSpeech();
     speaker.speak("The game starts");
@@ -310,9 +293,9 @@ public class CanvasController {
               // when the 60 seconds timer is exceeded, everything stops
               timer.cancel();
               canvas.setDisable(true);
-					    buttonOnSave.setDisable(false);
-					    buttonOnErase.setDisable(true);
-					    buttonOnClear.setDisable(true);
+              buttonOnSave.setDisable(false);
+              buttonOnErase.setDisable(true);
+              buttonOnClear.setDisable(true);
               UserProfile currentUser = ProfileRepository.getCurrentUser();
 
               if (score == false) {
@@ -323,7 +306,7 @@ public class CanvasController {
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
-                currentUser.lostTheGame();
+                if (currentUser != null) currentUser.lostTheGame();
 
               } else {
                 // speak to user when detected result is won
@@ -333,14 +316,18 @@ public class CanvasController {
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
 
-                currentUser.wonTheGame();
-                int timeTaken = 60 - interval;
-                currentUser.updateRecord(timeTaken + "");
+                if (currentUser != null) {
+                  currentUser.wonTheGame();
+                  int timeTaken = 60 - interval;
+                  currentUser.updateRecord(timeTaken + "");
+                }
               }
 
-              ProfileRepository.saveProfile(currentUser);
-              ProfileRepository.updateProfiles();
-              ProfileRepository.setCurrentUser(currentUser);
+              if (currentUser != null) {
+                ProfileRepository.saveProfile(currentUser);
+                ProfileRepository.updateProfiles();
+                ProfileRepository.setCurrentUser(currentUser);
+              }
             }
           }
         },
@@ -439,5 +426,4 @@ public class CanvasController {
     return this.saveCurrentSnapshotOnFile();
     // save the current image to file by clicking this button
   }
-
 }

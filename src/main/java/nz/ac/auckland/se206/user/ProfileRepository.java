@@ -1,14 +1,13 @@
 package nz.ac.auckland.se206.user;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class ProfileRepository {
 
@@ -52,7 +51,7 @@ public class ProfileRepository {
       Type type = new TypeToken<HashMap<String, UserProfile>>() {}.getType();
       users = gson.fromJson(userJson, type);
     } catch (Exception e) {
-      e.printStackTrace();
+      users = new HashMap<>();
     }
   }
 
@@ -77,9 +76,10 @@ public class ProfileRepository {
   }
 
   public static void addWord(String word) {
-    currentUser.updateWordsHistory(word);
-    saveProfile(currentUser);
-    updateProfiles();
+    if (currentUser != null) {
+      currentUser.updateWordsHistory(word);
+      saveProfile(currentUser);
+      updateProfiles();
+    }
   }
-
 }
