@@ -3,99 +3,98 @@ package nz.ac.auckland.se206.user;
 import java.util.ArrayList;
 
 public class UserProfile {
-	/**
-	 * This Class will store user statistics and allow user statistics to be changed
-	 * and updated
-	 */
+  /** This Class will store user statistics and allow user statistics to be changed and updated */
+  private String accountName;
 
-	private String accountName;
-	private Integer numOfWin;
-	private Integer numOfLoss;
-	private ArrayList<String> wordsHistory;
-	private String bestRecord;
-	private Integer score;
+  private Integer numOfWin;
+  private Integer numOfLoss;
+  private ArrayList<String> wordsHistory;
+  private String bestRecord;
 
-	public UserProfile(String accountName) {
-		this.accountName = accountName;
-	}
+  public UserProfile(String accountName) {
+    this.accountName = accountName;
+    this.numOfWin = 0;
+    this.numOfLoss = 0;
+    this.bestRecord = null;
 
-	/**
-	 * This method will update the record automatically based on the value of the
-	 * records
-	 * 
-	 * @param record String which should be inputed each time the game is run
-	 * 
-	 */
-	public void updateRecord(String record) {
-		// automatically update the record based on its value
-		if (this.bestRecord == null) {
-			this.bestRecord = record;
-		} else {
-			if (Integer.parseInt(this.bestRecord) > Integer.parseInt(record)) {
-				this.bestRecord = record;
-			}
-		}
-	}
+    this.wordsHistory = new ArrayList<>();
+  }
 
-	public void updateWordsHistory(String currentWord) {
-		wordsHistory.add(currentWord);
-	}
+  /**
+   * This method will update the record automatically based on the value of the records
+   *
+   * @param record String which should be inputed each time the game is run
+   */
+  public void updateRecord(String record) {
+    // automatically update the record based on its value
+    if (this.bestRecord == null) {
+      this.bestRecord = record;
+    } else {
+      if (Integer.parseInt(this.bestRecord) > Integer.parseInt(record)) {
+        this.bestRecord = record;
+      }
+    }
+  }
 
-	public void wonTheGame() {
-		this.numOfWin = this.numOfWin + 1;
-	}
+  public void updateWordsHistory(String currentWord) {
+    wordsHistory.add(currentWord);
+  }
 
-	public void lostTheGame() {
-		this.numOfLoss = this.numOfLoss + 1;
-	}
+  public void wonTheGame() {
+    this.numOfWin = this.numOfWin + 1;
+  }
 
-	public String getAccountName() {
-		return accountName;
-	}
+  public void lostTheGame() {
+    this.numOfLoss = this.numOfLoss + 1;
+  }
 
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
+  public String getAccountName() {
+    return accountName;
+  }
 
-	public Integer getNumOfWin() {
-		return numOfWin;
-	}
+  public void setAccountName(String accountName) {
+    this.accountName = accountName;
+  }
 
-	public void setNumOfWin(Integer numOfWin) {
-		this.numOfWin = numOfWin;
-	}
+  public Integer getNumOfWin() {
+    return numOfWin;
+  }
 
-	public Integer getNumOfLost() {
-		return numOfLoss;
-	}
+  public void setNumOfWin(Integer numOfWin) {
+    this.numOfWin = numOfWin;
+  }
 
-	public void setNumOfLost(Integer numOfLost) {
-		this.numOfLoss = numOfLost;
-	}
+  public Integer getNumOfLost() {
+    return numOfLoss;
+  }
 
-	public ArrayList<String> getWordsHistory() {
-		return wordsHistory;
-	}
+  public void setNumOfLost(Integer numOfLost) {
+    this.numOfLoss = numOfLost;
+  }
 
-	public void setWordsHistory(ArrayList<String> wordsHistory) {
-		this.wordsHistory = wordsHistory;
-	}
+  public String getWordsHistory() {
+    StringBuilder wordsHistoryString = new StringBuilder();
+    for (String word : wordsHistory) {
+      wordsHistoryString.append(word).append(", ");
+    }
+    if (wordsHistoryString.length() >= 2)
+      wordsHistoryString.setLength(wordsHistoryString.length() - 2);
+    return wordsHistoryString.toString();
+  }
 
-	public String getBestRecord() {
-		return bestRecord;
-	}
+  public void setWordsHistory(ArrayList<String> wordsHistory) {
+    this.wordsHistory = wordsHistory;
+  }
 
-	public void setBestRecord(String bestRecord) {
-		this.bestRecord = bestRecord;
-	}
+  public String getBestRecord() {
+    return bestRecord;
+  }
 
-	public Integer getScore() {
-		this.score = numOfWin - numOfLoss;
-		return score;
-	}
+  public void setBestRecord(String bestRecord) {
+    this.bestRecord = bestRecord;
+  }
 
-	public void setScore(Integer score) {
-		this.score = score;
-	}
-
+  public Integer getScore() {
+    return numOfWin - numOfLoss;
+  }
 }
