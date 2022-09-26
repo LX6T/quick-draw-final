@@ -1,19 +1,20 @@
 package nz.ac.auckland.se206.user;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 public class ProfileRepository {
 
   private static final Gson gson = new GsonBuilder().create();
   private static final Path repoPathName =
-      Paths.get("src/main/java/nz/ac/auckland/se206/profiles/repository");
+      Paths.get("src/main/java/nz/ac/auckland/se206/repository");
   private static HashMap<String, UserProfile> users;
 
   private static UserProfile currentUser;
@@ -26,14 +27,16 @@ public class ProfileRepository {
    */
   public static void saveProfile(UserProfile profile) {
     String username = profile.getAccountName();
+    // save user profile to the hash map
     if (!users.containsKey(username)) {
       users.put(username, profile);
     }
   }
 
   /** Save the HashMap containing all the current user profiles */
-  public static void saveProfiles() {
+  public static void updateProfiles() {
     String usersJson = gson.toJson(users);
+    // update the local repositories of the user profile
     try {
       Files.writeString(repoPathName, usersJson);
     } catch (Exception e) {
@@ -45,6 +48,7 @@ public class ProfileRepository {
   public static void loadProfiles() {
     try {
       String userJson = Files.readString(repoPathName);
+      // load the local user profile to the hash map
       Type type = new TypeToken<HashMap<String, UserProfile>>() {}.getType();
       users = gson.fromJson(userJson, type);
     } catch (Exception e) {
@@ -75,6 +79,7 @@ public class ProfileRepository {
   public static void addWord(String word) {
     currentUser.updateWordsHistory(word);
     saveProfile(currentUser);
-    saveProfiles();
+    updateProfiles();
   }
+
 }

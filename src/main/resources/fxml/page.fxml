@@ -10,60 +10,91 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.PageController">
-   <children>
-      <AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651;">
-         <children>
-            <TextField fx:id="userName" layoutX="80.0" layoutY="209.0" prefHeight="25.0" prefWidth="274.0" style="-fx-background-color: 1;" />
-            <Line endX="119.0" endY="0.3333282470703125" layoutX="234.0" layoutY="234.0" startX="-154.0" startY="1.33331298828125" stroke="#534747" />
-            <Label layoutX="79.0" layoutY="186.0" text="Enter your username:" textFill="#534747">
-               <font>
-                  <Font name="Arial Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="buttonOnSignIn" layoutX="83.0" layoutY="316.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #c0a865;" text="Sign-In" textFill="#534747">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonOnStart" layoutX="83.0" layoutY="365.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #c0a865;" text="Play as Guest" textFill="#534747">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonOnExit" layoutX="83.0" layoutY="414.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: #c0a865;" text="Exit" textFill="#534747">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="142.0" layoutY="20.0" opacity="0.56" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/logo-speedy-sketchers.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <ImageView fitHeight="478.0" fitWidth="578.0" layoutY="81.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/art-g33e5f3a24_1920.jpg" />
-         </image>
-         <effect>
-            <Bloom />
-         </effect>
-      </ImageView>
-      <Label layoutX="131.0" layoutY="24.0" opacity="0.66" prefHeight="36.0" prefWidth="302.0" text="Welcome to Speedy Sketcher" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold Italic" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="251.0" layoutY="264.0" opacity="0.48" prefHeight="85.0" prefWidth="193.0" text="Challenge your sketching &#10;skills using everything you&#10;can think of" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonOnSignUp" layoutX="173.0" layoutY="540.0" mnemonicParsing="false" onAction="#onSignUp" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #c0a865;" text="Sign-Up" textFill="#534747">
-         <font>
-            <Font name="Arial Bold" size="13.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane prefHeight="600.0" prefWidth="1050.0"
+	style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);"
+	xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="nz.ac.auckland.se206.PageController">
+	<children>
+		<AnchorPane layoutX="578.0" layoutY="60.0"
+			prefHeight="493.0" prefWidth="434.0"
+			style="-fx-background-color: #827651;">
+			<children>
+				<TextField fx:id="userName" layoutX="80.0" layoutY="209.0"
+					prefHeight="25.0" prefWidth="274.0"
+					style="-fx-background-color: 1;" />
+				<Line endX="119.0" endY="0.3333282470703125" layoutX="234.0"
+					layoutY="234.0" startX="-154.0" startY="1.33331298828125"
+					stroke="#534747" />
+				<Label layoutX="79.0" layoutY="186.0"
+					text="Enter your username:" textFill="#534747">
+					<font>
+						<Font name="Arial Bold" size="20.0" />
+					</font>
+				</Label>
+				<Button fx:id="buttonOnSignIn" layoutX="83.0" layoutY="316.0"
+					mnemonicParsing="false" onAction="#signInAction" prefHeight="25.0"
+					prefWidth="268.0" style="-fx-background-color: #c0a865;"
+					text="Sign-In" textFill="#534747">
+					<font>
+						<Font name="Arial Bold" size="13.0" />
+					</font>
+				</Button>
+				<Button fx:id="buttonOnStart" layoutX="83.0" layoutY="365.0"
+					mnemonicParsing="false" onAction="#startNewGame" prefHeight="25.0"
+					prefWidth="268.0" style="-fx-background-color: #c0a865;"
+					text="Play as Guest" textFill="#534747">
+					<font>
+						<Font name="Arial Bold" size="13.0" />
+					</font>
+				</Button>
+				<Button fx:id="buttonOnExit" layoutX="83.0" layoutY="414.0"
+					mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0"
+					prefWidth="268.0" style="-fx-background-color: #c0a865;"
+					text="Exit" textFill="#534747">
+					<font>
+						<Font name="Arial Bold" size="13.0" />
+					</font>
+				</Button>
+				<ImageView fitHeight="150.0" fitWidth="200.0"
+					layoutX="142.0" layoutY="20.0" opacity="0.56" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@../images/logo-speedy-sketchers.png" />
+					</image>
+				</ImageView>
+			</children>
+		</AnchorPane>
+		<ImageView fitHeight="478.0" fitWidth="578.0" layoutY="81.0"
+			opacity="0.52" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="@../images/art-g33e5f3a24_1920.jpg" />
+			</image>
+			<effect>
+				<Bloom />
+			</effect>
+		</ImageView>
+		<Label layoutX="131.0" layoutY="24.0" opacity="0.66"
+			prefHeight="36.0" prefWidth="302.0" text="Welcome to Speedy Sketcher"
+			textFill="WHITE">
+			<font>
+				<Font name="Arial Bold Italic" size="20.0" />
+			</font>
+		</Label>
+		<Label layoutX="251.0" layoutY="264.0" opacity="0.48"
+			prefHeight="85.0" prefWidth="193.0"
+			text="Challenge your sketching &#10;skills using everything you&#10;can think of"
+			textFill="WHITE">
+			<font>
+				<Font name="System Italic" size="15.0" />
+			</font>
+		</Label>
+		<Button fx:id="buttonOnSignUp" layoutX="173.0" layoutY="540.0"
+			mnemonicParsing="false" onAction="#onSignUp" prefHeight="25.0"
+			prefWidth="155.0" style="-fx-background-color: #c0a865;"
+			text="Sign-Up" textFill="#534747">
+			<font>
+				<Font name="Arial Bold" size="13.0" />
+			</font>
+		</Button>
+	</children>
 </AnchorPane>

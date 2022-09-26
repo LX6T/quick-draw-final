@@ -26,6 +26,7 @@ public class UserProfile {
    * @param record String which should be inputed each time the game is run
    */
   public void updateRecord(String record) {
+    // automatically update the record based on its value
     if (this.bestRecord == null) {
       this.bestRecord = record;
     } else {

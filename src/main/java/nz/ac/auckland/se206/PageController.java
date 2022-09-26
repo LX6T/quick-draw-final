@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +60,7 @@ public class PageController {
     }
   }
 
+
   @FXML
   private void startNewGame(ActionEvent event) throws InterruptedException {
 
@@ -72,6 +74,7 @@ public class PageController {
       e.printStackTrace();
     }
   }
+
 
   @FXML
   private void onSignUp() {
@@ -88,7 +91,7 @@ public class PageController {
     } else {
       UserProfile newUser = new UserProfile(userName.getText());
       ProfileRepository.saveProfile(newUser);
-      ProfileRepository.saveProfiles();
+      ProfileRepository.updateProfiles();
     }
   }
 }
