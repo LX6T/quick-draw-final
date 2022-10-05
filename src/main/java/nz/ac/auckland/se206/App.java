@@ -6,7 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nz.ac.auckland.se206.user.ProfileRepository;
 
 /**
@@ -44,9 +46,10 @@ public class App extends Application {
 
 		ProfileRepository.loadProfiles();
 
-		final Scene scene = new Scene(loadFxml("page"));
-
+		Scene scene = new Scene(loadFxml("page"));
+		scene.setFill(Color.TRANSPARENT);
 		stage.setScene(scene);
+		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.show();
 	}
 }

@@ -2,6 +2,8 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,13 +20,13 @@ import nz.ac.auckland.se206.user.UserProfile;
 public class PageController {
 
 	@FXML
-	private Button buttonOnStart;
+	private JFXButton buttonOnStart;
 	@FXML
-	private Button buttonOnExit;
+	private JFXButton buttonOnExit;
 	@FXML
-	private Button buttonOnSignIn;
+	private JFXButton buttonOnSignIn;
 	@FXML
-	private Button buttonOnSignUp;
+	private JFXButton buttonOnSignUp;
 	@FXML
 	private TextField userName;
 

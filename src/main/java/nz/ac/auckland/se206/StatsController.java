@@ -2,6 +2,9 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import com.jfoenix.controls.JFXButton;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -24,7 +27,7 @@ public class StatsController {
 	private Button buttonOnBack;
 
 	@FXML
-	private Button buttonStart;
+	private JFXButton buttonOnStart;
 
 	@FXML
 	public void setStats(UserProfile user) {
