@@ -185,7 +185,7 @@ public class CanvasController {
 
 		List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
 		StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
-		textToRefresh.setText(sb.toString());
+		textToRefresh.setText(sb.toString().replaceAll("_", " "));
 		win = isWin(result);
 		if (win == true) {
 			this.score = true;

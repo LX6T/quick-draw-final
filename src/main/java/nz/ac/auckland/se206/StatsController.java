@@ -47,7 +47,7 @@ public class StatsController {
 			labelRecord.setText(user.getBestRecord() + "s");
 		}
 	}
-	
+
 	@FXML
 	private void back(ActionEvent event) {
 		Button button = (Button) event.getSource();
