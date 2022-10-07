@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,42 +16,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0"
-	styleClass="anchorPane" stylesheets="@../css/styling.css"
-	xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="nz.ac.auckland.se206.StatsController">
+<AnchorPane prefHeight="600.0" prefWidth="1050.0" styleClass="anchorPane" stylesheets="@../css/styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.StatsController">
 	<children>
-		<VBox layoutX="-1.0" prefHeight="605.0" prefWidth="288.0"
-			style="-fx-background-color: #827651;">
+		<VBox layoutX="-1.0" prefHeight="605.0" prefWidth="288.0" style="-fx-background-color: #827651;">
 			<children>
 				<Pane prefHeight="118.0" prefWidth="288.0">
 					<children>
-						<ImageView fitHeight="57.0" fitWidth="55.0"
-							layoutX="24.0" layoutY="30.0" opacity="0.64" pickOnBounds="true"
-							preserveRatio="true">
+						<ImageView fitHeight="57.0" fitWidth="55.0" layoutX="24.0" layoutY="30.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../images/logo-speedy-sketchers.png" />
 							</image>
 						</ImageView>
-						<Label layoutX="98.0" layoutY="40.0" prefHeight="38.0"
-							prefWidth="165.0" text="Speedy Sketcher" textFill="WHITE">
+						<Label layoutX="98.0" layoutY="40.0" prefHeight="38.0" prefWidth="165.0" text="Speedy Sketcher" textFill="WHITE">
 							<font>
 								<Font name="System Bold Italic" size="21.0" />
 							</font>
+                     <effect>
+                        <Bloom />
+                     </effect>
 						</Label>
-						<Line endX="156.9000244140625" endY="0.33333587646484375"
-							layoutX="125.0" layoutY="117.0" opacity="0.48"
-							startX="-125.00000762939453" startY="0.33333587646484375"
-							stroke="WHITE" strokeWidth="5.0" />
+						<Line endX="156.9000244140625" endY="0.33333587646484375" layoutX="125.0" layoutY="117.0" opacity="0.48" startX="-125.00000762939453" startY="0.33333587646484375" stroke="WHITE" strokeWidth="5.0" />
 					</children>
 				</Pane>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false"
-					prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton"
-					stylesheets="@../css/styling.css" text="1. Number of Win"
-					textFill="#534747">
+				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="1. Number of Win" textFill="#534747">
 					<padding>
 						<Insets left="50.0" />
 					</padding>
@@ -57,10 +51,7 @@
 						<Font name="Arial Bold" size="18.0" />
 					</font>
 				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false"
-					prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton"
-					stylesheets="@../css/styling.css" text="2. Number of Loss"
-					textFill="#534747">
+				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="2. Number of Loss" textFill="#534747">
 					<padding>
 						<Insets left="50.0" />
 					</padding>
@@ -68,11 +59,7 @@
 						<Font name="System Bold" size="18.0" />
 					</font>
 				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false"
-					prefHeight="65.0" prefWidth="289.0"
-					style="-fx-background-clor: #1b3c38;" styleClass="ABCButton"
-					stylesheets="@../css/styling.css" text="3. Score"
-					textFill="#534747">
+				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" style="-fx-background-clor: #1b3c38;" styleClass="ABCButton" stylesheets="@../css/styling.css" text="3. Score" textFill="#534747">
 					<padding>
 						<Insets left="50.0" />
 					</padding>
@@ -80,10 +67,7 @@
 						<Font name="System Bold" size="18.0" />
 					</font>
 				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false"
-					prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton"
-					stylesheets="@../css/styling.css" text="4. History"
-					textFill="#534747">
+				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="4. History" textFill="#534747">
 					<padding>
 						<Insets left="50.0" />
 					</padding>
@@ -91,10 +75,7 @@
 						<Font name="System Bold" size="18.0" />
 					</font>
 				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false"
-					prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton"
-					stylesheets="@../css/styling.css" text="5. Best Record"
-					textFill="#534747">
+				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="5. Best Record" textFill="#534747">
 					<padding>
 						<Insets left="50.0" />
 					</padding>
@@ -107,12 +88,7 @@
 					<children>
 						<Pane prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<JFXButton fx:id="buttonOnStart" buttonType="RAISED"
-									layoutX="67.0" layoutY="-11.0" onAction="#onStart"
-									prefHeight="55.0" prefWidth="151.0"
-									style="-fx-background-radius: 20px;" styleClass="JFXButton"
-									stylesheets="@../css/styling.css" text="Start"
-									textFill="#534747">
+								<JFXButton fx:id="buttonOnStart" buttonType="RAISED" layoutX="67.0" layoutY="-11.0" onAction="#onStart" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
 									<font>
 										<Font size="25.0" />
 									</font>
@@ -123,29 +99,19 @@
 				</HBox>
 			</children>
 		</VBox>
-		<GridPane layoutX="324.0" layoutY="246.0" prefHeight="335.0"
-			prefWidth="538.0" style="-fx-background-radius: 20px;">
+		<GridPane layoutX="324.0" layoutY="246.0" prefHeight="335.0" prefWidth="538.0" style="-fx-background-radius: 20px;">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Label alignment="CENTER" prefHeight="119.0" prefWidth="277.0"
-					style="-fx-background-radius: 15px; -fx-background-color: #c0a865;"
-					styleClass="JFXButton" stylesheets="@../css/styling.css"
-					text="Number of Win" textFill="#534747">
+				<Label alignment="CENTER" prefHeight="119.0" prefWidth="277.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Number of Win" textFill="#534747">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -153,10 +119,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label fx:id="labelWins" alignment="CENTER" prefHeight="105.0"
-					prefWidth="283.0"
-					style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;"
-					text="0" GridPane.columnIndex="1">
+				<Label fx:id="labelWins" alignment="CENTER" prefHeight="105.0" prefWidth="283.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -164,10 +127,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label alignment="CENTER" prefHeight="139.0" prefWidth="280.0"
-					style="-fx-background-radius: 15px; -fx-background-color: #c0a865;"
-					styleClass="JFXButton" text="Number of Loss" textFill="#534747"
-					GridPane.rowIndex="1">
+				<Label alignment="CENTER" prefHeight="139.0" prefWidth="280.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" text="Number of Loss" textFill="#534747" GridPane.rowIndex="1">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -175,10 +135,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label alignment="CENTER" prefHeight="151.0" prefWidth="305.0"
-					style="-fx-background-radius: 15px; -fx-background-color: #c0a865;"
-					styleClass="JFXButton" text="Score" textFill="#534747"
-					GridPane.rowIndex="2">
+				<Label alignment="CENTER" prefHeight="151.0" prefWidth="305.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" text="Score" textFill="#534747" GridPane.rowIndex="2">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -186,10 +143,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label alignment="CENTER" prefHeight="151.0" prefWidth="335.0"
-					style="-fx-background-radius: 15px; -fx-background-color: #c0a865;"
-					styleClass="JFXButton" stylesheets="@../css/styling.css"
-					text="Best Record" textFill="#534747" GridPane.rowIndex="3">
+				<Label alignment="CENTER" prefHeight="151.0" prefWidth="335.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Best Record" textFill="#534747" GridPane.rowIndex="3">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -197,10 +151,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label fx:id="labelLosses" alignment="CENTER"
-					prefHeight="122.0" prefWidth="359.0"
-					style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;"
-					text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<Label fx:id="labelLosses" alignment="CENTER" prefHeight="122.0" prefWidth="359.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -208,10 +159,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label fx:id="labelScore" alignment="CENTER"
-					prefHeight="128.0" prefWidth="366.0"
-					style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;"
-					text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+				<Label fx:id="labelScore" alignment="CENTER" prefHeight="128.0" prefWidth="366.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -219,10 +167,7 @@
 						<DropShadow />
 					</effect>
 				</Label>
-				<Label fx:id="labelRecord" alignment="CENTER"
-					prefHeight="168.0" prefWidth="386.0"
-					style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;"
-					text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="3">
+				<Label fx:id="labelRecord" alignment="CENTER" prefHeight="168.0" prefWidth="386.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="3">
 					<font>
 						<Font size="17.0" />
 					</font>
@@ -232,34 +177,53 @@
 				</Label>
 			</children>
 		</GridPane>
-		<Pane layoutX="886.0" layoutY="-1.0" prefHeight="606.0"
-			prefWidth="171.0">
-			<children>
-				<JFXButton fx:id="buttonOnBack" buttonType="RAISED"
-					layoutX="-12.0" layoutY="23.0" onAction="#back" prefHeight="55.0"
-					prefWidth="151.0" style="-fx-background-radius: 20px;"
-					styleClass="JFXButton" stylesheets="@../css/styling.css"
-					text="Back" textFill="#534747">
-					<font>
-						<Font size="25.0" />
-					</font>
-				</JFXButton>
-			</children>
-		</Pane>
-		<Label layoutX="336.0" layoutY="34.0" text="History:"
-			textFill="WHITE">
+		<Label layoutX="336.0" layoutY="34.0" text="History:" textFill="WHITE">
 			<font>
 				<Font name="GOST Common" size="20.0" />
 			</font>
 		</Label>
-		<Label fx:id="labelHistory" alignment="TOP_LEFT" layoutX="334.0"
-			layoutY="89.0" opacity="0.71" prefHeight="98.0" prefWidth="527.0"
-			style="-fx-background-color: #ffffff;" text="N/A">
+		<Label fx:id="labelHistory" alignment="TOP_LEFT" layoutX="334.0" layoutY="89.0" opacity="0.71" prefHeight="98.0" prefWidth="527.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" text="N/A">
 			<font>
 				<Font name="GOST Common" size="18.0" />
 			</font>
 		</Label>
-		<Line endX="323.3333740234375" layoutX="538.0" layoutY="187.0"
-			startX="-203.99996948242188" startY="1.52587890625E-5" />
+		<Line endX="323.3333740234375" layoutX="538.0" layoutY="187.0" startX="-203.99996948242188" startY="1.52587890625E-5" />
+      <Pane layoutX="952.0" layoutY="10.0" prefHeight="98.0" prefWidth="83.0">
+         <children>
+            <Circle fill="#c0a865" layoutX="46.0" layoutY="49.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" styleClass="ABCircle" />
+            <Pane layoutX="21.0" layoutY="27.0" prefHeight="44.0" prefWidth="43.0">
+               <children>
+                  <ImageView fitHeight="44.0" fitWidth="43.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/exit-icon-png-close-0.png" />
+                     </image>
+                     <effect>
+                        <Bloom threshold="0.45">
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="0.8185185194015503" blue="0.395061731338501" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Bloom>
+                     </effect>
+                  </ImageView>
+                  <Pane layoutX="-8.0" layoutY="-5.0" prefHeight="55.0" prefWidth="55.0">
+                     <children>
+                  				<JFXButton fx:id="buttonOnBack" layoutX="-1.0" layoutY="-1.0" minWidth="43.0" onAction="#back" opacity="0.32" prefHeight="55.0" prefWidth="66.0" style="-fx-background-radius: 100;" styleClass="JFXButton" stylesheets="@../css/styling.css" textFill="#534747">
+                  					<font>
+                  						<Font size="22.0" />
+                  					</font>
+                  				</JFXButton>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
 	</children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </AnchorPane>

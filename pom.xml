@@ -61,6 +61,11 @@
 	</build>
 	<dependencies>
 		<dependency>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx-fontawesome</artifactId>
+			<version>4.7.0-9.1.2</version>
+		</dependency>
+		<dependency>
 			<artifactId>javafx-controls</artifactId>
 			<groupId>org.openjfx</groupId>
 			<version>18.0.1</version>
@@ -100,21 +105,6 @@
 			<artifactId>api</artifactId>
 			<groupId>ai.djl</groupId>
 			<version>0.18.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.jensd</groupId>
-			<artifactId>fontawesomefx</artifactId>
-			<version>8.9</version>
-		</dependency>
-		<dependency>
-			<groupId>de.jensd</groupId>
-			<artifactId>fontawesomefx-fontawesome</artifactId>
-			<version>4.7.0-9.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>de.jensd</groupId>
-			<artifactId>fontawesomefx-commons</artifactId>
-			<version>9.1.2</version>
 		</dependency>
 		<dependency>
 			<artifactId>pytorch-engine</artifactId>
