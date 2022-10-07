@@ -43,9 +43,12 @@ public class StatsController {
 	private void fadeIn() {
 		// TODO Auto-generated method stub
 		FadeTransition ft = new FadeTransition();
+		// set fade in animation
 		ft.setDuration(Duration.millis(500));
+		// interval is 500 ms
 		ft.setNode(masterPane);
 		ft.setFromValue(0.2);
+		// increase from 0.2 opacity to 1
 		ft.setToValue(1);
 		ft.play();
 	}
@@ -53,16 +56,22 @@ public class StatsController {
 	@FXML
 	public void setStats(UserProfile user) {
 		if (Objects.equals(user.getWordsHistory(), "")) {
+			// if this user name is inside the words history
 			labelHistory.setText("N/A");
+			// set the label to not available
 		} else {
 			labelHistory.setText(user.getWordsHistory());
 		}
 
 		labelWins.setText(user.getNumOfWin().toString());
+		// set the number of wins
 		labelLosses.setText(user.getNumOfLost().toString());
+		// set the number of loss
 		labelScore.setText(user.getScore().toString());
+		// set the text of the score
 
 		if (user.getBestRecord() == null) {
+			// if there is not a record yet display N/A
 			labelRecord.setText("N/A");
 		} else {
 			labelRecord.setText(user.getBestRecord() + "s");
@@ -84,9 +93,12 @@ public class StatsController {
 	private void fadeOut(ActionEvent event) {
 		// TODO Auto-generated method stub
 		FadeTransition ft = new FadeTransition();
+		// set the fade transition of the scene
 		ft.setDuration(Duration.millis(500));
+		// animation lasts 0.5 s
 		ft.setNode(masterPane);
 		ft.setFromValue(1);
+		// opacity setting from 1 to 0.2
 		ft.setToValue(0.2);
 		ft.setOnFinished((ActionEvent eventTwo) -> {
 			loadNextScene(event);
@@ -98,9 +110,12 @@ public class StatsController {
 	private void fadeOutTwo(ActionEvent event) {
 		// TODO Auto-generated method stub
 		FadeTransition ft = new FadeTransition();
+		// set the fade out transition for another scene
 		ft.setDuration(Duration.millis(500));
+		// interval should be 0.5 s
 		ft.setNode(masterPane);
 		ft.setFromValue(1);
+		// opacity decrease from 1 to 0.2
 		ft.setToValue(0.2);
 		ft.setOnFinished((ActionEvent eventTwo) -> {
 			loadNextSceneTwo(event);
@@ -108,13 +123,16 @@ public class StatsController {
 		ft.play();
 
 	}
+
 	private void loadNextScene(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
+		// get the next scene and set the next scene
 
 		try {
 			// load the canvas scene when press this button
 			sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+			// set the scene from the current scene
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,10 +142,12 @@ public class StatsController {
 	private void loadNextSceneTwo(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
+		// get the current scene setting
 
 		try {
 			// load the canvas scene when press this button
 			sceneButtonIsIn.setRoot(App.loadFxml("page"));
+			// set the next scene based on the current scene
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

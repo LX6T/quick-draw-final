@@ -158,14 +158,18 @@ public class CanvasController {
 	 */
 	public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
 		masterPane.setOpacity(0.2);
+		// set the starting opacity setting
 		fadeIn();
+		// set the fade in method
 		canvas.setDisable(true);
 		buttonOnReset.setDisable(false);
 		buttonOnSave.setDisable(true);
 		buttonOnErase.setDisable(true);
 		buttonOnClear.setDisable(true);
+		// disable all the buttons that are shouldn't be used at the start
 		CategorySelector categorySelector = new CategorySelector();
 		String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
+		// choose difficulty Easy as the start
 		this.currentWord = randomWord;
 		displayText.setText(randomWord);
 	}
@@ -198,15 +202,19 @@ public class CanvasController {
 	private boolean onPredict() throws TranslateException {
 		Boolean win;
 
-		final long start = System.currentTimeMillis();
+		// get the initial system time
 		List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
+		// produce 10 predictions based on the current drawing
 
 		List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
 		StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
+		// use a string builder class to build the string
 		textToRefresh.setText(sb.toString().replaceAll("_", " "));
+		// remove all the under line
 		win = isWin(result);
 		if (win == true) {
 			this.score = true;
+			// calculate the score
 		}
 
 		return this.score;
