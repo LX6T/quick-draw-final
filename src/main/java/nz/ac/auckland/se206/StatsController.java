@@ -108,7 +108,7 @@ public class StatsController {
 		ft.play();
 
 	}
-s	private void loadNextScene(ActionEvent event) {
+	private void loadNextScene(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
 

@@ -113,7 +113,7 @@
 			<children>
 				<Label alignment="CENTER" prefHeight="119.0" prefWidth="277.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Number of Win" textFill="#534747">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -121,7 +121,7 @@
 				</Label>
 				<Label fx:id="labelWins" alignment="CENTER" prefHeight="105.0" prefWidth="283.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -129,7 +129,7 @@
 				</Label>
 				<Label alignment="CENTER" prefHeight="139.0" prefWidth="280.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" text="Number of Loss" textFill="#534747" GridPane.rowIndex="1">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -137,7 +137,7 @@
 				</Label>
 				<Label alignment="CENTER" prefHeight="151.0" prefWidth="305.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" text="Score" textFill="#534747" GridPane.rowIndex="2">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -145,7 +145,7 @@
 				</Label>
 				<Label alignment="CENTER" prefHeight="151.0" prefWidth="335.0" style="-fx-background-radius: 15px; -fx-background-color: #c0a865;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Best Record" textFill="#534747" GridPane.rowIndex="3">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -153,7 +153,7 @@
 				</Label>
 				<Label fx:id="labelLosses" alignment="CENTER" prefHeight="122.0" prefWidth="359.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -161,7 +161,7 @@
 				</Label>
 				<Label fx:id="labelScore" alignment="CENTER" prefHeight="128.0" prefWidth="366.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
@@ -169,12 +169,32 @@
 				</Label>
 				<Label fx:id="labelRecord" alignment="CENTER" prefHeight="168.0" prefWidth="386.0" style="-fx-background-color: #edcf7e; -fx-background-radius: 15px;" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="3">
 					<font>
-						<Font size="17.0" />
+						<Font name="Gill Sans Ultra Bold" size="17.0" />
 					</font>
 					<effect>
 						<DropShadow />
 					</effect>
 				</Label>
+            <ImageView fitHeight="69.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/3390779-200.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/537498-200.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="52.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/2972318.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/good-1.png" />
+               </image>
+            </ImageView>
 			</children>
 		</GridPane>
 		<Label layoutX="336.0" layoutY="34.0" text="History:" textFill="WHITE">
