@@ -5,11 +5,14 @@ import java.util.Objects;
 
 import com.jfoenix.controls.JFXButton;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.user.UserProfile;
 
 public class StatsController {
@@ -28,6 +31,24 @@ public class StatsController {
 
 	@FXML
 	private JFXButton buttonOnStart;
+
+	@FXML
+	private AnchorPane masterPane;
+
+	public void initialize() {
+		masterPane.setOpacity(0.2);
+		fadeIn();
+	}
+
+	private void fadeIn() {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(0.2);
+		ft.setToValue(1);
+		ft.play();
+	}
 
 	@FXML
 	public void setStats(UserProfile user) {
@@ -50,19 +71,44 @@ public class StatsController {
 
 	@FXML
 	private void back(ActionEvent event) {
-		Button button = (Button) event.getSource();
-		Scene sceneButtonIsIn = button.getScene();
+		fadeOutTwo(event);
 
-		try {
-			// load the canvas scene when press this button
-			sceneButtonIsIn.setRoot(App.loadFxml("page"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@FXML
 	private void onStart(ActionEvent event) {
+		fadeOut(event);
+
+	}
+
+	private void fadeOut(ActionEvent event) {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			loadNextScene(event);
+		});
+		ft.play();
+
+	}
+
+	private void fadeOutTwo(ActionEvent event) {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			loadNextSceneTwo(event);
+		});
+		ft.play();
+
+	}
+s	private void loadNextScene(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
 
@@ -72,5 +118,19 @@ public class StatsController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	private void loadNextSceneTwo(ActionEvent event) {
+		Button button = (Button) event.getSource();
+		Scene sceneButtonIsIn = button.getScene();
+
+		try {
+			// load the canvas scene when press this button
+			sceneButtonIsIn.setRoot(App.loadFxml("page"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

@@ -13,92 +13,60 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-	prefWidth="1050.0"
-	style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);"
-	xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="nz.ac.auckland.se206.CanvasController">
+<AnchorPane fx:id="masterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
 	<children>
-		<VBox prefHeight="600.0" prefWidth="255.0"
-			style="-fx-background-color: #827651;">
+		<VBox prefHeight="600.0" prefWidth="255.0" style="-fx-background-color: #827651;">
 			<children>
-				<Label alignment="CENTER" prefHeight="92.0" prefWidth="259.0"
-					text="Options" textFill="WHITE">
+				<Label alignment="CENTER" prefHeight="92.0" prefWidth="259.0" text="Options" textFill="WHITE">
 					<font>
 						<Font name="System Bold Italic" size="22.0" />
 					</font>
 				</Label>
-				<Button fx:id="buttonOnReady" mnemonicParsing="false"
-					onAction="#onReady" prefHeight="80.0" prefWidth="253.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Ready" textFill="WHITE">
+				<Button fx:id="buttonOnReady" mnemonicParsing="false" onAction="#onReady" prefHeight="80.0" prefWidth="253.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Ready" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="buttonOnErase" mnemonicParsing="false"
-					onAction="#eraseAction" prefHeight="89.0" prefWidth="253.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Eraser" textFill="WHITE">
+				<Button fx:id="buttonOnErase" mnemonicParsing="false" onAction="#eraseAction" prefHeight="89.0" prefWidth="253.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Eraser" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="buttonOnClear" mnemonicParsing="false"
-					onAction="#onClear" prefHeight="89.0" prefWidth="254.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Clear" textFill="WHITE">
+				<Button fx:id="buttonOnClear" mnemonicParsing="false" onAction="#onClear" prefHeight="89.0" prefWidth="254.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Clear" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="buttonOnReset" mnemonicParsing="false"
-					onAction="#resetButton" prefHeight="79.0" prefWidth="254.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Reset" textFill="WHITE">
+				<Button fx:id="buttonOnReset" mnemonicParsing="false" onAction="#resetButton" prefHeight="79.0" prefWidth="254.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Reset" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="buttonOnSave" mnemonicParsing="false"
-					onAction="#saveToFiles" prefHeight="87.0" prefWidth="254.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Save" textFill="WHITE">
+				<Button fx:id="buttonOnSave" mnemonicParsing="false" onAction="#saveToFiles" prefHeight="87.0" prefWidth="254.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Save" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="buttonOnBack" mnemonicParsing="false"
-					onAction="#backToMenu" prefHeight="87.0" prefWidth="254.0"
-					styleClass="ABCButton" stylesheets="@../css/styling.css"
-					text="Back" textFill="WHITE">
+				<Button fx:id="buttonOnBack" mnemonicParsing="false" onAction="#backToMenu" prefHeight="87.0" prefWidth="254.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="Back" textFill="WHITE">
 					<font>
 						<Font name="Arial" size="18.0" />
 					</font>
 				</Button>
 			</children>
 		</VBox>
-		<Label fx:id="scoreLabel" alignment="BOTTOM_CENTER"
-			layoutX="884.0" layoutY="557.0" prefHeight="36.0" prefWidth="163.0"
-			textFill="WHITE">
+		<Label fx:id="scoreLabel" alignment="BOTTOM_CENTER" layoutX="884.0" layoutY="557.0" prefHeight="36.0" prefWidth="163.0" textFill="WHITE">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Label alignment="CENTER" layoutX="902.0" layoutY="-2.0"
-			prefHeight="98.0" prefWidth="145.0" text="Predictions"
-			textFill="WHITE">
+		<Label alignment="CENTER" layoutX="902.0" layoutY="-2.0" prefHeight="98.0" prefWidth="145.0" text="Predictions" textFill="WHITE">
 			<font>
 				<Font name="System Bold Italic" size="22.0" />
 			</font>
 		</Label>
-		<Pane layoutX="253.0" layoutY="-1.0" prefHeight="180.0"
-			prefWidth="632.0">
+		<Pane layoutX="253.0" layoutY="-1.0" prefHeight="180.0" prefWidth="632.0">
 			<children>
-				<Label fx:id="timerDisplay" alignment="CENTER"
-					contentDisplay="CENTER" layoutX="347.0" layoutY="25.0"
-					prefHeight="48.0" prefWidth="86.0" text="60" textFill="#ffffffcf">
+				<Label fx:id="timerDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="347.0" layoutY="25.0" prefHeight="48.0" prefWidth="86.0" text="60" textFill="#ffffffcf">
 					<font>
 						<Font name="System Bold" size="22.0" />
 					</font>
@@ -106,8 +74,7 @@
 						<Bloom />
 					</effect>
 				</Label>
-				<Label layoutX="161.0" layoutY="21.0" prefHeight="52.0"
-					prefWidth="200.0" text="Time Remaining:" textFill="WHITE">
+				<Label layoutX="161.0" layoutY="21.0" prefHeight="52.0" prefWidth="200.0" text="Time Remaining:" textFill="WHITE">
 					<font>
 						<Font name="System Bold Italic" size="22.0" />
 					</font>
@@ -115,8 +82,7 @@
 						<Bloom />
 					</effect>
 				</Label>
-				<Label layoutX="446.0" layoutY="30.0" prefHeight="36.0"
-					prefWidth="96.0" text="Seconds" textFill="WHITE">
+				<Label layoutX="446.0" layoutY="30.0" prefHeight="36.0" prefWidth="96.0" text="Seconds" textFill="WHITE">
 					<font>
 						<Font name="System Bold Italic" size="22.0" />
 					</font>
@@ -124,11 +90,8 @@
 						<Bloom />
 					</effect>
 				</Label>
-				<Circle fill="#1f93ff00" layoutX="391.0" layoutY="49.0"
-					opacity="0.57" radius="32.0" stroke="WHITE" strokeType="INSIDE"
-					strokeWidth="5.0" />
-				<Label alignment="CENTER" layoutX="153.0" layoutY="121.0"
-					prefHeight="48.0" prefWidth="150.0" text="DRAW:" textFill="WHITE">
+				<Circle fill="#1f93ff00" layoutX="391.0" layoutY="49.0" opacity="0.57" radius="32.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
+				<Label alignment="CENTER" layoutX="153.0" layoutY="121.0" prefHeight="48.0" prefWidth="150.0" text="DRAW:" textFill="WHITE">
 					<font>
 						<Font name="System Bold Italic" size="22.0" />
 					</font>
@@ -136,9 +99,7 @@
 						<Bloom />
 					</effect>
 				</Label>
-				<Label fx:id="displayText" contentDisplay="CENTER"
-					layoutX="324.0" layoutY="121.0" prefHeight="48.0" prefWidth="307.0"
-					textAlignment="CENTER" textFill="WHITE">
+				<Label fx:id="displayText" contentDisplay="CENTER" layoutX="324.0" layoutY="121.0" prefHeight="48.0" prefWidth="307.0" textAlignment="CENTER" textFill="WHITE">
 					<font>
 						<Font name="System Bold" size="22.0" />
 					</font>
@@ -146,33 +107,20 @@
 						<Bloom />
 					</effect>
 				</Label>
-				<Line endX="-14.000015258789062" endY="-80.99999237060547"
-					layoutX="14.0" layoutY="81.0" opacity="0.54"
-					startX="-11.666671752929688" startY="520.0" stroke="WHITE"
-					strokeWidth="3.0" />
+				<Line endX="-14.000015258789062" endY="-80.99999237060547" layoutX="14.0" layoutY="81.0" opacity="0.54" startX="-11.666671752929688" startY="520.0" stroke="WHITE" strokeWidth="3.0" />
 			</children>
 		</Pane>
-		<Label fx:id="textToRefresh" alignment="CENTER"
-			contentDisplay="CENTER" layoutX="903.0" layoutY="91.0"
-			prefHeight="463.0" prefWidth="145.0" textFill="WHITE">
+		<Label fx:id="textToRefresh" alignment="CENTER" contentDisplay="CENTER" layoutX="903.0" layoutY="91.0" prefHeight="463.0" prefWidth="145.0" textFill="WHITE">
 			<font>
 				<Font name="Arial Rounded MT Bold" size="15.0" />
 			</font>
 		</Label>
-		<Line endX="665.0" endY="-17.00000762939453" layoutX="383.0"
-			layoutY="108.0" opacity="0.42" startX="-383.0"
-			startY="-16.666664123535156" stroke="WHITE" strokeWidth="5.0" />
-		<Pane layoutX="266.0" layoutY="179.0" opacity="0.84"
-			prefHeight="377.0" prefWidth="621.0"
-			style="-fx-background-color: #c0a865; -fx-background-radius: 20;">
+		<Line endX="665.0" endY="-17.00000762939453" layoutX="383.0" layoutY="108.0" opacity="0.42" startX="-383.0" startY="-16.666664123535156" stroke="WHITE" strokeWidth="5.0" />
+		<Pane layoutX="266.0" layoutY="179.0" opacity="0.84" prefHeight="377.0" prefWidth="621.0" style="-fx-background-color: #c0a865; -fx-background-radius: 20;">
 			<children>
-				<Pane layoutX="28.0" layoutY="19.0" prefHeight="332.0"
-					prefWidth="574.0"
-					style="-fx-background-color: #ffffff; -fx-background-radius: 20;">
+				<Pane layoutX="28.0" layoutY="19.0" prefHeight="332.0" prefWidth="574.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20;">
 					<children>
-						<Canvas fx:id="canvas" height="344.0" layoutX="-7.0"
-							layoutY="-4.0" nodeOrientation="INHERIT"
-							style="visibility: #ffffff;" width="577.0">
+						<Canvas fx:id="canvas" height="344.0" layoutX="-7.0" layoutY="-4.0" nodeOrientation="INHERIT" style="visibility: #ffffff;" width="577.0">
 							<cursor>
 								<Cursor fx:constant="HAND" />
 							</cursor>
@@ -187,8 +135,6 @@
 				<DropShadow />
 			</effect>
 		</Pane>
-		<Line endX="-34.99993896484375" endY="-211.45465087890625"
-			layoutX="935.0" layoutY="213.0" opacity="0.45" startX="-35.0"
-			startY="385.0" stroke="WHITE" strokeWidth="5.0" />
+		<Line endX="-34.99993896484375" endY="-211.45465087890625" layoutX="935.0" layoutY="213.0" opacity="0.45" startX="-35.0" startY="385.0" stroke="WHITE" strokeWidth="5.0" />
 	</children>
 </AnchorPane>

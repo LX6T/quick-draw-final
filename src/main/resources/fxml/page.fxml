@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.PageController">
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.PageController">
 	<children>
 		<AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651; -fx-background-radius: 20px;">
 			<children>
