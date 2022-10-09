@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -19,8 +20,23 @@ public class StatsController {
   @FXML private Label labelLosses;
   @FXML private Label labelScore;
   @FXML private Label labelRecord;
-
   @FXML private AnchorPane masterPane;
+
+  @FXML private RadioButton radioAccuracyEasy;
+  @FXML private RadioButton radioAccuracyMedium;
+  @FXML private RadioButton radioAccuracyHard;
+  @FXML private RadioButton radioWordsEasy;
+  @FXML private RadioButton radioWordsMedium;
+  @FXML private RadioButton radioWordsHard;
+  @FXML private RadioButton radioWordsMaster;
+  @FXML private RadioButton radioTimeEasy;
+  @FXML private RadioButton radioTimeMedium;
+  @FXML private RadioButton radioTimeHard;
+  @FXML private RadioButton radioTimeMaster;
+  @FXML private RadioButton radioConfidenceEasy;
+  @FXML private RadioButton radioConfidenceMedium;
+  @FXML private RadioButton radioConfidenceHard;
+  @FXML private RadioButton radioConfidenceMaster;
 
   public void initialize() {
     masterPane.setOpacity(0.2);
