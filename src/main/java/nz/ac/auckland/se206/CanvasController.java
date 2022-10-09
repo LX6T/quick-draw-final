@@ -16,6 +16,7 @@ import com.opencsv.exceptions.CsvException;
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -27,7 +28,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -139,6 +142,9 @@ public class CanvasController {
 	@FXML
 	private Label textToRefresh;
 
+	@FXML
+	private AnchorPane masterPane;
+
 	// #035526
 	/**
 	 * JavaFX calls this method once the GUI elements are loaded. In our case we
@@ -151,15 +157,31 @@ public class CanvasController {
 	 * @throws CsvException
 	 */
 	public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+		masterPane.setOpacity(0.2);
+		// set the starting opacity setting
+		fadeIn();
+		// set the fade in method
 		canvas.setDisable(true);
 		buttonOnReset.setDisable(false);
 		buttonOnSave.setDisable(true);
 		buttonOnErase.setDisable(true);
 		buttonOnClear.setDisable(true);
+		// disable all the buttons that are shouldn't be used at the start
 		CategorySelector categorySelector = new CategorySelector();
 		String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
+		// choose difficulty Easy as the start
 		this.currentWord = randomWord;
 		displayText.setText(randomWord);
+	}
+
+	private void fadeIn() {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(0.2);
+		ft.setToValue(1);
+		ft.play();
 	}
 
 	/** This method is called when the "Clear" button is pressed. */
@@ -180,15 +202,19 @@ public class CanvasController {
 	private boolean onPredict() throws TranslateException {
 		Boolean win;
 
-		final long start = System.currentTimeMillis();
+		// get the initial system time
 		List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
+		// produce 10 predictions based on the current drawing
 
 		List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
 		StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
-		textToRefresh.setText(sb.toString());
+		// use a string builder class to build the string
+		textToRefresh.setText(sb.toString().replaceAll("_", " "));
+		// remove all the under line
 		win = isWin(result);
 		if (win == true) {
 			this.score = true;
+			// calculate the score
 		}
 
 		return this.score;
@@ -255,15 +281,35 @@ public class CanvasController {
 	private void backToMenu(ActionEvent event) {
 		timer.cancel();
 		// stop the tasks that are allocated to the timer
+		fadeOutTwo(event);
+
+	}
+
+	private void fadeOutTwo(ActionEvent event) {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			loadNextSceneTwo(event);
+		});
+		ft.play();
+
+	}
+
+	private void loadNextSceneTwo(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
+
 		try {
+			// load the canvas scene when press this button
 			sceneButtonIsIn.setRoot(App.loadFxml("page"));
-			// go back to the original menu with refreshing
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	@FXML

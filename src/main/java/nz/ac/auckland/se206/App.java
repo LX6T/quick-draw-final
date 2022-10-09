@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nz.ac.auckland.se206.user.ProfileRepository;
 
 /**
@@ -45,8 +46,8 @@ public class App extends Application {
 		ProfileRepository.loadProfiles();
 
 		final Scene scene = new Scene(loadFxml("page"));
-
 		stage.setScene(scene);
+		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.show();
 	}
 }

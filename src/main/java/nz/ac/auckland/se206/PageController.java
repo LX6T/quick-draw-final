@@ -2,6 +2,9 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,21 +15,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 
 public class PageController {
 
 	@FXML
-	private Button buttonOnStart;
+	private JFXButton buttonOnStart;
 	@FXML
-	private Button buttonOnExit;
+	private JFXButton buttonOnExit;
 	@FXML
-	private Button buttonOnSignIn;
+	private JFXButton buttonOnSignIn;
 	@FXML
-	private Button buttonOnSignUp;
+	private JFXButton buttonOnSignUp;
 	@FXML
 	private TextField userName;
+	@FXML
+	private AnchorPane masterPane;
 
 	@FXML
 	private void exitGame() {
@@ -43,24 +50,8 @@ public class PageController {
 			alert.showAndWait();
 			// show and wait a bit to let user see
 		} else if (ProfileRepository.containsKey(userName.getText())) {
-			UserProfile currentUser = ProfileRepository.get(userName.getText());
-			ProfileRepository.setCurrentUser(currentUser);
-			// always set the current user to the repo
-			Button button = (Button) event.getSource();
-			Scene sceneButtonIsIn = button.getScene();
+			fadeOutTwo(event);
 
-			try {
-				// load the canvas scene when press this button
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
-				Parent root = loader.load();
-				StatsController statsController = loader.getController();
-				// get the controller from the stats controller
-				statsController.setStats(currentUser);
-				sceneButtonIsIn.setRoot(root);
-				// james will see what the root is
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			// throwing alerts if needed
@@ -72,7 +63,55 @@ public class PageController {
 
 	@FXML
 	private void startNewGame(ActionEvent event) throws InterruptedException {
+		fadeOut(event);
 
+	}
+
+	private void fadeOut(ActionEvent event) {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			loadNextScene(event);
+		});
+		ft.play();
+
+	}
+
+	private void fadeOutTwo(ActionEvent event) {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			UserProfile currentUser = ProfileRepository.get(userName.getText());
+			ProfileRepository.setCurrentUser(currentUser);
+			Button button = (Button) event.getSource();
+			Scene sceneButtonIsIn = button.getScene();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StatsController statsController = loader.getController();
+			// get the controller from the stats controller
+			statsController.setStats(currentUser);
+			sceneButtonIsIn.setRoot(root);
+			// james will see what the root is
+		});
+		ft.play();
+
+	}
+
+	private void loadNextScene(ActionEvent event) {
 		Button button = (Button) event.getSource();
 		Scene sceneButtonIsIn = button.getScene();
 
@@ -82,6 +121,7 @@ public class PageController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@FXML
