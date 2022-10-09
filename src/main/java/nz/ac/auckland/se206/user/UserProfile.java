@@ -11,14 +11,18 @@ public class UserProfile {
   private Integer bestRecord;
   private final ArrayList<String> wordsHistory;
 
+  private SettingsData preferredSettings;
+
   public UserProfile(String accountName) {
     // initialise the user by their name
     this.accountName = accountName;
-    this.numOfWin = 0;
-    this.numOfLoss = 0;
-    this.bestRecord = 61;
 
-    this.wordsHistory = new ArrayList<>();
+    numOfWin = 0;
+    numOfLoss = 0;
+    bestRecord = 61;
+
+    wordsHistory = new ArrayList<>();
+    preferredSettings = new SettingsData();
   }
 
   /**
@@ -79,5 +83,13 @@ public class UserProfile {
 
   public Integer getScore() {
     return numOfWin - numOfLoss;
+  }
+
+  public void setPreferredSettings(SettingsData settingsData) {
+    preferredSettings = settingsData;
+  }
+
+  public SettingsData getPreferredSettings() {
+    return preferredSettings;
   }
 }

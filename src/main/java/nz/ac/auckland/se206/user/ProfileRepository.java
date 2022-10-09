@@ -86,4 +86,11 @@ public class ProfileRepository {
     saveProfile(currentUser);
     updateProfiles();
   }
+
+  public static void updateUserData(SettingsData settingsData) {
+    currentUser.setPreferredSettings(settingsData);
+
+    saveProfile(currentUser);
+    updateProfiles();
+  }
 }
