@@ -56,7 +56,7 @@ public class StatsController {
     labelScore.setText(user.getScore().toString());
     // set the text of the score
 
-    if (user.getBestRecord() == null) {
+    if (user.getBestRecord() > 60) {
       // if there is not a record yet display N/A
       labelRecord.setText("N/A");
     } else {

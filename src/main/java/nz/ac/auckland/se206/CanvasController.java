@@ -32,8 +32,8 @@ import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.user.GameData;
 import nz.ac.auckland.se206.user.ProfileRepository;
-import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
@@ -266,7 +266,6 @@ public class CanvasController {
     TextToSpeech speaker = new TextToSpeech();
     speaker.speak("The game starts");
     speaker.speak("Try to Draw a " + currentWord);
-    ProfileRepository.addWord(currentWord);
 
     // when the ready button is pressed, show text to speech feature
 
@@ -298,7 +297,6 @@ public class CanvasController {
               buttonOnSave.setDisable(false);
               buttonOnErase.setDisable(true);
               buttonOnClear.setDisable(true);
-              UserProfile currentUser = ProfileRepository.getCurrentUser();
 
               TextToSpeech speaker = new TextToSpeech();
               if (!score) {
@@ -308,23 +306,17 @@ public class CanvasController {
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
-                currentUser.lostTheGame();
-
               } else {
                 // speak to user when detected result is won
                 speaker.speak("You have Won");
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
-
-                currentUser.wonTheGame();
-                int timeTaken = 60 - interval;
-                currentUser.updateRecord(timeTaken + "");
               }
 
-              ProfileRepository.saveProfile(currentUser);
-              ProfileRepository.updateProfiles();
-              ProfileRepository.setCurrentUser(currentUser);
+              // Updates the current user's profile with the data from this game
+              GameData gameData = new GameData(currentWord, score, 60 - interval);
+              ProfileRepository.updateUserData(gameData);
             }
           }
         },
@@ -332,6 +324,7 @@ public class CanvasController {
         1000);
 
     graphic = canvas.getGraphicsContext2D();
+
     // initialize the canvas to only allow user to draw after pressing ready
     CanvasController.this.handle();
   }
