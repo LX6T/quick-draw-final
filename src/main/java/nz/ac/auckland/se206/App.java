@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -16,6 +19,10 @@ import nz.ac.auckland.se206.user.ProfileRepository;
  */
 // some comments//
 public class App extends Application {
+	
+	URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
+
+	Image image = new Image(cursorURL.toExternalForm());
 
 	public static void main(final String[] args) {
 		launch();
@@ -46,6 +53,7 @@ public class App extends Application {
 		ProfileRepository.loadProfiles();
 
 		final Scene scene = new Scene(loadFxml("page"));
+		scene.setCursor(new ImageCursor(image, 2.5, 2.5));
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.show();

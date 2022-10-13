@@ -76,6 +76,20 @@ public class ProfileRepository {
 		return currentUser;
 	}
 
+	/**
+	 * this functions gives the static value of the hash map field of this class
+	 * 
+	 * @return the current hash map value
+	 */
+	public static HashMap<String, UserProfile> getHashMapProfile() {
+		return users;
+	}
+
+	public static void updateHashMap(HashMap<String, UserProfile> hashMap) {
+		users = hashMap;
+
+	}
+
 	public static void addWord(String word) {
 		if (currentUser != null) {
 			// add word to the words history

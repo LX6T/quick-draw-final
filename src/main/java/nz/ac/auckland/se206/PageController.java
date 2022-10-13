@@ -1,26 +1,32 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSlider;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 
-public class PageController {
+public class PageController implements Initializable{
 
 	@FXML
 	private JFXButton buttonOnStart;
@@ -34,12 +40,31 @@ public class PageController {
 	private TextField userName;
 	@FXML
 	private AnchorPane masterPane;
+	@FXML
+	private JFXSlider sliderOnBrightness;
+	@FXML
+	private JFXSlider sliderOnVolume;
+	
+	private MediaPlayer mediaPlayer;
+
+	private ColorAdjust colorAdjust = new ColorAdjust();
+	
+	boolean constant = false;
 
 	@FXML
 	private void exitGame() {
 		Platform.exit();
 		System.exit(0);
 	}
+	
+	@FXML
+	private void dragValueOfBrightness() {
+		constant = true;
+		colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
+		masterPane.setEffect(colorAdjust);
+		
+	}
+	
 
 	@FXML
 	private void signInAction(ActionEvent event) throws InterruptedException {
@@ -117,7 +142,7 @@ public class PageController {
 
 		try {
 			// load the canvas scene when press this button
-			sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+			sceneButtonIsIn.setRoot(App.loadFxml("user"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -144,5 +169,12 @@ public class PageController {
 			ProfileRepository.saveProfile(newUser);
 			ProfileRepository.updateProfiles();
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		masterPane.setEffect(colorAdjust);
+
 	}
 }

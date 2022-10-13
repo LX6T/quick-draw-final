@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.UserController">
+   <children>
+      <ImageView fitHeight="189.0" fitWidth="201.0" layoutX="840.0" layoutY="400.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="850.0" layoutY="15.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="199.0" fitWidth="201.0" layoutX="3.0" layoutY="393.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="6.0" layoutY="3.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <AnchorPane layoutX="740.0" layoutY="149.0" prefHeight="268.0" prefWidth="210.0">
+         <effect>
+            <Blend />
+         </effect>
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="114.0" layoutX="48.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-no-user-alt-96.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="430.0" layoutY="149.0" prefHeight="268.0" prefWidth="209.0">
+         <effect>
+            <Blend />
+         </effect>
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="114.0" layoutX="48.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-no-user-alt-96.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="120.0" layoutY="149.0" prefHeight="268.0" prefWidth="210.0">
+         <effect>
+            <Blend />
+         </effect>
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="114.0" layoutX="48.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-no-user-alt-96.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="imageOnStartUserOne" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-pencil-64%20(1).png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="paneOnUserOne" layoutX="120.0" layoutY="149.0" prefHeight="268.0" prefWidth="210.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 37.8549%, #8f1313 0.0%, #e2a5a5 100.0%); -fx-background-radius: 20;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <children>
+            <Line endX="210.00003051757812" endY="219.44442749023438" startX="-1.52587890625E-5" startY="219.44442749023438" strokeWidth="4.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Line>
+            <Label fx:id="labelOnUserOne" alignment="CENTER" layoutY="212.0" prefHeight="52.0" prefWidth="209.0" text="James">
+               <font>
+                  <Font name="System Bold Italic" size="27.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
+            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-character-85.png" />
+               </image>
+               <effect>
+                  <Blend />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="imageStarUserOne" fitHeight="52.0" fitWidth="53.0" layoutX="156.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-star-64%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneOnUserTwo" layoutX="426.0" layoutY="149.0" prefHeight="268.0" prefWidth="210.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 37.8549%, #8f1313 0.0%, #e2a5a5 100.0%); -fx-background-radius: 20;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <children>
+            <Line endX="210.00003051757812" endY="219.44442749023438" startX="-1.52587890625E-5" startY="219.44442749023438" strokeWidth="4.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Line>
+            <Label fx:id="labelOnUserTwo" alignment="CENTER" layoutY="212.0" prefHeight="52.0" prefWidth="209.0" text="James">
+               <font>
+                  <Font name="System Bold Italic" size="27.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
+            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-character-85%20(3).png" />
+               </image>
+               <effect>
+                  <Blend />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="imageStarUserTwo" fitHeight="52.0" fitWidth="53.0" layoutX="157.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-star-64%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneOnUserThree" layoutX="740.0" layoutY="149.0" prefHeight="268.0" prefWidth="210.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 37.8549%, #8f1313 0.0%, #e2a5a5 100.0%); -fx-background-radius: 20;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <children>
+            <Line endX="210.00003051757812" endY="219.44442749023438" startX="-1.52587890625E-5" startY="219.44442749023438" strokeWidth="4.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Line>
+            <Label fx:id="labelOnUserThree" alignment="CENTER" layoutY="212.0" prefHeight="52.0" prefWidth="209.0" text="James">
+               <font>
+                  <Font name="System Bold Italic" size="27.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
+            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-character-85%20(2).png" />
+               </image>
+               <effect>
+                  <Blend />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="imageStarUserThree" fitHeight="52.0" fitWidth="53.0" layoutX="158.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-star-64%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="imageOnStartUserTwo" fitHeight="59.0" fitWidth="75.0" layoutX="461.0" layoutY="435.0" onMouseClicked="#clickOnStartUserTwo" onMouseEntered="#enterMouseUserTwo" onMouseExited="#leaveMouseUserTwo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-pencil-64%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageOnStartUserThree" fitHeight="59.0" fitWidth="75.0" layoutX="780.0" layoutY="435.0" onMouseClicked="#clickOnStartUserThree" onMouseEntered="#enterMouseUserThree" onMouseExited="#leaveMouseUserThree" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-pencil-64%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="101.0" fitWidth="76.0" layoutX="229.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-choose-64.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="344.0" layoutY="29.0" prefHeight="57.0" prefWidth="487.0" text="CHOOSE YOUR CHARACTER HERE: " textFill="#827651">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Separator layoutX="-2.0" layoutY="100.0" prefHeight="19.0" prefWidth="1052.0" />
+      <JFXButton alignment="BASELINE_LEFT" layoutX="613.0" layoutY="530.0" prefHeight="44.0" prefWidth="157.0" style="-fx-background-radius: 20;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Sign-Up ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="imageOnDeleteUserOne" fitHeight="70.0" fitWidth="71.0" layoutX="236.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserOne" onMouseEntered="#enterMouseUserOneOnDelete" onMouseExited="#leaveMouseUserOneOnDelete" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-remove-64%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageOnDeleteUserTwo" fitHeight="70.0" fitWidth="71.0" layoutX="543.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserTwo" onMouseEntered="#enterMouseUserTwoOnDelete" onMouseExited="#leaveMouseUserTwoOnDelete" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-remove-64%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageOnDeleteUserThree" fitHeight="70.0" fitWidth="71.0" layoutX="858.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserThree" onMouseEntered="#enterMouseUserThreeOnDelete" onMouseExited="#leaveMouseUserThreeOnDelete" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-remove-64%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="45.0" layoutX="723.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-arrow-64.png" />
+         </image>
+      </ImageView>
+      <JFXCheckBox fx:id="boxOnEnable" checkedColor="#ff9b9b" layoutX="236.0" layoutY="530.0" prefHeight="44.0" prefWidth="140.0" style="-fx-background-radius: 15;" text="Delete-Enabled" textFill="#c0a865" unCheckedColor="#e49797">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXCheckBox>
+      <ImageView fx:id="imageOnBack" fitHeight="44.0" fitWidth="52.0" layoutX="14.0" layoutY="261.0" onMouseClicked="#backToPage" onMouseEntered="#enterMouseOnBack" onMouseExited="#leaveMouseOnBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-back-100.png" />
+         </image>
+      </ImageView>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
