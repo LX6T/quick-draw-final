@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -44,17 +45,23 @@ public class PageController implements Initializable{
 	private JFXSlider sliderOnBrightness;
 	@FXML
 	private JFXSlider sliderOnVolume;
-	
-	private MediaPlayer mediaPlayer;
 
 	private ColorAdjust colorAdjust = new ColorAdjust();
 	
 	boolean constant = false;
+	
+	URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
+	Media backgroundMusic = new Media(musicURL.toExternalForm());
+	private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
 	@FXML
 	private void exitGame() {
 		Platform.exit();
 		System.exit(0);
+	}
+	
+	public void music() {
+		
 	}
 	
 	@FXML
@@ -175,6 +182,7 @@ public class PageController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		masterPane.setEffect(colorAdjust);
+		mediaPlayer.play();
 
 	}
 }
