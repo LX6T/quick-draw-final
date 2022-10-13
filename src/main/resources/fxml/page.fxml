@@ -15,12 +15,12 @@
 	<children>
 		<AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651; -fx-background-radius: 20px;">
 			<children>
-            <JFXToggleButton fx:id="buttonOnVolume" layoutX="260.0" layoutY="211.0" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+            <JFXToggleButton fx:id="buttonOnVolume" layoutX="260.0" layoutY="211.0" onAction="#actionOnAutoVolume" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXToggleButton>
-            <JFXToggleButton fx:id="buttonOnBrightness" layoutX="260.0" layoutY="159.0" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+            <JFXToggleButton fx:id="buttonOnBrightness" layoutX="260.0" layoutY="159.0" onAction="#actionOnAutoBrightness" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -69,7 +69,7 @@
 						<Image url="@../images/free-exit-icon-2860-thumb.png" />
 					</image>
 				</ImageView>
-            <JFXSlider fx:id="sliderOnBrightness" layoutX="77.0" layoutY="202.0" onMouseReleased="#dragValueOfBrightness" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" />
+            <JFXSlider fx:id="sliderOnBrightness" layoutX="77.0" layoutY="202.0" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" />
             <ImageView fitHeight="35.0" fitWidth="28.0" layoutX="34.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-setting-64.png" />
@@ -85,7 +85,7 @@
                   <Font name="Tw Cen MT" size="17.0" />
                </font>
             </Label>
-            <JFXSlider fx:id="sliderOnVolume" layoutX="77.0" layoutY="254.0" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" />
+            <JFXSlider fx:id="sliderOnVolume" layoutX="77.0" layoutY="254.0" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" value="50.0" />
 			</children>
 		</AnchorPane>
 		<ImageView fitHeight="397.0" fitWidth="576.0" layoutY="82.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">

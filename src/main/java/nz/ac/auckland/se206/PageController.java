@@ -6,9 +6,12 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXToggleButton;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +30,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 
-public class PageController implements Initializable{
+public class PageController implements Initializable {
 
 	@FXML
 	private JFXButton buttonOnStart;
@@ -45,11 +48,15 @@ public class PageController implements Initializable{
 	private JFXSlider sliderOnBrightness;
 	@FXML
 	private JFXSlider sliderOnVolume;
+	@FXML
+	private JFXToggleButton buttonOnBrightness;
+	@FXML
+	private JFXToggleButton buttonOnVolume;
 
 	private ColorAdjust colorAdjust = new ColorAdjust();
-	
+
 	boolean constant = false;
-	
+
 	URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
 	Media backgroundMusic = new Media(musicURL.toExternalForm());
 	private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
@@ -59,19 +66,35 @@ public class PageController implements Initializable{
 		Platform.exit();
 		System.exit(0);
 	}
-	
+
 	public void music() {
-		
+
 	}
+
+
 	
 	@FXML
-	private void dragValueOfBrightness() {
-		constant = true;
-		colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
-		masterPane.setEffect(colorAdjust);
-		
+	private void actionOnAutoVolume() {
+		// set the brightness to 50 when selected
+		if (buttonOnVolume.isSelected() == true) {
+			sliderOnVolume.setValue(50);
+			mediaPlayer.setVolume(0.5);
+		} else {
+			mediaPlayer.setVolume(sliderOnVolume.getValue());
+		}
 	}
-	
+
+	@FXML
+	private void actionOnAutoBrightness() {
+		// set the brightness to 50 when selected
+		if (buttonOnBrightness.isSelected() == true) {
+			sliderOnBrightness.setValue(50);
+			colorAdjust.setBrightness(0);
+			masterPane.setEffect(colorAdjust);
+		} else {
+			masterPane.setEffect(colorAdjust);
+		}
+	}
 
 	@FXML
 	private void signInAction(ActionEvent event) throws InterruptedException {
@@ -181,7 +204,29 @@ public class PageController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		sliderOnBrightness.setValue(50);
+		sliderOnVolume.setValue(50);
 		masterPane.setEffect(colorAdjust);
+		sliderOnVolume.valueProperty().addListener(new InvalidationListener() {
+
+			@Override
+			public void invalidated(Observable observable) {
+				// TODO Auto-generated method stub
+				mediaPlayer.setVolume(sliderOnVolume.getValue() / 100);
+			}
+			
+		});
+		
+		sliderOnBrightness.valueProperty().addListener(new InvalidationListener() {
+
+			@Override
+			public void invalidated(Observable observable) {
+				// TODO Auto-generated method stub
+				colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
+			}
+			
+		});
+
 		mediaPlayer.play();
 
 	}
