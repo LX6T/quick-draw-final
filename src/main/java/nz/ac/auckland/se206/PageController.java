@@ -87,7 +87,7 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void exitGame() {
+  private void onExit() {
     Platform.exit();
     System.exit(0);
   }
@@ -95,7 +95,7 @@ public class PageController implements Initializable {
   public void music() {}
 
   @FXML
-  private void actionOnAutoVolume() {
+  private void onAutoVolume() {
     // set the brightness to 50 when selected
     if (buttonOnVolume.isSelected() == true) {
       sliderOnVolume.setValue(50);
@@ -106,7 +106,7 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void actionOnAutoBrightness() {
+  private void onAutoBrightness() {
     // set the brightness to 50 when selected
     if (buttonOnBrightness.isSelected() == true) {
       sliderOnBrightness.setValue(50);
@@ -118,12 +118,12 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void signInAction(ActionEvent event) throws InterruptedException {
+  private void onSignIn(ActionEvent event) throws InterruptedException {
     fadeOutTwo(event);
   }
 
   @FXML
-  private void startNewGame(ActionEvent event) throws InterruptedException {
+  private void onStart(ActionEvent event) throws InterruptedException {
     fadeOut(event);
   }
 
@@ -173,8 +173,6 @@ public class PageController implements Initializable {
     }
   }
 
-  @FXML
-  private void onSignUp() {}
 
   private void fadeIn() {
     // TODO Auto-generated method stub

@@ -69,7 +69,7 @@ public class StatsController {
   }
 
   @FXML
-  private void back(ActionEvent event) {
+  private void onBack(ActionEvent event) {
     fadeOutTwo(event);
   }
 

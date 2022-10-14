@@ -54,7 +54,7 @@ public class CanvasController {
   private double currentY;
   private Timer timer = new Timer();
   private Boolean score = false;
-  private javafx.event.EventHandler<MouseEvent> mouseEvent =
+  private javafx.event.EventHandler<MouseEvent> onRunEvent =
       new javafx.event.EventHandler<MouseEvent>() {
 
         @Override
@@ -63,7 +63,7 @@ public class CanvasController {
           graphic.clearRect(event.getX() - 5 / 2, event.getY() - 5 / 2, 10, 10);
         }
       };
-  private javafx.event.EventHandler<MouseEvent> mouseEventTwo =
+  private javafx.event.EventHandler<MouseEvent> onRunEventTwo =
       new javafx.event.EventHandler<MouseEvent>() {
 
         @Override
@@ -260,7 +260,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void backToMenu(ActionEvent event) {
+  private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
     fadeOutTwo(event);
@@ -345,8 +345,8 @@ public class CanvasController {
                 // speak to user when detected result is lost
                 TextToSpeech speaker = new TextToSpeech();
                 speaker.speak("You Have Lost");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
                 currentUser.lostTheGame();
@@ -355,8 +355,8 @@ public class CanvasController {
                 // speak to user when detected result is won
                 TextToSpeech speaker = new TextToSpeech();
                 speaker.speak("You have Won");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
 
                 currentUser.wonTheGame();
@@ -403,7 +403,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void resetButton(ActionEvent event) {
+  private void onReset(ActionEvent event) {
     timer.cancel();
     // stop the count down timer to count down.
     Button button = (Button) event.getSource();
@@ -418,7 +418,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void eraseAction(ActionEvent event) {
+  private void onErase(ActionEvent event) {
     graphic = canvas.getGraphicsContext2D();
     // get the current canvas graphic
 
@@ -446,14 +446,14 @@ public class CanvasController {
             currentY = y;
           });
 
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
+      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
       buttonOnErase.setText("Pencil");
       // update the text on the button
     } else if (buttonOnErase.getText().equals("Pencil")) {
       // remove event to stop erasing
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
 
       buttonOnErase.setText("Eraser");
       // update the text on the button
