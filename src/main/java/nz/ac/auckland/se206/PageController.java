@@ -173,7 +173,6 @@ public class PageController implements Initializable {
     }
   }
 
-
   private void fadeIn() {
     // TODO Auto-generated method stub
     FadeTransition ft = new FadeTransition();
