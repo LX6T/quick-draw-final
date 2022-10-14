@@ -1,59 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="masterPane" prefHeight="600.0"
-	prefWidth="1050.0"
-	style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);"
-	xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="nz.ac.auckland.se206.PageController">
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.PageController">
 	<children>
-		<AnchorPane layoutX="578.0" layoutY="60.0"
-			prefHeight="493.0" prefWidth="434.0"
-			style="-fx-background-color: #827651; -fx-background-radius: 20px;">
+		<AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651; -fx-background-radius: 20px;">
 			<children>
-				<TextField fx:id="userName" layoutX="80.0" layoutY="209.0"
-					prefHeight="25.0" prefWidth="274.0"
-					style="-fx-background-color: 1;" />
-				<Line endX="119.0" endY="0.3333282470703125" layoutX="234.0"
-					layoutY="234.0" startX="-154.0" startY="1.33331298828125"
-					stroke="#534747" />
-				<Label layoutX="79.0" layoutY="186.0"
-					text="Enter your username:" textFill="#534747">
+            <JFXToggleButton fx:id="buttonOnVolume" layoutX="260.0" layoutY="211.0" onAction="#actionOnAutoVolume" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXToggleButton>
+            <JFXToggleButton fx:id="buttonOnBrightness" layoutX="260.0" layoutY="159.0" onAction="#actionOnAutoBrightness" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXToggleButton>
+				<Label layoutX="78.0" layoutY="176.0" text="Adjust Brightness :" textFill="#240101">
 					<font>
-						<Font name="Tw Cen MT" size="20.0" />
+						<Font name="Tw Cen MT" size="17.0" />
 					</font>
 				</Label>
-				<ImageView fitHeight="150.0" fitWidth="200.0"
-					layoutX="142.0" layoutY="20.0" opacity="0.56" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="200.0" layoutX="142.0" layoutY="20.0" opacity="0.56" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../images/logo-speedy-sketchers.png" />
 					</image>
 				</ImageView>
-				<JFXButton fx:id="buttonOnSignIn" layoutX="78.0"
-					layoutY="317.0" onAction="#signInAction" prefHeight="25.0"
-					prefWidth="268.0" style="-fx-background-radius: 15px;"
-					styleClass="JFXButton" stylesheets="@../css/styling.css"
-					text="Sign-In" textFill="#534747">
+				<JFXButton fx:id="buttonOnSignIn" layoutX="78.0" layoutY="317.0" onAction="#signInAction" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
 				</JFXButton>
-				<JFXButton fx:id="buttonOnStart" layoutX="78.0"
-					layoutY="360.0" onAction="#startNewGame" prefHeight="25.0"
-					prefWidth="268.0" ripplerFill="#aaa262"
-					style="-fx-background-radius: 15px;" styleClass="JFXButton"
-					text="Play as Guest" textFill="#534747">
+				<JFXButton fx:id="buttonOnStart" layoutX="78.0" layoutY="360.0" onAction="#startNewGame" prefHeight="25.0" prefWidth="268.0" ripplerFill="#aaa262" style="-fx-background-radius: 15px;" styleClass="JFXButton" text="Play as Guest" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
@@ -62,44 +49,46 @@
 						<URL value="@../css/styling.css" />
 					</stylesheets>
 				</JFXButton>
-				<JFXButton fx:id="buttonOnExit" layoutX="78.0"
-					layoutY="401.0" onAction="#exitGame" prefHeight="25.0"
-					prefWidth="268.0" style="-fx-background-radius: 15px;"
-					styleClass="JFXButton" stylesheets="@../css/styling.css"
-					text="Exit" textFill="#534747">
+				<JFXButton fx:id="buttonOnExit" layoutX="78.0" layoutY="401.0" onAction="#exitGame" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Exit" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
 				</JFXButton>
-				<ImageView fitHeight="25.0" fitWidth="34.0"
-					layoutX="329.0" layoutY="209.0" pickOnBounds="true"
-					preserveRatio="true">
-					<image>
-						<Image url="@../images/1081856-200.png" />
-					</image>
-				</ImageView>
-				<ImageView fitHeight="23.0" fitWidth="19.0" layoutX="86.0"
-					layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="23.0" fitWidth="19.0" layoutX="86.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../images/2191156-200.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="37.0" fitWidth="19.0" layoutX="86.0"
-					layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="37.0" fitWidth="19.0" layoutX="86.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../images/1069814-200.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="37.0" fitWidth="19.0" layoutX="86.0"
-					layoutY="404.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="37.0" fitWidth="19.0" layoutX="86.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../images/free-exit-icon-2860-thumb.png" />
 					</image>
 				</ImageView>
+            <JFXSlider fx:id="sliderOnBrightness" layoutX="77.0" layoutY="202.0" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" />
+            <ImageView fitHeight="35.0" fitWidth="28.0" layoutX="34.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-setting-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="34.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-setting-64%20(2).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="77.0" layoutY="230.0" text="Adjust Volume :" textFill="#240101">
+               <font>
+                  <Font name="Tw Cen MT" size="17.0" />
+               </font>
+            </Label>
+            <JFXSlider fx:id="sliderOnVolume" layoutX="77.0" layoutY="254.0" prefHeight="14.0" prefWidth="268.0" styleClass="jfx-slider" stylesheets="@../css/styling.css" value="50.0" />
 			</children>
 		</AnchorPane>
-		<ImageView fitHeight="397.0" fitWidth="576.0" layoutY="82.0"
-			opacity="0.52" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="397.0" fitWidth="576.0" layoutY="82.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@../images/art-g33e5f3a24_1920.jpg" />
 			</image>
@@ -107,9 +96,7 @@
 				<Bloom />
 			</effect>
 		</ImageView>
-		<Label layoutX="108.0" layoutY="29.0" opacity="0.66"
-			prefHeight="37.0" prefWidth="403.0" text="Welcome to Speedy Sketcher"
-			textFill="WHITE">
+		<Label layoutX="108.0" layoutY="29.0" opacity="0.66" prefHeight="37.0" prefWidth="403.0" text="Welcome to Speedy Sketcher" textFill="WHITE">
 			<font>
 				<Font name="ISOCP_IV50" size="31.0" />
 			</font>
@@ -117,25 +104,12 @@
 				<Bloom threshold="0.11" />
 			</effect>
 		</Label>
-		<Label layoutX="251.0" layoutY="264.0" opacity="0.48"
-			prefHeight="85.0" prefWidth="217.0"
-			text="Challenge your sketching &#10;skills using everything you&#10;can think of"
-			textFill="WHITE">
+		<Label layoutX="251.0" layoutY="264.0" opacity="0.48" prefHeight="85.0" prefWidth="217.0" text="Challenge your sketching &#10;skills using everything you&#10;can think of" textFill="WHITE">
 			<font>
 				<Font name="ISOCP_IV25" size="17.0" />
 			</font>
 		</Label>
-		<JFXButton fx:id="buttonOnSignUp" layoutX="173.0"
-			layoutY="527.0" onAction="#onSignUp" prefHeight="25.0"
-			prefWidth="155.0" style="-fx-background-radius: 15px;"
-			styleClass="JFXButton" stylesheets="@../css/styling.css"
-			text="Sign-Up" textFill="#534747">
-			<font>
-				<Font name="Arial Bold" size="13.0" />
-			</font>
-		</JFXButton>
-		<ImageView fitHeight="45.0" fitWidth="47.0" layoutX="166.0"
-			layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="45.0" fitWidth="47.0" layoutX="166.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@../images/1121885-200.png" />
 			</image>
