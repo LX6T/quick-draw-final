@@ -658,11 +658,11 @@ public class SignUpController implements Initializable {
 				ProfileRepository.updateHashMap(hashMap);
 				ProfileRepository.updateProfiles();
 				labelOnMessage.setTextFill(Color.GREEN);
-				labelOnMessage.setText("Avatar Created Successfully");
+				labelOnMessage.setText("User Created Successfully");
 			}
 		} else {
 			labelOnMessage.setTextFill(Color.ROSYBROWN);
-			labelOnMessage.setText("Maximum number of avatars reached!");
+			labelOnMessage.setText("Maximum number of users reached!");
 		}
 
 	}
