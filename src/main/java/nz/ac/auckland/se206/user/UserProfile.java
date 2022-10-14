@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.user;
 
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
+
 public class UserProfile {
 	/**
 	 * This Class will store user statistics and allow user statistics to be changed
@@ -13,10 +15,13 @@ public class UserProfile {
 	private Integer numOfLoss;
 	private ArrayList<String> wordsHistory;
 	private String bestRecord;
+	private String photoPath;
 
-	public UserProfile(String accountName) {
+	public UserProfile(String accountName, String photoPath) {
 		// initialise the user by their name
+
 		this.accountName = accountName;
+		this.photoPath = photoPath;
 		this.numOfWin = 0;
 		this.numOfLoss = 0;
 		this.bestRecord = null;
@@ -104,4 +109,14 @@ public class UserProfile {
 	public Integer getScore() {
 		return numOfWin - numOfLoss;
 	}
+
+	public String getPhotoPath() {
+		return photoPath;
+	}
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+
+
 }

@@ -95,7 +95,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="imageOnStartUserOne" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserOne" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" onMousePressed="#pressOnStartUserOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
@@ -123,7 +123,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
-            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnUserOne" fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-character-85.png" />
                </image>
@@ -161,7 +161,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
-            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnUserTwo" fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-character-85%20(3).png" />
                </image>
@@ -199,7 +199,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="5.0" width="158.0" />
-            <ImageView fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnUserThree" fitHeight="228.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-character-85%20(2).png" />
                </image>
@@ -214,12 +214,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fx:id="imageOnStartUserTwo" fitHeight="59.0" fitWidth="75.0" layoutX="461.0" layoutY="435.0" onMouseClicked="#clickOnStartUserTwo" onMouseEntered="#enterMouseUserTwo" onMouseExited="#leaveMouseUserTwo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserTwo" fitHeight="59.0" fitWidth="75.0" layoutX="461.0" layoutY="435.0" onMouseClicked="#clickOnStartUserTwo" onMouseEntered="#enterMouseUserTwo" onMouseExited="#leaveMouseUserTwo" onMousePressed="#pressOnStartUserTwo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnStartUserThree" fitHeight="59.0" fitWidth="75.0" layoutX="780.0" layoutY="435.0" onMouseClicked="#clickOnStartUserThree" onMouseEntered="#enterMouseUserThree" onMouseExited="#leaveMouseUserThree" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserThree" fitHeight="59.0" fitWidth="75.0" layoutX="780.0" layoutY="435.0" onMouseClicked="#clickOnStartUserThree" onMouseEntered="#enterMouseUserThree" onMouseExited="#leaveMouseUserThree" onMousePressed="#pressOnStartUserThree" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
@@ -235,22 +235,22 @@
          </font>
       </Label>
       <Separator layoutX="-2.0" layoutY="100.0" prefHeight="19.0" prefWidth="1052.0" />
-      <JFXButton alignment="BASELINE_LEFT" layoutX="613.0" layoutY="530.0" prefHeight="44.0" prefWidth="157.0" style="-fx-background-radius: 20;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Sign-Up ">
+      <JFXButton fx:id="buttonOnSignUp" alignment="BASELINE_LEFT" layoutX="613.0" layoutY="530.0" onAction="#onSignUp" prefHeight="44.0" prefWidth="157.0" style="-fx-background-radius: 20;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Sign-Up ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="imageOnDeleteUserOne" fitHeight="70.0" fitWidth="71.0" layoutX="236.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserOne" onMouseEntered="#enterMouseUserOneOnDelete" onMouseExited="#leaveMouseUserOneOnDelete" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserOne" fitHeight="70.0" fitWidth="71.0" layoutX="236.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserOne" onMouseEntered="#enterMouseUserOneOnDelete" onMouseExited="#leaveMouseUserOneOnDelete" onMousePressed="#pressOnDeleteUserOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnDeleteUserTwo" fitHeight="70.0" fitWidth="71.0" layoutX="543.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserTwo" onMouseEntered="#enterMouseUserTwoOnDelete" onMouseExited="#leaveMouseUserTwoOnDelete" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserTwo" fitHeight="70.0" fitWidth="71.0" layoutX="543.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserTwo" onMouseEntered="#enterMouseUserTwoOnDelete" onMouseExited="#leaveMouseUserTwoOnDelete" onMousePressed="#pressOnDeleteUserTwo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnDeleteUserThree" fitHeight="70.0" fitWidth="71.0" layoutX="858.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserThree" onMouseEntered="#enterMouseUserThreeOnDelete" onMouseExited="#leaveMouseUserThreeOnDelete" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserThree" fitHeight="70.0" fitWidth="71.0" layoutX="858.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserThree" onMouseEntered="#enterMouseUserThreeOnDelete" onMouseExited="#leaveMouseUserThreeOnDelete" onMousePressed="#pressOnDeleteUserThree" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
@@ -265,7 +265,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXCheckBox>
-      <ImageView fx:id="imageOnBack" fitHeight="44.0" fitWidth="52.0" layoutX="14.0" layoutY="261.0" onMouseClicked="#backToPage" onMouseEntered="#enterMouseOnBack" onMouseExited="#leaveMouseOnBack" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnBack" fitHeight="44.0" fitWidth="52.0" layoutX="14.0" layoutY="261.0" onMouseClicked="#backToPage" onMouseEntered="#enterMouseOnBack" onMouseExited="#leaveMouseOnBack" onMousePressed="#pressOnBackButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-back-100.png" />
          </image>

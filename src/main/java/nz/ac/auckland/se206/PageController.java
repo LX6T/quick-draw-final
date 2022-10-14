@@ -53,13 +53,53 @@ public class PageController implements Initializable {
 	@FXML
 	private JFXToggleButton buttonOnVolume;
 
-	private ColorAdjust colorAdjust = new ColorAdjust();
+	private static boolean musicIsOn;
+
+	private static ColorAdjust colorAdjust = new ColorAdjust();
 
 	boolean constant = false;
 
-	URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
-	Media backgroundMusic = new Media(musicURL.toExternalForm());
-	private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+	private static URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
+	private static Media backgroundMusic = new Media(musicURL.toExternalForm());
+	private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		if(musicIsOn) {
+			masterPane.setOpacity(0.2);
+			fadeIn();
+		}
+		// TODO Auto-generated method stub
+		sliderOnBrightness.setValue(50);
+		sliderOnVolume.setValue(50);
+		masterPane.setEffect(colorAdjust);
+		// this is to prevent mediaPlayer being played twice
+		// the media player can only be played once
+		if (!musicIsOn) {
+			sliderOnVolume.valueProperty().addListener(new InvalidationListener() {
+
+				@Override
+				public void invalidated(Observable observable) {
+					// TODO Auto-generated method stub
+					mediaPlayer.setVolume(sliderOnVolume.getValue() / 100);
+				}
+
+			});
+
+			sliderOnBrightness.valueProperty().addListener(new InvalidationListener() {
+
+				@Override
+				public void invalidated(Observable observable) {
+					// TODO Auto-generated method stub
+					colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
+				}
+
+			});
+			mediaPlayer.play();
+		} 
+		musicIsOn = true;
+
+	}
 
 	@FXML
 	private void exitGame() {
@@ -71,8 +111,6 @@ public class PageController implements Initializable {
 
 	}
 
-
-	
 	@FXML
 	private void actionOnAutoVolume() {
 		// set the brightness to 50 when selected
@@ -181,53 +219,16 @@ public class PageController implements Initializable {
 
 	@FXML
 	private void onSignUp() {
-		if (userName.getText().isBlank()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Empty username");
-			alert.setHeaderText("Please insert a valid username and try again");
-			alert.showAndWait();
-			// ig the user is blank then pop out alter message
-		} else if (ProfileRepository.containsKey(userName.getText())) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("User name already exists");
-			alert.setHeaderText("Please click on Sign-In to start the game");
-			alert.showAndWait();
-			// if the user already exist also throw the alter message
-		} else {
-			// if the user does not exist then sign up
-			UserProfile newUser = new UserProfile(userName.getText());
-			ProfileRepository.saveProfile(newUser);
-			ProfileRepository.updateProfiles();
-		}
+
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	private void fadeIn() {
 		// TODO Auto-generated method stub
-		sliderOnBrightness.setValue(50);
-		sliderOnVolume.setValue(50);
-		masterPane.setEffect(colorAdjust);
-		sliderOnVolume.valueProperty().addListener(new InvalidationListener() {
-
-			@Override
-			public void invalidated(Observable observable) {
-				// TODO Auto-generated method stub
-				mediaPlayer.setVolume(sliderOnVolume.getValue() / 100);
-			}
-			
-		});
-		
-		sliderOnBrightness.valueProperty().addListener(new InvalidationListener() {
-
-			@Override
-			public void invalidated(Observable observable) {
-				// TODO Auto-generated method stub
-				colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
-			}
-			
-		});
-
-		mediaPlayer.play();
-
+		FadeTransition ft = new FadeTransition();
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		ft.setFromValue(0.2);
+		ft.setToValue(1);
+		ft.play();
 	}
 }

@@ -20,9 +20,9 @@ import nz.ac.auckland.se206.user.ProfileRepository;
 // some comments//
 public class App extends Application {
 	
-	URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
+	private URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
-	Image image = new Image(cursorURL.toExternalForm());
+	private Image image = new Image(cursorURL.toExternalForm());
 
 	public static void main(final String[] args) {
 		launch();
