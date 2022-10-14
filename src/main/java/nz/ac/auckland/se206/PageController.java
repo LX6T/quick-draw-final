@@ -136,22 +136,8 @@ public class PageController implements Initializable {
 
 	@FXML
 	private void signInAction(ActionEvent event) throws InterruptedException {
-		if (userName.getText().isBlank()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Empty username");
-			alert.setHeaderText("Please insert a valid username and try again");
-			alert.showAndWait();
-			// show and wait a bit to let user see
-		} else if (ProfileRepository.containsKey(userName.getText())) {
-			fadeOutTwo(event);
+		fadeOutTwo(event);
 
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			// throwing alerts if needed
-			alert.setTitle("User name does not exist");
-			alert.setHeaderText("Please click on Sign-Up to create your account");
-			alert.showAndWait();
-		}
 	}
 
 	@FXML
@@ -182,23 +168,14 @@ public class PageController implements Initializable {
 		ft.setFromValue(1);
 		ft.setToValue(0.2);
 		ft.setOnFinished((ActionEvent eventTwo) -> {
-			UserProfile currentUser = ProfileRepository.get(userName.getText());
-			ProfileRepository.setCurrentUser(currentUser);
-			Button button = (Button) event.getSource();
-			Scene sceneButtonIsIn = button.getScene();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
-			Parent root = null;
+			Scene scene = sliderOnBrightness.getScene();
 			try {
-				root = loader.load();
+				scene.setRoot(App.loadFxml("user"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			StatsController statsController = loader.getController();
-			// get the controller from the stats controller
-			statsController.setStats(currentUser);
-			sceneButtonIsIn.setRoot(root);
-			// james will see what the root is
+
 		});
 		ft.play();
 
@@ -210,7 +187,7 @@ public class PageController implements Initializable {
 
 		try {
 			// load the canvas scene when press this button
-			sceneButtonIsIn.setRoot(App.loadFxml("user"));
+			sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -95,7 +95,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="imageOnStartUserOne" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" onMousePressed="#pressOnStartUserOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserOne" fitHeight="59.0" fitWidth="75.0" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" onMousePressed="#pressOnStartUserOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
@@ -260,7 +260,7 @@
             <Image url="@../images/icons8-arrow-64.png" />
          </image>
       </ImageView>
-      <JFXCheckBox fx:id="boxOnEnable" checkedColor="#ff9b9b" layoutX="236.0" layoutY="530.0" prefHeight="44.0" prefWidth="140.0" style="-fx-background-radius: 15;" text="Delete-Enabled" textFill="#c0a865" unCheckedColor="#e49797">
+      <JFXCheckBox fx:id="boxOnEnable" checkedColor="#ff9b9b" layoutX="236.0" layoutY="530.0" onAction="#onBoxEnabled" prefHeight="44.0" prefWidth="140.0" style="-fx-background-radius: 15;" text="Delete-Enabled" textFill="#c0a865" unCheckedColor="#e49797">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

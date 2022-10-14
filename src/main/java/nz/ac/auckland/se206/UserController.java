@@ -255,6 +255,10 @@ public class UserController {
 		ft.play();
 	}
 
+	/**
+	 * this method will setup the fade in transition animation whenever the scene is
+	 * initialized
+	 */
 	private void fadeIn() {
 		// TODO Auto-generated method stub
 		FadeTransition ft = new FadeTransition();
@@ -400,6 +404,9 @@ public class UserController {
 			ProfileRepository.updateProfiles();
 			resetUserCards();
 
+		} else {
+			// if not selected remind user where the box is
+			boxOnEnable.setEffect(new Bloom(0.3));
 		}
 	}
 
@@ -417,6 +424,9 @@ public class UserController {
 			ProfileRepository.updateHashMap(hashMap);
 			ProfileRepository.updateProfiles();
 			resetUserCards();
+		} else {
+			// if not selected remind user where the box is
+			boxOnEnable.setEffect(new Bloom(0.3));
 		}
 
 	}
@@ -435,6 +445,9 @@ public class UserController {
 			ProfileRepository.updateHashMap(hashMap);
 			ProfileRepository.updateProfiles();
 			resetUserCards();
+		} else {
+			// if not selected remind user where the box is
+			boxOnEnable.setEffect(new Bloom(0.3));
 		}
 
 	}
@@ -583,8 +596,8 @@ public class UserController {
 	 */
 	@FXML
 	private void pressOnDeleteUserTwo() {
-		imageOnDeleteUserOne.setScaleX(0.9);
-		imageOnDeleteUserOne.setScaleY(0.9);
+		imageOnDeleteUserTwo.setScaleX(0.9);
+		imageOnDeleteUserTwo.setScaleY(0.9);
 	}
 
 	/**
@@ -593,8 +606,8 @@ public class UserController {
 	 */
 	@FXML
 	private void pressOnDeleteUserThree() {
-		imageOnDeleteUserOne.setScaleX(0.9);
-		imageOnDeleteUserOne.setScaleY(0.9);
+		imageOnDeleteUserThree.setScaleX(0.9);
+		imageOnDeleteUserThree.setScaleY(0.9);
 	}
 
 	/**
@@ -605,6 +618,15 @@ public class UserController {
 	private void pressOnBackButton() {
 		imageOnBack.setScaleX(0.9);
 		imageOnBack.setScaleY(0.9);
+	}
+
+	/**
+	 * whenever click on box enabled button, the effect of it should be immediately
+	 * removed.
+	 */
+	@FXML
+	private void onBoxEnabled() {
+		boxOnEnable.setEffect(null);
 	}
 
 	/**
