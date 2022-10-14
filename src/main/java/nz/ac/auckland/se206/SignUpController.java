@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 
@@ -70,6 +73,9 @@ public class SignUpController implements Initializable {
 	@FXML
 	private Label labelOnMessage;
 
+	@FXML
+	private AnchorPane masterPane;
+
 	private URL linkOne = App.class.getResource("/images/" + "icons8-character-85 (3).png");
 
 	private Image imageOne = new Image(linkOne.toExternalForm());
@@ -109,6 +115,52 @@ public class SignUpController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		masterPane.setOpacity(0.2);
+		fadeIn();
+
+	}
+
+	/**
+	 * this method will setup the fade in transition animation whenever the scene is
+	 * initialized
+	 */
+	private void fadeIn() {
+		// TODO Auto-generated method stub
+		FadeTransition ft = new FadeTransition();
+		// set the transition animation to be 500 ms
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		// opacity from 0.2 to 1.0
+		ft.setFromValue(0.2);
+		ft.setToValue(1);
+		ft.play();
+	}
+
+	/**
+	 * this method will set up the fade out animation in transition between
+	 * different scenes (sign up scene and the user scene)
+	 */
+	private void fadeOut() {
+		FadeTransition ft = new FadeTransition();
+		// set duration of the fade to be 500 ms
+		ft.setDuration(Duration.millis(500));
+		ft.setNode(masterPane);
+		// opacity value from 1 to 0.2
+		ft.setFromValue(1);
+		ft.setToValue(0.2);
+		// when fade animation finished load the next scene
+		ft.setOnFinished((ActionEvent eventTwo) -> {
+			Scene sceneButtonIsIn = buttonOnBack.getScene();
+			try {
+				// load the canvas scene when press this button
+				sceneButtonIsIn.setRoot(App.loadFxml("user"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+		// play the animation
+		ft.play();
 
 	}
 
@@ -548,13 +600,8 @@ public class SignUpController implements Initializable {
 	 * will add transition animation
 	 */
 	private void onBack() {
-		Scene scene = paneOnOne.getScene();
-		try {
-			scene.setRoot(App.loadFxml("user"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		fadeOut();
+
 	}
 
 	/**
@@ -567,42 +614,42 @@ public class SignUpController implements Initializable {
 		// get the hash map from the local repository
 		HashMap<String, UserProfile> hashMap = new HashMap<String, UserProfile>();
 		hashMap = ProfileRepository.getHashMapProfile();
-		if(hashMap.keySet().size() < 3) {
+		if (hashMap.keySet().size() < 3) {
 			// if the user already exists show error message
 			if (hashMap.containsKey(name)) {
 				labelOnMessage.setTextFill(Color.ROSYBROWN);
 				labelOnMessage.setText("User Already Exists!");
 			} else {
 				String photoPath;
-				//store the photo path as image one if the images are the same
-				if(imageOnZoom.getImage().equals(imageOne)) {
+				// store the photo path as image one if the images are the same
+				if (imageOnZoom.getImage().equals(imageOne)) {
 					photoPath = "/images/" + "icons8-character-85 (3).png";
 				}
-				//store the photo path as image Two if the images are the same
-				else if(imageOnZoom.getImage().equals(imageTwo)) {
+				// store the photo path as image Two if the images are the same
+				else if (imageOnZoom.getImage().equals(imageTwo)) {
 					photoPath = "/images/" + "icons8-character-85 (5).png";
 				}
-				//store the photo path as image three if the images are the same
-				else if(imageOnZoom.getImage().equals(imageThree)) {
+				// store the photo path as image three if the images are the same
+				else if (imageOnZoom.getImage().equals(imageThree)) {
 					photoPath = "/images/" + "icons8-character-85 (2).png";
 				}
-				//store the photo path as image four if the images are the same
-				else if(imageOnZoom.getImage().equals(imageFour)){
+				// store the photo path as image four if the images are the same
+				else if (imageOnZoom.getImage().equals(imageFour)) {
 					photoPath = "/images/" + "icons8-character-85.png";
 				}
-				//store the photo path as image five if the images are the same
-				else if(imageOnZoom.getImage().equals(imageFive)) {
+				// store the photo path as image five if the images are the same
+				else if (imageOnZoom.getImage().equals(imageFive)) {
 					photoPath = "/images/" + "icons8-character-85 (4).png";
 				}
-				//store the photo path as image six if the images are the same
-				else if(imageOnZoom.getImage().equals(imageSix)) {
+				// store the photo path as image six if the images are the same
+				else if (imageOnZoom.getImage().equals(imageSix)) {
 					photoPath = "/images/" + "icons8-character-64.png";
 				}
-				//store the photo path as image seven if the images are the same
-				else if(imageOnZoom.getImage().equals(imageSeven)) {
+				// store the photo path as image seven if the images are the same
+				else if (imageOnZoom.getImage().equals(imageSeven)) {
 					photoPath = "/images/" + "icons8-character-85 (1).png";
 				}
-				//store the photo path as image eight if the images are the same
+				// store the photo path as image eight if the images are the same
 				else {
 					photoPath = "/images/" + "icons8-ninja-64 (1).png";
 				}
@@ -613,12 +660,10 @@ public class SignUpController implements Initializable {
 				labelOnMessage.setTextFill(Color.GREEN);
 				labelOnMessage.setText("Avatar Created Successfully");
 			}
-		}
-		else {
+		} else {
 			labelOnMessage.setTextFill(Color.ROSYBROWN);
 			labelOnMessage.setText("Maximum number of avatars reached!");
 		}
-
 
 	}
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.SignUpController">
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.SignUpController">
    <children>
       <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="850.0" layoutY="15.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
