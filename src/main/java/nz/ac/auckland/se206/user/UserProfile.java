@@ -5,42 +5,41 @@ import java.util.ArrayList;
 public class UserProfile {
   /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
+  private String photoPath;
 
   private Integer numOfWin;
   private Integer numOfLoss;
-  private ArrayList<String> wordsHistory;
-  private String bestRecord;
-  private String photoPath;
+  private Integer bestRecord;
+  private final ArrayList<String> wordsHistory;
+
+  private SettingsData preferredSettings;
 
   public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
-
     this.accountName = accountName;
     this.photoPath = photoPath;
-    this.numOfWin = 0;
-    this.numOfLoss = 0;
-    this.bestRecord = null;
 
-    this.wordsHistory = new ArrayList<>();
+    numOfWin = 0;
+    numOfLoss = 0;
+    bestRecord = 61;
+
+    wordsHistory = new ArrayList<>();
+    preferredSettings = new SettingsData();
   }
 
   /**
    * This method will update the record automatically based on the value of the records
    *
-   * @param record String which should be inputed each time the game is run
+   * @param record which should be input each time the game is run
    */
-  public void updateRecord(String record) {
+  public void updateRecord(Integer record) {
     // automatically update the record based on its value
-    if (this.bestRecord == null) {
+    if (this.bestRecord > record) {
       this.bestRecord = record;
-    } else {
-      if (Integer.parseInt(this.bestRecord) > Integer.parseInt(record)) {
-        this.bestRecord = record;
-      }
     }
   }
 
-  public void updateWordsHistory(String currentWord) {
+  public void addWordToHistory(String currentWord) {
     wordsHistory.add(currentWord);
   }
 
@@ -64,16 +63,8 @@ public class UserProfile {
     return numOfWin;
   }
 
-  public void setNumOfWin(Integer numOfWin) {
-    this.numOfWin = numOfWin;
-  }
-
   public Integer getNumOfLost() {
     return numOfLoss;
-  }
-
-  public void setNumOfLost(Integer numOfLost) {
-    this.numOfLoss = numOfLost;
   }
 
   public String getWordsHistory() {
@@ -88,22 +79,22 @@ public class UserProfile {
     return wordsHistoryString.toString();
   }
 
-  public void setWordsHistory(ArrayList<String> wordsHistory) {
-    this.wordsHistory = wordsHistory;
-  }
-
-  public String getBestRecord() {
+  public Integer getBestRecord() {
     return bestRecord;
   }
-
-  public void setBestRecord(String bestRecord) {
-    this.bestRecord = bestRecord;
-  }
-
+  
   public Integer getScore() {
     return numOfWin - numOfLoss;
   }
 
+  public void setPreferredSettings(SettingsData settingsData) {
+    preferredSettings = settingsData;
+  }
+
+  public SettingsData getPreferredSettings() {
+    return preferredSettings;
+  }
+    
   public String getPhotoPath() {
     return photoPath;
   }

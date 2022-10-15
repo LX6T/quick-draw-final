@@ -71,6 +71,33 @@ public class ProfileRepository {
     currentUser = user;
   }
 
+  public static void updateUserSettings(GameData gameData) {
+
+    currentUser.addWordToHistory(gameData.getWord());
+
+    if (gameData.isWon()) {
+      currentUser.wonTheGame();
+    } else {
+      currentUser.lostTheGame();
+    }
+
+    currentUser.updateRecord(gameData.getTime());
+
+    saveProfile(currentUser);
+    updateProfiles();
+  }
+
+  public static void updateUserSettings(SettingsData settingsData) {
+    currentUser.setPreferredSettings(settingsData);
+
+    saveProfile(currentUser);
+    updateProfiles();
+  }
+
+  public static SettingsData getSettings() {
+    return currentUser.getPreferredSettings();
+  }
+
   public static UserProfile getCurrentUser() {
     return currentUser;
   }
@@ -86,14 +113,5 @@ public class ProfileRepository {
 
   public static void updateHashMap(HashMap<String, UserProfile> hashMap) {
     users = hashMap;
-  }
-
-  public static void addWord(String word) {
-    if (currentUser != null) {
-      // add word to the words history
-      currentUser.updateWordsHistory(word);
-      saveProfile(currentUser);
-      updateProfiles();
-    }
   }
 }

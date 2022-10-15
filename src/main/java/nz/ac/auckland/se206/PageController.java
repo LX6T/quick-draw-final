@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class PageController implements Initializable {
 
@@ -128,21 +129,12 @@ public class PageController implements Initializable {
   }
 
   private void fadeOut(ActionEvent event) {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          loadNextScene(event);
-        });
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadNextScene(event));
     ft.play();
   }
 
   private void fadeOutTwo(ActionEvent event) {
-    // TODO Auto-generated method stub
     FadeTransition ft = new FadeTransition();
     ft.setDuration(Duration.millis(500));
     ft.setNode(masterPane);

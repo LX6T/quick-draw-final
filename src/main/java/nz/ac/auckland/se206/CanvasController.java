@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.animation.FadeTransition;
@@ -26,12 +27,16 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.user.GameData;
 import nz.ac.auckland.se206.user.ProfileRepository;
-import nz.ac.auckland.se206.user.UserProfile;
+import nz.ac.auckland.se206.user.SettingsData;
+import nz.ac.auckland.se206.util.TransitionUtils;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
@@ -52,6 +57,7 @@ public class CanvasController {
   private int interval = 59;
   private double currentX;
   private double currentY;
+
   private Timer timer = new Timer();
   private Boolean score = false;
   private javafx.event.EventHandler<MouseEvent> onRunEvent =
@@ -116,6 +122,10 @@ public class CanvasController {
   private DoodlePrediction model;
 
   private String currentWord;
+  private int accuracyDifficulty;
+  private String wordDifficulty;
+  private int timeDifficulty;
+  private double confidenceDifficulty;
 
   @FXML private Button buttonOnBack;
 
@@ -150,15 +160,129 @@ public class CanvasController {
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
     // disable all the buttons that are shouldn't be used at the start
+
+    SettingsData settings = ProfileRepository.getSettings();
+
+    accuracyDifficulty = setAccuracy(settings.getAccuracyDifficulty());
+    wordDifficulty = settings.getWordsDifficulty();
+    timeDifficulty = setTime(settings.getTimeDifficulty());
+    confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
+
+    timerDisplay.setText(Integer.toString(timeDifficulty));
+    setNewWord();
+  }
+
+  private int setAccuracy(String difficulty) {
+    // Easy -> correct word must be in the top 3 words
+    int accuracy = 3;
+
+    switch (difficulty) {
+
+        // Medium -> correct word must be in the top 2 words
+      case "Medium":
+        accuracy = 2;
+        break;
+
+        // Hard -> correct word must be the top word
+      case "Hard":
+        accuracy = 1;
+        break;
+    }
+
+    return accuracy;
+  }
+
+  private int setTime(String difficulty) {
+    // Easy -> 60 seconds to draw
+    int time = 60;
+
+    switch (difficulty) {
+
+        // Medium -> 45 seconds to draw
+      case "Medium":
+        time = 45;
+        break;
+
+        // Hard -> 30 seconds to draw
+      case "Hard":
+        time = 30;
+        break;
+
+        // Master -> 15 seconds to draw
+      case "Master":
+        time = 15;
+        break;
+    }
+
+    return time;
+  }
+
+  private double setConfidence(String difficulty) {
+    // Easy -> Minimum 1% confidence to win
+    double confidence = 0.01;
+
+    switch (difficulty) {
+
+        // Medium -> Minimum 10% confidence to win
+      case "Medium":
+        confidence = 0.1;
+        break;
+
+        // Hard -> Minimum 25% confidence to win
+      case "Hard":
+        confidence = 0.25;
+        break;
+
+        // Master -> Minimum 50% confidence to win
+      case "Master":
+        confidence = 0.5;
+        break;
+    }
+
+    return confidence;
+  }
+
+  @FXML
+  private void setNewWord() throws IOException, URISyntaxException, CsvException {
+    int randInt;
     CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
-    // choose difficulty Easy as the start
-    this.currentWord = randomWord;
-    displayText.setText(randomWord);
+    Random rand = new Random();
+
+    // Easy difficulty allows only easy words
+    Difficulty difficulty = Difficulty.E;
+
+    switch (wordDifficulty) {
+
+        // Medium difficulty allows easy and medium words
+      case "Medium":
+        randInt = rand.nextInt(2);
+        if (randInt == 1) {
+          difficulty = Difficulty.M;
+        }
+        break;
+
+        // Hard difficulty allows easy, medium and hard words
+      case "Hard":
+        randInt = rand.nextInt(3);
+        if (randInt == 1) {
+          difficulty = Difficulty.M;
+        } else if (randInt == 2) {
+          difficulty = Difficulty.H;
+        }
+        break;
+
+        // Master difficulty allows only hard words
+      case "Master":
+        difficulty = Difficulty.H;
+        break;
+    }
+
+    // set and display the randomly chosen word
+    currentWord = categorySelector.generateRandomCategory(difficulty);
+    displayText.setText(currentWord);
   }
 
   private void fadeIn() {
-    // TODO Auto-generated method stub
     FadeTransition ft = new FadeTransition();
     ft.setDuration(Duration.millis(500));
     ft.setNode(masterPane);
@@ -181,19 +305,19 @@ public class CanvasController {
    * @throws TranslateException If there is an error in reading the input/output of the DL model.
    */
   private boolean onPredict() throws TranslateException {
-    Boolean win;
+    boolean win;
 
     // get the initial system time
     List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
     // produce 10 predictions based on the current drawing
 
-    List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
+    List<Classification> result = model.getPredictions(getCurrentSnapshot(), accuracyDifficulty);
     StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
     // use a string builder class to build the string
     textToRefresh.setText(sb.toString().replaceAll("_", " "));
-    // remove all the under line
+    // replace underscores with spaces
     win = isWin(result);
-    if (win == true) {
+    if (win) {
       this.score = true;
       // calculate the score
     }
@@ -204,7 +328,10 @@ public class CanvasController {
   private boolean isWin(List<Classification> classifications) {
     // this method will tell whether the current prediction has won or not
     for (Classification classification : classifications) {
-      if (classification.getClassName().equals(currentWord)) {
+      // Prediction must both match current word and be above the minimum confidence probability
+      if (classification.getClassName().equals(currentWord)
+          && classification.getProbability() >= confidenceDifficulty) {
+        System.out.println(classification.getProbability());
         return true;
       }
     }
@@ -235,30 +362,6 @@ public class CanvasController {
     return imageBinary;
   }
 
-  /**
-   * Save the current snapshot on a bitmap file.
-   *
-   * @return The file of the saved image.
-   * @throws IOException If the image cannot be saved.
-   */
-  private File saveCurrentSnapshotOnFile() throws IOException {
-    // You can change the location as you see fit.
-    final File tmpFolder = new File("tmp");
-
-    if (!tmpFolder.exists()) {
-      tmpFolder.mkdir();
-    }
-
-    // We save the image to a file in the tmp folder.
-    final File imageToClassify =
-        new File(tmpFolder.getName() + "/snapshot" + System.currentTimeMillis() + ".bmp");
-
-    // Save the image to a file.
-    ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
-
-    return imageToClassify;
-  }
-
   @FXML
   private void onBack(ActionEvent event) {
     timer.cancel();
@@ -267,20 +370,12 @@ public class CanvasController {
   }
 
   private void fadeOutTwo(ActionEvent event) {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          loadNextSceneTwo(event);
-        });
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
     ft.play();
   }
 
-  private void loadNextSceneTwo(ActionEvent event) {
+  private void loadPageScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
 
@@ -293,8 +388,8 @@ public class CanvasController {
   }
 
   @FXML
-  private void onReady() throws ModelException, IOException, InterruptedException {
-    this.interval = 59;
+  private void onReady() throws ModelException, IOException {
+    this.interval = timeDifficulty - 1;
     // this variable is set so that every time this method is called, the timer
     // value can be reset.
     canvas.setDisable(false);
@@ -305,7 +400,6 @@ public class CanvasController {
     TextToSpeech speaker = new TextToSpeech();
     speaker.speak("The game starts");
     speaker.speak("Try to Draw a " + currentWord);
-    ProfileRepository.addWord(currentWord);
 
     // when the ready button is pressed, show text to speech feature
 
@@ -317,8 +411,7 @@ public class CanvasController {
 
           @Override
           public void run() {
-            // TODO Auto-generated method stub
-            if (interval > 0 && score == false) {
+            if (interval > 0 && !score) {
               // update the text on the Timer Label
               Platform.runLater(() -> timerDisplay.setText(Integer.toString(interval)));
               Platform.runLater(
@@ -326,47 +419,38 @@ public class CanvasController {
                     try {
                       score = onPredict();
                     } catch (TranslateException e) {
-                      // TODO Auto-generated catch block
                       e.printStackTrace();
                     }
                   });
               // predict to get results refreshing each second
               interval--;
             } else {
-              // when the 60 seconds timer is exceeded, everything stops
+              // when the time runs out, everything stops
               timer.cancel();
               canvas.setDisable(true);
               buttonOnSave.setDisable(false);
               buttonOnErase.setDisable(true);
               buttonOnClear.setDisable(true);
-              UserProfile currentUser = ProfileRepository.getCurrentUser();
 
-              if (score == false) {
+              TextToSpeech speaker = new TextToSpeech();
+              if (!score) {
                 // speak to user when detected result is lost
-                TextToSpeech speaker = new TextToSpeech();
                 speaker.speak("You Have Lost");
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
-                currentUser.lostTheGame();
-
               } else {
                 // speak to user when detected result is won
-                TextToSpeech speaker = new TextToSpeech();
                 speaker.speak("You have Won");
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
-
-                currentUser.wonTheGame();
-                int timeTaken = 60 - interval;
-                currentUser.updateRecord(timeTaken + "");
               }
 
-              ProfileRepository.saveProfile(currentUser);
-              ProfileRepository.updateProfiles();
-              ProfileRepository.setCurrentUser(currentUser);
+              // Updates the current user's profile with the data from this game
+              GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
+              ProfileRepository.updateUserSettings(gameData);
             }
           }
         },
@@ -374,6 +458,7 @@ public class CanvasController {
         1000);
 
     graphic = canvas.getGraphicsContext2D();
+
     // initialize the canvas to only allow user to draw after pressing ready
     canvas.setOnMousePressed(
         e -> {
@@ -412,7 +497,6 @@ public class CanvasController {
       sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
       // reload the scene and get everything refreshed.
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -439,7 +523,7 @@ public class CanvasController {
             final double y = e.getY() - size / 2;
 
             // This is the colour of the brush.
-            graphic.clearRect(currentX - 5 / 2, currentY - 5 / 2, 10, 10);
+            graphic.clearRect(currentX - 2.5, currentY - 2.5, 10, 10);
 
             // update the coordinates
             currentX = x;
@@ -461,8 +545,12 @@ public class CanvasController {
   }
 
   @FXML
-  private File saveToFiles(ActionEvent event) throws IOException {
-    return this.saveCurrentSnapshotOnFile();
-    // save the current image to file by clicking this button
+  private void saveToFiles() throws IOException {
+    FileChooser fc = new FileChooser();
+    Stage stage = new Stage();
+    File imageToClassify = fc.showSaveDialog(stage);
+
+    // Save the image to a file.
+    ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
   }
 }
