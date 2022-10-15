@@ -25,3 +25,15 @@
 {
 	-fx-fill : #edcf7e ;
 }
+/* Styling the slider thumb */
+.jfx-slider>.thumb {
+    -fx-background-color: #240101;
+}
+.jfx-slider>.colored-track {
+    -fx-background-color: #3a0404;
+}
+/* Styling the animated thumb */
+.jfx-slider>.animated-thumb {
+    -fx-background-color: #240101;
+}
+

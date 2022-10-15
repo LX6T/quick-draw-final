@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class UserProfile {
   /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
+  private String photoPath;
 
   private Integer numOfWin;
   private Integer numOfLoss;
@@ -13,9 +14,10 @@ public class UserProfile {
 
   private SettingsData preferredSettings;
 
-  public UserProfile(String accountName) {
+  public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
     this.accountName = accountName;
+    this.photoPath = photoPath;
 
     numOfWin = 0;
     numOfLoss = 0;
@@ -80,7 +82,7 @@ public class UserProfile {
   public Integer getBestRecord() {
     return bestRecord;
   }
-
+  
   public Integer getScore() {
     return numOfWin - numOfLoss;
   }
@@ -91,5 +93,13 @@ public class UserProfile {
 
   public SettingsData getPreferredSettings() {
     return preferredSettings;
+  }
+    
+  public String getPhotoPath() {
+    return photoPath;
+  }
+
+  public void setPhotoPath(String photoPath) {
+    this.photoPath = photoPath;
   }
 }

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.animation.FadeTransition;
@@ -110,7 +111,6 @@ public class StatsController {
                 settingsData.setConfidenceDifficulty(rb.getText());
               }
             });
-
     masterPane.setOpacity(0.2);
     fadeIn();
   }
@@ -143,7 +143,7 @@ public class StatsController {
     // set the number of loss
     labelScore.setText(user.getScore().toString());
     // set the text of the score
-
+    
     if (user.getBestRecord() > 60) {
       // if there is not a record yet display N/A
       labelRecord.setText("N/A");
@@ -172,8 +172,7 @@ public class StatsController {
   }
 
   @FXML
-  private void back(ActionEvent event) {
-    ProfileRepository.updateUserData(settingsData);
+  private void onBack(ActionEvent event) {
     fadeOutTwo(event);
   }
 

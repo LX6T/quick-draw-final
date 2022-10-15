@@ -57,46 +57,51 @@ public class CanvasController {
   private int interval = 59;
   private double currentX;
   private double currentY;
-  private final Timer timer = new Timer();
+
+  private Timer timer = new Timer();
   private Boolean score = false;
-  private final javafx.event.EventHandler<MouseEvent> mouseEvent =
-      new javafx.event.EventHandler<>() {
+  private javafx.event.EventHandler<MouseEvent> onRunEvent =
+      new javafx.event.EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent event) {
-          graphic.clearRect(event.getX() - 2.5, event.getY() - 2.5, 10, 10);
+          // TODO Auto-generated method stub
+          graphic.clearRect(event.getX() - 5 / 2, event.getY() - 5 / 2, 10, 10);
         }
       };
-  private final javafx.event.EventHandler<MouseEvent> mouseEventTwo =
-      event -> CanvasController.this.handle();
+  private javafx.event.EventHandler<MouseEvent> onRunEventTwo =
+      new javafx.event.EventHandler<MouseEvent>() {
 
-  private void handle() {
-    canvas.setOnMousePressed(
-        e -> {
-          currentX = e.getX();
-          currentY = e.getY();
-        });
+        @Override
+        public void handle(MouseEvent event) {
+          // TODO Auto-generated method stub
+          canvas.setOnMousePressed(
+              e -> {
+                currentX = e.getX();
+                currentY = e.getY();
+              });
 
-    canvas.setOnMouseDragged(
-        e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = 6;
+          canvas.setOnMouseDragged(
+              e -> {
+                // Brush size (you can change this, it should not be too small or too large).
+                final double size = 6;
 
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
+                final double x = e.getX() - size / 2;
+                final double y = e.getY() - size / 2;
 
-          // This is the colour of the brush.
-          graphic.setFill(Color.BLACK);
-          graphic.setLineWidth(size);
+                // This is the colour of the brush.
+                graphic.setFill(Color.BLACK);
+                graphic.setLineWidth(size);
 
-          // Create a line that goes from the point (currentX, currentY) and (x,y)
-          graphic.strokeLine(currentX, currentY, x, y);
+                // Create a line that goes from the point (currentX, currentY) and (x,y)
+                graphic.strokeLine(currentX, currentY, x, y);
 
-          // update the coordinates
-          currentX = x;
-          currentY = y;
-        });
-  }
+                // update the coordinates
+                currentX = x;
+                currentY = y;
+              });
+        }
+      };
 
   @FXML private Button buttonOnSave;
 
@@ -122,10 +127,14 @@ public class CanvasController {
   private int timeDifficulty;
   private double confidenceDifficulty;
 
+  @FXML private Button buttonOnBack;
+
   @FXML private Label displayText;
 
   @FXML private Label timerDisplay;
 
+  @FXML private Button readyButton;
+  
   @FXML private Label textToRefresh;
 
   @FXML private AnchorPane masterPane;
@@ -135,11 +144,12 @@ public class CanvasController {
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
    *
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException If a string could not be parsed as a URI reference
-   * @throws CsvException If there is a problem with the CSV file
+   * @throws URISyntaxException
+   * @throws CsvException
    */
-  public void initialize() throws IOException, CsvException, URISyntaxException {
+  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
     masterPane.setOpacity(0.2);
     // set the starting opacity setting
     fadeIn();
@@ -448,15 +458,39 @@ public class CanvasController {
         1000);
 
     graphic = canvas.getGraphicsContext2D();
-
+    
     // initialize the canvas to only allow user to draw after pressing ready
-    CanvasController.this.handle();
+    canvas.setOnMousePressed(
+        e -> {
+          currentX = e.getX();
+          currentY = e.getY();
+        });
+
+    canvas.setOnMouseDragged(
+        e -> {
+          // Brush size (you can change this, it should not be too small or too large).
+          final double size = 6;
+
+          final double x = e.getX() - size / 2;
+          final double y = e.getY() - size / 2;
+
+          // This is the colour of the brush.
+          graphic.setFill(Color.BLACK);
+          graphic.setLineWidth(size);
+
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
+
+          // update the coordinates
+          currentX = x;
+          currentY = y;
+        });
   }
 
   @FXML
-  private void resetButton(ActionEvent event) {
+  private void onReset(ActionEvent event) {
     timer.cancel();
-    // stop the countdown timer to count down.
+    // stop the count down timer to count down.
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     try {
@@ -468,7 +502,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void eraseAction() {
+  private void onErase(ActionEvent event) {
     graphic = canvas.getGraphicsContext2D();
     // get the current canvas graphic
 
@@ -496,14 +530,14 @@ public class CanvasController {
             currentY = y;
           });
 
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
+      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
+      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
       buttonOnErase.setText("Pencil");
       // update the text on the button
     } else if (buttonOnErase.getText().equals("Pencil")) {
       // remove event to stop erasing
-      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+      canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+      canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
 
       buttonOnErase.setText("Eraser");
       // update the text on the button

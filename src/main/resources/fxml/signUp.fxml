@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.SignUpController">
+   <children>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="850.0" layoutY="15.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="840.0" layoutY="400.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="3.0" layoutY="393.0" opacity="0.65" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="210.0" layoutX="6.0" layoutY="3.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/SeekPng.com_geometric-border-png_4065571-removebg-preview.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <AnchorPane layoutX="114.0" layoutY="52.0" prefHeight="496.0" prefWidth="381.0" style="-fx-background-color: #b76767; -fx-background-radius: 30;">
+         <children>
+            <AnchorPane fx:id="paneOnThree" layoutX="257.0" layoutY="129.0" onMouseClicked="#onClickThree" onMouseEntered="#onEnterThree" onMouseExited="#onLeaveThree" onMousePressed="#onPressThree" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85%20(2).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnOne" layoutX="15.0" layoutY="129.0" onMouseClicked="#onClickOne" onMouseEntered="#onEnterOne" onMouseExited="#onLeaveOne" onMousePressed="#onPressOne" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85%20(3).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnFour" layoutX="15.0" layoutY="246.0" onMouseClicked="#onClickFour" onMouseEntered="#onEnterFour" onMouseExited="#onLeaveFour" onMousePressed="#onPressFour" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnSeven" layoutX="15.0" layoutY="363.0" onMouseClicked="#onClickSeven" onMouseEntered="#onEnterSeven" onMouseExited="#onLeaveSeven" onMousePressed="#onPressSeven" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85%20(1).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnSix" layoutX="257.0" layoutY="246.0" onMouseClicked="#onClickSix" onMouseEntered="#onEnterSix" onMouseExited="#onLeaveSix" onMousePressed="#onPressSix" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnTwo" layoutX="136.0" layoutY="129.0" onMouseClicked="#onClickTwo" onMouseEntered="#onEnterTwo" onMouseExited="#onLeaveTwo" onMousePressed="#onPressTwo" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85%20(5).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnFive" layoutX="136.0" layoutY="246.0" onMouseClicked="#onClickFive" onMouseEntered="#onEnterFive" onMouseExited="#onLeaveFive" onMousePressed="#onPressFive" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-character-85%20(4).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnEight" layoutX="136.0" layoutY="363.0" onMouseClicked="#onClickEight" onMouseEntered="#onEnterEight" onMouseExited="#onLeaveEight" onMousePressed="#onPressEight" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-ninja-64%20(1).png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneOnNine" layoutX="257.0" layoutY="363.0" onMouseClicked="#onClickNine" onMouseEntered="#onEnterNine" onMouseExited="#onLeaveNine" onMousePressed="#onPressNine" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-question-mark-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="22.0" prefHeight="49.0" prefWidth="343.0" text="CHOOSE YOUR AVATAR" textFill="#240101">
+               <font>
+                  <Font name="FZYaoTi" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="52.0" fitWidth="51.0" layoutX="24.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-choose-50.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="11.0" layoutY="84.0" prefHeight="2.0" prefWidth="358.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneOnZoom" layoutX="741.0" layoutY="78.0" prefHeight="180.0" prefWidth="180.0" style="-fx-background-color: #b76767; -fx-border-width: 10; -fx-border-color: #c0a865;">
+         <children>
+            <ImageView fx:id="imageOnZoom" fitHeight="150.0" fitWidth="150.0" layoutX="22.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-character-85%20(4).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="112.0" fitWidth="98.0" layoutX="574.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-zoom-in-64%20(1).png" />
+         </image>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </ImageView>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane layoutX="583.0" layoutY="333.0" prefHeight="200.0" prefWidth="365.0" style="-fx-background-color: #c0a865; -fx-background-radius: 25;">
+         <children>
+            <AnchorPane layoutX="7.0" layoutY="6.0" prefHeight="185.0" prefWidth="350.0" style="-fx-background-color: #827651; -fx-background-radius: 25;">
+               <children>
+                  <Label layoutX="24.0" layoutY="32.0" text="Set Up Your Name :" textFill="#240101">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userName" layoutX="25.0" layoutY="64.0" prefHeight="25.0" prefWidth="286.0" />
+                  <JFXButton fx:id="buttonOnConfirm" layoutX="37.0" layoutY="122.0" onAction="#onConfirm" prefHeight="32.0" prefWidth="91.0" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Confirm">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="buttonOnBack" layoutX="219.0" layoutY="122.0" onAction="#onBack" prefHeight="32.0" prefWidth="91.0" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Back">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Label fx:id="labelOnMessage" layoutX="26.0" layoutY="93.0" prefHeight="17.0" prefWidth="241.0" textFill="#ffbdbd">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
