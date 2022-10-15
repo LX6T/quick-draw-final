@@ -153,7 +153,7 @@ public class StatsController {
   @FXML
   private void onBack(ActionEvent event) {
     if (settingsData.isComplete()) {
-      ProfileRepository.updateUserData(settingsData);
+      ProfileRepository.updateUserSettings(settingsData);
     }
     fadeOutTwo(event);
   }
@@ -161,7 +161,7 @@ public class StatsController {
   @FXML
   private void onStart(ActionEvent event) {
     if (settingsData.isComplete()) {
-      ProfileRepository.updateUserData(settingsData);
+      ProfileRepository.updateUserSettings(settingsData);
       fadeOut(event);
     }
   }

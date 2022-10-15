@@ -450,7 +450,7 @@ public class CanvasController {
 
               // Updates the current user's profile with the data from this game
               GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
-              ProfileRepository.updateUserData(gameData);
+              ProfileRepository.updateUserSettings(gameData);
             }
           }
         },
