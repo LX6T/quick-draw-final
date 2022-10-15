@@ -47,7 +47,7 @@
       </ImageView>
       <AnchorPane layoutX="114.0" layoutY="52.0" prefHeight="496.0" prefWidth="381.0" style="-fx-background-color: #b76767; -fx-background-radius: 30;">
          <children>
-            <AnchorPane fx:id="paneOnThree" layoutX="257.0" layoutY="129.0" onMouseClicked="#clickThree" onMouseEntered="#enterThree" onMouseExited="#leaveThree" onMousePressed="#pressThree" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnThree" layoutX="257.0" layoutY="129.0" onMouseClicked="#onClickThree" onMouseEntered="#onEnterThree" onMouseExited="#onLeaveThree" onMousePressed="#onPressThree" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,7 +56,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnOne" layoutX="15.0" layoutY="129.0" onMouseClicked="#clickOne" onMouseEntered="#enterOne" onMouseExited="#leaveOne" onMousePressed="#pressOne" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnOne" layoutX="15.0" layoutY="129.0" onMouseClicked="#onClickOne" onMouseEntered="#onEnterOne" onMouseExited="#onLeaveOne" onMousePressed="#onPressOne" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,7 +65,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnFour" layoutX="15.0" layoutY="246.0" onMouseClicked="#clickFour" onMouseEntered="#enterFour" onMouseExited="#leaveFour" onMousePressed="#pressFour" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnFour" layoutX="15.0" layoutY="246.0" onMouseClicked="#onClickFour" onMouseEntered="#onEnterFour" onMouseExited="#onLeaveFour" onMousePressed="#onPressFour" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,7 +74,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnSeven" layoutX="15.0" layoutY="363.0" onMouseClicked="#clickSeven" onMouseEntered="#enterSeven" onMouseExited="#leaveSeven" onMousePressed="#pressSeven" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnSeven" layoutX="15.0" layoutY="363.0" onMouseClicked="#onClickSeven" onMouseEntered="#onEnterSeven" onMouseExited="#onLeaveSeven" onMousePressed="#onPressSeven" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +83,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnSix" layoutX="257.0" layoutY="246.0" onMouseClicked="#clickSix" onMouseEntered="#enterSix" onMouseExited="#leaveSix" onMousePressed="#pressSix" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnSix" layoutX="257.0" layoutY="246.0" onMouseClicked="#onClickSix" onMouseEntered="#onEnterSix" onMouseExited="#onLeaveSix" onMousePressed="#onPressSix" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -92,7 +92,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnTwo" layoutX="136.0" layoutY="129.0" onMouseClicked="#clickTwo" onMouseEntered="#enterTwo" onMouseExited="#leaveTwo" onMousePressed="#pressTwo" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnTwo" layoutX="136.0" layoutY="129.0" onMouseClicked="#onClickTwo" onMouseEntered="#onEnterTwo" onMouseExited="#onLeaveTwo" onMousePressed="#onPressTwo" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,7 +101,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnFive" layoutX="136.0" layoutY="246.0" onMouseClicked="#clickFive" onMouseEntered="#enterFive" onMouseExited="#leaveFive" onMousePressed="#pressFive" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnFive" layoutX="136.0" layoutY="246.0" onMouseClicked="#onClickFive" onMouseEntered="#onEnterFive" onMouseExited="#onLeaveFive" onMousePressed="#onPressFive" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -110,7 +110,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnEight" layoutX="136.0" layoutY="363.0" onMouseClicked="#clickEight" onMouseEntered="#enterEight" onMouseExited="#leaveEight" onMousePressed="#pressEight" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnEight" layoutX="136.0" layoutY="363.0" onMouseClicked="#onClickEight" onMouseEntered="#onEnterEight" onMouseExited="#onLeaveEight" onMousePressed="#onPressEight" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,7 +119,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="paneOnNine" layoutX="257.0" layoutY="363.0" onMouseClicked="#clickNine" onMouseEntered="#enterNine" onMouseExited="#leaveNine" onMousePressed="#pressNine" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
+            <AnchorPane fx:id="paneOnNine" layoutX="257.0" layoutY="363.0" onMouseClicked="#onClickNine" onMouseEntered="#onEnterNine" onMouseExited="#onLeaveNine" onMousePressed="#onPressNine" prefHeight="85.0" prefWidth="85.0" style="-fx-border-color: #c0a865; -fx-border-width: 5;">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -144,7 +144,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane one
    */
   @FXML
-  private void clickOne() {
+  private void onClickOne() {
     // reset the size of the image for hovering effect
     paneOnOne.setScaleX(1);
     paneOnOne.setScaleY(1);
@@ -169,7 +169,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane two
    */
   @FXML
-  private void clickTwo() {
+  private void onClickTwo() {
     // reset the size of the image for hovering effect
     paneOnTwo.setScaleX(1);
     paneOnTwo.setScaleY(1);
@@ -194,7 +194,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane three
    */
   @FXML
-  private void clickThree() {
+  private void onClickThree() {
     // reset the size of the image for hovering effect
     paneOnThree.setScaleX(1);
     paneOnThree.setScaleY(1);
@@ -219,7 +219,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane four
    */
   @FXML
-  private void clickFour() {
+  private void onClickFour() {
     // reset the size of the image for hovering effect
     paneOnFour.setScaleX(1);
     paneOnFour.setScaleY(1);
@@ -244,7 +244,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane Five
    */
   @FXML
-  private void clickFive() {
+  private void onClickFive() {
     // reset the size of the image for hovering effect
     paneOnFive.setScaleX(1);
     paneOnFive.setScaleY(1);
@@ -269,7 +269,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane six
    */
   @FXML
-  private void clickSix() {
+  private void onClickSix() {
     // reset the size of the image for hovering effect
     paneOnSix.setScaleX(1);
     paneOnSix.setScaleY(1);
@@ -294,7 +294,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane seven
    */
   @FXML
-  private void clickSeven() {
+  private void onClickSeven() {
     // reset the size of the image for hovering effect
     paneOnSeven.setScaleX(1);
     paneOnSeven.setScaleY(1);
@@ -319,7 +319,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane eight
    */
   @FXML
-  private void clickEight() {
+  private void onClickEight() {
     // reset the size of the image for hovering effect
     paneOnEight.setScaleX(1);
     paneOnEight.setScaleY(1);
@@ -344,7 +344,7 @@ public class SignUpController implements Initializable {
    * other useless effect for pane nine
    */
   @FXML
-  private void clickNine() {
+  private void onClickNine() {
     // reset the size of the image for hovering effect
     paneOnNine.setScaleX(1);
     paneOnNine.setScaleY(1);
@@ -397,7 +397,7 @@ public class SignUpController implements Initializable {
    * one
    */
   @FXML
-  private void pressOne() {
+  private void onPressOne() {
     setPressedEffect(paneOnOne);
   }
 
@@ -406,7 +406,7 @@ public class SignUpController implements Initializable {
    * two
    */
   @FXML
-  private void pressTwo() {
+  private void onPressTwo() {
     setPressedEffect(paneOnTwo);
   }
 
@@ -415,7 +415,7 @@ public class SignUpController implements Initializable {
    * three
    */
   @FXML
-  private void pressThree() {
+  private void onPressThree() {
     setPressedEffect(paneOnThree);
   }
 
@@ -424,7 +424,7 @@ public class SignUpController implements Initializable {
    * four
    */
   @FXML
-  private void pressFour() {
+  private void onPressFour() {
     setPressedEffect(paneOnFour);
   }
 
@@ -433,7 +433,7 @@ public class SignUpController implements Initializable {
    * five
    */
   @FXML
-  private void pressFive() {
+  private void onPressFive() {
     setPressedEffect(paneOnFive);
   }
 
@@ -442,7 +442,7 @@ public class SignUpController implements Initializable {
    * six
    */
   @FXML
-  private void pressSix() {
+  private void onPressSix() {
     setPressedEffect(paneOnSix);
   }
 
@@ -451,7 +451,7 @@ public class SignUpController implements Initializable {
    * seven
    */
   @FXML
-  private void pressSeven() {
+  private void onPressSeven() {
     setPressedEffect(paneOnSeven);
   }
 
@@ -460,7 +460,7 @@ public class SignUpController implements Initializable {
    * eight
    */
   @FXML
-  private void pressEight() {
+  private void onPressEight() {
     setPressedEffect(paneOnEight);
   }
 
@@ -469,12 +469,12 @@ public class SignUpController implements Initializable {
    * nine
    */
   @FXML
-  private void pressNine() {
+  private void onPressNine() {
     setPressedEffect(paneOnNine);
   }
 
   @FXML
-  private void enterOne() {
+  private void onEnterOne() {
     setHoverEffectOnEnter(paneOnOne);
   }
 
@@ -483,87 +483,87 @@ public class SignUpController implements Initializable {
   }
 
   @FXML
-  private void leaveOne() {
+  private void onLeaveOne() {
     setHoverEffectOnLeave(paneOnOne);
   }
 
   @FXML
-  private void enterTwo() {
+  private void onEnterTwo() {
     setHoverEffectOnEnter(paneOnTwo);
   }
 
   @FXML
-  private void leaveTwo() {
+  private void onLeaveTwo() {
     setHoverEffectOnLeave(paneOnTwo);
   }
 
   @FXML
-  private void enterThree() {
+  private void onEnterThree() {
     setHoverEffectOnEnter(paneOnThree);
   }
 
   @FXML
-  private void leaveThree() {
+  private void onLeaveThree() {
     setHoverEffectOnLeave(paneOnThree);
   }
 
   @FXML
-  private void enterFour() {
+  private void onEnterFour() {
     setHoverEffectOnEnter(paneOnFour);
   }
 
   @FXML
-  private void leaveFour() {
+  private void onLeaveFour() {
     setHoverEffectOnLeave(paneOnFour);
   }
 
   @FXML
-  private void enterFive() {
+  private void onEnterFive() {
     setHoverEffectOnEnter(paneOnFive);
   }
 
   @FXML
-  private void leaveFive() {
+  private void onLeaveFive() {
     setHoverEffectOnLeave(paneOnFive);
   }
 
   @FXML
-  private void enterSix() {
+  private void onEnterSix() {
     setHoverEffectOnEnter(paneOnSix);
   }
 
   @FXML
-  private void leaveSix() {
+  private void onLeaveSix() {
     setHoverEffectOnLeave(paneOnSix);
   }
 
   @FXML
-  private void enterSeven() {
+  private void onEnterSeven() {
     setHoverEffectOnEnter(paneOnSeven);
   }
 
   @FXML
-  private void leaveSeven() {
+  private void onLeaveSeven() {
     setHoverEffectOnLeave(paneOnSeven);
   }
 
   @FXML
-  private void enterEight() {
+  private void onEnterEight() {
     setHoverEffectOnEnter(paneOnEight);
   }
 
   @FXML
-  private void leaveEight() {
+  private void onLeaveEight() {
     setHoverEffectOnLeave(paneOnEight);
   }
 
   @FXML
-  private void enterNine() {
+  private void onEnterNine() {
     setHoverEffectOnEnter(paneOnNine);
   }
 
   @FXML
-  private void leaveNine() {
+  private void onLeaveNine() {
     setHoverEffectOnLeave(paneOnNine);
   }
 

@@ -15,12 +15,12 @@
 	<children>
 		<AnchorPane layoutX="578.0" layoutY="60.0" prefHeight="493.0" prefWidth="434.0" style="-fx-background-color: #827651; -fx-background-radius: 20px;">
 			<children>
-            <JFXToggleButton fx:id="buttonOnVolume" layoutX="260.0" layoutY="211.0" onAction="#actionOnAutoVolume" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+            <JFXToggleButton fx:id="buttonOnVolume" layoutX="260.0" layoutY="211.0" onAction="#onAutoVolume" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXToggleButton>
-            <JFXToggleButton fx:id="buttonOnBrightness" layoutX="260.0" layoutY="159.0" onAction="#actionOnAutoBrightness" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
+            <JFXToggleButton fx:id="buttonOnBrightness" layoutX="260.0" layoutY="159.0" onAction="#onAutoBrightness" prefHeight="58.0" prefWidth="159.0" size="7.5" text="Auto-Adjust" textFill="#240101" toggleColor="#240101" toggleLineColor="#530404" unToggleColor="#240101">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -35,12 +35,12 @@
 						<Image url="@../images/logo-speedy-sketchers.png" />
 					</image>
 				</ImageView>
-				<JFXButton fx:id="buttonOnSignIn" layoutX="78.0" layoutY="317.0" onAction="#signInAction" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
+				<JFXButton fx:id="buttonOnSignIn" layoutX="78.0" layoutY="317.0" onAction="#onSignIn" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
 				</JFXButton>
-				<JFXButton fx:id="buttonOnStart" layoutX="78.0" layoutY="360.0" onAction="#startNewGame" prefHeight="25.0" prefWidth="268.0" ripplerFill="#aaa262" style="-fx-background-radius: 15px;" styleClass="JFXButton" text="Play as Guest" textFill="#534747">
+				<JFXButton fx:id="buttonOnStart" layoutX="78.0" layoutY="360.0" onAction="#onStart" prefHeight="25.0" prefWidth="268.0" ripplerFill="#aaa262" style="-fx-background-radius: 15px;" styleClass="JFXButton" text="Play as Guest" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
@@ -49,7 +49,7 @@
 						<URL value="@../css/styling.css" />
 					</stylesheets>
 				</JFXButton>
-				<JFXButton fx:id="buttonOnExit" layoutX="78.0" layoutY="401.0" onAction="#exitGame" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Exit" textFill="#534747">
+				<JFXButton fx:id="buttonOnExit" layoutX="78.0" layoutY="401.0" onAction="#onExit" prefHeight="25.0" prefWidth="268.0" style="-fx-background-radius: 15px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Exit" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
