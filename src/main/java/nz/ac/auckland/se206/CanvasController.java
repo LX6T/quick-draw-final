@@ -117,7 +117,10 @@ public class CanvasController {
   private DoodlePrediction model;
 
   private String currentWord;
-  private SettingsData currentSettings;
+  private int accuracyDifficulty;
+  private String wordDifficulty;
+  private int timeDifficulty;
+  private double confidenceDifficulty;
 
   @FXML private Label displayText;
 
@@ -148,25 +151,59 @@ public class CanvasController {
     buttonOnClear.setDisable(true);
     // disable all the buttons that are shouldn't be used at the start
 
-    this.currentSettings = ProfileRepository.getSettings();
+    SettingsData settings = ProfileRepository.getSettings();
+
+    accuracyDifficulty = setAccuracy(settings.getAccuracyDifficulty());
+    wordDifficulty = settings.getWordsDifficulty();
+    timeDifficulty = setTime(settings.getTimeDifficulty());
+    confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
+
     setNewWord();
+  }
+
+  private int setAccuracy(String difficulty) {
+    // Easy -> correct word must be in the top 3 words
+    int accuracy = 3;
+
+    switch (difficulty) {
+
+        // Medium -> correct word must be in the top 2 words
+      case "Medium":
+        accuracy = 2;
+        break;
+
+        // Hard -> correct word must be the top word
+      case "Hard":
+        accuracy = 1;
+        break;
+    }
+
+    return accuracy;
+  }
+
+  private int setTime(String difficulty) {
+    return 0;
+  }
+
+  private int setConfidence(String difficulty) {
+    return 0;
   }
 
   @FXML
   private void setNewWord() throws IOException, URISyntaxException, CsvException {
     int randInt;
-    Difficulty difficulty;
     CategorySelector categorySelector = new CategorySelector();
     Random rand = new Random();
 
-    switch (currentSettings.getWordsDifficulty()) {
+    // Easy difficulty allows only easy words
+    Difficulty difficulty = Difficulty.E;
+
+    switch (wordDifficulty) {
 
         // Medium difficulty allows easy and medium words
       case "Medium":
         randInt = rand.nextInt(2);
-        if (randInt == 0) {
-          difficulty = Difficulty.E;
-        } else {
+        if (randInt == 1) {
           difficulty = Difficulty.M;
         }
         break;
@@ -174,11 +211,9 @@ public class CanvasController {
         // Hard difficulty allows easy, medium and hard words
       case "Hard":
         randInt = rand.nextInt(3);
-        if (randInt == 0) {
-          difficulty = Difficulty.E;
-        } else if (randInt == 1) {
+        if (randInt == 1) {
           difficulty = Difficulty.M;
-        } else {
+        } else if (randInt == 2) {
           difficulty = Difficulty.H;
         }
         break;
@@ -187,10 +222,6 @@ public class CanvasController {
       case "Master":
         difficulty = Difficulty.H;
         break;
-
-        // Easy difficulty allows only easy words
-      default:
-        difficulty = Difficulty.E;
     }
 
     // set and display the randomly chosen word
@@ -227,7 +258,7 @@ public class CanvasController {
     List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
     // produce 10 predictions based on the current drawing
 
-    List<Classification> result = model.getPredictions(getCurrentSnapshot(), 3);
+    List<Classification> result = model.getPredictions(getCurrentSnapshot(), accuracyDifficulty);
     StringBuilder sb = DoodlePrediction.givePredictions(predictionResult);
     // use a string builder class to build the string
     textToRefresh.setText(sb.toString().replaceAll("_", " "));
