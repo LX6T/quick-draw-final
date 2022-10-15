@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.ZenModeController">
    <children>
       <Separator layoutX="-1.0" layoutY="78.0" prefHeight="5.0" prefWidth="1050.0" />
       <AnchorPane layoutX="14.0" layoutY="97.0" prefHeight="473.0" prefWidth="207.0" style="-fx-background-color: #827651; -fx-background-radius: 25; -fx-border-color: #b76767; -fx-border-width: 5; -fx-border-radius: 25;">
          <children>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnOne" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="25.0" onMouseClicked="#onClickOne" onMouseEntered="#onEnterOne" onMouseExited="#onExitOne" onMousePressed="#onPressOne" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99.png" />
                </image>
@@ -23,7 +23,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnThree" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="94.0" onMouseClicked="#onClickThree" onMouseEntered="#onEnterThree" onMouseExited="#onExitThree" onMousePressed="#onPressThree" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(1).png" />
                </image>
@@ -31,7 +31,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnFive" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="163.0" onMouseClicked="#onClickFive" onMouseEntered="#onEnterFive" onMouseExited="#onExitFive" onMousePressed="#onPressFive" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(6).png" />
                </image>
@@ -39,7 +39,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnSeven" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="232.0" onMouseClicked="#onClickSeven" onMouseEntered="#onEnterSeven" onMouseExited="#onExitSeven" onMousePressed="#onPressSeven" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(3).png" />
                </image>
@@ -47,7 +47,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnNine" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="301.0" onMouseClicked="#onClickNine" onMouseEntered="#onEnterNine" onMouseExited="#onExitNine" onMousePressed="#onPressNine" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(4).png" />
                </image>
@@ -55,7 +55,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnEleven" fitHeight="58.0" fitWidth="56.0" layoutX="30.0" layoutY="370.0" onMouseClicked="#onClickEleven" onMouseEntered="#onEnterEleven" onMouseExited="#onExitEleven" onMousePressed="#onPressEleven" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(5).png" />
                </image>
@@ -63,7 +63,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnTwo" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="25.0" onMouseClicked="#onClickTwo" onMouseEntered="#onEnterTwo" onMouseExited="#onExitTwo" onMousePressed="#onPressTwo" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(2).png" />
                </image>
@@ -71,7 +71,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnFour" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="94.0" onMouseClicked="#onClickFour" onMouseEntered="#onEnterFour" onMouseExited="#onExitFour" onMousePressed="#onPressFour" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(7).png" />
                </image>
@@ -79,7 +79,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnSix" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="163.0" onMouseClicked="#onClickSix" onMouseEntered="#onEnterSix" onMouseExited="#onExitSix" onMousePressed="#onPressSix" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(8).png" />
                </image>
@@ -87,7 +87,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnEight" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="232.0" onMouseClicked="#onClickEight" onMouseEntered="#onEnterEight" onMouseExited="#onExitEight" onMousePressed="#onPressEight" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(10).png" />
                </image>
@@ -95,7 +95,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnTen" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="301.0" onMouseClicked="#onClickTen" onMouseEntered="#onEnterTen" onMouseExited="#onExitTen" onMousePressed="#onPressTen" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(9).png" />
                </image>
@@ -103,7 +103,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnTwelve" fitHeight="58.0" fitWidth="56.0" layoutX="125.0" layoutY="377.0" onMouseClicked="#onClickTwelve" onMouseEntered="#onEnterTwelve" onMouseExited="#onExitTwelve" onMousePressed="#onPressTwelve" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-pen-99%20(11).png" />
                </image>
@@ -123,7 +123,7 @@
             <Image url="@../images/icons8-mode-64.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="45.0" layoutX="991.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnBack" fitHeight="76.0" fitWidth="45.0" layoutX="991.0" layoutY="22.0" onMouseClicked="#onClickBack" onMouseEntered="#onEnterBack" onMouseExited="#onLeaveBack" onMousePressed="#onPressBack" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-back-100%20(1).png" />
          </image>
@@ -132,7 +132,7 @@
          <children>
             <Pane layoutX="17.0" layoutY="15.0" prefHeight="332.0" prefWidth="512.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
                <children>
-                  <Canvas height="340.0" layoutX="-3.0" layoutY="-6.0" width="518.0" />
+                  <Canvas fx:id="canvas" height="340.0" layoutX="-3.0" layoutY="-6.0" width="518.0" />
                </children>
             </Pane>
          </children>
@@ -142,34 +142,34 @@
             <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="538.0" layoutY="113.0" prefHeight="38.0" prefWidth="189.0" text="James" textFill="WHITE">
+      <Label fx:id="textToRefresh" layoutX="538.0" layoutY="113.0" prefHeight="38.0" prefWidth="247.0" text="James" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="99.0" fitWidth="52.0" layoutX="274.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnReset" fitHeight="99.0" fitWidth="52.0" layoutX="274.0" layoutY="106.0" onMouseClicked="#onClickReset" onMouseEntered="#onEnterReset" onMouseExited="#onExitReset" onMousePressed="#onPressReset" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-refresh-64.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnClear" fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="198.0" onMouseClicked="#onClickClear" onMouseEntered="#onEnterClear" onMouseExited="#onExitClear" onMousePressed="#onPressClear" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/icons8-cancel-64.png" />
+            <Image url="@../images/icons8-waste-100.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnSave" fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="438.0" onMouseClicked="#onClickSave" onMouseEntered="#onEnterSave" onMouseExited="#onExitSave" onMousePressed="#onPressSave" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-save-100.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnRubber" fitHeight="56.0" fitWidth="52.0" layoutX="811.0" layoutY="318.0" onMouseClicked="#onClickRubber" onMouseEntered="#onEnterRubber" onMouseExited="#onExitRubber" onMousePressed="#onPressRubber" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-eraser-64%20(1).png" />
          </image>
       </ImageView>
       <Pane layoutX="885.0" layoutY="106.0" prefHeight="466.0" prefWidth="163.0" style="-fx-border-radius: 15; -fx-border-color: #827651; -fx-border-width: 5;">
          <children>
-            <Label layoutX="33.0" layoutY="25.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelOne" layoutX="33.0" layoutY="25.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -185,7 +185,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="66.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelTwo" layoutX="33.0" layoutY="66.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -196,7 +196,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="106.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelThree" layoutX="33.0" layoutY="106.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -207,7 +207,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="149.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelFour" layoutX="33.0" layoutY="149.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -219,7 +219,7 @@
                </font>
             </Label>
             <Separator layoutX="4.0" layoutY="231.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label layoutX="33.0" layoutY="190.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelFive" layoutX="33.0" layoutY="190.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -230,7 +230,7 @@
                </font>
             </Label>
             <Separator layoutX="5.0" layoutY="272.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label layoutX="33.0" layoutY="230.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelSix" layoutX="33.0" layoutY="230.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -241,7 +241,7 @@
                </font>
             </Label>
             <Separator layoutX="5.0" layoutY="313.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label layoutX="33.0" layoutY="272.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelSeven" layoutX="33.0" layoutY="272.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -252,7 +252,7 @@
                </font>
             </Label>
             <Separator layoutX="6.0" layoutY="351.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label layoutX="33.0" layoutY="309.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelEight" layoutX="33.0" layoutY="309.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -263,7 +263,7 @@
                </font>
             </Label>
             <Separator layoutX="8.0" layoutY="389.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label layoutX="33.0" layoutY="347.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelNine" layoutX="33.0" layoutY="347.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -273,7 +273,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="387.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelTen" layoutX="33.0" layoutY="387.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
