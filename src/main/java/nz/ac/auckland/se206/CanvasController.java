@@ -318,7 +318,6 @@ public class CanvasController {
 		buttonOnErase.setDisable(false);
 		buttonOnClear.setDisable(false);
 		model = new DoodlePrediction();
-		TextToSpeech speaker = new TextToSpeech();
 		Task<Void> backgroundTask = new Task<Void>() {
 
 			@Override
@@ -506,6 +505,19 @@ public class CanvasController {
 
 	@FXML
 	private File saveToFiles(ActionEvent event) throws IOException {
+		Task<Void> backgroundTask = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+
+				TextToSpeech speaker = new TextToSpeech();
+				speaker.speak("Saved to T M P Files");
+
+				return null;
+			}
+		};
+		Thread backgroundThread = new Thread(backgroundTask);
+		backgroundThread.start();
 		return this.saveCurrentSnapshotOnFile();
 		// save the current image to file by clicking this button
 	}

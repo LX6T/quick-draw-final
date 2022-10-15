@@ -114,5 +114,10 @@
 				<Image url="@../images/1121885-200.png" />
 			</image>
 		</ImageView>
+      <JFXButton fx:id="buttonOnMode" layoutX="299.0" layoutY="427.0" onAction="#onLoad" text="Zen Mode" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </JFXButton>
 	</children>
 </AnchorPane>

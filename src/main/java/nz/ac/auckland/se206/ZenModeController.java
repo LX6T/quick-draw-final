@@ -4,10 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.opencsv.exceptions.CsvException;
 
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications.Classification;
+import ai.djl.translate.TranslateException;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
@@ -67,6 +75,26 @@ public class ZenModeController extends CanvasController implements Initializable
 	private ImageView imageOnEleven;
 	@FXML
 	private ImageView imageOnTwelve;
+	@FXML
+	private Label labelOne;
+	@FXML
+	private Label labelTwo;
+	@FXML
+	private Label labelThree;
+	@FXML
+	private Label labelFour;
+	@FXML
+	private Label labelFive;
+	@FXML
+	private Label labelSix;
+	@FXML
+	private Label labelSeven;
+	@FXML
+	private Label labelEight;
+	@FXML
+	private Label labelNine;
+	@FXML
+	private Label labelTen;
 
 	private Bloom bloom = new Bloom(0.3);
 
@@ -74,6 +102,7 @@ public class ZenModeController extends CanvasController implements Initializable
 
 	private double currentX;
 	private double currentY;
+	private DoodlePrediction model = null;
 
 	URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
@@ -82,6 +111,50 @@ public class ZenModeController extends CanvasController implements Initializable
 	private URL cursorURLOne = App.class.getResource("/images/" + "icons8-pen-99.png");
 
 	private Image imageOne = new Image(cursorURLOne.toExternalForm());
+
+	private URL cursorURLTwo = App.class.getResource("/images/" + "icons8-pen-99 (2).png");
+
+	private Image imageTwo = new Image(cursorURLTwo.toExternalForm());
+
+	private URL cursorURLThree = App.class.getResource("/images/" + "icons8-pen-99 (1).png");
+
+	private Image imageThree = new Image(cursorURLThree.toExternalForm());
+
+	private URL cursorURLFour = App.class.getResource("/images/" + "icons8-pen-99 (7).png");
+
+	private Image imageFour = new Image(cursorURLFour.toExternalForm());
+
+	private URL cursorURLFive = App.class.getResource("/images/" + "icons8-pen-99 (6).png");
+
+	private Image imageFive = new Image(cursorURLFive.toExternalForm());
+
+	private URL cursorURLSix = App.class.getResource("/images/" + "icons8-pen-99 (8).png");
+
+	private Image imageSix = new Image(cursorURLSix.toExternalForm());
+
+	private URL cursorURLSeven = App.class.getResource("/images/" + "icons8-pen-99 (3).png");
+
+	private Image imageSeven = new Image(cursorURLSeven.toExternalForm());
+
+	private URL cursorURLEight = App.class.getResource("/images/" + "icons8-pen-99 (10).png");
+
+	private Image imageEight = new Image(cursorURLEight.toExternalForm());
+
+	private URL cursorURLNine = App.class.getResource("/images/" + "icons8-pen-99 (4).png");
+
+	private Image imageNine = new Image(cursorURLNine.toExternalForm());
+
+	private URL cursorURLTen = App.class.getResource("/images/" + "icons8-pen-99 (9).png");
+
+	private Image imageTen = new Image(cursorURLTen.toExternalForm());
+
+	private URL cursorURLEleven = App.class.getResource("/images/" + "icons8-pen-99 (5).png");
+
+	private Image imageEleven = new Image(cursorURLEleven.toExternalForm());
+
+	private URL cursorURLTwelve = App.class.getResource("/images/" + "icons8-pen-99 (11).png");
+
+	private Image imageTwelve = new Image(cursorURLTwelve.toExternalForm());
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -132,6 +205,47 @@ public class ZenModeController extends CanvasController implements Initializable
 			currentY = y;
 
 		});
+		Timer timer = new Timer(true);
+
+		try {
+			//initiate the machine learning model
+			model = new DoodlePrediction();
+		} catch (ModelException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		timer.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Platform.runLater(() -> {
+					try {
+						// access the javafx thread to run the timer task
+						List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
+						labelOne.setText(predictionResult.get(0).getClassName());
+						// set the respective corresponding label to be the correct order in the
+						// prediction list
+						labelTwo.setText(predictionResult.get(1).getClassName());
+						labelThree.setText(predictionResult.get(2).getClassName());
+						labelFour.setText(predictionResult.get(3).getClassName());
+						labelFive.setText(predictionResult.get(4).getClassName());
+						labelSix.setText(predictionResult.get(5).getClassName());
+						labelSeven.setText(predictionResult.get(6).getClassName());
+						labelEight.setText(predictionResult.get(7).getClassName());
+						labelNine.setText(predictionResult.get(8).getClassName());
+						labelTen.setText(predictionResult.get(9).getClassName());
+						//there are exactly 10 elements in the list
+					} catch (TranslateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+
+			}
+
+		}, 1000, 1000);
+		//perform at once per second
 
 	}
 
@@ -340,6 +454,7 @@ public class ZenModeController extends CanvasController implements Initializable
 		}
 		// choose difficulty Easy as the start
 		textToRefresh.setText(randomWord);
+
 	}
 
 	/**
@@ -367,6 +482,463 @@ public class ZenModeController extends CanvasController implements Initializable
 	@FXML
 	private void onPressReset() {
 		setZoomOnPress(imageOnReset);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 1 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressOne() {
+		setZoomOnPress(imageOnOne);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 1 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterOne() {
+		setZoomOnEnter(imageOnOne);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 1 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitOne() {
+		setZoomOnLeave(imageOnOne);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 2 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressTwo() {
+		setZoomOnPress(imageOnTwo);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 2 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterTwo() {
+		setZoomOnEnter(imageOnTwo);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 2 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitTwo() {
+		setZoomOnLeave(imageOnTwo);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 3 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressThree() {
+		setZoomOnPress(imageOnThree);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 3 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterThree() {
+		setZoomOnEnter(imageOnThree);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 3 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitThree() {
+		setZoomOnLeave(imageOnThree);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 4 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressFour() {
+		setZoomOnPress(imageOnFour);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 4 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterFour() {
+		setZoomOnEnter(imageOnFour);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 4 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitFour() {
+		setZoomOnLeave(imageOnFour);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 5 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressFive() {
+		setZoomOnPress(imageOnFive);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 5 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterFive() {
+		setZoomOnEnter(imageOnFive);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 5 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitFive() {
+		setZoomOnLeave(imageOnFive);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 6 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressSix() {
+		setZoomOnPress(imageOnSix);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 6 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterSix() {
+		setZoomOnEnter(imageOnSix);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 6 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitSix() {
+		setZoomOnLeave(imageOnSix);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 7 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressSeven() {
+		setZoomOnPress(imageOnSeven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 7 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterSeven() {
+		setZoomOnEnter(imageOnSeven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 7 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitSeven() {
+		setZoomOnLeave(imageOnSeven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 8 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressEight() {
+		setZoomOnPress(imageOnEight);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 8 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterEight() {
+		setZoomOnEnter(imageOnEight);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 8 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitEight() {
+		setZoomOnLeave(imageOnEight);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 9 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressNine() {
+		setZoomOnPress(imageOnNine);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 89 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterNine() {
+		setZoomOnEnter(imageOnNine);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 9 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitNine() {
+		setZoomOnLeave(imageOnNine);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 10 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressTen() {
+		setZoomOnPress(imageOnTen);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 10 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterTen() {
+		setZoomOnEnter(imageOnTen);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 10 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitTen() {
+		setZoomOnLeave(imageOnTen);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 11 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressEleven() {
+		setZoomOnPress(imageOnEleven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 11 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterEleven() {
+		setZoomOnEnter(imageOnEleven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 11 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitEleven() {
+		setZoomOnLeave(imageOnEleven);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 12 when mouse is
+	 * pressed
+	 */
+	@FXML
+	private void onPressTwelve() {
+		setZoomOnPress(imageOnTwelve);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 12 when mouse is
+	 * entered
+	 */
+	@FXML
+	private void onEnterTwelve() {
+		setZoomOnEnter(imageOnTwelve);
+	}
+
+	/**
+	 * this methods sets up the hover effect animation for pen 12 when mouse is
+	 * exited
+	 */
+	@FXML
+	private void onExitTwelve() {
+		setZoomOnLeave(imageOnTwelve);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 1
+	 */
+	@FXML
+	private void onClickOne() {
+		setZoomOnClick(imageOnOne);
+		canvas.setCursor(new ImageCursor(imageOne, 2.5, 2.5));
+		graphic.setStroke(Color.BLACK);
+
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 2
+	 */
+	@FXML
+	private void onClickTwo() {
+		setZoomOnClick(imageOnTwo);
+		canvas.setCursor(new ImageCursor(imageTwo, 2.5, 2.5));
+		graphic.setStroke(Color.ORANGE);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 3
+	 */
+	@FXML
+	private void onClickThree() {
+		setZoomOnClick(imageOnThree);
+		canvas.setCursor(new ImageCursor(imageThree, 2.5, 2.5));
+		graphic.setStroke(Color.RED);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 4
+	 */
+	@FXML
+	private void onClickFour() {
+		setZoomOnClick(imageOnFour);
+		canvas.setCursor(new ImageCursor(imageFour, 2.5, 2.5));
+		graphic.setStroke(Color.AQUA);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 5
+	 */
+	@FXML
+	private void onClickFive() {
+		setZoomOnClick(imageOnFive);
+		canvas.setCursor(new ImageCursor(imageFive, 2.5, 2.5));
+		graphic.setStroke(Color.PURPLE);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 6
+	 */
+	@FXML
+	private void onClickSix() {
+		setZoomOnClick(imageOnSix);
+		canvas.setCursor(new ImageCursor(imageSix, 2.5, 2.5));
+		graphic.setStroke(Color.DARKCYAN);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 7
+	 */
+	@FXML
+	private void onClickSeven() {
+		setZoomOnClick(imageOnSeven);
+		canvas.setCursor(new ImageCursor(imageSeven, 2.5, 2.5));
+		graphic.setStroke(Color.YELLOW);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 8
+	 */
+	@FXML
+	private void onClickEight() {
+		setZoomOnClick(imageOnEight);
+		canvas.setCursor(new ImageCursor(imageEight, 2.5, 2.5));
+		graphic.setStroke(Color.GREY);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 9
+	 */
+	@FXML
+	private void onClickNine() {
+		setZoomOnClick(imageOnNine);
+		canvas.setCursor(new ImageCursor(imageNine, 2.5, 2.5));
+		graphic.setStroke(Color.LIGHTGREEN);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 10
+	 */
+	@FXML
+	private void onClickTen() {
+		setZoomOnClick(imageOnTen);
+		canvas.setCursor(new ImageCursor(imageTen, 2.5, 2.5));
+		graphic.setStroke(Color.DARKGREY);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 101
+	 */
+	@FXML
+	private void onClickEleven() {
+		setZoomOnClick(imageOnEleven);
+		canvas.setCursor(new ImageCursor(imageEleven, 2.5, 2.5));
+		graphic.setStroke(Color.CADETBLUE);
+	}
+
+	/**
+	 * this method set up the hover animation and click animation and color
+	 * selection for pen 12
+	 */
+	@FXML
+	private void onClickTwelve() {
+		setZoomOnClick(imageOnTwelve);
+		canvas.setCursor(new ImageCursor(imageTwelve, 2.5, 2.5));
+		graphic.setStroke(Color.LIGHTPINK);
 	}
 
 	/**

@@ -34,6 +34,7 @@ public class PageController implements Initializable {
   @FXML private JFXSlider sliderOnVolume;
   @FXML private JFXToggleButton buttonOnBrightness;
   @FXML private JFXToggleButton buttonOnVolume;
+  @FXML private JFXButton buttonOnMode;
 
   private static boolean musicIsOn;
 
@@ -181,5 +182,16 @@ public class PageController implements Initializable {
     ft.setFromValue(0.2);
     ft.setToValue(1);
     ft.play();
+  }
+  
+  @FXML
+  private void onLoad() {
+	  Scene scene = buttonOnMode.getScene();
+	  try {
+		scene.setRoot(App.loadFxml("zenMode"));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 }
