@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -260,7 +259,7 @@ public class ZenModeController extends CanvasController implements Initializable
 		// this will get the current scene the image is in and set this scene to be the
 		// next scene
 		try {
-			scene.setRoot(App.loadFxml("profilePage"));
+			scene.setRoot(App.loadFxml("page"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -380,7 +379,7 @@ public class ZenModeController extends CanvasController implements Initializable
 	 * @throws IOException
 	 */
 	@FXML
-	private File onClickSave() throws IOException {
+	private void onClickSave() throws IOException {
 		setZoomOnClick(imageOnSave);
 		Task<Void> backgroundTask = new Task<Void>() {
 
@@ -388,14 +387,14 @@ public class ZenModeController extends CanvasController implements Initializable
 			protected Void call() throws Exception {
 
 				TextToSpeech speaker = new TextToSpeech();
-				speaker.speak("Saved to T M P Files");
+				speaker.speak("Choose your file path");
 
 				return null;
 			}
 		};
 		Thread backgroundThread = new Thread(backgroundTask);
 		backgroundThread.start();
-		return saveCurrentSnapshotOnFile();
+		saveToFiles();
 	}
 
 	/**
