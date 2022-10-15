@@ -50,7 +50,7 @@ public class App extends Application {
 
     ProfileRepository.loadProfiles();
 
-    final Scene scene = new Scene(loadFxml("page"));
+    final Scene scene = new Scene(loadFxml("zenMode"));
     scene.setCursor(new ImageCursor(image, 2.5, 2.5));
     stage.setScene(scene);
     stage.initStyle(StageStyle.TRANSPARENT);
