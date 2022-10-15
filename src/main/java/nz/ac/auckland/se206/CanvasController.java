@@ -134,7 +134,7 @@ public class CanvasController {
   @FXML private Label timerDisplay;
 
   @FXML private Button readyButton;
-  
+
   @FXML private Label textToRefresh;
 
   @FXML private AnchorPane masterPane;
@@ -363,7 +363,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void backToMenu(ActionEvent event) {
+  private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
     fadeOutTwo(event);
@@ -436,15 +436,15 @@ public class CanvasController {
               if (!score) {
                 // speak to user when detected result is lost
                 speaker.speak("You Have Lost");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
               } else {
                 // speak to user when detected result is won
                 speaker.speak("You have Won");
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEvent);
-                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseEventTwo);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
+                canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
               }
 
@@ -458,7 +458,7 @@ public class CanvasController {
         1000);
 
     graphic = canvas.getGraphicsContext2D();
-    
+
     // initialize the canvas to only allow user to draw after pressing ready
     canvas.setOnMousePressed(
         e -> {

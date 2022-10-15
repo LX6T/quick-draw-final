@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXToggleButton;
@@ -22,10 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.user.ProfileRepository;
-import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
-
 
 public class PageController implements Initializable {
 
@@ -97,7 +93,6 @@ public class PageController implements Initializable {
     System.exit(0);
   }
 
-  
   public void music() {}
 
   @FXML
@@ -135,7 +130,7 @@ public class PageController implements Initializable {
 
   private void fadeOut(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
+    ft.setOnFinished((ActionEvent eventTwo) -> loadNextScene(event));
     ft.play();
   }
 
@@ -158,7 +153,6 @@ public class PageController implements Initializable {
     ft.play();
   }
 
-
   private void loadNextScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -170,7 +164,6 @@ public class PageController implements Initializable {
       e.printStackTrace();
     }
   }
-
 
   private void fadeIn() {
     // TODO Auto-generated method stub

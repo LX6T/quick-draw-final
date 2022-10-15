@@ -97,7 +97,7 @@ public class ProfileRepository {
   public static SettingsData getSettings() {
     return currentUser.getPreferredSettings();
   }
-  
+
   public static UserProfile getCurrentUser() {
     return currentUser;
   }
@@ -113,14 +113,5 @@ public class ProfileRepository {
 
   public static void updateHashMap(HashMap<String, UserProfile> hashMap) {
     users = hashMap;
-  }
-
-  public static void addWord(String word) {
-    if (currentUser != null) {
-      // add word to the words history
-      currentUser.updateWordsHistory(word);
-      saveProfile(currentUser);
-      updateProfiles();
-    }
   }
 }

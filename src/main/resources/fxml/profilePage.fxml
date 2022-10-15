@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -233,7 +234,7 @@
 						</ImageView>
 						<Pane layoutX="-8.0" layoutY="-5.0" prefHeight="55.0" prefWidth="55.0">
 							<children>
-								<JFXButton fx:id="buttonOnBack" layoutX="-1.0" layoutY="-1.0" minWidth="43.0" onAction="#back" opacity="0.32" prefHeight="55.0" prefWidth="66.0" style="-fx-background-radius: 100;" styleClass="JFXButton" stylesheets="@../css/styling.css" textFill="#534747">
+								<JFXButton fx:id="buttonOnBack" layoutX="-1.0" layoutY="-1.0" minWidth="43.0" onAction="#onBack" opacity="0.32" prefHeight="55.0" prefWidth="66.0" style="-fx-background-radius: 100;" styleClass="JFXButton" stylesheets="@../css/styling.css" textFill="#534747">
 									<font>
 										<Font size="22.0" />
 									</font>
@@ -259,21 +260,33 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <RadioButton fx:id="radioAccuracyEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" />
-            <RadioButton fx:id="radioAccuracyHard" mnemonicParsing="false" text="Hard" textFill="WHITE" GridPane.columnIndex="3" />
-            <RadioButton fx:id="radioAccuracyMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" GridPane.columnIndex="2" />
-            <RadioButton fx:id="radioTimeEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioWordsEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioConfidenceEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <RadioButton fx:id="radioConfidenceMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <RadioButton fx:id="radioTimeMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioWordsMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioWordsHard" mnemonicParsing="false" text="Hard" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioTimeHard" mnemonicParsing="false" text="Hard" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioConfidenceHard" mnemonicParsing="false" text="Hard" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <RadioButton fx:id="radioWordsMaster" mnemonicParsing="false" text="Master" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioTimeMaster" mnemonicParsing="false" text="Master" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioConfidenceMaster" mnemonicParsing="false" text="Master" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <RadioButton fx:id="radioAccuracyEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="accuracy" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioAccuracyHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="3" />
+            <RadioButton fx:id="radioAccuracyMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="2" />
+            <RadioButton fx:id="radioTimeEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="time" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioWordsEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="words" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioConfidenceEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <toggleGroup>
+                  <ToggleGroup fx:id="confidence" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioConfidenceMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <RadioButton fx:id="radioTimeMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <RadioButton fx:id="radioWordsMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <RadioButton fx:id="radioWordsHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <RadioButton fx:id="radioTimeHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <RadioButton fx:id="radioConfidenceHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <RadioButton fx:id="radioWordsMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <RadioButton fx:id="radioTimeMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <RadioButton fx:id="radioConfidenceMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Confidence" GridPane.rowIndex="3" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Words" GridPane.rowIndex="1" />

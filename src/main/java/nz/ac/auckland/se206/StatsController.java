@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.animation.FadeTransition;
@@ -40,77 +39,15 @@ public class StatsController {
   @FXML private RadioButton radioConfidenceHard;
   @FXML private RadioButton radioConfidenceMaster;
 
-  ToggleGroup accuracy;
-  ToggleGroup words;
-  ToggleGroup time;
-  ToggleGroup confidence;
+  @FXML private ToggleGroup accuracy;
+  @FXML private ToggleGroup words;
+  @FXML private ToggleGroup time;
+  @FXML private ToggleGroup confidence;
 
-  SettingsData settingsData;
+  private SettingsData settingsData;
 
   public void initialize() {
-    accuracy = new ToggleGroup();
-    words = new ToggleGroup();
-    time = new ToggleGroup();
-    confidence = new ToggleGroup();
-    settingsData = new SettingsData();
-
-    radioAccuracyEasy.setToggleGroup(accuracy);
-    radioAccuracyMedium.setToggleGroup(accuracy);
-    radioAccuracyHard.setToggleGroup(accuracy);
-
-    accuracy
-        .selectedToggleProperty()
-        .addListener(
-            (observableValue, toggle, t1) -> {
-              RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
-              if (rb != null) {
-                settingsData.setAccuracyDifficulty(rb.getText());
-              }
-            });
-
-    radioWordsEasy.setToggleGroup(words);
-    radioWordsMedium.setToggleGroup(words);
-    radioWordsHard.setToggleGroup(words);
-    radioWordsMaster.setToggleGroup(words);
-
-    words
-        .selectedToggleProperty()
-        .addListener(
-            (observableValue, toggle, t1) -> {
-              RadioButton rb = (RadioButton) words.getSelectedToggle();
-              if (rb != null) {
-                settingsData.setWordsDifficulty(rb.getText());
-              }
-            });
-
-    radioTimeEasy.setToggleGroup(time);
-    radioTimeMedium.setToggleGroup(time);
-    radioTimeHard.setToggleGroup(time);
-    radioTimeMaster.setToggleGroup(time);
-
-    time.selectedToggleProperty()
-        .addListener(
-            (observableValue, toggle, t1) -> {
-              RadioButton rb = (RadioButton) time.getSelectedToggle();
-              if (rb != null) {
-                settingsData.setTimeDifficulty(rb.getText());
-              }
-            });
-
-    radioConfidenceEasy.setToggleGroup(confidence);
-    radioConfidenceMedium.setToggleGroup(confidence);
-    radioConfidenceHard.setToggleGroup(confidence);
-    radioConfidenceMaster.setToggleGroup(confidence);
-
-    confidence
-        .selectedToggleProperty()
-        .addListener(
-            (observableValue, toggle, t1) -> {
-              RadioButton rb = (RadioButton) confidence.getSelectedToggle();
-              if (rb != null) {
-                settingsData.setConfidenceDifficulty(rb.getText());
-              }
-            });
+    setStats();
     masterPane.setOpacity(0.2);
     fadeIn();
   }
@@ -128,7 +65,10 @@ public class StatsController {
   }
 
   @FXML
-  public void setStats(UserProfile user) {
+  public void setStats() {
+
+    UserProfile user = ProfileRepository.getCurrentUser();
+
     if (Objects.equals(user.getWordsHistory(), "")) {
       // if this username is inside the words history
       labelHistory.setText("N/A");
@@ -143,7 +83,7 @@ public class StatsController {
     // set the number of loss
     labelScore.setText(user.getScore().toString());
     // set the text of the score
-    
+
     if (user.getBestRecord() > 60) {
       // if there is not a record yet display N/A
       labelRecord.setText("N/A");
@@ -151,24 +91,63 @@ public class StatsController {
       labelRecord.setText(user.getBestRecord() + "s");
     }
 
-    SettingsData preferredSettings = user.getPreferredSettings();
-    if (preferredSettings != null) {
+    settingsData = user.getPreferredSettings();
+
+    if (settingsData.isComplete()) {
       ObservableList<Toggle> accuracyButtons = accuracy.getToggles();
       ObservableList<Toggle> wordsButtons = words.getToggles();
       ObservableList<Toggle> timeButtons = time.getToggles();
       ObservableList<Toggle> confidenceButtons = confidence.getToggles();
 
-      int accuracyDifficultyIndex = SettingsData.toIndex(preferredSettings.getAccuracyDifficulty());
-      int wordsDifficultyIndex = SettingsData.toIndex(preferredSettings.getWordsDifficulty());
-      int timeDifficultyIndex = SettingsData.toIndex(preferredSettings.getTimeDifficulty());
-      int confidenceDifficultyIndex =
-          SettingsData.toIndex(preferredSettings.getConfidenceDifficulty());
+      int accuracyDifficultyIndex = SettingsData.toIndex(settingsData.getAccuracyDifficulty());
+      int wordsDifficultyIndex = SettingsData.toIndex(settingsData.getWordsDifficulty());
+      int timeDifficultyIndex = SettingsData.toIndex(settingsData.getTimeDifficulty());
+      int confidenceDifficultyIndex = SettingsData.toIndex(settingsData.getConfidenceDifficulty());
 
       accuracyButtons.get(accuracyDifficultyIndex).setSelected(true);
       wordsButtons.get(wordsDifficultyIndex).setSelected(true);
       timeButtons.get(timeDifficultyIndex).setSelected(true);
       confidenceButtons.get(confidenceDifficultyIndex).setSelected(true);
     }
+
+    accuracy
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setAccuracyDifficulty(rb.getText());
+              }
+            });
+
+    words
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) words.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setWordsDifficulty(rb.getText());
+              }
+            });
+
+    time.selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) time.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setTimeDifficulty(rb.getText());
+              }
+            });
+
+    confidence
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) confidence.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setConfidenceDifficulty(rb.getText());
+              }
+            });
   }
 
   @FXML
