@@ -158,6 +158,7 @@ public class CanvasController {
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
 
+    timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
   }
 
@@ -182,7 +183,28 @@ public class CanvasController {
   }
 
   private int setTime(String difficulty) {
-    return 0;
+    // Easy -> 60 seconds to draw
+    int time = 60;
+
+    switch (difficulty) {
+
+        // Medium -> 45 seconds to draw
+      case "Medium":
+        time = 45;
+        break;
+
+        // Hard -> 30 seconds to draw
+      case "Hard":
+        time = 30;
+        break;
+
+        // Master -> 15 seconds to draw
+      case "Master":
+        time = 15;
+        break;
+    }
+
+    return time;
   }
 
   private int setConfidence(String difficulty) {
@@ -333,7 +355,7 @@ public class CanvasController {
 
   @FXML
   private void onReady() throws ModelException, IOException {
-    this.interval = 59;
+    this.interval = timeDifficulty - 1;
     // this variable is set so that every time this method is called, the timer
     // value can be reset.
     canvas.setDisable(false);
@@ -369,7 +391,7 @@ public class CanvasController {
               // predict to get results refreshing each second
               interval--;
             } else {
-              // when the 60 seconds timer is exceeded, everything stops
+              // when the time runs out, everything stops
               timer.cancel();
               canvas.setDisable(true);
               buttonOnSave.setDisable(false);
@@ -393,7 +415,7 @@ public class CanvasController {
               }
 
               // Updates the current user's profile with the data from this game
-              GameData gameData = new GameData(currentWord, score, 60 - interval);
+              GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
               ProfileRepository.updateUserData(gameData);
             }
           }
