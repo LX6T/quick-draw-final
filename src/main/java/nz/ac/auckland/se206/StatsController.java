@@ -1,17 +1,19 @@
 package nz.ac.auckland.se206;
 
-import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.animation.FadeTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.user.ProfileRepository;
+import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
+import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class StatsController {
   @FXML private Label labelHistory;
@@ -19,19 +21,38 @@ public class StatsController {
   @FXML private Label labelLosses;
   @FXML private Label labelScore;
   @FXML private Label labelRecord;
-  @FXML private Button buttonOnBack;
-
-  @FXML private JFXButton buttonOnStart;
-
   @FXML private AnchorPane masterPane;
 
+  @FXML private RadioButton radioAccuracyEasy;
+  @FXML private RadioButton radioAccuracyMedium;
+  @FXML private RadioButton radioAccuracyHard;
+  @FXML private RadioButton radioWordsEasy;
+  @FXML private RadioButton radioWordsMedium;
+  @FXML private RadioButton radioWordsHard;
+  @FXML private RadioButton radioWordsMaster;
+  @FXML private RadioButton radioTimeEasy;
+  @FXML private RadioButton radioTimeMedium;
+  @FXML private RadioButton radioTimeHard;
+  @FXML private RadioButton radioTimeMaster;
+  @FXML private RadioButton radioConfidenceEasy;
+  @FXML private RadioButton radioConfidenceMedium;
+  @FXML private RadioButton radioConfidenceHard;
+  @FXML private RadioButton radioConfidenceMaster;
+
+  @FXML private ToggleGroup accuracy;
+  @FXML private ToggleGroup words;
+  @FXML private ToggleGroup time;
+  @FXML private ToggleGroup confidence;
+
+  private SettingsData settingsData;
+
   public void initialize() {
+    setStats();
     masterPane.setOpacity(0.2);
     fadeIn();
   }
 
   private void fadeIn() {
-    // TODO Auto-generated method stub
     FadeTransition ft = new FadeTransition();
     // set fade in animation
     ft.setDuration(Duration.millis(500));
@@ -44,9 +65,12 @@ public class StatsController {
   }
 
   @FXML
-  public void setStats(UserProfile user) {
+  public void setStats() {
+
+    UserProfile user = ProfileRepository.getCurrentUser();
+
     if (Objects.equals(user.getWordsHistory(), "")) {
-      // if this user name is inside the words history
+      // if this username is inside the words history
       labelHistory.setText("N/A");
       // set the label to not available
     } else {
@@ -60,59 +84,101 @@ public class StatsController {
     labelScore.setText(user.getScore().toString());
     // set the text of the score
 
-    if (user.getBestRecord() == null) {
+    if (user.getBestRecord() > 60) {
       // if there is not a record yet display N/A
       labelRecord.setText("N/A");
     } else {
       labelRecord.setText(user.getBestRecord() + "s");
     }
+
+    settingsData = user.getPreferredSettings();
+
+    if (settingsData.isComplete()) {
+      ObservableList<Toggle> accuracyButtons = accuracy.getToggles();
+      ObservableList<Toggle> wordsButtons = words.getToggles();
+      ObservableList<Toggle> timeButtons = time.getToggles();
+      ObservableList<Toggle> confidenceButtons = confidence.getToggles();
+
+      int accuracyDifficultyIndex = SettingsData.toIndex(settingsData.getAccuracyDifficulty());
+      int wordsDifficultyIndex = SettingsData.toIndex(settingsData.getWordsDifficulty());
+      int timeDifficultyIndex = SettingsData.toIndex(settingsData.getTimeDifficulty());
+      int confidenceDifficultyIndex = SettingsData.toIndex(settingsData.getConfidenceDifficulty());
+
+      accuracyButtons.get(accuracyDifficultyIndex).setSelected(true);
+      wordsButtons.get(wordsDifficultyIndex).setSelected(true);
+      timeButtons.get(timeDifficultyIndex).setSelected(true);
+      confidenceButtons.get(confidenceDifficultyIndex).setSelected(true);
+    }
+
+    accuracy
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) accuracy.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setAccuracyDifficulty(rb.getText());
+              }
+            });
+
+    words
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) words.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setWordsDifficulty(rb.getText());
+              }
+            });
+
+    time.selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) time.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setTimeDifficulty(rb.getText());
+              }
+            });
+
+    confidence
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) confidence.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setConfidenceDifficulty(rb.getText());
+              }
+            });
   }
 
   @FXML
   private void onBack(ActionEvent event) {
+    if (settingsData.isComplete()) {
+      ProfileRepository.updateUserSettings(settingsData);
+    }
     fadeOutTwo(event);
   }
 
   @FXML
   private void onStart(ActionEvent event) {
-    fadeOut(event);
+    if (settingsData.isComplete()) {
+      ProfileRepository.updateUserSettings(settingsData);
+      fadeOut(event);
+    }
   }
 
   private void fadeOut(ActionEvent event) {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    // set the fade transition of the scene
-    ft.setDuration(Duration.millis(500));
-    // animation lasts 0.5 s
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    // opacity setting from 1 to 0.2
-    ft.setToValue(0.2);
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          loadNextScene(event);
-        });
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
     ft.play();
   }
 
   private void fadeOutTwo(ActionEvent event) {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    // set the fade out transition for another scene
-    ft.setDuration(Duration.millis(500));
-    // interval should be 0.5 s
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    // opacity decrease from 1 to 0.2
-    ft.setToValue(0.2);
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          loadNextSceneTwo(event);
-        });
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
     ft.play();
   }
 
-  private void loadNextScene(ActionEvent event) {
+  private void loadCanvasScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     // get the next scene and set the next scene
@@ -126,7 +192,7 @@ public class StatsController {
     }
   }
 
-  private void loadNextSceneTwo(ActionEvent event) {
+  private void loadPageScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     // get the current scene setting

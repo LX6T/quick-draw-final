@@ -459,7 +459,7 @@ public class UserController {
     }
     StatsController statsController = loader.getController();
     // get the controller from the stats controller
-    statsController.setStats(currentUser);
+    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
@@ -481,7 +481,7 @@ public class UserController {
     }
     StatsController statsController = loader.getController();
     // get the controller from the stats controller
-    statsController.setStats(currentUser);
+    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
@@ -503,7 +503,7 @@ public class UserController {
     }
     StatsController statsController = loader.getController();
     // get the controller from the stats controller
-    statsController.setStats(currentUser);
+    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
