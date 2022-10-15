@@ -207,8 +207,29 @@ public class CanvasController {
     return time;
   }
 
-  private int setConfidence(String difficulty) {
-    return 0;
+  private double setConfidence(String difficulty) {
+    // Easy -> Minimum 1% confidence to win
+    double confidence = 0.01;
+
+    switch (difficulty) {
+
+        // Medium -> Minimum 10% confidence to win
+      case "Medium":
+        confidence = 0.1;
+        break;
+
+        // Hard -> Minimum 25% confidence to win
+      case "Hard":
+        confidence = 0.25;
+        break;
+
+        // Master -> Minimum 50% confidence to win
+      case "Master":
+        confidence = 0.5;
+        break;
+    }
+
+    return confidence;
   }
 
   @FXML
@@ -297,7 +318,10 @@ public class CanvasController {
   private boolean isWin(List<Classification> classifications) {
     // this method will tell whether the current prediction has won or not
     for (Classification classification : classifications) {
-      if (classification.getClassName().equals(currentWord)) {
+      // Prediction must both match current word and be above the minimum confidence probability
+      if (classification.getClassName().equals(currentWord)
+          && classification.getProbability() >= confidenceDifficulty) {
+        System.out.println(classification.getProbability());
         return true;
       }
     }
