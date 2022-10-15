@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.animation.FadeTransition;
@@ -34,6 +35,7 @@ import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.user.GameData;
 import nz.ac.auckland.se206.user.ProfileRepository;
+import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.util.TransitionUtils;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
@@ -115,6 +117,7 @@ public class CanvasController {
   private DoodlePrediction model;
 
   private String currentWord;
+  private SettingsData currentSettings;
 
   @FXML private Label displayText;
 
@@ -144,11 +147,55 @@ public class CanvasController {
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
     // disable all the buttons that are shouldn't be used at the start
+
+    this.currentSettings = ProfileRepository.getSettings();
+    setNewWord();
+  }
+
+  @FXML
+  private void setNewWord() throws IOException, URISyntaxException, CsvException {
+    int randInt;
+    Difficulty difficulty;
     CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
-    // choose difficulty Easy as the start
-    this.currentWord = randomWord;
-    displayText.setText(randomWord);
+    Random rand = new Random();
+
+    switch (currentSettings.getWordsDifficulty()) {
+
+        // Medium difficulty allows easy and medium words
+      case "Medium":
+        randInt = rand.nextInt(2);
+        if (randInt == 0) {
+          difficulty = Difficulty.E;
+        } else {
+          difficulty = Difficulty.M;
+        }
+        break;
+
+        // Hard difficulty allows easy, medium and hard words
+      case "Hard":
+        randInt = rand.nextInt(3);
+        if (randInt == 0) {
+          difficulty = Difficulty.E;
+        } else if (randInt == 1) {
+          difficulty = Difficulty.M;
+        } else {
+          difficulty = Difficulty.H;
+        }
+        break;
+
+        // Master difficulty allows only hard words
+      case "Master":
+        difficulty = Difficulty.H;
+        break;
+
+        // Easy difficulty allows only easy words
+      default:
+        difficulty = Difficulty.E;
+    }
+
+    // set and display the randomly chosen word
+    currentWord = categorySelector.generateRandomCategory(difficulty);
+    displayText.setText(currentWord);
   }
 
   private void fadeIn() {

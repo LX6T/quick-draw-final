@@ -93,4 +93,8 @@ public class ProfileRepository {
     saveProfile(currentUser);
     updateProfiles();
   }
+
+  public static SettingsData getSettings() {
+    return currentUser.getPreferredSettings();
+  }
 }
