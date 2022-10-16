@@ -565,6 +565,7 @@ public class CanvasController extends App {
     buttonOnErase.setDisable(false);
     buttonOnClear.setDisable(false);
     buttonOnHint.setDisable(!hiddenWordMode);
+    imageSmile.setVisible(true);
     model = new DoodlePrediction();
     // sets up the prediction model
     Task<Void> backgroundTask =
@@ -861,12 +862,12 @@ public class CanvasController extends App {
    */
   private void noticeUser(int currentPosition) {
 
-    if (currentPosition <= historyPosition) {
+    if (currentPosition < historyPosition) {
 
       // if the current position is less than the history position then its good
       imageSad.setVisible(false);
       imageSmile.setVisible(true);
-    } else {
+    } else if (currentPosition > historyPosition) {
       imageSad.setVisible(true);
       // set respective visibility
       imageSmile.setVisible(false);
