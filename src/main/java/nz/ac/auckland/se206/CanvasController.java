@@ -25,6 +25,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -107,6 +108,8 @@ public class CanvasController {
       };
 
   @FXML private JFXButton buttonOnSave;
+
+  @FXML private ImageView buttonOnHint;
 
   @FXML private JFXButton buttonOnReady;
 
@@ -642,5 +645,32 @@ public class CanvasController {
 
     // Save the image to a file.
     ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
+  }
+
+  @FXML
+  private void onClickHint() {
+    buttonOnHint.setScaleX(1);
+    buttonOnHint.setScaleY(1);
+    // Eric, do your functionalities here
+  }
+
+  @FXML
+  private void onEnterHint() {
+    buttonOnHint.setScaleX(1.1);
+    buttonOnHint.setScaleY(1.1);
+    buttonOnHint.setEffect(new Bloom(0.3));
+  }
+
+  @FXML
+  private void onExitHint() {
+    buttonOnHint.setScaleX(1);
+    buttonOnHint.setScaleY(1);
+    buttonOnHint.setEffect(null);
+  }
+
+  @FXML
+  private void onPressHint() {
+    buttonOnHint.setScaleX(0.9);
+    buttonOnHint.setScaleY(0.9);
   }
 }
