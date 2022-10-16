@@ -1,11 +1,13 @@
 package nz.ac.auckland.se206;
 
+
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 
 import com.jfoenix.controls.JFXButton;
 import com.opencsv.exceptions.CsvException;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,6 +17,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.imageio.ImageIO;
+
+import com.opencsv.exceptions.CsvException;
+
+import ai.djl.ModelException;
+import ai.djl.modality.Classifications.Classification;
+import ai.djl.translate.TranslateException;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -34,7 +44,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.dictionary.Dictionary;
 import nz.ac.auckland.se206.dictionary.WordNotFoundException;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -118,17 +127,20 @@ public class CanvasController {
 	@FXML
 	private JFXButton buttonOnErase;
 
+
 	@FXML
 	private Label scoreLabel;
 
 	@FXML
 	private JFXButton buttonOnClear;
 
+
 	@FXML
 	private Canvas canvas;
 
 	@FXML
 	private JFXButton buttonOnReset;
+
 
 	private GraphicsContext graphic;
 
@@ -142,7 +154,9 @@ public class CanvasController {
 	private boolean hiddenWordMode;
 
 	@FXML
+
 	private JFXButton buttonOnBack;
+
 
 	@FXML
 	private Label displayText;
@@ -155,6 +169,7 @@ public class CanvasController {
 
 	@FXML
 	private JFXButton readyButton;
+
 
 	@FXML
 	private Label textToRefresh;
@@ -185,6 +200,7 @@ public class CanvasController {
 	private Label labelNine;
 	@FXML
 	private Label labelTen;
+
 
 	// #035526
 	/**
@@ -396,6 +412,7 @@ public class CanvasController {
 			if (classification.getClassName().equals(currentWord)
 					&& classification.getProbability() >= confidenceDifficulty) {
 				System.out.println(classification.getProbability());
+
 				return true;
 			}
 		}
@@ -486,7 +503,6 @@ public class CanvasController {
 						}
 					});
 					// predict to get results refreshing each second
-
 					interval--;
 				} else {
 					// when the time runs out, everything stops
@@ -514,7 +530,8 @@ public class CanvasController {
 
 					// Updates the current user's profile with the data from this game
 					GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
-					ProfileRepository.updateUserSettings(gameData);
+					ProfileRepository.updateUserStats(gameData);
+
 				}
 			}
 		}, 1000, 1000);
@@ -620,6 +637,7 @@ public class CanvasController {
 		ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
 	}
 
+
 	@FXML
 	private void onEnterHint() {
 		buttonHint.setScaleX(1.1);
@@ -639,4 +657,5 @@ public class CanvasController {
 		buttonHint.setScaleY(1);
 		buttonHint.setEffect(null);
 	}
+
 }

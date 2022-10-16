@@ -987,4 +987,6 @@ public class ZenModeController extends CanvasController implements Initializable
 		image.setScaleY(1);
 	}
 
+
 }
+

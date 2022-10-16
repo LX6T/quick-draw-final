@@ -1,19 +1,19 @@
 package nz.ac.auckland.se206.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserProfile {
   /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
-
   private String photoPath;
-
   private Integer numOfWin;
   private Integer numOfLoss;
+  private Integer winStreak;
   private Integer bestRecord;
   private final ArrayList<String> wordsHistory;
-
   private SettingsData preferredSettings;
+  private final HashMap<String, Boolean> badges;
 
   public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
@@ -22,10 +22,12 @@ public class UserProfile {
 
     numOfWin = 0;
     numOfLoss = 0;
+    winStreak = 0;
     bestRecord = 61;
 
     wordsHistory = new ArrayList<>();
     preferredSettings = new SettingsData();
+    badges = BadgeAwarder.getEmptyBadges();
   }
 
   /**
@@ -35,8 +37,8 @@ public class UserProfile {
    */
   public void updateRecord(Integer record) {
     // automatically update the record based on its value
-    if (this.bestRecord > record) {
-      this.bestRecord = record;
+    if (bestRecord > record) {
+      bestRecord = record;
     }
   }
 
@@ -45,11 +47,13 @@ public class UserProfile {
   }
 
   public void wonTheGame() {
-    this.numOfWin = this.numOfWin + 1;
+    numOfWin = numOfWin + 1;
+    winStreak = winStreak + 1;
   }
 
   public void lostTheGame() {
-    this.numOfLoss = this.numOfLoss + 1;
+    numOfLoss = numOfLoss + 1;
+    winStreak = 0;
   }
 
   public String getAccountName() {
@@ -66,6 +70,10 @@ public class UserProfile {
 
   public Integer getNumOfLost() {
     return numOfLoss;
+  }
+
+  public Integer getWinStreak() {
+    return winStreak;
   }
 
   public String getWordsHistory() {
@@ -102,5 +110,12 @@ public class UserProfile {
 
   public void setPhotoPath(String photoPath) {
     this.photoPath = photoPath;
+  }
+
+  public void awardBadge(String badgeName) {
+    if (badges.containsKey(badgeName)) {
+      badges.put(badgeName, true);
+      System.out.println("awarded " + badgeName);
+    }
   }
 }
