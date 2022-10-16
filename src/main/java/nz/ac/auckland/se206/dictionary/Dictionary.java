@@ -21,18 +21,18 @@ public class Dictionary {
     Response response = client.newCall(request).execute();
     ResponseBody responseBody = response.body();
 
+    assert responseBody != null;
     String jsonString = responseBody.string();
 
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
       String title = jsonObj.getString("title");
-      String subMessage = jsonObj.getString("message");
-      throw new WordNotFoundException(word, title, subMessage);
-    } catch (ClassCastException e) {
+      throw new WordNotFoundException(title);
+    } catch (ClassCastException ignored) {
     }
 
     JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
-    List<String> definitions = new ArrayList<String>();
+    List<String> definitions = new ArrayList<>();
 
     JSONObject jsonEntryObj = jArray.getJSONObject(0);
     JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");

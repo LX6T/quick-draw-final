@@ -14,8 +14,8 @@ public class ImageUtils {
    * @param width The width of the image.
    * @param height The height of the image.
    * @return The black image.
-   * @author
-   *     https://www.java2s.com/example/java/2d-graphics/invert-black-and-white-bufferedimage.html
+   * @author <a
+   *     href="https://www.java2s.com/example/java/2d-graphics/invert-black-and-white-bufferedimage.html">...</a>
    */
   public static BufferedImage getBlackImage(final int width, final int height) {
     final BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -34,8 +34,8 @@ public class ImageUtils {
    *
    * @param image The image to invert the black and white pixels of.
    * @return The image with inverted black and white pixels.
-   * @author
-   *     https://www.java2s.com/example/java/2d-graphics/invert-black-and-white-bufferedimage.html
+   * @author <a
+   *     href="https://www.java2s.com/example/java/2d-graphics/invert-black-and-white-bufferedimage.html">...</a>
    */
   public static BufferedImage invertBlackAndWhite(final BufferedImage image) {
     final BufferedImage imageOut = getBlackImage(image.getWidth(), image.getHeight());
