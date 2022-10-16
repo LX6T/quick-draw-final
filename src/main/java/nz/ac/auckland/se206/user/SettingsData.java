@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.user;
 
+/** This class stores a user's preferred settings. */
 public class SettingsData {
   private String accuracyDifficulty;
   private String wordsDifficulty;
@@ -11,6 +12,11 @@ public class SettingsData {
     return hiddenMode;
   }
 
+  /**
+   * This method toggles whether hidden mode is on/off
+   *
+   * @param hiddenMode is on(Yes) or off(No)
+   */
   public void setHiddenMode(String hiddenMode) {
     if (hiddenMode.equals("Yes")) {
       this.hiddenMode = true;
@@ -51,6 +57,11 @@ public class SettingsData {
     return confidenceDifficulty;
   }
 
+  /**
+   * This method returns whether the settings have been filled out
+   *
+   * @return whether the settings have been filled out
+   */
   public boolean isComplete() {
     return (accuracyDifficulty != null
         && wordsDifficulty != null
@@ -58,6 +69,12 @@ public class SettingsData {
         && confidenceDifficulty != null);
   }
 
+  /**
+   * This method converts a difficulty string to an index
+   *
+   * @param difficulty to be converted
+   * @return an index
+   */
   public static int toDifficultyIndex(String difficulty) {
     switch (difficulty) {
       case "Easy":
@@ -73,20 +90,17 @@ public class SettingsData {
     }
   }
 
+  /**
+   * This method converts the isMode toggle to an index
+   *
+   * @param isMode is whether the hidden mode is on or off
+   * @return 0 if isMode is true, 1 otherwise
+   */
   public static int toModeIndex(boolean isMode) {
-    String mode;
     if (isMode) {
-      mode = "yes";
+      return 0;
     } else {
-      mode = "no";
-    }
-    switch (mode) {
-      case "yes":
-        return 0;
-      case "no":
-        return 1;
-      default:
-        return -1;
+      return 1;
     }
   }
 }

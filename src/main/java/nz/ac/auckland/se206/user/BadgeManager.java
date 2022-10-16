@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is responsible for awarding badges to the user after their stats have been updated.
+ */
 public class BadgeManager {
 
+  // This is the list of all possible badges the user can obtain
   private static final List<String> badgeNames =
       new ArrayList<>(
           List.of(
@@ -33,6 +37,11 @@ public class BadgeManager {
               "win20",
               "win50"));
 
+  /**
+   * This method returns a HashMap of all badges un-awarded.
+   *
+   * @return the HashMap of un-awarded badges
+   */
   public static HashMap<String, Boolean> getEmptyBadges() {
     HashMap<String, Boolean> emptyBadges = new HashMap<>();
 
@@ -43,6 +52,11 @@ public class BadgeManager {
     return emptyBadges;
   }
 
+  /**
+   * This method awards the user any new badges they may have earned since the last game
+   *
+   * @param user who's badges are to be updated
+   */
   public static void awardNewBadges(UserProfile user) {
     awardAccuracyBadges(user);
     awardWordsBadges(user);
@@ -52,7 +66,13 @@ public class BadgeManager {
     awardWinBadges(user);
   }
 
+  /**
+   * This method awards the user badges associated with accuracy
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardAccuracyBadges(UserProfile user) {
+    // Badge is awarded depending on current difficulty setting
     switch (user.getPreferredSettings().getAccuracyDifficulty()) {
       case "Easy":
         user.awardBadge("accuracy1");
@@ -66,7 +86,13 @@ public class BadgeManager {
     }
   }
 
+  /**
+   * This method awards the user badges associated with word difficulty
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardWordsBadges(UserProfile user) {
+    // Badge is awarded depending on current difficulty setting
     switch (user.getPreferredSettings().getWordsDifficulty()) {
       case "Easy":
         user.awardBadge("words1");
@@ -83,7 +109,13 @@ public class BadgeManager {
     }
   }
 
+  /**
+   * This method awards the user badges associated with time limit
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardTimeBadges(UserProfile user) {
+    // Badge is awarded depending on current difficulty setting
     switch (user.getPreferredSettings().getTimeDifficulty()) {
       case "Easy":
         user.awardBadge("time1");
@@ -100,7 +132,13 @@ public class BadgeManager {
     }
   }
 
+  /**
+   * This method awards the user badges associated with confidence level
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardConfidenceBadges(UserProfile user) {
+    // Badge is awarded depending on current difficulty setting
     switch (user.getPreferredSettings().getConfidenceDifficulty()) {
       case "Easy":
         user.awardBadge("confidence1");
@@ -117,7 +155,13 @@ public class BadgeManager {
     }
   }
 
+  /**
+   * This method awards the user badges associated with win streak
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardStreakBadges(UserProfile user) {
+    // Badge is awarded depending on current streak
     switch (user.getWinStreak()) {
       case 10:
         user.awardBadge("streak10");
@@ -130,7 +174,13 @@ public class BadgeManager {
     }
   }
 
+  /**
+   * This method awards the user badges associated with total wins
+   *
+   * @param user who's badges are to be updated
+   */
   private static void awardWinBadges(UserProfile user) {
+    // Badge is awarded depending on total number of wins
     switch (user.getNumOfWin()) {
       case 50:
         user.awardBadge("win50");

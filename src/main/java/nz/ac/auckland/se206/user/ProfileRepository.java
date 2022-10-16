@@ -67,25 +67,38 @@ public class ProfileRepository {
     currentUser = user;
   }
 
+  /**
+   * This method updates the user's statistics based on outcome of the latest game.
+   *
+   * @param gameData from the latest game
+   */
   public static void updateUserStats(GameData gameData) {
 
+    // update the user's word history
     currentUser.addWordToHistory(gameData.getWord());
 
+    // update the user's wins/losses
     if (gameData.isWon()) {
       currentUser.wonTheGame();
     } else {
       currentUser.lostTheGame();
     }
 
+    // updates the user's time record
     currentUser.updateRecord(gameData.getTime());
+    // updates the user's badge list
     BadgeManager.awardNewBadges(currentUser);
 
+    // saves profile to repository
     saveProfile(currentUser);
     updateProfiles();
-
-    System.out.println("UPDATED");
   }
 
+  /**
+   * This method updates the user's preferred settings
+   *
+   * @param settingsData is the new preferred settings
+   */
   public static void updateUserSettings(SettingsData settingsData) {
     currentUser.setPreferredSettings(settingsData);
 
@@ -93,6 +106,11 @@ public class ProfileRepository {
     updateProfiles();
   }
 
+  /**
+   * This method returns the current user's preferred settings
+   *
+   * @return the current user's preferred settings
+   */
   public static SettingsData getSettings() {
     return currentUser.getPreferredSettings();
   }
@@ -110,6 +128,11 @@ public class ProfileRepository {
     return users;
   }
 
+  /**
+   * This method updates the user list
+   *
+   * @param hashMap containing new user list
+   */
   public static void updateHashMap(HashMap<String, UserProfile> hashMap) {
     users = hashMap;
   }
