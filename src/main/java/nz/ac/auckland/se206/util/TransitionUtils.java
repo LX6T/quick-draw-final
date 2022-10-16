@@ -1,17 +1,16 @@
 package nz.ac.auckland.se206.util;
 
 import javafx.animation.FadeTransition;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class TransitionUtils {
-
-  public static FadeTransition getFadeTransition(AnchorPane masterPane) {
+  public static FadeTransition getFadeTransition(Node node, int duration, double from, double to) {
     FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
+    ft.setDuration(Duration.millis(duration));
+    ft.setNode(node);
+    ft.setFromValue(from);
+    ft.setToValue(to);
     return ft;
   }
 }

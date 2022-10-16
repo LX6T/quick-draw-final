@@ -29,7 +29,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.dictionary.Dictionary;
 import nz.ac.auckland.se206.dictionary.WordNotFoundException;
@@ -278,11 +277,7 @@ public class CanvasController {
   }
 
   private void fadeIn() {
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(0.2);
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
@@ -361,11 +356,11 @@ public class CanvasController {
   private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
-    fadeOutTwo(event);
+    fadeOutToPage(event);
   }
 
-  private void fadeOutTwo(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+  private void fadeOutToPage(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
     ft.play();
   }

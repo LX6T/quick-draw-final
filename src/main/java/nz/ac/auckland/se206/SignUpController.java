@@ -18,9 +18,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
+import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class SignUpController implements Initializable {
 
@@ -136,13 +136,7 @@ public class SignUpController implements Initializable {
 
   /** this method will set up the fade in transition animation whenever the scene is initialized */
   private void fadeIn() {
-    FadeTransition ft = new FadeTransition();
-    // set the transition animation to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity from 0.2 to 1.0
-    ft.setFromValue(0.2);
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
@@ -150,27 +144,22 @@ public class SignUpController implements Initializable {
    * this method will set up the fade out animation in transition between different scenes (sign up
    * scene and the user scene)
    */
-  private void fadeOut() {
-    FadeTransition ft = new FadeTransition();
-    // set duration of the fade to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity value from 1 to 0.2
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
+  private void fadeOutToUser() {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     // when fade animation finished load the next scene
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          Scene sceneButtonIsIn = buttonOnBack.getScene();
-          try {
-            // load the canvas scene when press this button
-            sceneButtonIsIn.setRoot(App.loadFxml("user"));
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        });
+    ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene());
     // play the animation
     ft.play();
+  }
+
+  private void loadUserScene() {
+    Scene sceneButtonIsIn = buttonOnBack.getScene();
+    try {
+      // load the canvas scene when press this button
+      sceneButtonIsIn.setRoot(App.loadFxml("user"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -607,7 +596,7 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onBack() {
-    fadeOut();
+    fadeOutToUser();
   }
 
   /**

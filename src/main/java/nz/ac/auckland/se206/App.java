@@ -16,7 +16,6 @@ import nz.ac.auckland.se206.user.ProfileRepository;
  * This is the entry point of the JavaFX application, while you can change this class, it should
  * remain as the class that runs the JavaFX application.
  */
-// some comments//
 public class App extends Application {
 
   private final URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");

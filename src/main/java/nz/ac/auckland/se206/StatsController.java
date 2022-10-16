@@ -13,7 +13,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -42,14 +41,7 @@ public class StatsController {
   }
 
   private void fadeIn() {
-    FadeTransition ft = new FadeTransition();
-    // set fade in animation
-    ft.setDuration(Duration.millis(500));
-    // interval is 500 ms
-    ft.setNode(masterPane);
-    ft.setFromValue(0.2);
-    // increase from 0.2 opacity to 1
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
@@ -160,25 +152,25 @@ public class StatsController {
     if (settingsData.isComplete()) {
       ProfileRepository.updateUserSettings(settingsData);
     }
-    fadeOutTwo(event);
+    fadeOutToPage(event);
   }
 
   @FXML
   private void onStart(ActionEvent event) {
     if (settingsData.isComplete()) {
       ProfileRepository.updateUserSettings(settingsData);
-      fadeOut(event);
+      fadeOutToCanvas(event);
     }
   }
 
-  private void fadeOut(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+  private void fadeOutToCanvas(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
     ft.play();
   }
 
-  private void fadeOutTwo(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
+  private void fadeOutToPage(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
     ft.play();
   }

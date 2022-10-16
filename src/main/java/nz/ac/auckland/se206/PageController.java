@@ -17,7 +17,6 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class PageController implements Initializable {
@@ -95,40 +94,28 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void onSignIn() {
-    fadeOutTwo();
+  private void onSignIn(ActionEvent event) {
+    fadeOutToUser(event);
   }
 
   @FXML
   private void onStart(ActionEvent event) {
-    fadeOut(event);
+    fadeOutToCanvas(event);
   }
 
-  private void fadeOut(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadNextScene(event));
+  private void fadeOutToCanvas(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
     ft.play();
   }
 
-  private void fadeOutTwo() {
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          Scene scene = sliderOnBrightness.getScene();
-          try {
-            scene.setRoot(App.loadFxml("user"));
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        });
+  private void fadeOutToUser(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene(event));
     ft.play();
   }
 
-  private void loadNextScene(ActionEvent event) {
+  private void loadCanvasScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
 
@@ -140,12 +127,19 @@ public class PageController implements Initializable {
     }
   }
 
+  private void loadUserScene(ActionEvent event) {
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+
+    try {
+      sceneButtonIsIn.setRoot(App.loadFxml("user"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   private void fadeIn() {
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(0.2);
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
