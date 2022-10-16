@@ -22,7 +22,7 @@ import org.imgscalr.Scalr;
 
 /**
  * This class is responsible for querying the DL model to get the predictions. Code partially
- * adapted from https://github.com/deepjavalibrary/djl-demo.
+ * adapted from <a href="https://github.com/deepjavalibrary/djl-demo">...</a>.
  */
 public class DoodlePrediction {
   /**
@@ -50,14 +50,13 @@ public class DoodlePrediction {
    *
    * @param predictions The list of predictions to print.
    */
-  public static StringBuilder printPredictions(
-      final List<Classifications.Classification> predictions) {
+  public static void printPredictions(final List<Classifications.Classification> predictions) {
     final StringBuilder sb = new StringBuilder();
     // initialize a StringBuilder class to help to concatenate a String
 
     int i = 1;
 
-    // for each predictions, allocate it to the proper position of a String
+    // for each prediction, allocate it to the proper position of a String
     for (final Classifications.Classification classification : predictions) {
       sb.append("TOP ")
           .append(i)
@@ -69,9 +68,8 @@ public class DoodlePrediction {
 
       i++;
     }
-    // return this String Builder Class which could be transformed to a String in
-    // other operations
-    return sb;
+
+    //    System.out.println(sb);
   }
 
   public static StringBuilder givePredictions(
@@ -79,13 +77,10 @@ public class DoodlePrediction {
     final StringBuilder sb = new StringBuilder();
     // initialize a StringBuilder Class to help concatenate Strings
 
-    int i = 1;
-
     for (final Classifications.Classification classification : predictions) {
-      sb.append("").append(classification.getClassName()).append(System.lineSeparator());
+      sb.append(classification.getClassName()).append(System.lineSeparator());
       // concatenate using append method to create the desired string for output
 
-      i++;
     }
 
     return sb;

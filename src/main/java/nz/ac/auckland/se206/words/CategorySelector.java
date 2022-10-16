@@ -7,11 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class CategorySelector {
 
@@ -21,10 +17,10 @@ public class CategorySelector {
     H
   }
 
-  private Map<Difficulty, List<String>> difficultyMap;
+  private final Map<Difficulty, List<String>> difficultyMap;
 
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
-    difficultyMap = new HashMap();
+    difficultyMap = new HashMap<>();
     for (Difficulty difficulty : Difficulty.values()) {
       difficultyMap.put(difficulty, new ArrayList<>());
     }
@@ -41,7 +37,10 @@ public class CategorySelector {
   }
 
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
-    File file = new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());
+    File file =
+        new File(
+            Objects.requireNonNull(CategorySelector.class.getResource("/category_difficulty.csv"))
+                .toURI());
 
     try (FileReader fr = new FileReader(file, StandardCharsets.UTF_8);
         CSVReader reader = new CSVReader(fr)) {

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Set;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -19,9 +20,9 @@ import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
+import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class UserController {
 
@@ -47,13 +48,7 @@ public class UserController {
 
   @FXML private ImageView imageOnDeleteUserThree;
 
-  @FXML private ImageView imageStarUserOne;
-
   @FXML private ImageView imageOnBack;
-
-  @FXML private ImageView imageStarUserTwo;
-
-  @FXML private ImageView imageStarUserThree;
 
   @FXML private Label labelOnUserOne;
 
@@ -73,7 +68,12 @@ public class UserController {
 
   URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
-  Image image = new Image(cursorURL.toExternalForm());
+  Image image;
+
+  {
+    assert cursorURL != null;
+    image = new Image(cursorURL.toExternalForm());
+  }
 
   public void initialize() {
     masterPane.setOpacity(0.2);
@@ -100,7 +100,7 @@ public class UserController {
       paneOnUserOne.setVisible(false);
       paneOnUserTwo.setVisible(false);
       paneOnUserThree.setVisible(false);
-      // if there is no user existing in the profile repository the everything should
+      // if there is no user existing in the profile repository then everything should
       // be set to invisible and disabled
       imageOnStartUserOne.setVisible(false);
       imageOnDeleteUserOne.setVisible(false);
@@ -117,7 +117,9 @@ public class UserController {
       for (String string : userNameSet) {
         labelOnUserOne.setText(string);
         imageOnUserOne.setImage(
-            new Image(App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+            new Image(
+                Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                    .toExternalForm()));
       }
       paneOnUserOne.setOpacity(1);
       // set the respective image views to be visible and others to be invisible and
@@ -128,7 +130,7 @@ public class UserController {
       imageOnStartUserTwo.setVisible(false);
       imageOnDeleteUserThree.setVisible(false);
       imageOnStartUserThree.setVisible(false);
-      // add fade in transition animation the the respective image views
+      // add fade in transition animation the respective image views
       fadeIn(imageOnDeleteUserOne);
       fadeIn(imageOnStartUserOne);
     }
@@ -147,12 +149,14 @@ public class UserController {
           labelOnUserOne.setText(string);
           imageOnUserOne.setImage(
               new Image(
-                  App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+                  Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                      .toExternalForm()));
         } else if (i == 2) {
           labelOnUserTwo.setText(string);
           imageOnUserTwo.setImage(
               new Image(
-                  App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+                  Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                      .toExternalForm()));
         }
         i++;
       }
@@ -164,7 +168,7 @@ public class UserController {
       imageOnStartUserTwo.setVisible(true);
       imageOnDeleteUserThree.setVisible(false);
       imageOnStartUserThree.setVisible(false);
-      // add fade in transition animation the the respective image views
+      // add fade in transition animation the respective image views
       fadeIn(imageOnDeleteUserOne);
       fadeIn(imageOnStartUserOne);
       fadeIn(imageOnDeleteUserTwo);
@@ -186,17 +190,20 @@ public class UserController {
           labelOnUserOne.setText(string);
           imageOnUserOne.setImage(
               new Image(
-                  App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+                  Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                      .toExternalForm()));
         } else if (i == 2) {
           labelOnUserTwo.setText(string);
           imageOnUserTwo.setImage(
               new Image(
-                  App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+                  Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                      .toExternalForm()));
         } else if (i == 3) {
           labelOnUserThree.setText(string);
           imageOnUserThree.setImage(
               new Image(
-                  App.class.getResource(hashMap.get(string).getPhotoPath()).toExternalForm()));
+                  Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
+                      .toExternalForm()));
         }
         i++;
       }
@@ -207,7 +214,7 @@ public class UserController {
       imageOnStartUserTwo.setVisible(true);
       imageOnDeleteUserThree.setVisible(true);
       imageOnStartUserThree.setVisible(true);
-      // add fade in transition animation the the respective image views
+      // add fade in transition animation the respective image views
       fadeIn(imageOnDeleteUserOne);
       fadeIn(imageOnStartUserOne);
       fadeIn(imageOnDeleteUserTwo);
@@ -222,24 +229,13 @@ public class UserController {
 
   private void fadeIn(Node node) {
     // fade-in transition animation for a particular nodes
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(2000));
-    // duration 2000 ms
-    ft.setNode(node);
-    ft.setFromValue(0);
-    // opacity from 0 to 1
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(node, 2000, 0, 1);
     ft.play();
   }
 
-  /** this method will setup the fade in transition animation whenever the scene is initialized */
+  /** this method will set up the fade in transition animation whenever the scene is initialized */
   private void fadeIn() {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    ft.setFromValue(0.2);
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
@@ -413,8 +409,8 @@ public class UserController {
   }
 
   @FXML
-  private void onSignUp(ActionEvent event) {
-    fadeOutTwo();
+  private void onSignUp() {
+    fadeOutToSignUp();
   }
 
   @FXML
@@ -439,7 +435,7 @@ public class UserController {
   private void backToPage() {
     imageOnBack.setScaleX(1);
     imageOnBack.setScaleY(1);
-    fadeOut();
+    fadeOutToPage();
   }
 
   @FXML
@@ -454,12 +450,8 @@ public class UserController {
     try {
       root = loader.load();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    StatsController statsController = loader.getController();
-    // get the controller from the stats controller
-    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
@@ -476,12 +468,8 @@ public class UserController {
     try {
       root = loader.load();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    StatsController statsController = loader.getController();
-    // get the controller from the stats controller
-    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
@@ -498,32 +486,28 @@ public class UserController {
     try {
       root = loader.load();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    StatsController statsController = loader.getController();
-    // get the controller from the stats controller
-    //    statsController.setStats();
     sceneButtonIsIn.setRoot(root);
     // james will see what the root is
   }
 
-  @FXML
   /** this method will set up the press integrated animation for start button in user one */
+  @FXML
   private void pressOnStartUserOne() {
     imageOnStartUserOne.setScaleX(0.9);
     imageOnStartUserOne.setScaleY(0.9);
   }
 
-  @FXML
   /** this method will set up the press integrated animation for start button in user two */
+  @FXML
   private void pressOnStartUserTwo() {
     imageOnStartUserTwo.setScaleX(0.9);
     imageOnStartUserTwo.setScaleY(0.9);
   }
 
-  @FXML
   /** this method will set up the press integrated animation for start button in user three */
+  @FXML
   private void pressOnStartUserThree() {
     imageOnStartUserThree.setScaleX(0.9);
     imageOnStartUserThree.setScaleY(0.9);
@@ -567,25 +551,9 @@ public class UserController {
    * this method will set up the fade out animation in transition between different scenes (page
    * scene and the user scene)
    */
-  private void fadeOut() {
-    FadeTransition ft = new FadeTransition();
-    // set duration of the fade to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity value from 1 to 0.2
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
-    // when fade animation finished load the next scene
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          Scene sceneButtonIsIn = imageOnBack.getScene();
-          try {
-            // load the canvas scene when press this button
-            sceneButtonIsIn.setRoot(App.loadFxml("page"));
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        });
+  private void fadeOutToPage() {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene());
     // play the animation
     ft.play();
   }
@@ -594,26 +562,31 @@ public class UserController {
    * this method will set up the fade out animation in transition between different scenes (sign Up
    * scene and the user scene)
    */
-  private void fadeOutTwo() {
-    FadeTransition ft = new FadeTransition();
-    // set duration of the fade to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity value from 1 to 0.2
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
+  private void fadeOutToSignUp() {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     // when fade animation finished load the next scene
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          Scene sceneButtonIsIn = imageOnBack.getScene();
-          try {
-            // load the canvas scene when press this button
-            sceneButtonIsIn.setRoot(App.loadFxml("signUp"));
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        });
+    ft.setOnFinished((ActionEvent eventTwo) -> loadSignUpScene());
     // play the animation
     ft.play();
+  }
+
+  private void loadPageScene() {
+    Scene sceneButtonIsIn = imageOnBack.getScene();
+    try {
+      // load the canvas scene when press this button
+      sceneButtonIsIn.setRoot(App.loadFxml("page"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void loadSignUpScene() {
+    Scene sceneButtonIsIn = imageOnBack.getScene();
+    try {
+      // load the signup scene when press this button
+      sceneButtonIsIn.setRoot(App.loadFxml("signUp"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

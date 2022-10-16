@@ -18,9 +18,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
+import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class SignUpController implements Initializable {
 
@@ -42,13 +42,9 @@ public class SignUpController implements Initializable {
 
   @FXML private AnchorPane paneOnNine;
 
-  @FXML private AnchorPane paneOnZoom;
-
   @FXML private ImageView imageOnZoom;
 
   @FXML private JFXButton buttonOnBack;
-
-  @FXML private JFXButton buttonOnConfirm;
 
   @FXML private TextField userName;
 
@@ -56,59 +52,91 @@ public class SignUpController implements Initializable {
 
   @FXML private AnchorPane masterPane;
 
-  private URL linkOne = App.class.getResource("/images/" + "icons8-character-85 (3).png");
+  private final URL linkOne = App.class.getResource("/images/" + "icons8-character-85 (3).png");
 
-  private Image imageOne = new Image(linkOne.toExternalForm());
+  private final Image imageOne;
 
-  private URL linkTwo = App.class.getResource("/images/" + "icons8-character-85 (5).png");
+  {
+    assert linkOne != null;
+    imageOne = new Image(linkOne.toExternalForm());
+  }
 
-  private Image imageTwo = new Image(linkTwo.toExternalForm());
+  private final URL linkTwo = App.class.getResource("/images/" + "icons8-character-85 (5).png");
 
-  private URL linkThree = App.class.getResource("/images/" + "icons8-character-85 (2).png");
+  private final Image imageTwo;
 
-  private Image imageThree = new Image(linkThree.toExternalForm());
+  {
+    assert linkTwo != null;
+    imageTwo = new Image(linkTwo.toExternalForm());
+  }
 
-  private URL linkFour = App.class.getResource("/images/" + "icons8-character-85.png");
+  private final URL linkThree = App.class.getResource("/images/" + "icons8-character-85 (2).png");
 
-  private Image imageFour = new Image(linkFour.toExternalForm());
+  private final Image imageThree;
 
-  private URL linkFive = App.class.getResource("/images/" + "icons8-character-85 (4).png");
+  {
+    assert linkThree != null;
+    imageThree = new Image(linkThree.toExternalForm());
+  }
 
-  private Image imageFive = new Image(linkFive.toExternalForm());
+  private final URL linkFour = App.class.getResource("/images/" + "icons8-character-85.png");
 
-  private URL linkSix = App.class.getResource("/images/" + "icons8-character-64.png");
+  private final Image imageFour;
 
-  private Image imageSix = new Image(linkSix.toExternalForm());
+  {
+    assert linkFour != null;
+    imageFour = new Image(linkFour.toExternalForm());
+  }
 
-  private URL linkSeven = App.class.getResource("/images/" + "icons8-character-85 (1).png");
+  private final URL linkFive = App.class.getResource("/images/" + "icons8-character-85 (4).png");
 
-  private Image imageSeven = new Image(linkSeven.toExternalForm());
+  private final Image imageFive;
 
-  private URL linkEight = App.class.getResource("/images/" + "icons8-ninja-64 (1).png");
+  {
+    assert linkFive != null;
+    imageFive = new Image(linkFive.toExternalForm());
+  }
 
-  private Image imageEight = new Image(linkEight.toExternalForm());
+  private final URL linkSix = App.class.getResource("/images/" + "icons8-character-64.png");
 
-  private Bloom bloom = new Bloom(0.3);
+  private final Image imageSix;
 
-  private Glow glow = new Glow(1.0);
+  {
+    assert linkSix != null;
+    imageSix = new Image(linkSix.toExternalForm());
+  }
+
+  private final URL linkSeven = App.class.getResource("/images/" + "icons8-character-85 (1).png");
+
+  private final Image imageSeven;
+
+  {
+    assert linkSeven != null;
+    imageSeven = new Image(linkSeven.toExternalForm());
+  }
+
+  private final URL linkEight = App.class.getResource("/images/" + "icons8-ninja-64 (1).png");
+
+  private final Image imageEight;
+
+  {
+    assert linkEight != null;
+    imageEight = new Image(linkEight.toExternalForm());
+  }
+
+  private final Bloom bloom = new Bloom(0.3);
+
+  private final Glow glow = new Glow(1.0);
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
     masterPane.setOpacity(0.2);
     fadeIn();
   }
 
-  /** this method will setup the fade in transition animation whenever the scene is initialized */
+  /** this method will set up the fade in transition animation whenever the scene is initialized */
   private void fadeIn() {
-    // TODO Auto-generated method stub
-    FadeTransition ft = new FadeTransition();
-    // set the transition animation to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity from 0.2 to 1.0
-    ft.setFromValue(0.2);
-    ft.setToValue(1);
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
@@ -116,27 +144,22 @@ public class SignUpController implements Initializable {
    * this method will set up the fade out animation in transition between different scenes (sign up
    * scene and the user scene)
    */
-  private void fadeOut() {
-    FadeTransition ft = new FadeTransition();
-    // set duration of the fade to be 500 ms
-    ft.setDuration(Duration.millis(500));
-    ft.setNode(masterPane);
-    // opacity value from 1 to 0.2
-    ft.setFromValue(1);
-    ft.setToValue(0.2);
+  private void fadeOutToUser() {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     // when fade animation finished load the next scene
-    ft.setOnFinished(
-        (ActionEvent eventTwo) -> {
-          Scene sceneButtonIsIn = buttonOnBack.getScene();
-          try {
-            // load the canvas scene when press this button
-            sceneButtonIsIn.setRoot(App.loadFxml("user"));
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        });
+    ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene());
     // play the animation
     ft.play();
+  }
+
+  private void loadUserScene() {
+    Scene sceneButtonIsIn = buttonOnBack.getScene();
+    try {
+      // load the canvas scene when press this button
+      sceneButtonIsIn.setRoot(App.loadFxml("user"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -362,7 +385,7 @@ public class SignUpController implements Initializable {
     paneOnOne.setEffect(null);
     // set the zoomed image to the current one
 
-    int a = getRandomNumber(1, 8);
+    int a = getRandomNumber();
 
     switch (a) {
       case 1:
@@ -478,8 +501,8 @@ public class SignUpController implements Initializable {
     setHoverEffectOnEnter(paneOnOne);
   }
 
-  private int getRandomNumber(int min, int max) {
-    return (int) ((Math.random() * (max - min)) + min);
+  private int getRandomNumber() {
+    return (int) ((Math.random() * 7) + 1);
   }
 
   @FXML
@@ -567,25 +590,24 @@ public class SignUpController implements Initializable {
     setHoverEffectOnLeave(paneOnNine);
   }
 
-  @FXML
   /**
    * this method will load the next scene for the App which is the user scene, and will add
    * transition animation
    */
+  @FXML
   private void onBack() {
-    fadeOut();
+    fadeOutToUser();
   }
 
   /**
-   * this method will confirm the sign up phase of users taking the selected profile photo and
-   * entered user name
+   * this method will confirm the signup phase of users taking the selected profile photo and
+   * entered username
    */
   @FXML
   private void onConfirm() {
     String name = userName.getText();
     // get the hash map from the local repository
-    HashMap<String, UserProfile> hashMap = new HashMap<String, UserProfile>();
-    hashMap = ProfileRepository.getHashMapProfile();
+    HashMap<String, UserProfile> hashMap = ProfileRepository.getHashMapProfile();
     if (hashMap.keySet().size() < 3) {
       // if the user already exists show error message
       if (hashMap.containsKey(name)) {

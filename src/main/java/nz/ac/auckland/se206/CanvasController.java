@@ -1,12 +1,14 @@
 package nz.ac.auckland.se206;
 
 
+
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 
 import com.jfoenix.controls.JFXButton;
 import com.opencsv.exceptions.CsvException;
+
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -17,14 +19,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.imageio.ImageIO;
-
-import com.opencsv.exceptions.CsvException;
-
-import ai.djl.ModelException;
-import ai.djl.modality.Classifications.Classification;
-import ai.djl.translate.TranslateException;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -44,7 +38,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.dictionary.Dictionary;
 import nz.ac.auckland.se206.dictionary.WordNotFoundException;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
@@ -57,30 +51,100 @@ import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and
- * the corresponding FXML file as you see fit. For example, you might no longer
- * need the "Predict" button because the DL model should be automatically
- * queried in the background every second.
+ * This is the controller of the canvas. You are free to modify this class and the corresponding
+ * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
+ * DL model should be automatically queried in the background every second.
  *
- * <p>
- * !! IMPORTANT !!
+ * <p>!! IMPORTANT !!
  *
- * <p>
- * Although we added the scale of the image, you need to be careful when
- * changing the size of the drawable canvas and the brush size. If you make the
- * brush too big or too small with respect to the canvas size, the ML model will
- * not work correctly. So be careful. If you make some changes in the canvas and
- * brush sizes, make sure that the prediction works fine.
+ * <p>Although we added the scale of the image, you need to be careful when changing the size of the
+ * drawable canvas and the brush size. If you make the brush too big or too small with respect to
+ * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
+ * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController {
 
-	private int interval = 59;
-	private double currentX;
-	private double currentY;
+  private int interval = 59;
+  private double currentX;
+  private double currentY;
 
-	private Timer timer = new Timer();
-	private Boolean score = false;
-	private javafx.event.EventHandler<MouseEvent> onRunEvent = new javafx.event.EventHandler<MouseEvent>() {
+  private final Timer timer = new Timer();
+  private Boolean score = false;
+  private final javafx.event.EventHandler<MouseEvent> onRunEvent =
+      new javafx.event.EventHandler<>() {
+
+        @Override
+        public void handle(MouseEvent event) {
+          graphic.clearRect(event.getX() - 2.5, event.getY() - 2.5, 10, 10);
+        }
+      };
+  private final javafx.event.EventHandler<MouseEvent> onRunEventTwo =
+      new javafx.event.EventHandler<>() {
+
+        @Override
+        public void handle(MouseEvent event) {
+          canvas.setOnMousePressed(
+              e -> {
+                currentX = e.getX();
+                currentY = e.getY();
+              });
+
+          canvas.setOnMouseDragged(
+              e -> {
+                // Brush size (you can change this, it should not be too small or too large).
+                final double size = 6;
+
+                final double x = e.getX() - size / 2;
+                final double y = e.getY() - size / 2;
+
+                // This is the colour of the brush.
+                graphic.setFill(Color.BLACK);
+                graphic.setLineWidth(size);
+
+                // Create a line that goes from the point (currentX, currentY) and (x,y)
+                graphic.strokeLine(currentX, currentY, x, y);
+
+                // update the coordinates
+                currentX = x;
+                currentY = y;
+              });
+        }
+      };
+
+  @FXML private JFXButton buttonOnSave;
+
+  @FXML private Button buttonOnReady;
+
+  @FXML private Button buttonOnErase;
+
+  @FXML private Label scoreLabel;
+
+  @FXML private Button buttonOnClear;
+
+  @FXML private Canvas canvas;
+
+  @FXML private Button buttonOnReset;
+
+  private GraphicsContext graphic;
+
+  private DoodlePrediction model;
+
+  private String currentWord;
+  private int accuracyDifficulty;
+  private String wordDifficulty;
+  private int timeDifficulty;
+  private double confidenceDifficulty;
+  private boolean hiddenWordMode;
+
+  @FXML private Label displayText;
+
+  @FXML private Label displayTextDefinition;
+
+  @FXML private Label timerDisplay;
+
+  @FXML private Label textToRefresh;
+
+  @FXML private AnchorPane masterPane;
 
 		@Override
 		public void handle(MouseEvent event) {
@@ -658,8 +722,5 @@ public class CanvasController {
 		// Save the image to a file.
 		ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
 	}
-
-
-
 
 }
