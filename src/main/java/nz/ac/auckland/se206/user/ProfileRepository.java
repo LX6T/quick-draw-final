@@ -55,14 +55,6 @@ public class ProfileRepository {
     }
   }
 
-  /**
-   * @param username key to be searched
-   * @return true if the username exists, false otherwise
-   */
-  public static boolean containsKey(String username) {
-    return users.containsKey(username);
-  }
-
   public static UserProfile get(String username) {
     return users.get(username);
   }
@@ -82,9 +74,12 @@ public class ProfileRepository {
     }
 
     currentUser.updateRecord(gameData.getTime());
+    BadgeAwarder.awardNewBadges(currentUser);
 
     saveProfile(currentUser);
     updateProfiles();
+
+    System.out.println("UPDATED");
   }
 
   public static void updateUserSettings(SettingsData settingsData) {

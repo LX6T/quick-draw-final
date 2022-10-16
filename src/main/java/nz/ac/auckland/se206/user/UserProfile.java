@@ -8,13 +8,13 @@ public class UserProfile {
   private String accountName;
 
   private String photoPath;
-
   private Integer numOfWin;
   private Integer numOfLoss;
+  private Integer winStreak;
   private Integer bestRecord;
   private final ArrayList<String> wordsHistory;
   private SettingsData preferredSettings;
-  private HashMap<String, Boolean> badges;
+  private final HashMap<String, Boolean> badges;
 
   public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
@@ -23,6 +23,7 @@ public class UserProfile {
 
     numOfWin = 0;
     numOfLoss = 0;
+    winStreak = 0;
     bestRecord = 61;
 
     wordsHistory = new ArrayList<>();
@@ -37,8 +38,8 @@ public class UserProfile {
    */
   public void updateRecord(Integer record) {
     // automatically update the record based on its value
-    if (this.bestRecord > record) {
-      this.bestRecord = record;
+    if (bestRecord > record) {
+      bestRecord = record;
     }
   }
 
@@ -47,11 +48,13 @@ public class UserProfile {
   }
 
   public void wonTheGame() {
-    this.numOfWin = this.numOfWin + 1;
+    numOfWin = numOfWin + 1;
+    winStreak = winStreak + 1;
   }
 
   public void lostTheGame() {
-    this.numOfLoss = this.numOfLoss + 1;
+    numOfLoss = numOfLoss + 1;
+    winStreak = 0;
   }
 
   public String getAccountName() {
@@ -70,6 +73,10 @@ public class UserProfile {
     return numOfLoss;
   }
 
+  public Integer getWinStreak() {
+    return winStreak;
+  }
+
   public String getWordsHistory() {
     // get words history from the arrayList
     StringBuilder wordsHistoryString = new StringBuilder();
@@ -79,23 +86,6 @@ public class UserProfile {
     // if the length of the history is greater than 2
     if (wordsHistoryString.length() >= 2)
       wordsHistoryString.setLength(wordsHistoryString.length() - 2);
-    return wordsHistoryString.toString();
-  }
-
-  public String getBadgesAsString() {
-    StringBuilder wordsHistoryString = new StringBuilder();
-
-    // add badges if awarded == true
-    for (String badge : badges.keySet()) {
-      if (badges.get(badge)) {
-        wordsHistoryString.append(badge).append(", ");
-      }
-    }
-
-    // delete trailing comma
-    if (wordsHistoryString.length() >= 2)
-      wordsHistoryString.setLength(wordsHistoryString.length() - 2);
-
     return wordsHistoryString.toString();
   }
 
@@ -121,5 +111,12 @@ public class UserProfile {
 
   public void setPhotoPath(String photoPath) {
     this.photoPath = photoPath;
+  }
+
+  public void awardBadge(String badgeName) {
+    if (badges.containsKey(badgeName)) {
+      badges.put(badgeName, true);
+      System.out.println("awarded " + badgeName);
+    }
   }
 }

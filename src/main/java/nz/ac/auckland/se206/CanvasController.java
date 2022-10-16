@@ -331,7 +331,6 @@ public class CanvasController {
       // Prediction must both match current word and be above the minimum confidence probability
       if (classification.getClassName().equals(currentWord)
           && classification.getProbability() >= confidenceDifficulty) {
-        System.out.println(classification.getProbability());
         return true;
       }
     }
