@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class UserProfile {
   /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
+
   private String photoPath;
   private Integer numOfWin;
   private Integer numOfLoss;
@@ -27,7 +28,7 @@ public class UserProfile {
 
     wordsHistory = new ArrayList<>();
     preferredSettings = new SettingsData();
-    badges = BadgeAwarder.getEmptyBadges();
+    badges = BadgeManager.getEmptyBadges();
   }
 
   /**

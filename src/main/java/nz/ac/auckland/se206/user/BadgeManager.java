@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BadgeAwarder {
+public class BadgeManager {
 
   private static final List<String> badgeNames =
       new ArrayList<>(

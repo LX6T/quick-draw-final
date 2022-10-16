@@ -74,7 +74,7 @@ public class ProfileRepository {
     }
 
     currentUser.updateRecord(gameData.getTime());
-    BadgeAwarder.awardNewBadges(currentUser);
+    BadgeManager.awardNewBadges(currentUser);
 
     saveProfile(currentUser);
     updateProfiles();
