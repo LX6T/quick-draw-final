@@ -214,7 +214,6 @@ public class CanvasController {
     numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
     historyPosition = numberOfWords - 1;
 
-
     timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
     // set new word based on the settings
@@ -599,12 +598,8 @@ public class CanvasController {
                         CanvasController.this.predictions.add(classification.getClassName());
                       }
                       int currentPosition = CanvasController.this.predictions.indexOf(currentWord);
-                      if (currentPosition > 9) {
-                        noticeUser(currentPosition);
-                      } else {
-                        imageSad.setVisible(false);
-                        imageSmile.setVisible(false);
-                      }
+                      noticeUser(currentPosition);
+
                       labelOne.setText(predictionResult.get(0).getClassName());
                       // set the respective corresponding label to be the correct order in the
                       // prediction list
