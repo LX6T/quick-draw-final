@@ -306,7 +306,7 @@ public class StatsController extends CanvasController {
    *
    * @param event is the click event
    */
-  private void loadPageScene(ActionEvent event) {
+  private void loadUserScene(ActionEvent event) {
 
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
