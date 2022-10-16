@@ -7,7 +7,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 
 public class CategorySelector {
 
@@ -34,6 +39,29 @@ public class CategorySelector {
     return difficultyMap
         .get(difficulty)
         .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+  }
+
+  public int calculateNumOfWordsInDifficulty(String wordDifficulty) {
+    int numOfWords = 0;
+    switch (wordDifficulty) {
+      case "Easy":
+        numOfWords += difficultyMap.get(Difficulty.E).size();
+        break;
+      case "Medium":
+        numOfWords +=
+            difficultyMap.get(Difficulty.E).size() + difficultyMap.get(Difficulty.M).size();
+        break;
+      case "Hard":
+        numOfWords +=
+            difficultyMap.get(Difficulty.E).size()
+                + difficultyMap.get(Difficulty.M).size()
+                + difficultyMap.get(Difficulty.H).size();
+        break;
+      case "Master":
+        numOfWords += difficultyMap.get(Difficulty.H).size();
+        break;
+    }
+    return numOfWords;
   }
 
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
