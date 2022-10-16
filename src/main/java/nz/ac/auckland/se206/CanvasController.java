@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
+import com.jfoenix.controls.JFXButton;
 import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -15,6 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,11 +26,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.dictionary.Dictionary;
 import nz.ac.auckland.se206.dictionary.WordNotFoundException;
@@ -102,19 +106,19 @@ public class CanvasController {
         }
       };
 
-  @FXML private Button buttonOnSave;
+  @FXML private JFXButton buttonOnSave;
 
-  @FXML private Button buttonOnReady;
+  @FXML private JFXButton buttonOnReady;
 
-  @FXML private Button buttonOnErase;
+  @FXML private JFXButton buttonOnErase;
 
   @FXML private Label scoreLabel;
 
-  @FXML private Button buttonOnClear;
+  @FXML private JFXButton buttonOnClear;
 
   @FXML private Canvas canvas;
 
-  @FXML private Button buttonOnReset;
+  @FXML private JFXButton buttonOnReset;
 
   private GraphicsContext graphic;
 
@@ -126,6 +130,9 @@ public class CanvasController {
   private int timeDifficulty;
   private double confidenceDifficulty;
   private boolean hiddenWordMode;
+  private String definition;
+
+  @FXML private JFXButton buttonOnBack;
 
   @FXML private Label displayText;
 
@@ -133,24 +140,37 @@ public class CanvasController {
 
   @FXML private Label timerDisplay;
 
+  @FXML private JFXButton readyButton;
+
   @FXML private Label textToRefresh;
 
   @FXML private AnchorPane masterPane;
 
-  @FXML private Button buttonHint;
+  @FXML private Label labelOne;
+  @FXML private Label labelTwo;
+  @FXML private Label labelThree;
+  @FXML private Label labelFour;
+  @FXML private Label labelFive;
+  @FXML private Label labelSix;
+  @FXML private Label labelSeven;
+  @FXML private Label labelEight;
+  @FXML private Label labelNine;
+  @FXML private Label labelTen;
+  @FXML private ImageView imageOnLoading;
 
   // #035526
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
    *
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException If there is a problem with URI
-   * @throws CsvException If there is a problem with CSV
-   * @throws WordNotFoundException If the word cannot be found
+   * @throws URISyntaxException
+   * @throws CsvException
+   * @throws WordNotFoundException
    */
   public void initialize()
-      throws IOException, CsvException, URISyntaxException, WordNotFoundException {
+      throws ModelException, IOException, CsvException, URISyntaxException, WordNotFoundException {
     masterPane.setOpacity(0.2);
     // set the starting opacity setting
     fadeIn();
@@ -161,6 +181,7 @@ public class CanvasController {
     buttonOnSave.setDisable(true);
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
+    imageOnLoading.setVisible(false);
 
     // disable all the buttons that are shouldn't be used at the start
 
@@ -171,17 +192,36 @@ public class CanvasController {
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
-    buttonHint.setVisible(hiddenWordMode);
-    buttonHint.setDisable(true);
 
     timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
-    if (hiddenWordMode) {
-      String definition = Dictionary.searchDefinition(currentWord);
-      displayTextDefinition.setText(definition);
-    } else {
-      displayText.setText(currentWord);
-    }
+
+    Task<Void> backgroundTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            if (hiddenWordMode) {
+              Platform.runLater(
+                  () -> {
+                    imageOnLoading.setVisible(true);
+                  });
+              definition = Dictionary.searchDefinition(currentWord);
+            }
+            Platform.runLater(
+                () -> {
+                  if (hiddenWordMode) {
+                    imageOnLoading.setVisible(false);
+                    displayTextDefinition.setText(definition);
+                  } else {
+                    displayText.setText(currentWord);
+                  }
+                });
+            return null;
+          }
+        };
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
   }
 
   private int setAccuracy(String difficulty) {
@@ -255,7 +295,8 @@ public class CanvasController {
   }
 
   @FXML
-  private void setNewWord() throws IOException, URISyntaxException, CsvException {
+  private void setNewWord()
+      throws IOException, URISyntaxException, CsvException, WordNotFoundException {
     int randInt;
     CategorySelector categorySelector = new CategorySelector();
     Random rand = new Random();
@@ -294,7 +335,11 @@ public class CanvasController {
   }
 
   private void fadeIn() {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
+    FadeTransition ft = new FadeTransition();
+    ft.setDuration(Duration.millis(500));
+    ft.setNode(masterPane);
+    ft.setFromValue(0.2);
+    ft.setToValue(1);
     ft.play();
   }
 
@@ -339,6 +384,8 @@ public class CanvasController {
       // probability
       if (classification.getClassName().equals(currentWord)
           && classification.getProbability() >= confidenceDifficulty) {
+        System.out.println(classification.getProbability());
+
         return true;
       }
     }
@@ -373,11 +420,11 @@ public class CanvasController {
   private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
-    fadeOutToPage(event);
+    fadeOutTwo(event);
   }
 
-  private void fadeOutToPage(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+  private void fadeOutTwo(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 500, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
     ft.play();
   }
@@ -403,11 +450,22 @@ public class CanvasController {
     buttonOnReady.setDisable(true);
     buttonOnErase.setDisable(false);
     buttonOnClear.setDisable(false);
-    buttonHint.setDisable(!hiddenWordMode);
     model = new DoodlePrediction();
-    TextToSpeech speaker = new TextToSpeech();
-    speaker.speak("The game starts");
-    speaker.speak("Good Luck");
+    Task<Void> backgroundTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            TextToSpeech speaker = new TextToSpeech();
+            speaker.speak("The game starts");
+            speaker.speak("Good Luck");
+
+            return null;
+          }
+        };
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.start();
 
     // when the ready button is pressed, show text to speech feature
 
@@ -427,6 +485,30 @@ public class CanvasController {
                     try {
                       score = onPredict();
                     } catch (TranslateException e) {
+                      e.printStackTrace();
+                    }
+                  });
+              Platform.runLater(
+                  () -> {
+                    try {
+                      // access the javafx thread to run the timer task
+                      List<Classification> predictionResult =
+                          model.getPredictions(getCurrentSnapshot(), 10);
+                      labelOne.setText(predictionResult.get(0).getClassName());
+                      // set the respective corresponding label to be the correct order in the
+                      // prediction list
+                      labelTwo.setText(predictionResult.get(1).getClassName());
+                      labelThree.setText(predictionResult.get(2).getClassName());
+                      labelFour.setText(predictionResult.get(3).getClassName());
+                      labelFive.setText(predictionResult.get(4).getClassName());
+                      labelSix.setText(predictionResult.get(5).getClassName());
+                      labelSeven.setText(predictionResult.get(6).getClassName());
+                      labelEight.setText(predictionResult.get(7).getClassName());
+                      labelNine.setText(predictionResult.get(8).getClassName());
+                      labelTen.setText(predictionResult.get(9).getClassName());
+                      // there are exactly 10 elements in the list
+                    } catch (TranslateException e) {
+                      // TODO Auto-generated catch block
                       e.printStackTrace();
                     }
                   });
@@ -498,7 +580,7 @@ public class CanvasController {
   @FXML
   private void onReset(ActionEvent event) {
     timer.cancel();
-    // stop the countdown timer to count down.
+    // stop the count down timer to count down.
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     try {
@@ -510,7 +592,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void onErase() {
+  private void onErase(ActionEvent event) {
     graphic = canvas.getGraphicsContext2D();
     // get the current canvas graphic
 
@@ -550,12 +632,6 @@ public class CanvasController {
       buttonOnErase.setText("Eraser");
       // update the text on the button
     }
-  }
-
-  @FXML
-  private void onProvideHint() {
-    displayTextDefinition.setText("");
-    displayText.setText(currentWord);
   }
 
   @FXML
