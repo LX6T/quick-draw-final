@@ -81,10 +81,6 @@ public class CategorySelector {
               .get(difficulty)
               .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
       // generate a difficulty randomly without any help
-      if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
-        break;
-        // break the while condition loop
-      }
 
       // break on the first loop and return the word
       return newWord;
