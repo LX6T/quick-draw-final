@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import nz.ac.auckland.se206.user.ProfileRepository;
 
 /** This class is responsible for generating a draw category at the beginning of each game. */
 public class CategorySelector {
@@ -53,9 +54,19 @@ public class CategorySelector {
    * @return a word category for the user to draw
    */
   public String generateRandomCategory(Difficulty difficulty) {
-    return difficultyMap
-        .get(difficulty)
-        .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+    String newWord;
+
+    while (true) {
+      newWord =
+          difficultyMap
+              .get(difficulty)
+              .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+      if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
+        break;
+      }
+    }
+
+    return newWord;
   }
 
   /**
