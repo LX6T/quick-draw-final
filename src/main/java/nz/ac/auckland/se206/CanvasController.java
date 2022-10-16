@@ -337,9 +337,9 @@ public class CanvasController {
     currentWord = categorySelector.generateRandomCategory(difficulty);
   }
 
-  private void fadeIn() {
+  protected void fadeIn() {
     FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
+    ft.setDuration(Duration.millis(300));
     ft.setNode(masterPane);
     ft.setFromValue(0.2);
     ft.setToValue(1);
@@ -423,22 +423,22 @@ public class CanvasController {
   private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
-    fadeOutTwo(event);
+    fadeOutToStatsScene(event);
   }
 
-  private void fadeOutTwo(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 500, 1, 0.2);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
+  private void fadeOutToStatsScene(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadStatsScene(event));
     ft.play();
   }
 
-  private void loadPageScene(ActionEvent event) {
+  private void loadStatsScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
 
     try {
       // load the canvas scene when press this button
-      sceneButtonIsIn.setRoot(App.loadFxml("page"));
+      sceneButtonIsIn.setRoot(App.loadFxml("profilePage"));
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -190,6 +190,8 @@ public class ZenModeController extends CanvasController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    masterPane.setOpacity(0.2);
+    fadeIn();
     masterPane.setCursor(new ImageCursor(image, 2.5, 2.5));
     canvas.setCursor(new ImageCursor(imageOne, 2.5, 2.5));
     // set cursors for master pane and canvas

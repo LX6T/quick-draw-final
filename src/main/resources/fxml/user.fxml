@@ -95,7 +95,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="233.0" layoutX="4.0" layoutY="18.0" smooth="false" stroke="#b76767" strokeType="INSIDE" strokeWidth="15.0" style="-fx-stroke-dash-array: 50;" width="202.0" />
          </children>
       </AnchorPane>
-      <ImageView fx:id="imageOnStartUserOne" fitHeight="59.0" fitWidth="75.0" layoutX="158.0" layoutY="435.0" onMouseClicked="#clickOnStartUserOne" onMouseEntered="#enterMouseUserOne" onMouseExited="#leaveMouseUserOne" onMousePressed="#pressOnStartUserOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserOne" fitHeight="59.0" fitWidth="75.0" layoutX="158.0" layoutY="435.0" onMouseClicked="#onClickOnStartUserOne" onMouseEntered="#onEnterMouseUserOne" onMouseExited="#onLeaveMouseUserOne" onMousePressed="#onPressOnStartUserOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
@@ -214,12 +214,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fx:id="imageOnStartUserTwo" fitHeight="59.0" fitWidth="75.0" layoutX="461.0" layoutY="435.0" onMouseClicked="#clickOnStartUserTwo" onMouseEntered="#enterMouseUserTwo" onMouseExited="#leaveMouseUserTwo" onMousePressed="#pressOnStartUserTwo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserTwo" fitHeight="59.0" fitWidth="75.0" layoutX="461.0" layoutY="435.0" onMouseClicked="#onClickOnStartUserTwo" onMouseEntered="#onEnterMouseUserTwo" onMouseExited="#onLeaveMouseUserTwo" onMousePressed="#onPressOnStartUserTwo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnStartUserThree" fitHeight="59.0" fitWidth="75.0" layoutX="780.0" layoutY="435.0" onMouseClicked="#clickOnStartUserThree" onMouseEntered="#enterMouseUserThree" onMouseExited="#leaveMouseUserThree" onMousePressed="#pressOnStartUserThree" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnStartUserThree" fitHeight="59.0" fitWidth="75.0" layoutX="780.0" layoutY="435.0" onMouseClicked="#onClickOnStartUserThree" onMouseEntered="#onEnterMouseUserThree" onMouseExited="#onLeaveMouseUserThree" onMousePressed="#onPressOnStartUserThree" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-pencil-64%20(1).png" />
          </image>
@@ -240,17 +240,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="imageOnDeleteUserOne" fitHeight="70.0" fitWidth="71.0" layoutX="236.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserOne" onMouseEntered="#enterMouseUserOneOnDelete" onMouseExited="#leaveMouseUserOneOnDelete" onMousePressed="#pressOnDeleteUserOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserOne" fitHeight="70.0" fitWidth="71.0" layoutX="236.0" layoutY="435.0" onMouseClicked="#onClickOnDeleteUserOne" onMouseEntered="#onEnterMouseUserOneOnDelete" onMouseExited="#onLeaveMouseUserOneOnDelete" onMousePressed="#onPressOnDeleteUserOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnDeleteUserTwo" fitHeight="70.0" fitWidth="71.0" layoutX="543.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserTwo" onMouseEntered="#enterMouseUserTwoOnDelete" onMouseExited="#leaveMouseUserTwoOnDelete" onMousePressed="#pressOnDeleteUserTwo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserTwo" fitHeight="70.0" fitWidth="71.0" layoutX="543.0" layoutY="435.0" onMouseClicked="#onClickOnDeleteUserTwo" onMouseEntered="#onEnterMouseUserTwoOnDelete" onMouseExited="#onLeaveMouseUserTwoOnDelete" onMousePressed="#onPressOnDeleteUserTwo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageOnDeleteUserThree" fitHeight="70.0" fitWidth="71.0" layoutX="858.0" layoutY="435.0" onMouseClicked="#clickOnDeleteUserThree" onMouseEntered="#enterMouseUserThreeOnDelete" onMouseExited="#leaveMouseUserThreeOnDelete" onMousePressed="#pressOnDeleteUserThree" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnDeleteUserThree" fitHeight="70.0" fitWidth="71.0" layoutX="858.0" layoutY="435.0" onMouseClicked="#onClickOnDeleteUserThree" onMouseEntered="#onEnterMouseUserThreeOnDelete" onMouseExited="#onLeaveMouseUserThreeOnDelete" onMousePressed="#onPressOnDeleteUserThree" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-remove-64%20(1).png" />
          </image>
@@ -260,12 +260,12 @@
             <Image url="@../images/icons8-arrow-64.png" />
          </image>
       </ImageView>
-      <JFXCheckBox fx:id="boxOnEnable" checkedColor="#ff9b9b" layoutX="236.0" layoutY="530.0" onAction="#onBoxEnabled" prefHeight="44.0" prefWidth="140.0" style="-fx-background-radius: 15;" text="Delete-Enabled" textFill="#c0a865" unCheckedColor="#e49797">
+      <JFXCheckBox fx:id="boxOnEnable" checkedColor="#ff9b9b" layoutX="236.0" layoutY="530.0" onAction="#onEnableBox" prefHeight="44.0" prefWidth="140.0" style="-fx-background-radius: 15;" text="Delete-Enabled" textFill="#c0a865" unCheckedColor="#e49797">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXCheckBox>
-      <ImageView fx:id="imageOnBack" fitHeight="44.0" fitWidth="52.0" layoutX="14.0" layoutY="261.0" onMouseClicked="#backToPage" onMouseEntered="#enterMouseOnBack" onMouseExited="#leaveMouseOnBack" onMousePressed="#pressOnBackButton" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageOnBack" fitHeight="44.0" fitWidth="52.0" layoutX="14.0" layoutY="261.0" onMouseClicked="#onBackToPage" onMouseEntered="#onEnterMouseOnBack" onMouseExited="#onLeaveMouseOnBack" onMousePressed="#onPressOnBackButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-back-100.png" />
          </image>
