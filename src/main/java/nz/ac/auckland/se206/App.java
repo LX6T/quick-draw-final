@@ -18,7 +18,8 @@ import nz.ac.auckland.se206.user.ProfileRepository;
  */
 public class App extends Application {
 
-  protected final URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
+  protected final URL cursorURL =
+      App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
   protected final Image image;
 
