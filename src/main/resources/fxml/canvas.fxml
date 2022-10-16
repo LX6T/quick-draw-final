@@ -24,11 +24,6 @@
 		</Label>
 		<Pane layoutX="245.0" layoutY="-1.0" prefHeight="180.0" prefWidth="640.0">
 			<children>
-            <ImageView fx:id="buttonHint" fitHeight="48.0" fitWidth="38.0" layoutX="86.0" layoutY="111.0" onMouseClicked="#onProvideHint" onMouseEntered="#onEnterHint" onMouseExited="#onExitHint" onMousePressed="#onPressHint" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-help-58.png" />
-               </image>
-            </ImageView>
 				<Label fx:id="timerDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="24.0" prefHeight="48.0" prefWidth="86.0" text="60" textFill="#ffffffcf">
 					<font>
 						<Font name="System Bold" size="22.0" />
@@ -54,23 +49,15 @@
 					</effect>
 				</Label>
 				<Circle fill="#1f93ff00" layoutX="304.0" layoutY="47.0" opacity="0.57" radius="32.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
-				<Label alignment="CENTER" layoutX="106.0" layoutY="107.0" prefHeight="48.0" prefWidth="150.0" text="DRAW:" textFill="WHITE">
-					<font>
-						<Font name="System Bold Italic" size="22.0" />
-					</font>
-					<effect>
-						<Bloom />
-					</effect>
-				</Label>
-            <Label fx:id="displayTextDefinition" contentDisplay="CENTER" layoutX="277.0" layoutY="121.0" prefHeight="48.0" prefWidth="354.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label fx:id="displayTextDefinition" contentDisplay="CENTER" layoutX="186.0" layoutY="109.0" prefHeight="48.0" prefWidth="431.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <effect>
                   <Bloom />
                </effect>
             </Label>
-				<Label fx:id="displayText" contentDisplay="CENTER" layoutX="271.0" layoutY="109.0" prefHeight="48.0" prefWidth="307.0" textAlignment="CENTER" textFill="WHITE">
+				<Label fx:id="displayText" contentDisplay="CENTER" layoutX="263.0" layoutY="109.0" prefHeight="48.0" prefWidth="307.0" textAlignment="CENTER" textFill="WHITE">
 					<font>
 						<Font name="System Bold" size="22.0" />
 					</font>
@@ -79,6 +66,11 @@
 					</effect>
 				</Label>
             <Separator layoutX="-253.0" layoutY="88.0" prefHeight="3.0" prefWidth="1049.0" />
+            <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="99.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-draw-64.png" />
+               </image>
+            </ImageView>
 			</children>
 		</Pane>
 		<Label fx:id="textToRefresh" alignment="CENTER" contentDisplay="CENTER" layoutX="903.0" layoutY="91.0" opacity="0.0" prefHeight="463.0" prefWidth="145.0" textFill="WHITE">

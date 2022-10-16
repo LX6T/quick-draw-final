@@ -27,6 +27,7 @@ import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -177,8 +178,6 @@ public class CanvasController {
 	@FXML
 	private AnchorPane masterPane;
 
-	@FXML
-	private ImageView buttonHint;
 
 	@FXML
 	private Label labelOne;
@@ -237,8 +236,6 @@ public class CanvasController {
 		timeDifficulty = setTime(settings.getTimeDifficulty());
 		confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
 		hiddenWordMode = settings.isHiddenMode();
-		buttonHint.setVisible(hiddenWordMode);
-		buttonHint.setDisable(true);
 
 		timerDisplay.setText(Integer.toString(timeDifficulty));
 		setNewWord();
@@ -477,11 +474,22 @@ public class CanvasController {
 		buttonOnReady.setDisable(true);
 		buttonOnErase.setDisable(false);
 		buttonOnClear.setDisable(false);
-		buttonHint.setDisable(!hiddenWordMode);
 		model = new DoodlePrediction();
-		TextToSpeech speaker = new TextToSpeech();
-		speaker.speak("The game starts");
-		speaker.speak("Good Luck");
+		Task<Void> backgroundTask = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+
+				TextToSpeech speaker = new TextToSpeech();
+				speaker.speak("The game starts");
+				speaker.speak("Good Luck");
+
+				return null;
+			}
+		};
+		Thread backgroundThread = new Thread(backgroundTask);
+		backgroundThread.start();
+
 
 		// when the ready button is pressed, show text to speech feature
 
@@ -499,6 +507,28 @@ public class CanvasController {
 						try {
 							score = onPredict();
 						} catch (TranslateException e) {
+							e.printStackTrace();
+						}
+					});
+					Platform.runLater(() -> {
+						try {
+							// access the javafx thread to run the timer task
+							List<Classification> predictionResult = model.getPredictions(getCurrentSnapshot(), 10);
+							labelOne.setText(predictionResult.get(0).getClassName());
+							// set the respective corresponding label to be the correct order in the
+							// prediction list
+							labelTwo.setText(predictionResult.get(1).getClassName());
+							labelThree.setText(predictionResult.get(2).getClassName());
+							labelFour.setText(predictionResult.get(3).getClassName());
+							labelFive.setText(predictionResult.get(4).getClassName());
+							labelSix.setText(predictionResult.get(5).getClassName());
+							labelSeven.setText(predictionResult.get(6).getClassName());
+							labelEight.setText(predictionResult.get(7).getClassName());
+							labelNine.setText(predictionResult.get(8).getClassName());
+							labelTen.setText(predictionResult.get(9).getClassName());
+							//there are exactly 10 elements in the list
+						} catch (TranslateException e) {
+							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					});
@@ -620,14 +650,6 @@ public class CanvasController {
 	}
 
 	@FXML
-   private void onProvideHint() {
-		buttonHint.setScaleX(1);
-		buttonHint.setScaleY(1);
-		displayTextDefinition.setText("");
-		displayText.setText(currentWord);
-	}
-
-	@FXML
 	protected void saveToFiles() throws IOException {
 		FileChooser fc = new FileChooser();
 		Stage stage = new Stage();
@@ -638,24 +660,6 @@ public class CanvasController {
 	}
 
 
-	@FXML
-	private void onEnterHint() {
-		buttonHint.setScaleX(1.1);
-		buttonHint.setScaleY(1.1);
-		buttonHint.setEffect(new Bloom(0.3));
-	}
 
-	@FXML
-	private void onPressHint() {
-		buttonHint.setScaleX(0.9);
-		buttonHint.setScaleY(0.9);
-	}
-
-	@FXML
-	private void onExitHint() {
-		buttonHint.setScaleX(1);
-		buttonHint.setScaleY(1);
-		buttonHint.setEffect(null);
-	}
 
 }
