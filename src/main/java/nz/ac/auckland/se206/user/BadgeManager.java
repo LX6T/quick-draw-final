@@ -59,15 +59,23 @@ public class BadgeManager {
    * This method awards the user any new badges they may have earned since the last game
    *
    * @param user who's badges are to be updated
+   * @param isWon whether the last game was a win or not
    */
-  public static void awardNewBadges(UserProfile user) {
-    awardAccuracyBadges(user);
-    awardWordsBadges(user);
-    awardTimeBadges(user);
-    // set all the setting for the users
-    awardConfidenceBadges(user);
-    awardStreakBadges(user);
-    awardWinBadges(user);
+  public static void awardNewBadges(UserProfile user, boolean isWon) {
+
+    if (user.getNumOfWin() > 0 || user.getNumOfLost() > 0) {
+      user.awardBadge("allModes");
+    }
+
+    if (isWon) {
+      // only update these settings after a win
+      awardAccuracyBadges(user);
+      awardWordsBadges(user);
+      awardTimeBadges(user);
+      awardConfidenceBadges(user);
+      awardStreakBadges(user);
+      awardWinBadges(user);
+    }
   }
 
   /**

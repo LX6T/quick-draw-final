@@ -284,7 +284,7 @@
                                     <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-96.png" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Try out all 3 gamemodes!" x="80.0" y="30.0">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Play one game!" x="80.0" y="30.0">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Text>
