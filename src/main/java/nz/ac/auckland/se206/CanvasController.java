@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,6 +32,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -162,6 +165,13 @@ public class CanvasController extends App {
   @FXML private ImageView imageSmile;
   @FXML private ImageView imageSad;
 
+  private static URL loseSoundURL =
+      App.class.getResource("/sounds/" + "mixkit-losing-drums-2023.wav");
+  private static URL winSoundURL =
+      App.class.getResource("/sounds/" + "mixkit-fantasy-game-success-notification-270.wav");
+  private static Media winSound;
+  private static Media loseSound;
+
   // #035526
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -175,6 +185,9 @@ public class CanvasController extends App {
    */
   public void initialize()
       throws ModelException, IOException, CsvException, URISyntaxException, WordNotFoundException {
+    winSound = new Media(winSoundURL.toExternalForm());
+    loseSound = new Media(loseSoundURL.toExternalForm());
+
     masterPane.setOpacity(0.2);
     // set the starting opacity setting
     fadeIn();
@@ -631,15 +644,17 @@ public class CanvasController extends App {
 
               TextToSpeech speaker = new TextToSpeech();
               if (!score) {
+                Platform.runLater(() -> playSound(loseSound));
                 // speak to user when detected result is lost
-                speaker.speak("You Have Lost");
+                Platform.runLater(() -> speaker.speak("You Have Lost"));
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("LOST"));
 
               } else {
+                Platform.runLater(() -> playSound(winSound));
                 // speak to user when detected result is won
-                speaker.speak("You have Won");
+                Platform.runLater(() -> speaker.speak("You have Won"));
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEvent);
                 canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED, onRunEventTwo);
                 Platform.runLater(() -> scoreLabel.setText("WON"));
@@ -826,5 +841,19 @@ public class CanvasController extends App {
       // set respective visibility
       imageSmile.setVisible(false);
     }
+  }
+
+  /**
+   * This method is responsible for playing sound effects
+   *
+   * @param sound is the sound that is played
+   */
+  @FXML
+  private void playSound(Media sound) {
+    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    if (sound == winSound) {
+      mediaPlayer.setVolume(0.5);
+    }
+    mediaPlayer.play();
   }
 }
