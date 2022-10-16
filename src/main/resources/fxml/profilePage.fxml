@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
@@ -14,98 +15,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="masterPane" prefHeight="600.0" prefWidth="1050.0" styleClass="anchorPane" stylesheets="@../css/styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.StatsController">
 	<children>
-		<VBox layoutX="-1.0" prefHeight="605.0" prefWidth="288.0" style="-fx-background-color: #827651;">
-			<children>
-				<Pane prefHeight="118.0" prefWidth="288.0">
-					<children>
-						<ImageView fitHeight="57.0" fitWidth="55.0" layoutX="24.0" layoutY="30.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@../images/logo-speedy-sketchers.png" />
-							</image>
-						</ImageView>
-						<Label layoutX="98.0" layoutY="40.0" prefHeight="38.0" prefWidth="165.0" text="Speedy Sketcher" textFill="WHITE">
-							<font>
-								<Font name="System Bold Italic" size="21.0" />
-							</font>
-							<effect>
-								<Bloom />
-							</effect>
-						</Label>
-						<Line endX="156.9000244140625" endY="0.33333587646484375" layoutX="125.0" layoutY="117.0" opacity="0.48" startX="-125.00000762939453" startY="0.33333587646484375" stroke="WHITE" strokeWidth="5.0" />
-					</children>
-				</Pane>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="1. Number of Win" textFill="#534747">
-					<padding>
-						<Insets left="50.0" />
-					</padding>
-					<font>
-						<Font name="Arial Bold" size="18.0" />
-					</font>
-				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="2. Number of Loss" textFill="#534747">
-					<padding>
-						<Insets left="50.0" />
-					</padding>
-					<font>
-						<Font name="System Bold" size="18.0" />
-					</font>
-				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" style="-fx-background-clor: #1b3c38;" styleClass="ABCButton" stylesheets="@../css/styling.css" text="3. Score" textFill="#534747">
-					<padding>
-						<Insets left="50.0" />
-					</padding>
-					<font>
-						<Font name="System Bold" size="18.0" />
-					</font>
-				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="4. History" textFill="#534747">
-					<padding>
-						<Insets left="50.0" />
-					</padding>
-					<font>
-						<Font name="System Bold" size="18.0" />
-					</font>
-				</Button>
-				<Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="65.0" prefWidth="289.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="5. Best Record" textFill="#534747">
-					<padding>
-						<Insets left="50.0" />
-					</padding>
-					<font>
-						<Font name="System Bold" size="18.0" />
-					</font>
-				</Button>
-				<Pane prefHeight="65.0" prefWidth="288.0" />
-				<HBox prefHeight="44.0" prefWidth="288.0">
-					<children>
-						<Pane prefHeight="200.0" prefWidth="200.0">
-							<children>
-								<JFXButton fx:id="buttonStart" buttonType="RAISED" layoutX="67.0" layoutY="-11.0" onAction="#onStart" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
-									<font>
-										<Font size="25.0" />
-									</font>
-								</JFXButton>
-							</children>
-						</Pane>
-					</children>
-				</HBox>
-			</children>
-		</VBox>
-		<GridPane layoutX="324.0" layoutY="401.0" prefHeight="180.0" prefWidth="320.0" style="-fx-background-radius: 20px;">
+      <AnchorPane fx:id="paneOnHistory" layoutX="360.0" layoutY="205.0" opacity="0.0" prefHeight="382.0" prefWidth="600.0">
+         <children>
+      		<Label fx:id="labelHistory" alignment="TOP_LEFT" layoutX="4.0" layoutY="66.0" opacity="0.71" prefHeight="315.0" prefWidth="596.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" text="N/A">
+      			<font>
+      				<Font name="GOST Common" size="24.0" />
+      			</font>
+      		</Label>
+      		<Label layoutX="8.0" layoutY="8.0" text="History:" textFill="WHITE">
+      			<font>
+      				<Font name="GOST Common" size="34.0" />
+      			</font>
+      		</Label>
+            <ImageView fitHeight="44.0" fitWidth="52.0" layoutX="143.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-order-history-100%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+		<GridPane fx:id="paneOnData" layoutX="360.0" layoutY="201.0" opacity="0.0" prefHeight="372.0" prefWidth="549.0" style="-fx-background-radius: 20px;">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="413.7777506510417" minWidth="10.0" prefWidth="255.66668701171875" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="419.11108398437506" minWidth="10.0" prefWidth="266.9999796549479" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -200,107 +141,268 @@
 				</ImageView>
 			</children>
 		</GridPane>
-		<Label layoutX="336.0" layoutY="34.0" text="History:" textFill="WHITE">
-			<font>
-				<Font name="GOST Common" size="20.0" />
-			</font>
-		</Label>
-		<Label fx:id="labelHistory" alignment="TOP_LEFT" layoutX="334.0" layoutY="89.0" opacity="0.71" prefHeight="98.0" prefWidth="527.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" text="N/A">
-			<font>
-				<Font name="GOST Common" size="18.0" />
-			</font>
-		</Label>
-		<Line endX="323.3333740234375" layoutX="538.0" layoutY="187.0" startX="-203.99996948242188" startY="1.52587890625E-5" />
-		<Pane layoutX="952.0" layoutY="10.0" prefHeight="98.0" prefWidth="83.0">
+		<VBox layoutX="-1.0" prefHeight="605.0" prefWidth="288.0" style="-fx-background-color: #827651;">
 			<children>
-				<Circle fill="#c0a865" layoutX="46.0" layoutY="49.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" styleClass="ABCircle" />
-				<Pane layoutX="21.0" layoutY="27.0" prefHeight="44.0" prefWidth="43.0">
+				<Pane prefHeight="120.0" prefWidth="288.0">
 					<children>
-						<ImageView fitHeight="44.0" fitWidth="43.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="57.0" fitWidth="55.0" layoutX="24.0" layoutY="30.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../images/exit-icon-png-close-0.png" />
+								<Image url="@../images/logo-speedy-sketchers.png" />
 							</image>
-							<effect>
-								<Bloom threshold="0.45">
-									<input>
-										<DropShadow>
-											<color>
-												<Color red="1.0" green="0.8185185194015503" blue="0.395061731338501" />
-											</color>
-										</DropShadow>
-									</input>
-								</Bloom>
-							</effect>
 						</ImageView>
-						<Pane layoutX="-8.0" layoutY="-5.0" prefHeight="55.0" prefWidth="55.0">
-							<children>
-								<JFXButton fx:id="buttonOnBack" layoutX="-1.0" layoutY="-1.0" minWidth="43.0" onAction="#onBack" opacity="0.32" prefHeight="55.0" prefWidth="66.0" style="-fx-background-radius: 100;" styleClass="JFXButton" stylesheets="@../css/styling.css" textFill="#534747">
-									<font>
-										<Font size="22.0" />
-									</font>
-								</JFXButton>
-							</children>
-						</Pane>
+						<Label layoutX="98.0" layoutY="40.0" prefHeight="38.0" prefWidth="165.0" text="Speedy Sketcher" textFill="WHITE">
+							<font>
+								<Font name="System Bold Italic" size="21.0" />
+							</font>
+							<effect>
+								<Bloom />
+							</effect>
+						</Label>
 					</children>
 				</Pane>
+            <Separator prefHeight="1.0" prefWidth="292.0" />
+				<Button fx:id="buttonOnStats" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onChooseStats" prefHeight="76.0" prefWidth="288.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="1. User Statistics">
+					<padding>
+						<Insets left="50.0" />
+					</padding>
+					<font>
+						<Font name="Arial Bold Italic" size="20.0" />
+					</font>
+				</Button>
+            <Separator prefWidth="200.0" />
+				<Button fx:id="buttonOnHistory" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onChooseHistory" prefHeight="70.0" prefWidth="288.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="2. Game History">
+					<padding>
+						<Insets left="50.0" />
+					</padding>
+					<font>
+						<Font name="System Bold Italic" size="20.0" />
+					</font>
+				</Button>
+            <Separator prefWidth="200.0" />
+				<Button fx:id="buttonOnSettings" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onChooseSettings" prefHeight="71.0" prefWidth="288.0" style="-fx-background-clor: #1b3c38;" styleClass="ABCButton" stylesheets="@../css/styling.css" text="3. Game Settings">
+					<padding>
+						<Insets left="50.0" />
+					</padding>
+					<font>
+						<Font name="System Bold Italic" size="20.0" />
+					</font>
+				</Button>
+            <Separator prefWidth="200.0" />
+            <Button fx:id="buttonOnBadge" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onChooseBadge" prefHeight="76.0" prefWidth="288.0" styleClass="ABCButton" stylesheets="@../css/styling.css" text="4. Badges">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Button>
+            <Separator prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+      								<JFXButton fx:id="buttonStart" buttonType="RAISED" layoutX="68.0" layoutY="32.0" onAction="#onStart" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
+      									<font>
+      										<Font size="25.0" />
+      									</font>
+      								</JFXButton>
+                  <JFXButton fx:id="buttonOnBack" buttonType="RAISED" layoutX="68.0" layoutY="106.0" onAction="#onBack" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Back" textFill="#534747">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
 			</children>
-		</Pane>
-      <GridPane layoutX="324.0" layoutY="205.0" prefHeight="180.0" prefWidth="544.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="150.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+		</VBox>
+		<Line endX="323.3333740234375" layoutX="538.0" layoutY="187.0" startX="-203.99996948242188" startY="1.52587890625E-5" />
+		<Pane layoutX="952.0" layoutY="10.0" prefHeight="98.0" prefWidth="83.0" />
+      <Pane layoutX="287.0" layoutY="32.0" prefHeight="152.0" prefWidth="762.0" style="-fx-background-color: #c3b077;">
          <children>
-            <RadioButton fx:id="radioAccuracyEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="accuracy" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioAccuracyHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="3" />
-            <RadioButton fx:id="radioAccuracyMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="2" />
-            <RadioButton fx:id="radioTimeEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <toggleGroup>
-                  <ToggleGroup fx:id="time" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioWordsEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="words" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioConfidenceEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <toggleGroup>
-                  <ToggleGroup fx:id="confidence" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioConfidenceMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <RadioButton fx:id="radioTimeMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioWordsMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioWordsHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioTimeHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioConfidenceHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <RadioButton fx:id="radioWordsMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <RadioButton fx:id="radioTimeMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <RadioButton fx:id="radioConfidenceMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Confidence" GridPane.rowIndex="3" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Words" GridPane.rowIndex="1" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" GridPane.rowIndex="2" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hidden-Word Mode" GridPane.rowIndex="4" />
-            <RadioButton mnemonicParsing="false" text="Yes" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <toggleGroup>
-                  <ToggleGroup fx:id="hiddenWord" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="No" textFill="WHITE" toggleGroup="$hiddenWord" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label layoutX="27.0" layoutY="20.0" prefHeight="34.0" prefWidth="240.0" text="Username: ">
+               <font>
+                  <Font name="Bank Gothic Medium BT" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="298.0" layoutY="17.0" prefHeight="34.0" prefWidth="240.0" text="James">
+               <font>
+                  <Font name="Bank Gothic Medium BT" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="135.0" fitWidth="180.0" layoutX="590.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-character-85%20(5).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="73.0" fitWidth="62.0" layoutX="26.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-decoration-66%20(2).png" />
+               </image>
+            </ImageView>
          </children>
-      </GridPane>
+      </Pane>
+      <AnchorPane fx:id="paneOnSettings" layoutX="360.0" layoutY="198.0" opacity="0.0" prefHeight="383.0" prefWidth="582.0">
+         <children>
+            <GridPane layoutX="32.0" layoutY="1.0" prefHeight="381.0" prefWidth="544.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <RadioButton fx:id="radioAccuracyEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="accuracy" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioAccuracyHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioAccuracyMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$accuracy" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioTimeEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="time" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioWordsEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="words" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioConfidenceEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="confidence" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioConfidenceMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioTimeMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioWordsMedium" mnemonicParsing="false" text="Medium" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioWordsHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioTimeHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioConfidenceHard" mnemonicParsing="false" text="Hard" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioWordsMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$words" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioTimeMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$time" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="radioConfidenceMaster" mnemonicParsing="false" text="Master" textFill="WHITE" toggleGroup="$confidence" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Confidence" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Words" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hidden-Word Mode" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <RadioButton mnemonicParsing="false" text="Yes" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="hiddenWord" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="No" textFill="WHITE" toggleGroup="$hiddenWord" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneOnBadge" layoutX="360.0" layoutY="201.0" prefHeight="399.0" prefWidth="685.0">
+         <children>
+            <AnchorPane fx:id="paneOnBadgeOne" prefHeight="395.0" prefWidth="568.0" />
+            <AnchorPane fx:id="paneOnBadgeTwo" layoutX="-6.0" layoutY="3.0" prefHeight="395.0" prefWidth="582.0" />
+            <AnchorPane fx:id="paneOnBadgeThree" layoutY="1.0" prefHeight="395.0" prefWidth="582.0" />
+            <ImageView fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-triangle-arrow-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../images/icons8-triangle-arrow-64.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
 	</children>
 	<cursor>
 		<Cursor fx:constant="DEFAULT" />
