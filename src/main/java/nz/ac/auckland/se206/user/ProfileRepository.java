@@ -71,7 +71,7 @@ public class ProfileRepository {
     currentUser = user;
   }
 
-  public static void updateUserSettings(GameData gameData) {
+  public static void updateUserStats(GameData gameData) {
 
     currentUser.addWordToHistory(gameData.getWord());
 

@@ -1,18 +1,20 @@
 package nz.ac.auckland.se206.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserProfile {
   /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
+
   private String photoPath;
 
   private Integer numOfWin;
   private Integer numOfLoss;
   private Integer bestRecord;
   private final ArrayList<String> wordsHistory;
-
   private SettingsData preferredSettings;
+  private HashMap<String, Boolean> badges;
 
   public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
@@ -25,6 +27,7 @@ public class UserProfile {
 
     wordsHistory = new ArrayList<>();
     preferredSettings = new SettingsData();
+    badges = BadgeAwarder.getEmptyBadges();
   }
 
   /**
@@ -79,10 +82,27 @@ public class UserProfile {
     return wordsHistoryString.toString();
   }
 
+  public String getBadgesAsString() {
+    StringBuilder wordsHistoryString = new StringBuilder();
+
+    // add badges if awarded == true
+    for (String badge : badges.keySet()) {
+      if (badges.get(badge)) {
+        wordsHistoryString.append(badge).append(", ");
+      }
+    }
+
+    // delete trailing comma
+    if (wordsHistoryString.length() >= 2)
+      wordsHistoryString.setLength(wordsHistoryString.length() - 2);
+
+    return wordsHistoryString.toString();
+  }
+
   public Integer getBestRecord() {
     return bestRecord;
   }
-  
+
   public Integer getScore() {
     return numOfWin - numOfLoss;
   }
@@ -94,7 +114,7 @@ public class UserProfile {
   public SettingsData getPreferredSettings() {
     return preferredSettings;
   }
-    
+
   public String getPhotoPath() {
     return photoPath;
   }

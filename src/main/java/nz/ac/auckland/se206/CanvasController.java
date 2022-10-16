@@ -15,7 +15,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,23 +41,18 @@ import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and
- * the corresponding FXML file as you see fit. For example, you might no longer
- * need the "Predict" button because the DL model should be automatically
- * queried in the background every second.
+ * This is the controller of the canvas. You are free to modify this class and the corresponding
+ * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
+ * DL model should be automatically queried in the background every second.
  *
- * <p>
- * !! IMPORTANT !!
+ * <p>!! IMPORTANT !!
  *
- * <p>
- * Although we added the scale of the image, you need to be careful when
- * changing the size of the drawable canvas and the brush size. If you make the
- * brush too big or too small with respect to the canvas size, the ML model will
- * not work correctly. So be careful. If you make some changes in the canvas and
- * brush sizes, make sure that the prediction works fine.
+ * <p>Although we added the scale of the image, you need to be careful when changing the size of the
+ * drawable canvas and the brush size. If you make the brush too big or too small with respect to
+ * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
+ * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController {
-
 
   private int interval = 59;
   private double currentX;
@@ -456,7 +450,7 @@ public class CanvasController {
 
               // Updates the current user's profile with the data from this game
               GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
-              ProfileRepository.updateUserSettings(gameData);
+              ProfileRepository.updateUserStats(gameData);
             }
           }
         },
