@@ -13,6 +13,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -31,6 +32,13 @@ public class StatsController {
   @FXML private ToggleGroup time;
   @FXML private ToggleGroup confidence;
   @FXML private ToggleGroup hiddenWord;
+  @FXML private Button buttonOnStats;
+  @FXML private Button buttonOnHistory;
+  @FXML private Button buttonOnSettings;
+  @FXML private AnchorPane paneOnSettings;
+  @FXML private AnchorPane paneOnHistory;
+  @FXML private GridPane paneOnData;
+  @FXML private AnchorPane paneOnBadge;
 
   private SettingsData settingsData;
 
@@ -38,6 +46,11 @@ public class StatsController {
     setStats();
     masterPane.setOpacity(0.2);
     fadeIn();
+    paneOnData.setVisible(true);
+    paneOnData.setOpacity(1);
+    paneOnHistory.setVisible(false);
+    paneOnSettings.setVisible(false);
+    paneOnBadge.setVisible(false);
   }
 
   private void fadeIn() {
@@ -46,7 +59,43 @@ public class StatsController {
   }
 
   @FXML
-  public void setStats() {
+  private void onChooseSettings() {
+    paneOnData.setVisible(false);
+    paneOnHistory.setVisible(false);
+    paneOnSettings.setVisible(true);
+    paneOnSettings.setOpacity(1);
+    paneOnBadge.setVisible(false);
+  }
+
+  @FXML
+  private void onChooseHistory() {
+    paneOnData.setVisible(false);
+    paneOnHistory.setVisible(true);
+    paneOnHistory.setOpacity(1);
+    paneOnSettings.setVisible(false);
+    paneOnBadge.setVisible(false);
+  }
+
+  @FXML
+  private void onChooseStats() {
+    paneOnData.setVisible(true);
+    paneOnData.setOpacity(1);
+    paneOnHistory.setVisible(false);
+    paneOnSettings.setVisible(false);
+    paneOnBadge.setVisible(false);
+  }
+
+  @FXML
+  private void onChooseBadge() {
+    paneOnData.setVisible(false);
+    paneOnBadge.setVisible(true);
+    paneOnBadge.setOpacity(1);
+    paneOnHistory.setVisible(false);
+    paneOnSettings.setVisible(false);
+  }
+
+  @FXML
+  protected void setStats() {
 
     UserProfile user = ProfileRepository.getCurrentUser();
 
