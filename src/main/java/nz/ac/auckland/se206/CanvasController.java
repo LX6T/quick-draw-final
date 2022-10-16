@@ -48,16 +48,8 @@ import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
 /**
- * This is the controller of the canvas. You are free to modify this class and the corresponding
- * FXML file as you see fit. For example, you might no longer need the "Predict" button because the
- * DL model should be automatically queried in the background every second.
- *
- * <p>!! IMPORTANT !!
- *
- * <p>Although we added the scale of the image, you need to be careful when changing the size of the
- * drawable canvas and the brush size. If you make the brush too big or too small with respect to
- * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
- * the canvas and brush sizes, make sure that the prediction works fine.
+ * This class is a controller for the canvas page, where the game is played. The user can draw on,
+ * erase from, and reset the canvas, as well as a few other functions.
  */
 public class CanvasController extends App {
 

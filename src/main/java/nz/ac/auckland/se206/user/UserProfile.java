@@ -3,10 +3,9 @@ package nz.ac.auckland.se206.user;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/** This Class will store user statistics and allow user statistics to be changed and updated */
 public class UserProfile {
-  /** This Class will store user statistics and allow user statistics to be changed and updated */
   private String accountName;
-
   private String photoPath;
   private Integer numOfWin;
   private Integer numOfLoss;
@@ -16,6 +15,12 @@ public class UserProfile {
   private SettingsData preferredSettings;
   private final HashMap<String, Boolean> badges;
 
+  /**
+   * This constructor initialises the user's profile
+   *
+   * @param accountName of the user
+   * @param photoPath where the user's profile picture is stored
+   */
   public UserProfile(String accountName, String photoPath) {
     // initialise the user by their name
     this.accountName = accountName;
@@ -43,15 +48,22 @@ public class UserProfile {
     }
   }
 
+  /**
+   * This method adds a word to the user's word history
+   *
+   * @param currentWord to be added to the word history
+   */
   public void addWordToHistory(String currentWord) {
     wordsHistory.add(currentWord);
   }
 
+  /** This method updates the user's wins and win streak */
   public void wonTheGame() {
     numOfWin = numOfWin + 1;
     winStreak = winStreak + 1;
   }
 
+  /** This method updates the user's losses and resets their win streak */
   public void lostTheGame() {
     numOfLoss = numOfLoss + 1;
     winStreak = 0;
@@ -77,6 +89,11 @@ public class UserProfile {
     return winStreak;
   }
 
+  /**
+   * This method returns all the words the user has encountered in previous games
+   *
+   * @return the user's word history as a string
+   */
   public String getWordsHistory() {
     // get words history from the arrayList
     StringBuilder wordsHistoryString = new StringBuilder();
@@ -93,6 +110,11 @@ public class UserProfile {
     return bestRecord;
   }
 
+  /**
+   * This method return the user's score = wins - losses
+   *
+   * @return wins minus losses
+   */
   public Integer getScore() {
     return numOfWin - numOfLoss;
   }
@@ -113,6 +135,11 @@ public class UserProfile {
     this.photoPath = photoPath;
   }
 
+  /**
+   * This method adds a badge to the user's list of awarded badges
+   *
+   * @param badgeName of the badge to be awarded
+   */
   public void awardBadge(String badgeName) {
     if (badges.containsKey(badgeName)) {
       badges.put(badgeName, true);

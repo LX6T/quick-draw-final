@@ -11,9 +11,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+/** This class is responsible for finding the definitions of words from the online dictionary API */
 public class Dictionary {
   private static final String API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+  /**
+   * This method searches for the definition of a word on the by querying an online dictionary API.
+   *
+   * @param word whose definition needs to be searched
+   * @return the definition of the word as a string
+   * @throws IOException if the I/O fails
+   * @throws WordNotFoundException if the word cannot be found
+   */
   public static String searchDefinition(String word) throws IOException, WordNotFoundException {
 
     OkHttpClient client = new OkHttpClient();

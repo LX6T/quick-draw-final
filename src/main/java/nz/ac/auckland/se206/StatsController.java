@@ -24,6 +24,10 @@ import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+/**
+ * This class is a controller for the user's profile page, where they can view their statistics,
+ * badges, and preferred settings.
+ */
 public class StatsController extends CanvasController {
 
   @FXML private Label labelHistory;
@@ -56,6 +60,10 @@ public class StatsController extends CanvasController {
 
   private SettingsData settingsData;
 
+  /**
+   * This method initialises the user statistics scene, updating the user's stats, settings and
+   * badges.
+   */
   public void initialize() {
     setStats();
     masterPane.setOpacity(0.2);
@@ -72,6 +80,7 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
+  /** This method switches tabs to the settings select page. */
   @FXML
   private void onChooseSettings() {
     paneOnData.setVisible(false);
@@ -81,6 +90,7 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
+  /** This method switches tabs to the word history page. */
   @FXML
   private void onChooseHistory() {
     paneOnData.setVisible(false);
@@ -90,6 +100,7 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
+  /** This method switches tabs to the statistics page. */
   @FXML
   private void onChooseStats() {
     paneOnData.setVisible(true);
@@ -99,6 +110,7 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
+  /** This method switches tabs to the badges page */
   @FXML
   private void onChooseBadge() {
     paneOnData.setVisible(false);
@@ -108,6 +120,7 @@ public class StatsController extends CanvasController {
     paneOnSettings.setVisible(false);
   }
 
+  /** This method initialises all the user's data, filling in the scene. */
   @FXML
   protected void setStats() {
 
@@ -139,12 +152,14 @@ public class StatsController extends CanvasController {
 
     if (settingsData.isComplete()) {
       buttonStart.setDisable(false);
+      // finds the radio buttons from each difficulty category
       ObservableList<Toggle> accuracyButtons = accuracy.getToggles();
       ObservableList<Toggle> wordsButtons = words.getToggles();
       ObservableList<Toggle> timeButtons = time.getToggles();
       ObservableList<Toggle> confidenceButtons = confidence.getToggles();
       ObservableList<Toggle> hiddenWordButtons = hiddenWord.getToggles();
 
+      // gets the difficulty levels from the user's preferred settings
       int accuracyDifficultyIndex =
           SettingsData.toDifficultyIndex(settingsData.getAccuracyDifficulty());
       int wordsDifficultyIndex = SettingsData.toDifficultyIndex(settingsData.getWordsDifficulty());
@@ -153,6 +168,7 @@ public class StatsController extends CanvasController {
           SettingsData.toDifficultyIndex(settingsData.getConfidenceDifficulty());
       int hiddenWordModeIndex = SettingsData.toModeIndex(settingsData.isHiddenMode());
 
+      // selects the appropriate difficulty button for each category
       accuracyButtons.get(accuracyDifficultyIndex).setSelected(true);
       wordsButtons.get(wordsDifficultyIndex).setSelected(true);
       timeButtons.get(timeDifficultyIndex).setSelected(true);
@@ -160,6 +176,7 @@ public class StatsController extends CanvasController {
       hiddenWordButtons.get(hiddenWordModeIndex).setSelected(true);
     }
 
+    // toggles the hidden word mode on/off upon clicking
     hiddenWord
         .selectedToggleProperty()
         .addListener(
@@ -170,6 +187,7 @@ public class StatsController extends CanvasController {
               }
             });
 
+    // update the accuracy level upon selecting a new difficulty
     accuracy
         .selectedToggleProperty()
         .addListener(
@@ -180,6 +198,7 @@ public class StatsController extends CanvasController {
               }
             });
 
+    // update the word level upon selecting a new difficulty
     words
         .selectedToggleProperty()
         .addListener(
@@ -190,6 +209,7 @@ public class StatsController extends CanvasController {
               }
             });
 
+    // update the time level upon selecting a new difficulty
     time.selectedToggleProperty()
         .addListener(
             (observableValue, toggle, t1) -> {
@@ -199,6 +219,7 @@ public class StatsController extends CanvasController {
               }
             });
 
+    // update the confidence level upon selecting a new difficulty
     confidence
         .selectedToggleProperty()
         .addListener(
@@ -212,6 +233,11 @@ public class StatsController extends CanvasController {
     setBadges(user);
   }
 
+  /**
+   * This method takes the user back to the main menu page.
+   *
+   * @param event is the click event
+   */
   @FXML
   private void onBack(ActionEvent event) {
     if (settingsData.isComplete()) {
@@ -220,6 +246,11 @@ public class StatsController extends CanvasController {
     fadeOutToPage(event);
   }
 
+  /**
+   * This method takes the user to the canvas page.
+   *
+   * @param event is the click event
+   */
   @FXML
   private void onStart(ActionEvent event) {
     if (settingsData.isComplete()) {
@@ -228,18 +259,33 @@ public class StatsController extends CanvasController {
     }
   }
 
+  /**
+   * This method transitions the scene to the canvas scene
+   *
+   * @param event is the click event
+   */
   private void fadeOutToCanvas(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
     ft.play();
   }
 
+  /**
+   * This method transitions the scene to the main menu page
+   *
+   * @param event is the click event
+   */
   private void fadeOutToPage(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene(event));
     ft.play();
   }
 
+  /**
+   * This method loads the canvas scene before the transition
+   *
+   * @param event is the click event
+   */
   private void loadCanvasScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -254,7 +300,14 @@ public class StatsController extends CanvasController {
     }
   }
 
+
+  /**
+   * This method loads the page scene before the transition
+   *
+   * @param event is the click event
+   */
   private void loadUserScene(ActionEvent event) {
+
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     // get the current scene setting

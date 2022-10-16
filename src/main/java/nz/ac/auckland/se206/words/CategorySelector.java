@@ -14,8 +14,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
+/** This class is responsible for generating a draw category at the beginning of each game. */
 public class CategorySelector {
 
+  /** This enum represents the three word difficulties, Easy, Medium and Hard */
   public enum Difficulty {
     E,
     M,
@@ -24,6 +26,13 @@ public class CategorySelector {
 
   private final Map<Difficulty, List<String>> difficultyMap;
 
+  /**
+   * This constructor initialises the CategorySelector
+   *
+   * @throws IOException if the I/O fails
+   * @throws CsvException if the CSV fails
+   * @throws URISyntaxException if the string cannot be parsed as a URI reference
+   */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyMap = new HashMap<>();
     for (Difficulty difficulty : Difficulty.values()) {
@@ -35,11 +44,18 @@ public class CategorySelector {
     }
   }
 
+  /**
+   * This method generates a random category of a particular difficulty
+   *
+   * @param difficulty of the word
+   * @return a word category for the user to draw
+   */
   public String generateRandomCategory(Difficulty difficulty) {
     return difficultyMap
         .get(difficulty)
         .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
   }
+
 
   public int calculateNumOfWordsInDifficulty(String wordDifficulty) {
     int numOfWords = 0;
@@ -64,6 +80,15 @@ public class CategorySelector {
     return numOfWords;
   }
 
+
+  /**
+   * This method returns the lines of the CSV file
+   *
+   * @return the lines
+   * @throws IOException if the I/O fails
+   * @throws CsvException if the CSV fails
+   * @throws URISyntaxException if the string cannot be parsed as a URI reference
+   */
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File file =
         new File(
