@@ -22,6 +22,10 @@ import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+/**
+ * This class is a controller for the sign-up page, where users can create new profiles. Users can
+ * choose a username and a profile image.
+ */
 public class SignUpController implements Initializable {
 
   @FXML private AnchorPane paneOnOne;
@@ -727,7 +731,7 @@ public class SignUpController implements Initializable {
    * this method sets up the basic parameter methods for any of the specific methods to have hover
    * effect on when mouse is pressed
    *
-   * @param anchorPane any panes
+   * @param pane any panes
    */
   private void setPressedEffect(AnchorPane pane) {
     pane.setScaleX(0.9);

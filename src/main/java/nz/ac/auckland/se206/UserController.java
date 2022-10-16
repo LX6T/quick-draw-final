@@ -24,6 +24,10 @@ import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+/**
+ * This class is a controller for the user select page, where users can select their profile to view
+ * it before playing a game. From here you can also create a new user profile.
+ */
 public class UserController {
 
   @FXML private AnchorPane masterPane;

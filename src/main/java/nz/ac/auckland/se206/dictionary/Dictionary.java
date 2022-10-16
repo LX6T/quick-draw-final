@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+/** This class is responsible for finding the definitions of words from the online dictionary API */
 public class Dictionary {
   private static final String API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 

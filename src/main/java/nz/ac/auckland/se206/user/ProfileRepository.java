@@ -9,6 +9,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
+/**
+ * This class manages the storing, saving, and updating of all the user profiles contained in the
+ * app.
+ */
 public class ProfileRepository {
 
   private static final Gson gson = new GsonBuilder().create();

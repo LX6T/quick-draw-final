@@ -4,6 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
+/** This class supplies fade transitions for in between scenes. */
 public class TransitionUtils {
   public static FadeTransition getFadeTransition(Node node, int duration, double from, double to) {
     FadeTransition ft = new FadeTransition();

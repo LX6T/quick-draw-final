@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/** This class is responsible for generating a draw category at the beginning of each game. */
 public class CategorySelector {
 
   public enum Difficulty {

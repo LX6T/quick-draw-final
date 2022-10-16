@@ -19,6 +19,10 @@ import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+/**
+ * This class is a controller for the user's profile page, where they can view their statistics,
+ * badges, and preferred settings.
+ */
 public class StatsController extends CanvasController {
   @FXML private Label labelHistory;
   @FXML private Label labelWins;

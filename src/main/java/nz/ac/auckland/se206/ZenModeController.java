@@ -30,6 +30,10 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
 
+/**
+ * This class is a controller for the zen mode canvas, where you can freely draw with no time limit.
+ * Zen mode also allows you to choose between a range of colours to draw with.
+ */
 public class ZenModeController extends CanvasController implements Initializable {
 
   @FXML private ImageView imageOnBack;

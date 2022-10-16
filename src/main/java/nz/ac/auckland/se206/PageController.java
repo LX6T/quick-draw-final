@@ -19,6 +19,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+/**
+ * This class is a controller for the main menu page that you see when you first open the game. From
+ * here you can navigate to the user profiles page, play as guest, or exit the game.
+ */
 public class PageController implements Initializable {
   @FXML private AnchorPane masterPane;
   @FXML private JFXSlider sliderOnBrightness;
