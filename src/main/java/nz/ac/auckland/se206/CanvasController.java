@@ -136,9 +136,9 @@ public class CanvasController extends App {
 
   @FXML private JFXButton buttonOnBack;
 
-  @FXML private Label displayText;
+  @FXML private Label labelText;
 
-  @FXML private Label displayTextDefinition;
+  @FXML private Label labelTextDefinition;
 
   @FXML private Label timerDisplay;
 
@@ -194,7 +194,8 @@ public class CanvasController extends App {
 
     SettingsData settings = ProfileRepository.getSettings();
 
-    // get all the game settings from the local repository and change the scene according to these
+    // get all the game settings from the local repository and change the scene
+    // according to these
     // settings chosen
 
     accuracyDifficulty = setAccuracy(settings.getAccuracyDifficulty());
@@ -203,6 +204,8 @@ public class CanvasController extends App {
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
     // get the settings
+    buttonOnHint.setDisable(true);
+    buttonOnHint.setVisible(hiddenWordMode);
 
     CategorySelector cs = new CategorySelector();
     numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
@@ -233,10 +236,10 @@ public class CanvasController extends App {
                     // after the dictionary has finished searching, turn the loading image into
                     // invisble
                     imageOnLoading.setVisible(false);
-                    displayTextDefinition.setText(definition);
+                    labelTextDefinition.setText(definition);
                     // set definition of the word if it is the hidden word mode
                   } else {
-                    displayText.setText(currentWord);
+                    labelText.setText(currentWord);
                     // set text of the word if it is not the hidden word mode
                   }
                 });
@@ -534,6 +537,7 @@ public class CanvasController extends App {
     buttonOnReady.setDisable(true);
     buttonOnErase.setDisable(false);
     buttonOnClear.setDisable(false);
+    buttonOnHint.setDisable(!hiddenWordMode);
     model = new DoodlePrediction();
     // sets up the prediction model
     Task<Void> backgroundTask =
@@ -769,7 +773,16 @@ public class CanvasController extends App {
   private void onClickHint() {
     buttonOnHint.setScaleX(1);
     buttonOnHint.setScaleY(1);
-    // Eric, do your functionalities here
+    if (labelText.getText() == "") {
+      labelText.setText(currentWord);
+      labelTextDefinition.setText("");
+      // set text to be blank
+    } else if (labelTextDefinition.getText() == "") {
+      // give the word
+      labelText.setText("");
+      labelTextDefinition.setText(definition);
+      // if the text does not have definitions
+    }
   }
 
   /** this method sets up the click animation of a hint when the mouse is entered on it */
@@ -803,7 +816,8 @@ public class CanvasController extends App {
    */
   private void noticeUser(int currentPosition) {
 
-    if (currentPosition < historyPosition) {
+    if (currentPosition <= historyPosition) {
+
       // if the current position is less than the history position then its good
       imageSad.setVisible(false);
       imageSmile.setVisible(true);

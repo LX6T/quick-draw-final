@@ -58,7 +58,24 @@ public class CategorySelector {
     String newWord;
     // initialize the variable
 
-    while (true) {
+    if (ProfileRepository.getCurrentUser() != null) {
+      // run if and only if the current user is not null
+      while (true) {
+        newWord =
+            difficultyMap
+                // use of difficulty map
+                .get(difficulty)
+                .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+        // run the while loop until reach a word not in the history
+        if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
+          break;
+        }
+      }
+
+      return newWord;
+      // return the word that is not in the history
+    } else {
+      // if the current user is null
       newWord =
           difficultyMap
               .get(difficulty)
@@ -68,9 +85,10 @@ public class CategorySelector {
         break;
         // break the while condition loop
       }
-    }
 
-    return newWord;
+      // break on the first loop and return the word
+      return newWord;
+    }
   }
 
   /**
