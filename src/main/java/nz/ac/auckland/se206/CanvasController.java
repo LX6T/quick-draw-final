@@ -352,7 +352,6 @@ public class CanvasController {
       // probability
       if (classification.getClassName().equals(currentWord)
           && classification.getProbability() >= confidenceDifficulty) {
-        System.out.println(classification.getProbability());
         return true;
       }
     }
@@ -472,7 +471,7 @@ public class CanvasController {
 
               // Updates the current user's profile with the data from this game
               GameData gameData = new GameData(currentWord, score, timeDifficulty - interval);
-              ProfileRepository.updateUserSettings(gameData);
+              ProfileRepository.updateUserStats(gameData);
             }
           }
         },
