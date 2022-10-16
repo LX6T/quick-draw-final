@@ -36,7 +36,7 @@
       				<Font name="GOST Common" size="34.0" />
       			</font>
       		</Label>
-            <ImageView fitHeight="44.0" fitWidth="52.0" layoutX="143.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="52.0" layoutX="143.0" layoutY="5.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-order-history-100%20(1).png" />
                </image>
@@ -239,6 +239,467 @@
             </ImageView>
          </children>
       </Pane>
+      <AnchorPane fx:id="paneOnBadge" layoutX="360.0" layoutY="201.0" prefHeight="399.0" prefWidth="685.0">
+         <children>
+            <ImageView fx:id="iconOnDown" fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="199.0" onMouseClicked="#onScrollDown" onMouseEntered="#onEnterDown" onMouseExited="#onExitDown" onMousePressed="#onPressDown" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-triangle-arrow-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iconOnUp" fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="109.0" onMouseClicked="#onScrollUp" onMouseEntered="#onEnterUp" onMouseExited="#onExitUp" onMousePressed="#onPressUp" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../images/icons8-triangle-arrow-64.png" />
+               </image>
+            </ImageView>
+            <GridPane layoutX="10.0" layoutY="10.0" prefHeight="395.0" prefWidth="568.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <AnchorPane fx:id="paneOnBadgeOne" prefHeight="395.0" prefWidth="582.0">
+               <children>
+                  <GridPane fx:id="gridPanePage1" prefHeight="395.0" prefWidth="568.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
+                           <children>
+                              <ImageView fx:id="badgeIconPlayAllModes" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="-2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-96.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Try out all 3 gamemodes!" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty&#10;(Accuracy)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty &#10;(Accuracy)&#10;" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty &#10;(Accuracy)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty &#10;(Words)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty &#10;(Words)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty&#10;(Words)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty &#10;(Words)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="paneOnBadgeThree" prefHeight="395.0" prefWidth="582.0" visible="false">
+               <children>
+                  <GridPane fx:id="gridPanePage3" prefHeight="395.0" prefWidth="568.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 2 Games in a Row" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 3 Games in a Row" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 5 Games in a Row" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fx:id="badgeIconPlayAllModes2" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 10 Games in a Row" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 5 Games" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 10 Games" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 20 Games" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 50 Games" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="paneOnBadgeTwo" prefHeight="395.0" prefWidth="582.0" visible="false">
+               <children>
+                  <GridPane fx:id="gridPanePage2" prefHeight="395.0" prefWidth="568.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty &#10;(Time)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty &#10;(Time)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty &#10;(Time)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fx:id="badgeIconPlayAllModes1" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty &#10;(Time)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty &#10;(Confidence)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty &#10;(Confidence)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty &#10;(Confidence)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
+                                 <image>
+                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty &#10;(Confidence)" x="80.0" y="30.0">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Text>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                        </Pane>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="paneOnSettings" layoutX="360.0" layoutY="198.0" opacity="0.0" prefHeight="383.0" prefWidth="582.0">
          <children>
             <GridPane layoutX="32.0" layoutY="1.0" prefHeight="381.0" prefWidth="544.0">
@@ -384,395 +845,6 @@
                   </RadioButton>
                </children>
             </GridPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneOnBadge" layoutX="360.0" layoutY="201.0" prefHeight="399.0" prefWidth="685.0">
-         <children>
-            <ImageView fx:id="scrollDownIcon" fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="199.0" onMouseClicked="#onScrollDown" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-triangle-arrow-64.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="scrollUpIcon" fitHeight="83.0" fitWidth="69.0" layoutX="602.0" layoutY="109.0" onMouseClicked="#onScrollUp" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-               <image>
-                  <Image url="@../images/icons8-triangle-arrow-64.png" />
-               </image>
-            </ImageView>
-            <GridPane layoutX="10.0" layoutY="10.0" prefHeight="395.0" prefWidth="568.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <AnchorPane fx:id="paneOnBadgeOne" prefHeight="395.0" prefWidth="582.0">
-               <children>
-                  <GridPane fx:id="gridPanePage1" prefHeight="395.0" prefWidth="568.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
-                           <children>
-                              <ImageView fx:id="badgeIconPlayAllModes" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="-2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-96.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Try out all 3 gamemodes!" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty (Accuracy)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty (Accuracy)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty (Accuracy)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty (Words)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty (Words)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty (Words)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty (Words)" x="80.0" y="30.0" />
-                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                     </children>
-                  </GridPane>
-               </children></AnchorPane>
-            <AnchorPane fx:id="paneOnBadgeTwo" prefHeight="395.0" prefWidth="582.0" visible="false">
-               <children>
-                  <GridPane fx:id="gridPanePage2" prefHeight="395.0" prefWidth="568.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty (Time)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty (Time)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty (Time)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
-                           <children>
-                              <ImageView fx:id="badgeIconPlayAllModes1" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty (Time)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Easy Difficulty (Confidence)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Medium Difficulty (Confidence)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Hard Difficulty (Confidence)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win on Master Difficulty (Confidence)" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                     </children>
-                  </GridPane>
-               </children></AnchorPane>
-            <AnchorPane fx:id="paneOnBadgeThree" prefHeight="395.0" prefWidth="582.0" visible="false">
-               <children>
-                  <GridPane fx:id="gridPanePage3" prefHeight="395.0" prefWidth="568.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 2 Games in a Row" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 3 Games in a Row" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 5 Games in a Row" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.rowIndex="3">
-                           <children>
-                              <ImageView fx:id="badgeIconPlayAllModes2" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 10 Games in a Row" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1">
-                           <children>
-                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="4.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-90.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 5 Games" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-100.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 10 Games" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="5.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-3.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-prize-64.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 20 Games" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c3b077; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" x="5.0" y="11.0">
-                                 <image>
-                                    <Image url="@../images/icons8-no-user-alt-windows-10/icons8-badge-60.png" />
-                                 </image>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Win 50 Games" x="80.0" y="30.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                        </Pane>
-                     </children>
-                  </GridPane>
-               </children></AnchorPane>
          </children>
       </AnchorPane>
 	</children>

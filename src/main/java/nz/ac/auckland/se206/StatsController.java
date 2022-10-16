@@ -6,6 +6,7 @@ import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -21,7 +24,7 @@ import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
-public class StatsController {
+public class StatsController extends App{
   @FXML private Label labelHistory;
   @FXML private Label labelWins;
   @FXML private Label labelLosses;
@@ -47,12 +50,15 @@ public class StatsController {
   @FXML private GridPane gridPanePage1;
   @FXML private GridPane gridPanePage2;
   @FXML private GridPane gridPanePage3;
+  @FXML private ImageView iconOnDown;
+  @FXML private ImageView iconOnUp;
 
   private SettingsData settingsData;
 
   public void initialize() {
     setStats();
     masterPane.setOpacity(0.2);
+    masterPane.setCursor(new ImageCursor(image));
     fadeIn();
     paneOnData.setVisible(true);
     paneOnData.setOpacity(1);
@@ -336,6 +342,8 @@ public class StatsController {
 
   @FXML
   private void onScrollUp() {
+	  iconOnUp.setScaleX(1);
+	  iconOnUp.setScaleY(1);
     if (paneOnBadgeTwo.isVisible()) {
       paneOnBadgeOne.setVisible(true);
       paneOnBadgeTwo.setVisible(false);
@@ -347,6 +355,8 @@ public class StatsController {
 
   @FXML
   private void onScrollDown() {
+	  iconOnDown.setScaleX(1);
+	  iconOnDown.setScaleY(1);
     if (paneOnBadgeOne.isVisible()) {
       paneOnBadgeOne.setVisible(false);
       paneOnBadgeTwo.setVisible(true);
@@ -354,5 +364,47 @@ public class StatsController {
       paneOnBadgeTwo.setVisible(false);
       paneOnBadgeThree.setVisible(true);
     }
+  }
+  
+  @FXML
+  private void onEnterUp() {
+	  iconOnUp.setScaleX(1.1);
+	  iconOnUp.setScaleY(1.1);
+	  iconOnUp.setEffect(new Bloom(0.3));
+  }
+  
+  @FXML
+  private void onExitUp() {
+	  iconOnUp.setScaleX(1);
+	  iconOnUp.setScaleY(1);
+	  iconOnUp.setEffect(null);
+  }
+  
+  @FXML
+  private void onPressUp() {
+	  iconOnUp.setScaleX(0.9);
+	  iconOnUp.setScaleY(0.9);
+	  
+  }
+  
+  @FXML  
+  private void onEnterDown() {
+	  iconOnDown.setScaleX(1.1);
+	  iconOnDown.setScaleY(1.1);
+	  iconOnDown.setEffect(new Bloom(0.3));
+  }
+  
+  @FXML
+  private void onExitDown() {
+	  iconOnDown.setScaleX(1);
+	  iconOnDown.setScaleY(1);
+	  iconOnDown.setEffect(null);
+  }
+  
+  @FXML
+  private void onPressDown() {
+	  iconOnDown.setScaleX(0.9);
+	  iconOnDown.setScaleY(0.9);
+	 
   }
 }
