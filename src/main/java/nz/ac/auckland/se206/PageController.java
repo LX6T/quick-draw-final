@@ -43,6 +43,12 @@ public class PageController implements Initializable {
 
   private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
+  /**
+   * This method initialises the menu page scene
+   *
+   * @param location is the URL location
+   * @param resources are the resources needed
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (musicIsOn) {
@@ -68,12 +74,14 @@ public class PageController implements Initializable {
     musicIsOn = true;
   }
 
+  /** This method exits the game */
   @FXML
   private void onExit() {
     Platform.exit();
     System.exit(0);
   }
 
+  /** This method resets the volume to the default value, 50% */
   @FXML
   private void onAutoVolume() {
     // set the brightness to 50 when selected
@@ -85,6 +93,7 @@ public class PageController implements Initializable {
     }
   }
 
+  /** This method resets the brightness to the default value, 50% */
   @FXML
   private void onAutoBrightness() {
     // set the brightness to 50 when selected
@@ -97,23 +106,43 @@ public class PageController implements Initializable {
     }
   }
 
+  /**
+   * This method triggers the transition to the user select screen.
+   *
+   * @param event is the click event
+   */
   @FXML
   private void onSignIn(ActionEvent event) {
     fadeOutToUser(event);
   }
 
+  /**
+   * This method transitions the scene to the user select screen.
+   *
+   * @param event is the click event
+   */
   private void fadeOutToUser(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene(event));
     ft.play();
   }
 
+  /**
+   * This method transitions the scene to the zen mode screen
+   *
+   * @param event is the click event
+   */
   private void fadeOutToZen(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadZenScene(event));
     ft.play();
   }
 
+  /**
+   * This method loads the zen mode screen.
+   *
+   * @param event is the click event
+   */
   private void loadZenScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -126,6 +155,11 @@ public class PageController implements Initializable {
     }
   }
 
+  /**
+   * This method loads the user select screen.
+   *
+   * @param event is the click event
+   */
   private void loadUserScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
@@ -137,11 +171,17 @@ public class PageController implements Initializable {
     }
   }
 
+  /** This scene handles the fade in animation when the scene is loaded */
   private void fadeIn() {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
     ft.play();
   }
 
+  /**
+   * This method triggers the transition to the zen mode screen.
+   *
+   * @param event is the click event
+   */
   @FXML
   private void onLoad(ActionEvent event) {
     fadeOutToZen(event);
