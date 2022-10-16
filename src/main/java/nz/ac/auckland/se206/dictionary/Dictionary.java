@@ -15,6 +15,14 @@ import org.json.JSONTokener;
 public class Dictionary {
   private static final String API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+  /**
+   * This method searches for the definition of a word on the by querying an online dictionary API.
+   *
+   * @param word whose definition needs to be searched
+   * @return the definition of the word as a string
+   * @throws IOException if the I/O fails
+   * @throws WordNotFoundException if the word cannot be found
+   */
   public static String searchDefinition(String word) throws IOException, WordNotFoundException {
 
     OkHttpClient client = new OkHttpClient();

@@ -72,6 +72,12 @@ public class DoodlePrediction {
     //    System.out.println(sb);
   }
 
+  /**
+   * This method converts the predictions to a readable string
+   *
+   * @param predictions are the ordered list of predictions made by the network
+   * @return the list of predictions as a string builder
+   */
   public static StringBuilder givePredictions(
       final List<Classifications.Classification> predictions) {
     final StringBuilder sb = new StringBuilder();
