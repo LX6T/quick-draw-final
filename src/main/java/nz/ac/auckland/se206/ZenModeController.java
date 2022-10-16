@@ -24,6 +24,8 @@ import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -192,6 +194,9 @@ public class ZenModeController extends CanvasController implements Initializable
     imageTwelve = new Image(cursorURLTwelve.toExternalForm());
   }
 
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
+
   /**
    * this method will be executed before any other operations are done, this also sets up the fade
    * in transition animation for it
@@ -300,6 +305,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickBack() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnBack);
     Scene scene = imageOnBack.getScene();
     // this will get the current scene the image is in and set this scene to be the
@@ -341,6 +350,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickClear() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnClear);
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
@@ -375,6 +388,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickRubber() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnRubber);
     graphic.setStroke(Color.WHITE);
   }
@@ -414,6 +431,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickSave() throws IOException {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // sets up the animation of hover effect
     setZoomOnClick(imageOnSave);
     Task<Void> backgroundTask =
@@ -470,6 +491,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickReset() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnReset);
     // set the hover effect animation for click
     String randomWord = null;
@@ -731,6 +756,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 1 */
   @FXML
   private void onClickOne() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnOne);
 
     // sets up the hover effect for click
@@ -741,6 +770,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 2 */
   @FXML
   private void onClickTwo() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnTwo);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTwo, 2.5, 2.5));
@@ -750,6 +783,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 3 */
   @FXML
   private void onClickThree() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnThree);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageThree, 2.5, 2.5));
@@ -759,6 +796,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 4 */
   @FXML
   private void onClickFour() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnFour);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageFour, 2.5, 2.5));
@@ -768,6 +809,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 5 */
   @FXML
   private void onClickFive() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnFive);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageFive, 2.5, 2.5));
@@ -777,6 +822,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 6 */
   @FXML
   private void onClickSix() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnSix);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageSix, 2.5, 2.5));
@@ -786,6 +835,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 7 */
   @FXML
   private void onClickSeven() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnSeven);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageSeven, 2.5, 2.5));
@@ -795,6 +848,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 8 */
   @FXML
   private void onClickEight() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnEight);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageEight, 2.5, 2.5));
@@ -804,6 +861,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 9 */
   @FXML
   private void onClickNine() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnNine);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageNine, 2.5, 2.5));
@@ -813,6 +874,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 10 */
   @FXML
   private void onClickTen() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnTen);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTen, 2.5, 2.5));
@@ -822,6 +887,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 101 */
   @FXML
   private void onClickEleven() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnEleven);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageEleven, 2.5, 2.5));
@@ -831,6 +900,10 @@ public class ZenModeController extends CanvasController implements Initializable
   /** this method set up the hover animation and click animation and color selection for pen 12 */
   @FXML
   private void onClickTwelve() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     setZoomOnClick(imageOnTwelve);
     // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTwelve, 2.5, 2.5));

@@ -17,6 +17,8 @@ import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -55,6 +57,9 @@ public class SignUpController implements Initializable {
   @FXML private Label labelOnMessage;
 
   @FXML private AnchorPane masterPane;
+
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
 
   private final URL linkOne = App.class.getResource("/images/" + "icons8-character-85 (3).png");
 
@@ -180,6 +185,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickOne() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnOne.setScaleX(1);
     paneOnOne.setScaleY(1);
@@ -205,6 +214,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickTwo() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnTwo.setScaleX(1);
     paneOnTwo.setScaleY(1);
@@ -230,6 +243,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickThree() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnThree.setScaleX(1);
     paneOnThree.setScaleY(1);
@@ -255,6 +272,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickFour() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnFour.setScaleX(1);
     paneOnFour.setScaleY(1);
@@ -280,6 +301,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickFive() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnFive.setScaleX(1);
     paneOnFive.setScaleY(1);
@@ -305,6 +330,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickSix() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnSix.setScaleX(1);
     paneOnSix.setScaleY(1);
@@ -330,6 +359,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickSeven() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnSeven.setScaleX(1);
     paneOnSeven.setScaleY(1);
@@ -355,6 +388,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickEight() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnEight.setScaleX(1);
     paneOnEight.setScaleY(1);
@@ -380,6 +417,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onClickNine() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // reset the size of the image for hovering effect
     paneOnNine.setScaleX(1);
     paneOnNine.setScaleY(1);
@@ -638,6 +679,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onBack() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     fadeOutToUser();
   }
 
@@ -647,6 +692,10 @@ public class SignUpController implements Initializable {
    */
   @FXML
   private void onConfirm() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     String name = userName.getText();
     // get the hash map from the local repository
     HashMap<String, UserProfile> hashMap = ProfileRepository.getHashMapProfile();

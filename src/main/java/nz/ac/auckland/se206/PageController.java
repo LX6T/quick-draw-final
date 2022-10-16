@@ -32,19 +32,21 @@ public class PageController implements Initializable {
   @FXML private JFXButton buttonOnMode;
 
   private static boolean musicIsOn;
-  private ColorAdjust colorAdjust = new ColorAdjust();
+  private static ColorAdjust colorAdjust = new ColorAdjust();
   private static URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
   private static Media backgroundMusic;
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
 
   static {
     assert musicURL != null;
     backgroundMusic = new Media(musicURL.toExternalForm());
   }
 
-  private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+  private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
   /**
-   * This method initialises the menu page scene run before any others are executed
+   * This method initialises the menu page scene
    *
    * @param location is the URL location
    * @param resources are the resources needed
@@ -53,7 +55,6 @@ public class PageController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     if (musicIsOn) {
       masterPane.setOpacity(0.2);
-      // set the opacity of the master pane
       fadeIn();
     }
     sliderOnBrightness.setValue(50);
@@ -75,16 +76,19 @@ public class PageController implements Initializable {
     musicIsOn = true;
   }
 
-  /** This method exits the game of the platform and the system ending all the events */
+  /** This method exits the game */
   @FXML
   private void onExit() {
     Platform.exit();
     System.exit(0);
   }
 
-  /** This method resets the volume to the default value, 50% which is also 50 on the bar */
+  /** This method resets the volume to the default value, 50% */
   @FXML
   private void onAutoVolume() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    soundPlayer.play();
+    // play the sound
     // set the brightness to 50 when selected
     if (buttonOnVolume.isSelected()) {
       sliderOnVolume.setValue(50);
@@ -94,9 +98,13 @@ public class PageController implements Initializable {
     }
   }
 
-  /** This method resets the brightness to the default value, 50% which is also 50 on the bar */
+  /** This method resets the brightness to the default value, 50% */
   @FXML
   private void onAutoBrightness() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // set the brightness to 50 when selected
     if (buttonOnBrightness.isSelected()) {
       sliderOnBrightness.setValue(50);
@@ -114,6 +122,9 @@ public class PageController implements Initializable {
    */
   @FXML
   private void onSignIn(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    soundPlayer.play();
+    // play the sound
     fadeOutToUser(event);
   }
 
@@ -185,6 +196,9 @@ public class PageController implements Initializable {
    */
   @FXML
   private void onLoad(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    soundPlayer.play();
+    // play the sound
     fadeOutToZen(event);
   }
 }
