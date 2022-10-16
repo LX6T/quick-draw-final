@@ -69,6 +69,7 @@ public class CanvasController {
   private Boolean score = false;
   private final javafx.event.EventHandler<MouseEvent> onRunEvent =
       new javafx.event.EventHandler<>() {
+        // this event handler should clear the canvas acting as a rubber
 
         @Override
         public void handle(MouseEvent event) {
@@ -77,6 +78,7 @@ public class CanvasController {
       };
   private final javafx.event.EventHandler<MouseEvent> onRunEventTwo =
       new javafx.event.EventHandler<>() {
+        // this event handler should write to the canvas acting like a pen
 
         @Override
         public void handle(MouseEvent event) {
@@ -85,6 +87,7 @@ public class CanvasController {
                 currentX = e.getX();
                 currentY = e.getY();
               });
+          // get the current coordinate
 
           canvas.setOnMouseDragged(
               e -> {
@@ -198,37 +201,50 @@ public class CanvasController {
 
     SettingsData settings = ProfileRepository.getSettings();
 
+    // get all the game settings from the local repository and change the scene according to these
+    // settings chosen
+
     accuracyDifficulty = setAccuracy(settings.getAccuracyDifficulty());
     wordDifficulty = settings.getWordsDifficulty();
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
+
     CategorySelector cs = new CategorySelector();
     numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
     historyPosition = numberOfWords - 1;
 
+
     timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
+    // set new word based on the settings
 
     Task<Void> backgroundTask =
+        // declare a background task that performs the dictionary searching task
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
             if (hiddenWordMode) {
+              // show the loading image when the dictionary hasn't been loaded
               Platform.runLater(
                   () -> {
                     imageOnLoading.setVisible(true);
                   });
               definition = Dictionary.searchDefinition(currentWord);
+              // search based on the dictionary
             }
             Platform.runLater(
                 () -> {
                   if (hiddenWordMode) {
+                    // after the dictionary has finished searching, turn the loading image into
+                    // invisble
                     imageOnLoading.setVisible(false);
                     displayTextDefinition.setText(definition);
+                    // set definition of the word if it is the hidden word mode
                   } else {
                     displayText.setText(currentWord);
+                    // set text of the word if it is not the hidden word mode
                   }
                 });
             return null;
@@ -238,6 +254,12 @@ public class CanvasController {
     backgroundThread.start();
   }
 
+  /**
+   * set accuracy which is the number of predictions allowed to win the game based on the settings
+   *
+   * @param difficulty a string based on the settings
+   * @return an integer number of how many are allowed
+   */
   private int setAccuracy(String difficulty) {
     // Easy -> correct word must be in the top 3 words
     int accuracy = 3;
@@ -258,6 +280,12 @@ public class CanvasController {
     return accuracy;
   }
 
+  /**
+   * set the amount of time allowed in a game based on the settings in local repository
+   *
+   * @param difficulty which is a string from repository
+   * @return an integer of the amount of time allowed
+   */
   private int setTime(String difficulty) {
     // Easy -> 60 seconds to draw
     int time = 60;
@@ -283,6 +311,12 @@ public class CanvasController {
     return time;
   }
 
+  /**
+   * this method sets the confidence level of the game based on the settings in repository
+   *
+   * @param difficulty which is a string from local repository
+   * @return a double number of confidence level
+   */
   private double setConfidence(String difficulty) {
     // Easy -> Minimum 1% confidence to win
     double confidence = 0.01;
@@ -308,6 +342,14 @@ public class CanvasController {
     return confidence;
   }
 
+  /**
+   * this method sets up a new word based on the difficulty settings chosen from the profile scene
+   *
+   * @throws IOException
+   * @throws URISyntaxException
+   * @throws CsvException
+   * @throws WordNotFoundException
+   */
   @FXML
   private void setNewWord()
       throws IOException, URISyntaxException, CsvException, WordNotFoundException {
@@ -348,10 +390,13 @@ public class CanvasController {
     currentWord = categorySelector.generateRandomCategory(difficulty);
   }
 
-  private void fadeIn() {
+  /** this methods sets up the basic fade in transition animation between different scenes */
+  protected void fadeIn() {
     FadeTransition ft = new FadeTransition();
-    ft.setDuration(Duration.millis(500));
+    ft.setDuration(Duration.millis(300));
+    // duration is 300
     ft.setNode(masterPane);
+    // set the node to be the master pane to perform the transition
     ft.setFromValue(0.2);
     ft.setToValue(1);
     ft.play();
@@ -391,6 +436,12 @@ public class CanvasController {
     return this.score;
   }
 
+  /**
+   * this method tells the user whether the game is won based on the result prediction list given
+   *
+   * @param classifications the prediction list
+   * @return a boolean indicating yes or no
+   */
   private boolean isWin(List<Classification> classifications) {
     // this method will tell whether the current prediction has won or not
     for (Classification classification : classifications) {
@@ -430,31 +481,55 @@ public class CanvasController {
     return imageBinary;
   }
 
+  /**
+   * this method sets up the fade out transition animation from the current scene to the previous
+   * scene
+   *
+   * @param event ongoing action event
+   */
   @FXML
   private void onBack(ActionEvent event) {
     timer.cancel();
     // stop the tasks that are allocated to the timer
-    fadeOutTwo(event);
+    fadeOutToStatsScene(event);
   }
 
-  private void fadeOutTwo(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 500, 1, 0.2);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
+  /**
+   * this method sets up the basic parameter for the current scene to fade out to the stats scene
+   *
+   * @param event an ongoing action event
+   */
+  private void fadeOutToStatsScene(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadStatsScene(event));
     ft.play();
   }
 
-  private void loadPageScene(ActionEvent event) {
+  /**
+   * this method loads the stats scene and is used when the fade out transition animation is
+   * finished
+   *
+   * @param event an ongoing action event
+   */
+  private void loadStatsScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
 
     try {
       // load the canvas scene when press this button
-      sceneButtonIsIn.setRoot(App.loadFxml("page"));
+      sceneButtonIsIn.setRoot(App.loadFxml("profilePage"));
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
+  /**
+   * this method sets up the timer and refreshing prediction list per second for the GUI and also
+   * automatically update when the user has won or lost
+   *
+   * @throws ModelException
+   * @throws IOException
+   */
   @FXML
   private void onReady() throws ModelException, IOException {
     this.interval = timeDifficulty - 1;
@@ -467,6 +542,7 @@ public class CanvasController {
     buttonOnErase.setDisable(false);
     buttonOnClear.setDisable(false);
     model = new DoodlePrediction();
+    // sets up the prediction model
     Task<Void> backgroundTask =
         new Task<Void>() {
 
@@ -476,12 +552,15 @@ public class CanvasController {
             TextToSpeech speaker = new TextToSpeech();
             speaker.speak("The game starts");
             speaker.speak("Good Luck");
+            // text to speech feature incorporated
 
             return null;
           }
         };
+    // sets up the background task
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
+    // start a background thread
 
     // when the ready button is pressed, show text to speech feature
 
@@ -496,14 +575,17 @@ public class CanvasController {
             if (interval > 0 && !score) {
               // update the text on the Timer Label
               Platform.runLater(() -> timerDisplay.setText(Integer.toString(interval)));
+              // update the timer for count down feature
               Platform.runLater(
                   () -> {
                     try {
                       score = onPredict();
+                      // automatically update on the game status
                     } catch (TranslateException e) {
                       e.printStackTrace();
                     }
                   });
+              // access to the platform thread
               Platform.runLater(
                   () -> {
                     try {
@@ -552,6 +634,7 @@ public class CanvasController {
               buttonOnSave.setDisable(false);
               buttonOnErase.setDisable(true);
               buttonOnClear.setDisable(true);
+              // disable the respective buttons when the timer is finished
 
               TextToSpeech speaker = new TextToSpeech();
               if (!score) {
@@ -577,6 +660,7 @@ public class CanvasController {
         },
         1000,
         1000);
+    // perform at a fixed rate of one second
 
     graphic = canvas.getGraphicsContext2D();
 
@@ -608,6 +692,11 @@ public class CanvasController {
         });
   }
 
+  /**
+   * this method resets the scene and the timer to get a new word of the same category
+   *
+   * @param event an ongoing action event
+   */
   @FXML
   private void onReset(ActionEvent event) {
     timer.cancel();
@@ -622,6 +711,12 @@ public class CanvasController {
     }
   }
 
+  /**
+   * this method sets up the eraser feature of the canvas and supports the switch between pencil and
+   * eraser
+   *
+   * @param event an ongoing action event
+   */
   @FXML
   private void onErase(ActionEvent event) {
     graphic = canvas.getGraphicsContext2D();
@@ -665,8 +760,13 @@ public class CanvasController {
     }
   }
 
+  /**
+   * this method allows the current screen shots to be saved to the files of a destination we want
+   *
+   * @throws IOException
+   */
   @FXML
-  protected void saveToFiles() throws IOException {
+  protected void onSave() throws IOException {
     FileChooser fc = new FileChooser();
     Stage stage = new Stage();
     File imageToClassify = fc.showSaveDialog(stage);
@@ -675,6 +775,7 @@ public class CanvasController {
     ImageIO.write(getCurrentSnapshot(), "bmp", imageToClassify);
   }
 
+  /** this method sets up the click animation of a hint when the mouse is clicked on it */
   @FXML
   private void onClickHint() {
     buttonOnHint.setScaleX(1);
@@ -682,6 +783,7 @@ public class CanvasController {
     // Eric, do your functionalities here
   }
 
+  /** this method sets up the click animation of a hint when the mouse is entered on it */
   @FXML
   private void onEnterHint() {
     buttonOnHint.setScaleX(1.1);
@@ -689,6 +791,7 @@ public class CanvasController {
     buttonOnHint.setEffect(new Bloom(0.3));
   }
 
+  /** this method sets up the click animation of a hint when the mouse is exited on it */
   @FXML
   private void onExitHint() {
     buttonOnHint.setScaleX(1);
@@ -696,6 +799,7 @@ public class CanvasController {
     buttonOnHint.setEffect(null);
   }
 
+  /** this method sets up the click animation of a hint when the mouse is pressed on it */
   @FXML
   private void onPressHint() {
     buttonOnHint.setScaleX(0.9);

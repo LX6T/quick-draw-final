@@ -28,16 +28,16 @@ public class PageController implements Initializable {
   @FXML private JFXButton buttonOnMode;
 
   private static boolean musicIsOn;
-  private static  ColorAdjust colorAdjust = new ColorAdjust();
-  private static  URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
-  private static  Media backgroundMusic;
+  private static ColorAdjust colorAdjust = new ColorAdjust();
+  private static URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
+  private static Media backgroundMusic;
 
   static {
     assert musicURL != null;
     backgroundMusic = new Media(musicURL.toExternalForm());
   }
 
-  private static final MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+  private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -98,30 +98,25 @@ public class PageController implements Initializable {
     fadeOutToUser(event);
   }
 
-  @FXML
-  private void onStart(ActionEvent event) {
-    fadeOutToCanvas(event);
-  }
-
-  private void fadeOutToCanvas(ActionEvent event) {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadCanvasScene(event));
-    ft.play();
-  }
-
   private void fadeOutToUser(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
     ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene(event));
     ft.play();
   }
 
-  private void loadCanvasScene(ActionEvent event) {
+  private void fadeOutToZen(ActionEvent event) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadZenScene(event));
+    ft.play();
+  }
+
+  private void loadZenScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
 
     try {
       // load the canvas scene when press this button
-      sceneButtonIsIn.setRoot(App.loadFxml("canvas"));
+      sceneButtonIsIn.setRoot(App.loadFxml("zenMode"));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -144,12 +139,7 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void onLoad() {
-    Scene scene = buttonOnMode.getScene();
-    try {
-      scene.setRoot(App.loadFxml("zenMode"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  private void onLoad(ActionEvent event) {
+    fadeOutToZen(event);
   }
 }

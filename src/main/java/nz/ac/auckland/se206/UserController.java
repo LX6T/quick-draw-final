@@ -75,7 +75,12 @@ public class UserController {
     image = new Image(cursorURL.toExternalForm());
   }
 
+  /**
+   * this method initialize the user scene and will be called before the start of any operations on
+   * this scene
+   */
   public void initialize() {
+    // set opacity to 0.2 to get the correct transition animation
     masterPane.setOpacity(0.2);
     fadeIn();
     masterPane.setCursor(new ImageCursor(image, 2.5, 2.5));
@@ -85,14 +90,22 @@ public class UserController {
     numOfUsersPresentInTheFile = hashMap.size();
 
     resetUserCards();
+    // reset the number of users as there could be change in file
   }
 
+  /**
+   * this method will reset the user cards number and should be called whenever there is a change to
+   * the user profile repository
+   */
   public void resetUserCards() {
     HashMap<String, UserProfile> hashMap = ProfileRepository.getHashMapProfile();
+    // always reload the profile from repository
     numOfUsersPresentInTheFile = hashMap.size();
+    // get the size of the hash map to know how many users have been signed up
     Set<String> userNameSet = hashMap.keySet();
     if (numOfUsersPresentInTheFile == 3) {
       buttonOnSignUp.setDisable(true);
+      // disable and enable the specific buttons depending on the number of users
     } else if (numOfUsersPresentInTheFile < 3) {
       buttonOnSignUp.setDisable(false);
     }
@@ -115,6 +128,7 @@ public class UserController {
       paneOnUserTwo.setVisible(false);
       paneOnUserThree.setVisible(false);
       for (String string : userNameSet) {
+        // if there is only one user in the repository then check the only element in the key
         labelOnUserOne.setText(string);
         imageOnUserOne.setImage(
             new Image(
@@ -146,19 +160,23 @@ public class UserController {
       for (String string : userNameSet) {
 
         if (i == 1) {
+          // if the number of user is one
           labelOnUserOne.setText(string);
           imageOnUserOne.setImage(
               new Image(
                   Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
                       .toExternalForm()));
         } else if (i == 2) {
+          // if the number of user is two
           labelOnUserTwo.setText(string);
+          // always set the respective user image to the correct slots
           imageOnUserTwo.setImage(
               new Image(
                   Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
                       .toExternalForm()));
         }
         i++;
+        // increment value of i to keep track of the number of users
       }
 
       // set the respective image views to be visible and others to be invisible
@@ -188,18 +206,24 @@ public class UserController {
 
         if (i == 1) {
           labelOnUserOne.setText(string);
+          // if the number of users is one
           imageOnUserOne.setImage(
+              // set the user profile photo
               new Image(
                   Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
                       .toExternalForm()));
         } else if (i == 2) {
+          // if the number of users is two
           labelOnUserTwo.setText(string);
+          // set the user profile photo
           imageOnUserTwo.setImage(
               new Image(
                   Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
                       .toExternalForm()));
         } else if (i == 3) {
+          // if the number of users is three
           labelOnUserThree.setText(string);
+          // set the profile photo for users
           imageOnUserThree.setImage(
               new Image(
                   Objects.requireNonNull(App.class.getResource(hashMap.get(string).getPhotoPath()))
@@ -226,7 +250,12 @@ public class UserController {
       // is 0
     }
   }
-
+  /**
+   * this method will set up the fade in transition animation whenever the scene is initialized has
+   * longer duration
+   *
+   * @param node any component in a scene
+   */
   private void fadeIn(Node node) {
     // fade-in transition animation for a particular nodes
     FadeTransition ft = TransitionUtils.getFadeTransition(node, 2000, 0, 1);
@@ -239,8 +268,12 @@ public class UserController {
     ft.play();
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user one when the
+   * mouse is entered
+   */
   @FXML
-  private void enterMouseUserOne() {
+  private void onEnterMouseUserOne() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user one on start button
 
@@ -249,16 +282,24 @@ public class UserController {
     imageOnStartUserOne.setEffect(bloom);
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user one when the
+   * mouse is leaved
+   */
   @FXML
-  private void leaveMouseUserOne() {
+  private void onLeaveMouseUserOne() {
     // set the hovering effect for user one on start button
     imageOnStartUserOne.setScaleX(1);
     imageOnStartUserOne.setScaleY(1);
     imageOnStartUserOne.setEffect(null);
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user two when the
+   * mouse is entered
+   */
   @FXML
-  private void enterMouseUserTwo() {
+  private void onEnterMouseUserTwo() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user two on start button
 
@@ -267,16 +308,24 @@ public class UserController {
     imageOnStartUserTwo.setEffect(bloom);
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user two when the
+   * mouse is leaved
+   */
   @FXML
-  private void leaveMouseUserTwo() {
+  private void onLeaveMouseUserTwo() {
     // set the hovering effect for user two on start button
     imageOnStartUserTwo.setScaleX(1);
     imageOnStartUserTwo.setScaleY(1);
     imageOnStartUserTwo.setEffect(null);
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user three when the
+   * mouse is entered
+   */
   @FXML
-  private void enterMouseUserThree() {
+  private void onEnterMouseUserThree() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user three on start button
 
@@ -285,16 +334,21 @@ public class UserController {
     imageOnStartUserThree.setEffect(bloom);
   }
 
+  /**
+   * this method will set up the hover effect animation for a leave button for user three when the
+   * mouse is leaved
+   */
   @FXML
-  private void leaveMouseUserThree() {
+  private void onLeaveMouseUserThree() {
     // set the hovering effect for user three on start button
     imageOnStartUserThree.setScaleX(1);
     imageOnStartUserThree.setScaleY(1);
     imageOnStartUserThree.setEffect(null);
   }
 
+  /** this method will set up the hover effect animation for user one when the mouse is entered */
   @FXML
-  private void enterMouseUserOneOnDelete() {
+  private void onEnterMouseUserOneOnDelete() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user one on delete button
 
@@ -303,16 +357,18 @@ public class UserController {
     imageOnDeleteUserOne.setEffect(bloom);
   }
 
+  /** this method will set up the hover effect animation for user one when the mouse is leaved */
   @FXML
-  private void leaveMouseUserOneOnDelete() {
+  private void onLeaveMouseUserOneOnDelete() {
     // set the hovering effect for user one on delete button
     imageOnDeleteUserOne.setScaleX(1);
     imageOnDeleteUserOne.setScaleY(1);
     imageOnDeleteUserOne.setEffect(null);
   }
 
+  /** this method will set up the hover effect animation for user two when the mouse is entered */
   @FXML
-  private void enterMouseUserTwoOnDelete() {
+  private void onEnterMouseUserTwoOnDelete() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user one on delete button
 
@@ -321,16 +377,18 @@ public class UserController {
     imageOnDeleteUserTwo.setEffect(bloom);
   }
 
+  /** this method will set up the hover effect animation for user two when the mouse is leaved */
   @FXML
-  private void leaveMouseUserTwoOnDelete() {
+  private void onLeaveMouseUserTwoOnDelete() {
     // set the hovering effect for user one on delete button
     imageOnDeleteUserTwo.setScaleX(1);
     imageOnDeleteUserTwo.setScaleY(1);
     imageOnDeleteUserTwo.setEffect(null);
   }
 
+  /** this method will set up the hover effect animation for user three when the mouse is entered */
   @FXML
-  private void enterMouseUserThreeOnDelete() {
+  private void onEnterMouseUserThreeOnDelete() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for user one on delete button
 
@@ -339,16 +397,21 @@ public class UserController {
     imageOnDeleteUserThree.setEffect(bloom);
   }
 
+  /** this method will set up the hover effect animation for user three when the mouse is leaved */
   @FXML
-  private void leaveMouseUserThreeOnDelete() {
+  private void onLeaveMouseUserThreeOnDelete() {
     // set the hovering effect for user one on delete button
     imageOnDeleteUserThree.setScaleX(1);
     imageOnDeleteUserThree.setScaleY(1);
     imageOnDeleteUserThree.setEffect(null);
   }
 
+  /**
+   * this method will update the hash map of the profile repository and delete the respective user
+   * that is associated to it in user one
+   */
   @FXML
-  private void clickOnDeleteUserOne() {
+  private void onClickOnDeleteUserOne() {
     imageOnDeleteUserOne.setScaleX(0.9);
     imageOnDeleteUserOne.setScaleY(0.9);
     if (boxOnEnable.isSelected()) {
@@ -367,9 +430,12 @@ public class UserController {
       boxOnEnable.setEffect(new Bloom(0.3));
     }
   }
-
+  /**
+   * this method will update the hash map of the profile repository and delete the respective user
+   * that is associated to it in user two
+   */
   @FXML
-  private void clickOnDeleteUserTwo() {
+  private void onClickOnDeleteUserTwo() {
     imageOnDeleteUserTwo.setScaleX(0.9);
     imageOnDeleteUserTwo.setScaleY(0.9);
     if (boxOnEnable.isSelected()) {
@@ -388,8 +454,12 @@ public class UserController {
     }
   }
 
+  /**
+   * this method will update the hash map of the profile repository and delete the respective user
+   * that is associated to it in user three
+   */
   @FXML
-  private void clickOnDeleteUserThree() {
+  private void onClickOnDeleteUserThree() {
     imageOnDeleteUserThree.setScaleX(0.9);
     imageOnDeleteUserThree.setScaleY(0.9);
     if (boxOnEnable.isSelected()) {
@@ -400,6 +470,7 @@ public class UserController {
       // remove the respective user from the hashMap and update it
       hashMap.remove(labelOnUserThree.getText());
       ProfileRepository.updateHashMap(hashMap);
+      // get the hashmap and update on it
       ProfileRepository.updateProfiles();
       resetUserCards();
     } else {
@@ -408,13 +479,18 @@ public class UserController {
     }
   }
 
+  /**
+   * this method will set up the sign up function of the scene and create the fade out transition
+   * animation for it
+   */
   @FXML
   private void onSignUp() {
     fadeOutToSignUp();
   }
 
+  /** this method will set up the hover effect animation of a mouse enters the back button */
   @FXML
-  private void enterMouseOnBack() {
+  private void onEnterMouseOnBack() {
     Bloom bloom = new Bloom(0.3);
     // set the hovering effect for back button on delete button
 
@@ -423,127 +499,129 @@ public class UserController {
     imageOnBack.setEffect(bloom);
   }
 
+  /**
+   * this method will set up the hover effect animation when the mouse is leaved from the back
+   * button
+   */
   @FXML
-  private void leaveMouseOnBack() {
+  private void onLeaveMouseOnBack() {
     // set the hovering effect for back button on delete button
     imageOnBack.setScaleX(1);
     imageOnBack.setScaleY(1);
     imageOnBack.setEffect(null);
   }
 
+  /** this method will handle the back to page event of the back button on this scene */
   @FXML
-  private void backToPage() {
+  private void onBackToPage() {
     imageOnBack.setScaleX(1);
     imageOnBack.setScaleY(1);
     fadeOutToPage();
   }
 
+  /** this method will set up the hover animation when click on start button of user one */
   @FXML
-  private void clickOnStartUserOne() {
+  private void onClickOnStartUserOne() {
     imageOnStartUserOne.setScaleX(1);
     imageOnStartUserOne.setScaleY(1);
-    UserProfile currentUser = ProfileRepository.get(labelOnUserOne.getText());
+    fadeOutToStatsScene(labelOnUserOne);
+    // james will see what the root is
+  }
+
+  /** this method will set up the basic parameters of the fade out to stats scene */
+  private void fadeOutToStatsScene(Label label) {
+    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
+    ft.setOnFinished((ActionEvent eventTwo) -> loadStatsScene(label));
+    ft.play();
+  }
+
+  /** this method will fill up the set on finished behavior of a fade transition animation */
+  private void loadStatsScene(Label label) {
+    UserProfile currentUser = ProfileRepository.get(label.getText());
+    // update the current user so that it can be accessed to
     ProfileRepository.setCurrentUser(currentUser);
-    Scene sceneButtonIsIn = labelOnUserOne.getScene();
+    Scene sceneButtonIsIn = label.getScene();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
+    // load the root of the next scene and fill it to the current scene
     Parent root = null;
     try {
       root = loader.load();
+      // load the root
     } catch (IOException e) {
       e.printStackTrace();
     }
     sceneButtonIsIn.setRoot(root);
-    // james will see what the root is
   }
 
+  /** this method will set up the hover animation when click on start button of user two */
   @FXML
-  private void clickOnStartUserTwo() {
+  private void onClickOnStartUserTwo() {
     imageOnStartUserTwo.setScaleX(1);
     imageOnStartUserTwo.setScaleY(1);
-    UserProfile currentUser = ProfileRepository.get(labelOnUserTwo.getText());
-    ProfileRepository.setCurrentUser(currentUser);
-    Scene sceneButtonIsIn = labelOnUserOne.getScene();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
-    Parent root = null;
-    try {
-      root = loader.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    sceneButtonIsIn.setRoot(root);
-    // james will see what the root is
+    fadeOutToStatsScene(labelOnUserTwo);
   }
 
+  /** this method will set up the hover animation when click on start button of user three */
   @FXML
-  private void clickOnStartUserThree() {
+  private void onClickOnStartUserThree() {
     imageOnStartUserThree.setScaleX(1);
     imageOnStartUserThree.setScaleY(1);
-    UserProfile currentUser = ProfileRepository.get(labelOnUserThree.getText());
-    ProfileRepository.setCurrentUser(currentUser);
-    Scene sceneButtonIsIn = labelOnUserOne.getScene();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profilePage.fxml"));
-    Parent root = null;
-    try {
-      root = loader.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    sceneButtonIsIn.setRoot(root);
+    fadeOutToStatsScene(labelOnUserThree);
     // james will see what the root is
   }
 
   /** this method will set up the press integrated animation for start button in user one */
   @FXML
-  private void pressOnStartUserOne() {
+  private void onPressOnStartUserOne() {
     imageOnStartUserOne.setScaleX(0.9);
     imageOnStartUserOne.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for start button in user two */
   @FXML
-  private void pressOnStartUserTwo() {
+  private void onPressOnStartUserTwo() {
     imageOnStartUserTwo.setScaleX(0.9);
     imageOnStartUserTwo.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for start button in user three */
   @FXML
-  private void pressOnStartUserThree() {
+  private void onPressOnStartUserThree() {
     imageOnStartUserThree.setScaleX(0.9);
     imageOnStartUserThree.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for delete button in user one */
   @FXML
-  private void pressOnDeleteUserOne() {
+  private void onPressOnDeleteUserOne() {
     imageOnDeleteUserOne.setScaleX(0.9);
     imageOnDeleteUserOne.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for delete button in user two */
   @FXML
-  private void pressOnDeleteUserTwo() {
+  private void onPressOnDeleteUserTwo() {
     imageOnDeleteUserTwo.setScaleX(0.9);
     imageOnDeleteUserTwo.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for delete button in user three */
   @FXML
-  private void pressOnDeleteUserThree() {
+  private void onPressOnDeleteUserThree() {
     imageOnDeleteUserThree.setScaleX(0.9);
     imageOnDeleteUserThree.setScaleY(0.9);
   }
 
   /** this method will set up the press integrated animation for back button in master pane */
   @FXML
-  private void pressOnBackButton() {
+  private void onPressOnBackButton() {
     imageOnBack.setScaleX(0.9);
     imageOnBack.setScaleY(0.9);
   }
 
   /** whenever click on box enabled button, the effect of it should be immediately removed. */
   @FXML
-  private void onBoxEnabled() {
+  private void onEnableBox() {
     boxOnEnable.setEffect(null);
   }
 
