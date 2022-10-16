@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import java.util.Objects;
-
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +49,7 @@ public class StatsController {
   public void setStats() {
 
     UserProfile user = ProfileRepository.getCurrentUser();
-    buttonStart.setDisable(true);
+
     if (Objects.equals(user.getWordsHistory(), "")) {
       // if this username is inside the words history
       labelHistory.setText("N/A");
