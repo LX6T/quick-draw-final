@@ -24,7 +24,9 @@ import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
+
 public class StatsController extends App{
+
   @FXML private Label labelHistory;
   @FXML private Label labelWins;
   @FXML private Label labelLosses;
@@ -69,11 +71,6 @@ public class StatsController extends App{
     paneOnBadgeTwo.setVisible(false);
     paneOnBadgeThree.setVisible(false);
     paneOnBadge.setVisible(false);
-  }
-
-  private void fadeIn() {
-    FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 0.2, 1);
-    ft.play();
   }
 
   @FXML
