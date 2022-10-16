@@ -26,24 +26,7 @@ public class StatsController {
   @FXML private Label labelScore;
   @FXML private Label labelRecord;
   @FXML private AnchorPane masterPane;
-
-  @FXML private RadioButton radioAccuracyEasy;
-  @FXML private RadioButton radioAccuracyMedium;
-  @FXML private RadioButton radioAccuracyHard;
-  @FXML private RadioButton radioWordsEasy;
-  @FXML private RadioButton radioWordsMedium;
-  @FXML private RadioButton radioWordsHard;
-  @FXML private RadioButton radioWordsMaster;
-  @FXML private RadioButton radioTimeEasy;
-  @FXML private RadioButton radioTimeMedium;
-  @FXML private RadioButton radioTimeHard;
-  @FXML private RadioButton radioTimeMaster;
-  @FXML private RadioButton radioConfidenceEasy;
-  @FXML private RadioButton radioConfidenceMedium;
-  @FXML private RadioButton radioConfidenceHard;
-  @FXML private RadioButton radioConfidenceMaster;
   @FXML private Button buttonStart;
-
   @FXML private ToggleGroup accuracy;
   @FXML private ToggleGroup words;
   @FXML private ToggleGroup time;

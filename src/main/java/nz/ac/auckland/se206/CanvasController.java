@@ -55,28 +55,24 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  * the canvas and brush sizes, make sure that the prediction works fine.
  */
 public class CanvasController {
-
   private int interval = 59;
   private double currentX;
   private double currentY;
-
-  private Timer timer = new Timer();
+  private final Timer timer = new Timer();
   private Boolean score = false;
-  private javafx.event.EventHandler<MouseEvent> onRunEvent =
-      new javafx.event.EventHandler<MouseEvent>() {
+  private final javafx.event.EventHandler<MouseEvent> onRunEvent =
+      new javafx.event.EventHandler<>() {
 
         @Override
         public void handle(MouseEvent event) {
-          // TODO Auto-generated method stub
-          graphic.clearRect(event.getX() - 5 / 2, event.getY() - 5 / 2, 10, 10);
+          graphic.clearRect(event.getX() - 2.5, event.getY() - 2.5, 10, 10);
         }
       };
-  private javafx.event.EventHandler<MouseEvent> onRunEventTwo =
-      new javafx.event.EventHandler<MouseEvent>() {
+  private final javafx.event.EventHandler<MouseEvent> onRunEventTwo =
+      new javafx.event.EventHandler<>() {
 
         @Override
         public void handle(MouseEvent event) {
-          // TODO Auto-generated method stub
           canvas.setOnMousePressed(
               e -> {
                 currentX = e.getX();
@@ -106,44 +102,25 @@ public class CanvasController {
       };
 
   @FXML private Button buttonOnSave;
-
   @FXML private Button buttonOnReady;
-
   @FXML private Button buttonOnErase;
-
   @FXML private Label scoreLabel;
-
   @FXML private Button buttonOnClear;
-
   @FXML private Canvas canvas;
-
   @FXML private Button buttonOnReset;
-
   private GraphicsContext graphic;
-
   private DoodlePrediction model;
-
   private String currentWord;
   private int accuracyDifficulty;
   private String wordDifficulty;
   private int timeDifficulty;
   private double confidenceDifficulty;
   private boolean hiddenWordMode;
-
-  @FXML private Button buttonOnBack;
-
   @FXML private Label displayText;
-
   @FXML private Label displayTextDefinition;
-
   @FXML private Label timerDisplay;
-
-  @FXML private Button readyButton;
-
   @FXML private Label textToRefresh;
-
   @FXML private AnchorPane masterPane;
-
   @FXML private Button buttonHint;
 
   // #035526
@@ -151,14 +128,13 @@ public class CanvasController {
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
    *
-   * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException
-   * @throws CsvException
-   * @throws WordNotFoundException
+   * @throws URISyntaxException If the string cannot be parsed as a URI reference
+   * @throws CsvException If there is a problem with the CSV file
+   * @throws WordNotFoundException If the word cannot be found
    */
   public void initialize()
-      throws ModelException, IOException, CsvException, URISyntaxException, WordNotFoundException {
+      throws IOException, CsvException, URISyntaxException, WordNotFoundException {
     masterPane.setOpacity(0.2);
     // set the starting opacity setting
     fadeIn();
@@ -263,8 +239,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void setNewWord()
-      throws IOException, URISyntaxException, CsvException, WordNotFoundException {
+  private void setNewWord() throws IOException, URISyntaxException, CsvException {
     int randInt;
     CategorySelector categorySelector = new CategorySelector();
     Random rand = new Random();
@@ -511,7 +486,7 @@ public class CanvasController {
   @FXML
   private void onReset(ActionEvent event) {
     timer.cancel();
-    // stop the count down timer to count down.
+    // stop the countdown timer to count down.
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     try {
@@ -523,7 +498,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void onErase(ActionEvent event) {
+  private void onErase() {
     graphic = canvas.getGraphicsContext2D();
     // get the current canvas graphic
 
