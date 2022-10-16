@@ -8,14 +8,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -24,10 +21,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
 public class PageController implements Initializable {
-
-  @FXML private JFXButton buttonOnStart;
-  @FXML private JFXButton buttonOnExit;
-  @FXML private TextField userName;
   @FXML private AnchorPane masterPane;
   @FXML private JFXSlider sliderOnBrightness;
   @FXML private JFXSlider sliderOnVolume;
@@ -36,14 +29,16 @@ public class PageController implements Initializable {
   @FXML private JFXButton buttonOnMode;
 
   private static boolean musicIsOn;
+  private static final ColorAdjust colorAdjust = new ColorAdjust();
+  private static final URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
+  private static final Media backgroundMusic;
 
-  private static ColorAdjust colorAdjust = new ColorAdjust();
+  static {
+    assert musicURL != null;
+    backgroundMusic = new Media(musicURL.toExternalForm());
+  }
 
-  boolean constant = false;
-
-  private static URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
-  private static Media backgroundMusic = new Media(musicURL.toExternalForm());
-  private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+  private static final MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +46,6 @@ public class PageController implements Initializable {
       masterPane.setOpacity(0.2);
       fadeIn();
     }
-    // TODO Auto-generated method stub
     sliderOnBrightness.setValue(50);
     sliderOnVolume.setValue(50);
     masterPane.setEffect(colorAdjust);
@@ -60,27 +54,12 @@ public class PageController implements Initializable {
     if (!musicIsOn) {
       sliderOnVolume
           .valueProperty()
-          .addListener(
-              new InvalidationListener() {
-
-                @Override
-                public void invalidated(Observable observable) {
-                  // TODO Auto-generated method stub
-                  mediaPlayer.setVolume(sliderOnVolume.getValue() / 100);
-                }
-              });
+          .addListener(observable -> mediaPlayer.setVolume(sliderOnVolume.getValue() / 100));
 
       sliderOnBrightness
           .valueProperty()
           .addListener(
-              new InvalidationListener() {
-
-                @Override
-                public void invalidated(Observable observable) {
-                  // TODO Auto-generated method stub
-                  colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50);
-                }
-              });
+              observable -> colorAdjust.setBrightness((sliderOnBrightness.getValue() - 50) / 50));
       mediaPlayer.play();
     }
     musicIsOn = true;
@@ -92,12 +71,10 @@ public class PageController implements Initializable {
     System.exit(0);
   }
 
-  public void music() {}
-
   @FXML
   private void onAutoVolume() {
     // set the brightness to 50 when selected
-    if (buttonOnVolume.isSelected() == true) {
+    if (buttonOnVolume.isSelected()) {
       sliderOnVolume.setValue(50);
       mediaPlayer.setVolume(0.5);
     } else {
@@ -108,7 +85,7 @@ public class PageController implements Initializable {
   @FXML
   private void onAutoBrightness() {
     // set the brightness to 50 when selected
-    if (buttonOnBrightness.isSelected() == true) {
+    if (buttonOnBrightness.isSelected()) {
       sliderOnBrightness.setValue(50);
       colorAdjust.setBrightness(0);
       masterPane.setEffect(colorAdjust);
@@ -118,12 +95,12 @@ public class PageController implements Initializable {
   }
 
   @FXML
-  private void onSignIn(ActionEvent event) throws InterruptedException {
-    fadeOutTwo(event);
+  private void onSignIn() {
+    fadeOutTwo();
   }
 
   @FXML
-  private void onStart(ActionEvent event) throws InterruptedException {
+  private void onStart(ActionEvent event) {
     fadeOut(event);
   }
 
@@ -133,7 +110,7 @@ public class PageController implements Initializable {
     ft.play();
   }
 
-  private void fadeOutTwo(ActionEvent event) {
+  private void fadeOutTwo() {
     FadeTransition ft = new FadeTransition();
     ft.setDuration(Duration.millis(500));
     ft.setNode(masterPane);
@@ -145,7 +122,6 @@ public class PageController implements Initializable {
           try {
             scene.setRoot(App.loadFxml("user"));
           } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
           }
         });
@@ -165,7 +141,6 @@ public class PageController implements Initializable {
   }
 
   private void fadeIn() {
-    // TODO Auto-generated method stub
     FadeTransition ft = new FadeTransition();
     ft.setDuration(Duration.millis(500));
     ft.setNode(masterPane);
@@ -180,7 +155,6 @@ public class PageController implements Initializable {
     try {
       scene.setRoot(App.loadFxml("zenMode"));
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

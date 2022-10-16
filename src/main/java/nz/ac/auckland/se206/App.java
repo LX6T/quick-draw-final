@@ -19,9 +19,14 @@ import nz.ac.auckland.se206.user.ProfileRepository;
 // some comments//
 public class App extends Application {
 
-  private URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
+  private final URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
-  private Image image = new Image(cursorURL.toExternalForm());
+  private final Image image;
+
+  {
+    assert cursorURL != null;
+    image = new Image(cursorURL.toExternalForm());
+  }
 
   public static void main(final String[] args) {
     launch();
