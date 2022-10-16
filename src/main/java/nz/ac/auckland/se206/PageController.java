@@ -27,8 +27,6 @@ public class PageController implements Initializable {
 
   @FXML private JFXButton buttonOnStart;
   @FXML private JFXButton buttonOnExit;
-  @FXML private JFXButton buttonOnSignIn;
-  @FXML private JFXButton buttonOnSignUp;
   @FXML private TextField userName;
   @FXML private AnchorPane masterPane;
   @FXML private JFXSlider sliderOnBrightness;
@@ -175,15 +173,15 @@ public class PageController implements Initializable {
     ft.setToValue(1);
     ft.play();
   }
-  
+
   @FXML
   private void onLoad() {
-	  Scene scene = buttonOnMode.getScene();
-	  try {
-		scene.setRoot(App.loadFxml("zenMode"));
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+    Scene scene = buttonOnMode.getScene();
+    try {
+      scene.setRoot(App.loadFxml("zenMode"));
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 }

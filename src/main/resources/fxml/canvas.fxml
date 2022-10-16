@@ -99,6 +99,14 @@
 						<Bloom />
 					</effect>
 				</Label>
+            <Label fx:id="displayTextDefinition" contentDisplay="CENTER" layoutX="277.0" layoutY="121.0" prefHeight="48.0" prefWidth="354.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Label>
 				<Label fx:id="displayText" contentDisplay="CENTER" layoutX="324.0" layoutY="121.0" prefHeight="48.0" prefWidth="307.0" textAlignment="CENTER" textFill="WHITE">
 					<font>
 						<Font name="System Bold" size="22.0" />
@@ -108,6 +116,7 @@
 					</effect>
 				</Label>
 				<Line endX="-14.000015258789062" endY="-80.99999237060547" layoutX="14.0" layoutY="81.0" opacity="0.54" startX="-11.666671752929688" startY="520.0" stroke="WHITE" strokeWidth="3.0" />
+            <Button fx:id="buttonHint" layoutX="80.0" layoutY="134.0" mnemonicParsing="false" onAction="#onProvideHint" text="Hint" />
 			</children>
 		</Pane>
 		<Label fx:id="textToRefresh" alignment="CENTER" contentDisplay="CENTER" layoutX="903.0" layoutY="91.0" prefHeight="463.0" prefWidth="145.0" textFill="WHITE">

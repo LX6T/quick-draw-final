@@ -91,7 +91,7 @@
 					<children>
 						<Pane prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<JFXButton fx:id="buttonOnStart" buttonType="RAISED" layoutX="67.0" layoutY="-11.0" onAction="#onStart" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
+								<JFXButton fx:id="buttonStart" buttonType="RAISED" layoutX="67.0" layoutY="-11.0" onAction="#onStart" prefHeight="55.0" prefWidth="151.0" style="-fx-background-radius: 20px;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Start" textFill="#534747">
 									<font>
 										<Font size="25.0" />
 									</font>
@@ -258,6 +258,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <RadioButton fx:id="radioAccuracyEasy" mnemonicParsing="false" text="Easy" textFill="WHITE" GridPane.columnIndex="1">
@@ -291,6 +292,13 @@
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Confidence" GridPane.rowIndex="3" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Words" GridPane.rowIndex="1" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" GridPane.rowIndex="2" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hidden-Word Mode" GridPane.rowIndex="4" />
+            <RadioButton mnemonicParsing="false" text="Yes" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <toggleGroup>
+                  <ToggleGroup fx:id="hiddenWord" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="No" textFill="WHITE" toggleGroup="$hiddenWord" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
 	</children>
