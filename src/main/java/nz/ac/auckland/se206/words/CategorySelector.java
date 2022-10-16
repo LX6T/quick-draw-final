@@ -35,7 +35,9 @@ public class CategorySelector {
    */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyMap = new HashMap<>();
+    //initiate a hash map
     for (Difficulty difficulty : Difficulty.values()) {
+    	//allocate the elements accordingly
       difficultyMap.put(difficulty, new ArrayList<>());
     }
 
@@ -56,30 +58,39 @@ public class CategorySelector {
         .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
   }
 
-
+  /**
+   * this method calculates the number of words in each difficulty return the size of the list
+   * @param wordDifficulty String input
+   * @return an integer represents the size of the list
+   */
   public int calculateNumOfWordsInDifficulty(String wordDifficulty) {
     int numOfWords = 0;
+    //initiate the numOfWords variable
     switch (wordDifficulty) {
       case "Easy":
+    	  //in case it's easy
         numOfWords += difficultyMap.get(Difficulty.E).size();
         break;
       case "Medium":
+    	  //in case it's medium
         numOfWords +=
             difficultyMap.get(Difficulty.E).size() + difficultyMap.get(Difficulty.M).size();
         break;
       case "Hard":
+    	  // in case it's hard
         numOfWords +=
             difficultyMap.get(Difficulty.E).size()
                 + difficultyMap.get(Difficulty.M).size()
                 + difficultyMap.get(Difficulty.H).size();
+        //add the words into the hash map
         break;
       case "Master":
+    	  // in case it's master
         numOfWords += difficultyMap.get(Difficulty.H).size();
         break;
     }
     return numOfWords;
   }
-
 
   /**
    * This method returns the lines of the CSV file
@@ -91,13 +102,16 @@ public class CategorySelector {
    */
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File file =
+    		//initiate a file variable
         new File(
             Objects.requireNonNull(CategorySelector.class.getResource("/category_difficulty.csv"))
                 .toURI());
+    //get number of lines from the file due to its properties
 
     try (FileReader fr = new FileReader(file, StandardCharsets.UTF_8);
         CSVReader reader = new CSVReader(fr)) {
       return reader.readAll();
+      //return a list of string
     }
   }
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -57,6 +58,8 @@ public class StatsController extends CanvasController {
   @FXML private GridPane gridPanePage3;
   @FXML private ImageView iconOnDown;
   @FXML private ImageView iconOnUp;
+  @FXML private Label labelOnCurrentUser;
+  @FXML private ImageView imageOnCurrentUser;
 
   private SettingsData settingsData;
 
@@ -66,23 +69,32 @@ public class StatsController extends CanvasController {
    */
   public void initialize() {
     setStats();
+    //set the stats to the users
     masterPane.setOpacity(0.2);
     masterPane.setCursor(new ImageCursor(image));
     fadeIn();
+    //fade in transition animation
     paneOnData.setVisible(true);
     paneOnData.setOpacity(1);
     paneOnHistory.setVisible(false);
     paneOnSettings.setVisible(false);
+    //set the correct nodes to be visible
 
     paneOnBadgeOne.setVisible(true);
     paneOnBadgeTwo.setVisible(false);
     paneOnBadgeThree.setVisible(false);
     paneOnBadge.setVisible(false);
+    //set the correct badges to be visible
+    labelOnCurrentUser.setText(ProfileRepository.getCurrentUser().getAccountName());
+    Image image = new Image(App.class.getResource(ProfileRepository.getCurrentUser().getPhotoPath()).toExternalForm());
+    imageOnCurrentUser.setImage(image);
+    //update the label of current user and the image
   }
 
-  /** This method switches tabs to the settings select page. */
+  /** This method switches tabs to the settings select page. Also allows users to choose settings */
   @FXML
   private void onChooseSettings() {
+	  //set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnHistory.setVisible(false);
     paneOnSettings.setVisible(true);
@@ -90,9 +102,10 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
-  /** This method switches tabs to the word history page. */
+  /** This method switches tabs to the word history page. Also allows users to choose settings */
   @FXML
   private void onChooseHistory() {
+	//set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnHistory.setVisible(true);
     paneOnHistory.setOpacity(1);
@@ -100,9 +113,10 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
-  /** This method switches tabs to the statistics page. */
+  /** Also allows users to choose settings This method switches tabs to the statistics page. */
   @FXML
   private void onChooseStats() {
+	//set the correct pane to be visible
     paneOnData.setVisible(true);
     paneOnData.setOpacity(1);
     paneOnHistory.setVisible(false);
@@ -110,9 +124,10 @@ public class StatsController extends CanvasController {
     paneOnBadge.setVisible(false);
   }
 
-  /** This method switches tabs to the badges page */
+  /** Also allows users to choose settings This method switches tabs to the badges page */
   @FXML
   private void onChooseBadge() {
+	//set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnBadge.setVisible(true);
     paneOnBadge.setOpacity(1);
@@ -120,9 +135,10 @@ public class StatsController extends CanvasController {
     paneOnSettings.setVisible(false);
   }
 
-  /** This method initialises all the user's data, filling in the scene. */
+  /** This method initialises all the user's data, filling in the scene. set all the correct stats*/
   @FXML
   protected void setStats() {
+	//set the correct pane to be visible
 
     UserProfile user = ProfileRepository.getCurrentUser();
 
@@ -300,7 +316,6 @@ public class StatsController extends CanvasController {
     }
   }
 
-
   /**
    * This method loads the page scene before the transition
    *
@@ -321,14 +336,20 @@ public class StatsController extends CanvasController {
     }
   }
 
+  /**
+   * this method sets up the correct and earned number of badges of the user and is also responsible of changing the color
+   * @param user A userProfile taken as input
+   */
   @FXML
   private void setBadges(UserProfile user) {
     ObservableList<Node> page1 = gridPanePage1.getChildren();
     ObservableList<Node> page2 = gridPanePage2.getChildren();
     ObservableList<Node> page3 = gridPanePage3.getChildren();
+    //get three different pages of badges
 
     ColorAdjust colorAdjust = new ColorAdjust();
     colorAdjust.setHue(0.2);
+    //set color change effect
 
     Node badge1 = page1.get(0);
     Node badge2 = page1.get(1);
@@ -338,6 +359,7 @@ public class StatsController extends CanvasController {
     Node badge6 = page1.get(5);
     Node badge7 = page1.get(6);
     Node badge8 = page1.get(7);
+    //allocate badge 1 to 7 all to page 1
 
     Node badge9 = page2.get(0);
     Node badge10 = page2.get(1);
@@ -347,6 +369,7 @@ public class StatsController extends CanvasController {
     Node badge14 = page2.get(5);
     Node badge15 = page2.get(6);
     Node badge16 = page2.get(7);
+    //allocate badge 9 to 16 all to page 2
 
     Node badge17 = page3.get(0);
     Node badge18 = page3.get(1);
@@ -356,65 +379,88 @@ public class StatsController extends CanvasController {
     Node badge22 = page3.get(5);
     Node badge23 = page3.get(6);
     Node badge24 = page3.get(7);
+    //allocate badges 17 to 24 all to badge 3
 
     if (user.hasBadge("allModes")) badge1.setEffect(colorAdjust);
+    //set the respective settings for badges if the user have earned the badge
 
     if (user.hasBadge("accuracy1")) badge2.setEffect(colorAdjust);
     if (user.hasBadge("accuracy2")) badge3.setEffect(colorAdjust);
     if (user.hasBadge("accuracy3")) badge4.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of accuracy
 
     if (user.hasBadge("words1")) badge5.setEffect(colorAdjust);
     if (user.hasBadge("words2")) badge6.setEffect(colorAdjust);
     if (user.hasBadge("words3")) badge7.setEffect(colorAdjust);
     if (user.hasBadge("words4")) badge8.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of words
 
     if (user.hasBadge("time1")) badge9.setEffect(colorAdjust);
     if (user.hasBadge("time2")) badge10.setEffect(colorAdjust);
     if (user.hasBadge("time3")) badge11.setEffect(colorAdjust);
     if (user.hasBadge("time4")) badge12.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of times
 
     if (user.hasBadge("confidence1")) badge13.setEffect(colorAdjust);
     if (user.hasBadge("confidence2")) badge14.setEffect(colorAdjust);
     if (user.hasBadge("confidence3")) badge15.setEffect(colorAdjust);
     if (user.hasBadge("confidence4")) badge16.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of confidence
 
     if (user.hasBadge("streak2")) badge17.setEffect(colorAdjust);
     if (user.hasBadge("streak3")) badge18.setEffect(colorAdjust);
     if (user.hasBadge("streak5")) badge19.setEffect(colorAdjust);
     if (user.hasBadge("streak10")) badge20.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of streak
 
     if (user.hasBadge("win5")) badge21.setEffect(colorAdjust);
     if (user.hasBadge("win10")) badge22.setEffect(colorAdjust);
     if (user.hasBadge("win20")) badge23.setEffect(colorAdjust);
     if (user.hasBadge("win50")) badge24.setEffect(colorAdjust);
+  //set the respective settings for badges if the user have earned the badge of win numbers
   }
 
+  /**
+   * this method will scroll up the page of the badges replacing the pane by another pane that is above it
+   */
   @FXML
   private void onScrollUp() {
+	  //resize the shape of the icon on Up
     iconOnUp.setScaleX(1);
     iconOnUp.setScaleY(1);
     if (paneOnBadgeTwo.isVisible()) {
+    	//set the correct badges to be visible
       paneOnBadgeOne.setVisible(true);
       paneOnBadgeTwo.setVisible(false);
     } else if (paneOnBadgeThree.isVisible()) {
+    	//set the correct badges to be invisible
       paneOnBadgeTwo.setVisible(true);
       paneOnBadgeThree.setVisible(false);
     }
   }
 
+  /**
+   * this method will scroll up the page of the badges replacing the pane by another pane that is below it
+   */
   @FXML
   private void onScrollDown() {
+	  //resize the shape of the icon on down
     iconOnDown.setScaleX(1);
     iconOnDown.setScaleY(1);
+    //set the correct badges to be visible
     if (paneOnBadgeOne.isVisible()) {
       paneOnBadgeOne.setVisible(false);
       paneOnBadgeTwo.setVisible(true);
     } else if (paneOnBadgeTwo.isVisible()) {
+    	//set the correct badges to be invisible
       paneOnBadgeTwo.setVisible(false);
       paneOnBadgeThree.setVisible(true);
     }
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse enters up image for this image
+   */
   @FXML
   private void onEnterUp() {
     iconOnUp.setScaleX(1.1);
@@ -422,6 +468,9 @@ public class StatsController extends CanvasController {
     iconOnUp.setEffect(new Bloom(0.3));
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse exits up image for this image
+   */
   @FXML
   private void onExitUp() {
     iconOnUp.setScaleX(1);
@@ -429,12 +478,18 @@ public class StatsController extends CanvasController {
     iconOnUp.setEffect(null);
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse presses up image for this image
+   */
   @FXML
   private void onPressUp() {
     iconOnUp.setScaleX(0.9);
     iconOnUp.setScaleY(0.9);
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse enters down image for this image
+   */
   @FXML
   private void onEnterDown() {
     iconOnDown.setScaleX(1.1);
@@ -442,6 +497,9 @@ public class StatsController extends CanvasController {
     iconOnDown.setEffect(new Bloom(0.3));
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse exits down image for this image
+   */
   @FXML
   private void onExitDown() {
     iconOnDown.setScaleX(1);
@@ -449,6 +507,9 @@ public class StatsController extends CanvasController {
     iconOnDown.setEffect(null);
   }
 
+  /**
+   * this method sets up the hover effect animation when mouse presses down image for this image
+   */
   @FXML
   private void onPressDown() {
     iconOnDown.setScaleX(0.9);

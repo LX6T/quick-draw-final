@@ -222,12 +222,12 @@
                   <Font name="Bank Gothic Medium BT" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="298.0" layoutY="17.0" prefHeight="34.0" prefWidth="240.0" text="James">
+            <Label fx:id="labelOnCurrentUser" layoutX="298.0" layoutY="17.0" prefHeight="34.0" prefWidth="240.0" text="James">
                <font>
                   <Font name="Bank Gothic Medium BT" size="36.0" />
                </font>
             </Label>
-            <ImageView fitHeight="135.0" fitWidth="180.0" layoutX="590.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageOnCurrentUser" fitHeight="135.0" fitWidth="180.0" layoutX="590.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-character-85%20(5).png" />
                </image>
