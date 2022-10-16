@@ -58,7 +58,7 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  * the canvas size, the ML model will not work correctly. So be careful. If you make some changes in
  * the canvas and brush sizes, make sure that the prediction works fine.
  */
-public class CanvasController {
+public class CanvasController extends App{
 
   private int interval = 59;
   private double currentX;

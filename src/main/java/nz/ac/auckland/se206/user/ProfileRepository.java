@@ -78,8 +78,6 @@ public class ProfileRepository {
 
     saveProfile(currentUser);
     updateProfiles();
-
-    System.out.println("UPDATED");
   }
 
   public static void updateUserSettings(SettingsData settingsData) {

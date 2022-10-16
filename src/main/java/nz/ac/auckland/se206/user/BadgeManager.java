@@ -9,6 +9,7 @@ public class BadgeManager {
   private static final List<String> badgeNames =
       new ArrayList<>(
           List.of(
+              "allModes",
               "accuracy1",
               "accuracy2",
               "accuracy3",
