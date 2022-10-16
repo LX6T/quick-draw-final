@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
@@ -62,6 +65,8 @@ public class StatsController extends CanvasController {
   @FXML private ImageView imageOnCurrentUser;
 
   private SettingsData settingsData;
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
 
   /**
    * This method initialises the user statistics scene, updating the user's stats, settings and
@@ -98,6 +103,10 @@ public class StatsController extends CanvasController {
   /** This method switches tabs to the settings select page. Also allows users to choose settings */
   @FXML
   private void onChooseSettings() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnHistory.setVisible(false);
@@ -109,6 +118,10 @@ public class StatsController extends CanvasController {
   /** This method switches tabs to the word history page. Also allows users to choose settings */
   @FXML
   private void onChooseHistory() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnHistory.setVisible(true);
@@ -120,6 +133,10 @@ public class StatsController extends CanvasController {
   /** Also allows users to choose settings This method switches tabs to the statistics page. */
   @FXML
   private void onChooseStats() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // set the correct pane to be visible
     paneOnData.setVisible(true);
     paneOnData.setOpacity(1);
@@ -131,6 +148,10 @@ public class StatsController extends CanvasController {
   /** Also allows users to choose settings This method switches tabs to the badges page */
   @FXML
   private void onChooseBadge() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // set the correct pane to be visible
     paneOnData.setVisible(false);
     paneOnBadge.setVisible(true);
@@ -262,6 +283,10 @@ public class StatsController extends CanvasController {
    */
   @FXML
   private void onBack(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     if (settingsData.isComplete()) {
       ProfileRepository.updateUserSettings(settingsData);
     }
@@ -275,6 +300,10 @@ public class StatsController extends CanvasController {
    */
   @FXML
   private void onStart(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     if (settingsData.isComplete()) {
       ProfileRepository.updateUserSettings(settingsData);
       fadeOutToCanvas(event);

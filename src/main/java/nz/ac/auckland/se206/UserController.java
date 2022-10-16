@@ -20,6 +20,8 @@ import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.user.ProfileRepository;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
@@ -73,6 +75,8 @@ public class UserController {
   URL cursorURL = App.class.getResource("/images/" + "middle-ages-custom-cursor.png");
 
   Image image;
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
 
   {
     assert cursorURL != null;
@@ -417,6 +421,10 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserOne() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnDeleteUserOne.setScaleX(1);
     imageOnDeleteUserOne.setScaleY(1);
     if (boxOnEnable.isSelected()) {
@@ -441,6 +449,10 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserTwo() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnDeleteUserTwo.setScaleX(1);
     imageOnDeleteUserTwo.setScaleY(1);
     if (boxOnEnable.isSelected()) {
@@ -465,6 +477,10 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserThree() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnDeleteUserThree.setScaleX(1);
     imageOnDeleteUserThree.setScaleY(1);
     if (boxOnEnable.isSelected()) {
@@ -490,6 +506,10 @@ public class UserController {
    */
   @FXML
   private void onSignUp() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     fadeOutToSignUp();
   }
 
@@ -519,6 +539,10 @@ public class UserController {
   /** This method will handle the back to page event of the back button on this scene */
   @FXML
   private void onBackToPage() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnBack.setScaleX(1);
     imageOnBack.setScaleY(1);
     fadeOutToPage();
@@ -527,6 +551,10 @@ public class UserController {
   /** This method will set up the hover animation when click on start button of user one */
   @FXML
   private void onClickOnStartUserOne() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnStartUserOne.setScaleX(1);
     imageOnStartUserOne.setScaleY(1);
     fadeOutToStatsScene(labelOnUserOne);
@@ -561,6 +589,10 @@ public class UserController {
   /** This method will set up the hover animation when click on start button of user two */
   @FXML
   private void onClickOnStartUserTwo() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnStartUserTwo.setScaleX(1);
     imageOnStartUserTwo.setScaleY(1);
     fadeOutToStatsScene(labelOnUserTwo);
@@ -569,6 +601,10 @@ public class UserController {
   /** This method will set up the hover animation when click on start button of user three */
   @FXML
   private void onClickOnStartUserThree() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     imageOnStartUserThree.setScaleX(1);
     imageOnStartUserThree.setScaleY(1);
     fadeOutToStatsScene(labelOnUserThree);
@@ -627,6 +663,10 @@ public class UserController {
   /** Whenever an enabled box is clicked, the effect of it should be immediately removed. */
   @FXML
   private void onEnableBox() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     boxOnEnable.setEffect(null);
   }
 

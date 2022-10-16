@@ -125,6 +125,8 @@ public class CanvasController extends App {
   private GraphicsContext graphic;
 
   private DoodlePrediction model;
+  private URL soundURL = App.class.getResource("/sounds/" + "rclick-13693.mp3");
+  private Media soundMusic = new Media(soundURL.toExternalForm());
 
   private String currentWord;
   private int accuracyDifficulty;
@@ -414,6 +416,10 @@ public class CanvasController extends App {
   /** This method is called when the "Clear" button is pressed. */
   @FXML
   private void onClear() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
@@ -499,6 +505,10 @@ public class CanvasController extends App {
   @FXML
   private void onBack(ActionEvent event) {
     timer.cancel();
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     // stop the tasks that are allocated to the timer
     fadeOutToStatsScene(event);
   }
@@ -541,6 +551,10 @@ public class CanvasController extends App {
    */
   @FXML
   private void onReady() throws ModelException, IOException {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     this.interval = timeDifficulty - 1;
     // this variable is set so that every time this method is called, the timer
     // value can be reset.
@@ -707,6 +721,10 @@ public class CanvasController extends App {
    */
   @FXML
   private void onReset(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     timer.cancel();
     // stop the count down timer to count down.
     Button button = (Button) event.getSource();
@@ -727,6 +745,10 @@ public class CanvasController extends App {
    */
   @FXML
   private void onErase(ActionEvent event) {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     graphic = canvas.getGraphicsContext2D();
     // get the current canvas graphic
 
@@ -775,6 +797,10 @@ public class CanvasController extends App {
    */
   @FXML
   protected void onSave() throws IOException {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     FileChooser fc = new FileChooser();
     Stage stage = new Stage();
     File imageToClassify = fc.showSaveDialog(stage);
@@ -786,6 +812,10 @@ public class CanvasController extends App {
   /** this method sets up the click animation of a hint when the mouse is clicked on it */
   @FXML
   private void onClickHint() {
+    MediaPlayer soundPlayer = new MediaPlayer(soundMusic);
+    // create Media Player
+    soundPlayer.play();
+    // play the sound
     buttonOnHint.setScaleX(1);
     buttonOnHint.setScaleY(1);
     if (labelText.getText() == "") {
