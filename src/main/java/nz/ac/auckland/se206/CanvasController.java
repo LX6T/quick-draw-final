@@ -802,13 +802,20 @@ public class CanvasController extends App {
     buttonOnHint.setScaleY(0.9);
   }
 
+  /**
+   * this methods notice the user by setting the visibility of the smile faces to inform about their drawings
+   * @param currentPosition an integer of the position in the prediction list
+   */
   private void noticeUser(int currentPosition) {
 
+
     if (currentPosition <= historyPosition) {
+    	//if the current position is less than the history position then its good
       imageSad.setVisible(false);
       imageSmile.setVisible(true);
     } else {
       imageSad.setVisible(true);
+      //set respective visibility
       imageSmile.setVisible(false);
     }
   }
