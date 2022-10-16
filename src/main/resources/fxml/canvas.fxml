@@ -256,7 +256,7 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="buttonOnSave" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="20.0" layoutY="296.0" onAction="#saveToFiles" prefHeight="39.0" prefWidth="135.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Save">
+            <JFXButton fx:id="buttonOnSave" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="20.0" layoutY="296.0" onAction="#onSave" prefHeight="39.0" prefWidth="135.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="JFXButton" stylesheets="@../css/styling.css" text="Save">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>

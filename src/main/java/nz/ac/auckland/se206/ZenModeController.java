@@ -414,7 +414,7 @@ public class ZenModeController extends CanvasController implements Initializable
         };
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
-    saveToFiles();
+    onSave();
   }
 
   /**
