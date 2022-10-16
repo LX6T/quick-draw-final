@@ -25,7 +25,7 @@ import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
 
-public class StatsController extends App{
+public class StatsController extends CanvasController {
 
   @FXML private Label labelHistory;
   @FXML private Label labelWins;
