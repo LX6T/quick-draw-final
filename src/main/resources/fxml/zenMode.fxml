@@ -169,7 +169,7 @@
       </ImageView>
       <Pane layoutX="885.0" layoutY="106.0" prefHeight="466.0" prefWidth="163.0" style="-fx-border-radius: 15; -fx-border-color: #827651; -fx-border-width: 5;">
          <children>
-            <Label fx:id="labelOne" layoutX="33.0" layoutY="25.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelOne" layoutX="33.0" layoutY="25.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -185,7 +185,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelTwo" layoutX="33.0" layoutY="66.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelTwo" layoutX="33.0" layoutY="66.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -196,7 +196,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelThree" layoutX="33.0" layoutY="106.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelThree" layoutX="33.0" layoutY="106.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -207,7 +207,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelFour" layoutX="33.0" layoutY="149.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelFour" layoutX="33.0" layoutY="149.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -219,7 +219,7 @@
                </font>
             </Label>
             <Separator layoutX="4.0" layoutY="231.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label fx:id="labelFive" layoutX="33.0" layoutY="190.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelFive" layoutX="33.0" layoutY="190.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -230,7 +230,7 @@
                </font>
             </Label>
             <Separator layoutX="5.0" layoutY="272.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label fx:id="labelSix" layoutX="33.0" layoutY="230.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelSix" layoutX="33.0" layoutY="230.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -241,7 +241,7 @@
                </font>
             </Label>
             <Separator layoutX="5.0" layoutY="313.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label fx:id="labelSeven" layoutX="33.0" layoutY="272.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelSeven" layoutX="33.0" layoutY="272.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -252,7 +252,7 @@
                </font>
             </Label>
             <Separator layoutX="6.0" layoutY="351.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label fx:id="labelEight" layoutX="33.0" layoutY="309.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelEight" layoutX="33.0" layoutY="309.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -263,7 +263,7 @@
                </font>
             </Label>
             <Separator layoutX="8.0" layoutY="389.0" prefHeight="4.0" prefWidth="148.0" />
-            <Label fx:id="labelNine" layoutX="33.0" layoutY="347.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelNine" layoutX="33.0" layoutY="347.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
@@ -273,7 +273,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelTen" layoutX="33.0" layoutY="387.0" prefHeight="45.0" prefWidth="130.0" text="The Great Wall Of China" textFill="WHITE">
+            <Label fx:id="labelTen" layoutX="33.0" layoutY="387.0" prefHeight="45.0" prefWidth="130.0" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>

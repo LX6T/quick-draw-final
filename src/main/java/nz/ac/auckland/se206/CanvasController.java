@@ -572,8 +572,7 @@ public class CanvasController {
     displayText.setText(currentWord);
   }
 
-  @FXML
-  private void saveToFiles() throws IOException {
+  protected void saveToFiles() throws IOException {
     FileChooser fc = new FileChooser();
     Stage stage = new Stage();
     File imageToClassify = fc.showSaveDialog(stage);
