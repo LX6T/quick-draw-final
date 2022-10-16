@@ -18,11 +18,6 @@
 
 <AnchorPane fx:id="masterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 6.9401%, #000000 0.0%, #000000 0.6711%, #000000 17.08%, #000000 28.9477%, #000000 48.7805%, #000000 60.1626%, #022419 100.0%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
 	<children>
-		<Label fx:id="scoreLabel" alignment="BOTTOM_CENTER" layoutX="902.0" layoutY="557.0" prefHeight="36.0" prefWidth="145.0" textFill="WHITE">
-			<font>
-				<Font size="20.0" />
-			</font>
-		</Label>
 		<Pane layoutX="245.0" layoutY="-1.0" prefHeight="180.0" prefWidth="640.0">
 			<children>
 				<Label fx:id="timerDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="24.0" prefHeight="48.0" prefWidth="86.0" text="60" textFill="#ffffffcf">
@@ -52,7 +47,7 @@
 				<Circle fill="#1f93ff00" layoutX="304.0" layoutY="47.0" opacity="0.57" radius="32.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
             <Label fx:id="displayTextDefinition" alignment="TOP_LEFT" layoutX="186.0" layoutY="109.0" prefHeight="48.0" prefWidth="392.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
                <effect>
                   <Bloom />
@@ -85,6 +80,11 @@
                   <Point3D />
                </rotationAxis>
             </ImageView>
+      		<Label fx:id="scoreLabel" alignment="BOTTOM_CENTER" layoutX="481.0" layoutY="30.0" prefHeight="36.0" prefWidth="145.0" textFill="WHITE">
+      			<font>
+      				<Font size="20.0" />
+      			</font>
+      		</Label>
 			</children>
 		</Pane>
 		<Label fx:id="textToRefresh" alignment="CENTER" contentDisplay="CENTER" layoutX="903.0" layoutY="91.0" opacity="0.0" prefHeight="463.0" prefWidth="145.0" textFill="WHITE">
@@ -101,6 +101,16 @@
 								<Cursor fx:constant="HAND" />
 							</cursor>
 						</Canvas>
+                  <ImageView fx:id="imageSad" fitHeight="64.0" fitWidth="64.0" layoutX="2.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sad-face-in-rounded-square.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imageSmile" fitHeight="64.0" fitWidth="64.0" layoutX="2.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/smiling-emoticon-square-face.png" />
+                     </image>
+                  </ImageView>
 					</children>
 					<effect>
 						<Bloom threshold="1.0" />

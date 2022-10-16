@@ -417,8 +417,8 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserOne() {
-    imageOnDeleteUserOne.setScaleX(0.9);
-    imageOnDeleteUserOne.setScaleY(0.9);
+    imageOnDeleteUserOne.setScaleX(1);
+    imageOnDeleteUserOne.setScaleY(1);
     if (boxOnEnable.isSelected()) {
       // load the hashMap from the user repository
       ProfileRepository.loadProfiles();
@@ -441,8 +441,8 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserTwo() {
-    imageOnDeleteUserTwo.setScaleX(0.9);
-    imageOnDeleteUserTwo.setScaleY(0.9);
+    imageOnDeleteUserTwo.setScaleX(1);
+    imageOnDeleteUserTwo.setScaleY(1);
     if (boxOnEnable.isSelected()) {
       // load the hashMap from the user repository
       ProfileRepository.loadProfiles();
@@ -465,8 +465,8 @@ public class UserController {
    */
   @FXML
   private void onClickOnDeleteUserThree() {
-    imageOnDeleteUserThree.setScaleX(0.9);
-    imageOnDeleteUserThree.setScaleY(0.9);
+    imageOnDeleteUserThree.setScaleX(1);
+    imageOnDeleteUserThree.setScaleY(1);
     if (boxOnEnable.isSelected()) {
       // load the hashMap from the user repository
       ProfileRepository.loadProfiles();

@@ -32,7 +32,7 @@ public class PageController implements Initializable {
   @FXML private JFXButton buttonOnMode;
 
   private static boolean musicIsOn;
-  private static ColorAdjust colorAdjust = new ColorAdjust();
+  private ColorAdjust colorAdjust = new ColorAdjust();
   private static URL musicURL = App.class.getResource("/sounds/" + "ForestWalk-320bit.mp3");
   private static Media backgroundMusic;
 
@@ -41,7 +41,7 @@ public class PageController implements Initializable {
     backgroundMusic = new Media(musicURL.toExternalForm());
   }
 
-  private static MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
+  private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
   /**
    * This method initialises the menu page scene

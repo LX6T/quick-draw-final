@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -50,7 +51,7 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  * This class is a controller for the canvas page, where the game is played. The user can draw on,
  * erase from, and reset the canvas, as well as a few other functions.
  */
-public class CanvasController {
+public class CanvasController extends App {
 
   private int interval = 59;
   private double currentX;
@@ -129,6 +130,9 @@ public class CanvasController {
   private double confidenceDifficulty;
   private boolean hiddenWordMode;
   private String definition;
+  private int historyPosition;
+  private int numberOfWords;
+  private List<String> predictions = new ArrayList<>();
 
   @FXML private JFXButton buttonOnBack;
 
@@ -155,6 +159,8 @@ public class CanvasController {
   @FXML private Label labelNine;
   @FXML private Label labelTen;
   @FXML private ImageView imageOnLoading;
+  @FXML private ImageView imageSmile;
+  @FXML private ImageView imageSad;
 
   // #035526
   /**
@@ -180,6 +186,8 @@ public class CanvasController {
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
     imageOnLoading.setVisible(false);
+    imageSad.setVisible(false);
+    imageSmile.setVisible(false);
 
     // disable all the buttons that are shouldn't be used at the start
 
@@ -193,7 +201,10 @@ public class CanvasController {
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
-    // detect if it is hidden word mode
+
+    CategorySelector cs = new CategorySelector();
+    numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
+    historyPosition = numberOfWords - 1;
 
     timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
@@ -390,7 +401,7 @@ public class CanvasController {
 
   /**
    * This method executes when the user clicks the "Predict" button. It gets the current drawing,
-   * queries the DL model and prints on the console the top 5 predictions of the DL model and the
+   * queries the DL model and prints on the console the top 10 predictions of the DL model and the
    * elapsed time of the prediction in milliseconds.
    *
    * @throws TranslateException If there is an error in reading the input/output of the DL model.
@@ -515,6 +526,8 @@ public class CanvasController {
     this.interval = timeDifficulty - 1;
     // this variable is set so that every time this method is called, the timer
     // value can be reset.
+    historyPosition = numberOfWords - 1;
+    predictions.clear();
     canvas.setDisable(false);
     buttonOnReady.setDisable(true);
     buttonOnErase.setDisable(false);
@@ -570,6 +583,15 @@ public class CanvasController {
                       // access the javafx thread to run the timer task
                       List<Classification> predictionResult =
                           model.getPredictions(getCurrentSnapshot(), 10);
+                      List<Classification> predictions =
+                          model.getPredictions(getCurrentSnapshot(), numberOfWords);
+
+                      for (Classification classification : predictions) {
+                        CanvasController.this.predictions.add(classification.getClassName());
+                      }
+                      int currentPosition = CanvasController.this.predictions.indexOf(currentWord);
+                      noticeUser(currentPosition);
+
                       labelOne.setText(predictionResult.get(0).getClassName());
                       // set the respective corresponding label to be the correct order in the
                       // prediction list
@@ -590,6 +612,8 @@ public class CanvasController {
                   });
               // predict to get results refreshing each second
               interval--;
+              historyPosition = CanvasController.this.predictions.indexOf(currentWord);
+              predictions.clear();
             } else {
               // when the time runs out, everything stops
               timer.cancel();
@@ -767,5 +791,16 @@ public class CanvasController {
   private void onPressHint() {
     buttonOnHint.setScaleX(0.9);
     buttonOnHint.setScaleY(0.9);
+  }
+
+  private void noticeUser(int currentPosition) {
+
+    if (currentPosition < historyPosition) {
+      imageSad.setVisible(false);
+      imageSmile.setVisible(true);
+    } else {
+      imageSad.setVisible(true);
+      imageSmile.setVisible(false);
+    }
   }
 }

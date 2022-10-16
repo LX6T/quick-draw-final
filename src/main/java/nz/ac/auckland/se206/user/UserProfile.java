@@ -143,7 +143,10 @@ public class UserProfile {
   public void awardBadge(String badgeName) {
     if (badges.containsKey(badgeName)) {
       badges.put(badgeName, true);
-      System.out.println("awarded " + badgeName);
     }
+  }
+
+  public boolean hasBadge(String badgeName) {
+    return badges.get(badgeName);
   }
 }
