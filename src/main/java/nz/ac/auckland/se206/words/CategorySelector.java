@@ -52,7 +52,7 @@ public class CategorySelector {
    * @return a word category for the user to draw
    */
   public String generateRandomCategory(Difficulty difficulty) {
-    String newWord = "";
+    String newWord;
 
     while (true) {
       newWord =
@@ -63,7 +63,6 @@ public class CategorySelector {
       if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
         break;
       }
-      System.out.println("DUPLICATE");
     }
 
     return newWord;
