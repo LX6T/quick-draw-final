@@ -350,7 +350,7 @@ public class CanvasController {
    *
    * @return The BufferedImage corresponding to the current canvas content.
    */
-  private BufferedImage getCurrentSnapshot() {
+  protected BufferedImage getCurrentSnapshot() {
     final Image snapshot = canvas.snapshot(null, null);
     final BufferedImage image = SwingFXUtils.fromFXImage(snapshot, null);
 
@@ -551,7 +551,7 @@ public class CanvasController {
   }
 
   @FXML
-  private void saveToFiles() throws IOException {
+  protected void saveToFiles() throws IOException {
     FileChooser fc = new FileChooser();
     Stage stage = new Stage();
     File imageToClassify = fc.showSaveDialog(stage);
