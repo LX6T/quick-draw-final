@@ -300,7 +300,6 @@ public class StatsController extends CanvasController {
     }
   }
 
-
   /**
    * This method loads the page scene before the transition
    *

@@ -56,7 +56,6 @@ public class CategorySelector {
         .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
   }
 
-
   public int calculateNumOfWordsInDifficulty(String wordDifficulty) {
     int numOfWords = 0;
     switch (wordDifficulty) {
@@ -79,7 +78,6 @@ public class CategorySelector {
     }
     return numOfWords;
   }
-
 
   /**
    * This method returns the lines of the CSV file
