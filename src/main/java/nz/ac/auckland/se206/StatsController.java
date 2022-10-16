@@ -24,7 +24,6 @@ import nz.ac.auckland.se206.user.SettingsData;
 import nz.ac.auckland.se206.user.UserProfile;
 import nz.ac.auckland.se206.util.TransitionUtils;
 
-
 public class StatsController extends CanvasController {
 
   @FXML private Label labelHistory;
@@ -237,7 +236,7 @@ public class StatsController extends CanvasController {
 
   private void fadeOutToPage(ActionEvent event) {
     FadeTransition ft = TransitionUtils.getFadeTransition(masterPane, 300, 1, 0.2);
-    ft.setOnFinished((ActionEvent eventTwo) -> loadPageScene(event));
+    ft.setOnFinished((ActionEvent eventTwo) -> loadUserScene(event));
     ft.play();
   }
 
@@ -255,14 +254,14 @@ public class StatsController extends CanvasController {
     }
   }
 
-  private void loadPageScene(ActionEvent event) {
+  private void loadUserScene(ActionEvent event) {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     // get the current scene setting
 
     try {
       // load the canvas scene when press this button
-      sceneButtonIsIn.setRoot(App.loadFxml("page"));
+      sceneButtonIsIn.setRoot(App.loadFxml("user"));
       // set the next scene based on the current scene
     } catch (IOException e) {
       e.printStackTrace();
@@ -339,8 +338,8 @@ public class StatsController extends CanvasController {
 
   @FXML
   private void onScrollUp() {
-	  iconOnUp.setScaleX(1);
-	  iconOnUp.setScaleY(1);
+    iconOnUp.setScaleX(1);
+    iconOnUp.setScaleY(1);
     if (paneOnBadgeTwo.isVisible()) {
       paneOnBadgeOne.setVisible(true);
       paneOnBadgeTwo.setVisible(false);
@@ -352,8 +351,8 @@ public class StatsController extends CanvasController {
 
   @FXML
   private void onScrollDown() {
-	  iconOnDown.setScaleX(1);
-	  iconOnDown.setScaleY(1);
+    iconOnDown.setScaleX(1);
+    iconOnDown.setScaleY(1);
     if (paneOnBadgeOne.isVisible()) {
       paneOnBadgeOne.setVisible(false);
       paneOnBadgeTwo.setVisible(true);
@@ -362,46 +361,44 @@ public class StatsController extends CanvasController {
       paneOnBadgeThree.setVisible(true);
     }
   }
-  
+
   @FXML
   private void onEnterUp() {
-	  iconOnUp.setScaleX(1.1);
-	  iconOnUp.setScaleY(1.1);
-	  iconOnUp.setEffect(new Bloom(0.3));
+    iconOnUp.setScaleX(1.1);
+    iconOnUp.setScaleY(1.1);
+    iconOnUp.setEffect(new Bloom(0.3));
   }
-  
+
   @FXML
   private void onExitUp() {
-	  iconOnUp.setScaleX(1);
-	  iconOnUp.setScaleY(1);
-	  iconOnUp.setEffect(null);
+    iconOnUp.setScaleX(1);
+    iconOnUp.setScaleY(1);
+    iconOnUp.setEffect(null);
   }
-  
+
   @FXML
   private void onPressUp() {
-	  iconOnUp.setScaleX(0.9);
-	  iconOnUp.setScaleY(0.9);
-	  
+    iconOnUp.setScaleX(0.9);
+    iconOnUp.setScaleY(0.9);
   }
-  
-  @FXML  
+
+  @FXML
   private void onEnterDown() {
-	  iconOnDown.setScaleX(1.1);
-	  iconOnDown.setScaleY(1.1);
-	  iconOnDown.setEffect(new Bloom(0.3));
+    iconOnDown.setScaleX(1.1);
+    iconOnDown.setScaleY(1.1);
+    iconOnDown.setEffect(new Bloom(0.3));
   }
-  
+
   @FXML
   private void onExitDown() {
-	  iconOnDown.setScaleX(1);
-	  iconOnDown.setScaleY(1);
-	  iconOnDown.setEffect(null);
+    iconOnDown.setScaleX(1);
+    iconOnDown.setScaleY(1);
+    iconOnDown.setEffect(null);
   }
-  
+
   @FXML
   private void onPressDown() {
-	  iconOnDown.setScaleX(0.9);
-	  iconOnDown.setScaleY(0.9);
-	 
+    iconOnDown.setScaleX(0.9);
+    iconOnDown.setScaleY(0.9);
   }
 }
