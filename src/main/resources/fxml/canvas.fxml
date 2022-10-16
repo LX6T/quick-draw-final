@@ -49,7 +49,7 @@
 					</effect>
 				</Label>
 				<Circle fill="#1f93ff00" layoutX="304.0" layoutY="47.0" opacity="0.57" radius="32.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
-            <Label fx:id="displayTextDefinition" contentDisplay="CENTER" layoutX="186.0" layoutY="109.0" prefHeight="48.0" prefWidth="431.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label fx:id="displayTextDefinition" layoutX="186.0" layoutY="109.0" prefHeight="48.0" prefWidth="431.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -69,6 +69,11 @@
             <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="99.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-draw-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imageOnLoading" fitHeight="64.0" fitWidth="96.0" layoutX="304.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-loading-100.png" />
                </image>
             </ImageView>
 			</children>

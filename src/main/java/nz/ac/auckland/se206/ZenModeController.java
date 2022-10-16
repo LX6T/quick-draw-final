@@ -165,7 +165,6 @@ public class ZenModeController extends CanvasController implements Initializable
 
   private final Image imageTen;
 
-
   {
     assert cursorURLTen != null;
     imageTen = new Image(cursorURLTen.toExternalForm());
