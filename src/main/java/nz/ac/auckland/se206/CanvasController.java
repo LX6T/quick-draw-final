@@ -31,6 +31,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
+import nz.ac.auckland.se206.dictionary.Dictionary;
+import nz.ac.auckland.se206.dictionary.WordNotFoundException;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.user.GameData;
@@ -126,10 +128,13 @@ public class CanvasController {
   private String wordDifficulty;
   private int timeDifficulty;
   private double confidenceDifficulty;
+  private boolean hiddenWordMode;
 
   @FXML private Button buttonOnBack;
 
   @FXML private Label displayText;
+
+  @FXML private Label displayTextDefinition;
 
   @FXML private Label timerDisplay;
 
@@ -138,6 +143,8 @@ public class CanvasController {
   @FXML private Label textToRefresh;
 
   @FXML private AnchorPane masterPane;
+
+  @FXML private Button buttonHint;
 
   // #035526
   /**
@@ -148,17 +155,21 @@ public class CanvasController {
    * @throws IOException If the model cannot be found on the file system.
    * @throws URISyntaxException
    * @throws CsvException
+   * @throws WordNotFoundException
    */
-  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+  public void initialize()
+      throws ModelException, IOException, CsvException, URISyntaxException, WordNotFoundException {
     masterPane.setOpacity(0.2);
     // set the starting opacity setting
     fadeIn();
     // set the fade in method
+
     canvas.setDisable(true);
     buttonOnReset.setDisable(false);
     buttonOnSave.setDisable(true);
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
+
     // disable all the buttons that are shouldn't be used at the start
 
     SettingsData settings = ProfileRepository.getSettings();
@@ -167,9 +178,18 @@ public class CanvasController {
     wordDifficulty = settings.getWordsDifficulty();
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
+    hiddenWordMode = settings.isHiddenMode();
+    buttonHint.setVisible(hiddenWordMode);
+    buttonHint.setDisable(true);
 
     timerDisplay.setText(Integer.toString(timeDifficulty));
     setNewWord();
+    if (hiddenWordMode) {
+      String definition = Dictionary.searchDefinition(currentWord);
+      displayTextDefinition.setText(definition);
+    } else {
+      displayText.setText(currentWord);
+    }
   }
 
   private int setAccuracy(String difficulty) {
@@ -243,7 +263,8 @@ public class CanvasController {
   }
 
   @FXML
-  private void setNewWord() throws IOException, URISyntaxException, CsvException {
+  private void setNewWord()
+      throws IOException, URISyntaxException, CsvException, WordNotFoundException {
     int randInt;
     CategorySelector categorySelector = new CategorySelector();
     Random rand = new Random();
@@ -279,7 +300,6 @@ public class CanvasController {
 
     // set and display the randomly chosen word
     currentWord = categorySelector.generateRandomCategory(difficulty);
-    displayText.setText(currentWord);
   }
 
   private void fadeIn() {
@@ -328,7 +348,8 @@ public class CanvasController {
   private boolean isWin(List<Classification> classifications) {
     // this method will tell whether the current prediction has won or not
     for (Classification classification : classifications) {
-      // Prediction must both match current word and be above the minimum confidence probability
+      // Prediction must both match current word and be above the minimum confidence
+      // probability
       if (classification.getClassName().equals(currentWord)
           && classification.getProbability() >= confidenceDifficulty) {
         return true;
@@ -395,10 +416,11 @@ public class CanvasController {
     buttonOnReady.setDisable(true);
     buttonOnErase.setDisable(false);
     buttonOnClear.setDisable(false);
+    buttonHint.setDisable(!hiddenWordMode);
     model = new DoodlePrediction();
     TextToSpeech speaker = new TextToSpeech();
     speaker.speak("The game starts");
-    speaker.speak("Try to Draw a " + currentWord);
+    speaker.speak("Good Luck");
 
     // when the ready button is pressed, show text to speech feature
 
@@ -544,6 +566,11 @@ public class CanvasController {
   }
 
   @FXML
+  private void onProvideHint() {
+    displayTextDefinition.setText("");
+    displayText.setText(currentWord);
+  }
+
   protected void saveToFiles() throws IOException {
     FileChooser fc = new FileChooser();
     Stage stage = new Stage();

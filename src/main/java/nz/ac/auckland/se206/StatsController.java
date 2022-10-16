@@ -7,7 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.user.ProfileRepository;
@@ -38,11 +42,13 @@ public class StatsController {
   @FXML private RadioButton radioConfidenceMedium;
   @FXML private RadioButton radioConfidenceHard;
   @FXML private RadioButton radioConfidenceMaster;
+  @FXML private Button buttonStart;
 
   @FXML private ToggleGroup accuracy;
   @FXML private ToggleGroup words;
   @FXML private ToggleGroup time;
   @FXML private ToggleGroup confidence;
+  @FXML private ToggleGroup hiddenWord;
 
   private SettingsData settingsData;
 
@@ -68,7 +74,7 @@ public class StatsController {
   public void setStats() {
 
     UserProfile user = ProfileRepository.getCurrentUser();
-
+    buttonStart.setDisable(true);
     if (Objects.equals(user.getWordsHistory(), "")) {
       // if this username is inside the words history
       labelHistory.setText("N/A");
@@ -94,21 +100,37 @@ public class StatsController {
     settingsData = user.getPreferredSettings();
 
     if (settingsData.isComplete()) {
+      buttonStart.setDisable(false);
       ObservableList<Toggle> accuracyButtons = accuracy.getToggles();
       ObservableList<Toggle> wordsButtons = words.getToggles();
       ObservableList<Toggle> timeButtons = time.getToggles();
       ObservableList<Toggle> confidenceButtons = confidence.getToggles();
+      ObservableList<Toggle> hiddenWordButtons = hiddenWord.getToggles();
 
-      int accuracyDifficultyIndex = SettingsData.toIndex(settingsData.getAccuracyDifficulty());
-      int wordsDifficultyIndex = SettingsData.toIndex(settingsData.getWordsDifficulty());
-      int timeDifficultyIndex = SettingsData.toIndex(settingsData.getTimeDifficulty());
-      int confidenceDifficultyIndex = SettingsData.toIndex(settingsData.getConfidenceDifficulty());
+      int accuracyDifficultyIndex =
+          SettingsData.toDifficultyIndex(settingsData.getAccuracyDifficulty());
+      int wordsDifficultyIndex = SettingsData.toDifficultyIndex(settingsData.getWordsDifficulty());
+      int timeDifficultyIndex = SettingsData.toDifficultyIndex(settingsData.getTimeDifficulty());
+      int confidenceDifficultyIndex =
+          SettingsData.toDifficultyIndex(settingsData.getConfidenceDifficulty());
+      int hiddenWordModeIndex = SettingsData.toModeIndex(settingsData.isHiddenMode());
 
       accuracyButtons.get(accuracyDifficultyIndex).setSelected(true);
       wordsButtons.get(wordsDifficultyIndex).setSelected(true);
       timeButtons.get(timeDifficultyIndex).setSelected(true);
       confidenceButtons.get(confidenceDifficultyIndex).setSelected(true);
+      hiddenWordButtons.get(hiddenWordModeIndex).setSelected(true);
     }
+
+    hiddenWord
+        .selectedToggleProperty()
+        .addListener(
+            (observableValue, toggle, t1) -> {
+              RadioButton rb = (RadioButton) hiddenWord.getSelectedToggle();
+              if (rb != null) {
+                settingsData.setHiddenMode(rb.getText());
+              }
+            });
 
     accuracy
         .selectedToggleProperty()
