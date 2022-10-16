@@ -87,7 +87,7 @@ public class ProfileRepository {
     // updates the user's time record
     currentUser.updateRecord(gameData.getTime());
     // updates the user's badge list
-    BadgeManager.awardNewBadges(currentUser);
+    BadgeManager.awardNewBadges(currentUser, gameData.isWon());
 
     // saves profile to repository
     saveProfile(currentUser);
