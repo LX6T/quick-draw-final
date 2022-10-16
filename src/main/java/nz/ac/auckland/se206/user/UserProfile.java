@@ -30,8 +30,10 @@ public class UserProfile {
     numOfLoss = 0;
     winStreak = 0;
     bestRecord = 61;
+    // initialize the variables
 
     wordsHistory = new ArrayList<>();
+    // set up empty string lists
     preferredSettings = new SettingsData();
     badges = BadgeManager.getEmptyBadges();
   }
@@ -57,13 +59,13 @@ public class UserProfile {
     wordsHistory.add(currentWord);
   }
 
-  /** This method updates the user's wins and win streak */
+  /** This method updates the user's wins and win streak to tell the gui about it */
   public void wonTheGame() {
     numOfWin = numOfWin + 1;
     winStreak = winStreak + 1;
   }
 
-  /** This method updates the user's losses and resets their win streak */
+  /** This method updates the user's losses and resets their win streak of the game played */
   public void lostTheGame() {
     numOfLoss = numOfLoss + 1;
     winStreak = 0;
@@ -146,6 +148,12 @@ public class UserProfile {
     }
   }
 
+  /**
+   * return a boolean indicating whether a specific badge is earned or not
+   *
+   * @param badgeName the name of the badge
+   * @return boolean yes or no
+   */
   public boolean hasBadge(String badgeName) {
     return badges.get(badgeName);
   }

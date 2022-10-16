@@ -28,6 +28,11 @@ public class App extends Application {
     image = new Image(cursorURL.toExternalForm());
   }
 
+  /**
+   * this method launches the platform based on the system and all the GUI event start based on here
+   *
+   * @param args
+   */
   public static void main(final String[] args) {
     launch();
   }
@@ -54,8 +59,10 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     ProfileRepository.loadProfiles();
+    // load the profile to the hash map
 
     final Scene scene = new Scene(loadFxml("page"));
+    // load the first page scene
     scene.setCursor(new ImageCursor(image, 2.5, 2.5));
     stage.setScene(scene);
     stage.initStyle(StageStyle.TRANSPARENT);

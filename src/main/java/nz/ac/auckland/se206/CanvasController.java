@@ -183,6 +183,7 @@ public class CanvasController extends App {
     canvas.setDisable(true);
     buttonOnReset.setDisable(false);
     buttonOnSave.setDisable(true);
+    // disable the correct things
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
     imageOnLoading.setVisible(false);
@@ -202,8 +203,10 @@ public class CanvasController extends App {
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
+    // get the settings
     buttonOnHint.setDisable(true);
     buttonOnHint.setVisible(hiddenWordMode);
+
     CategorySelector cs = new CategorySelector();
     numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
     historyPosition = numberOfWords - 1;
@@ -814,6 +817,7 @@ public class CanvasController extends App {
   private void noticeUser(int currentPosition) {
 
     if (currentPosition <= historyPosition) {
+
       // if the current position is less than the history position then its good
       imageSad.setVisible(false);
       imageSmile.setVisible(true);

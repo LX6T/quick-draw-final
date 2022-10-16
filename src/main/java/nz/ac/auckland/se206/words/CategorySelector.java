@@ -43,6 +43,7 @@ public class CategorySelector {
     }
 
     for (String[] line : getLines()) {
+      // get lines
       difficultyMap.get(Difficulty.valueOf(line[1])).add(line[0]);
     }
   }
@@ -55,6 +56,8 @@ public class CategorySelector {
    */
   public String generateRandomCategory(Difficulty difficulty) {
     String newWord;
+    // initialize the variable
+
     if (ProfileRepository.getCurrentUser() != null) {
       // run if and only if the current user is not null
       while (true) {
@@ -77,6 +80,12 @@ public class CategorySelector {
           difficultyMap
               .get(difficulty)
               .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+      // generate a difficulty randomly without any help
+      if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
+        break;
+        // break the while condition loop
+      }
+
       // break on the first loop and return the word
       return newWord;
     }

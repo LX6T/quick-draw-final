@@ -19,9 +19,10 @@ public class ImageUtils {
    */
   public static BufferedImage getBlackImage(final int width, final int height) {
     final BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
+    // initialize the buffered image to get image
     for (int i = 0; i < width - 1; i++) {
       for (int j = 0; j < height - 1; j++) {
+        // nested for loop to get stuff
         image.setRGB(i, j, Color.black.getRGB());
       }
     }
@@ -43,13 +44,17 @@ public class ImageUtils {
     for (int i = 0; i < image.getWidth(); i++) {
       for (int j = 0; j < image.getHeight(); j++) {
         final Color c = new Color(image.getRGB(i, j));
+        // get the rgb values of the image
 
         if (c.equals(Color.white)) {
+          // if the color is white
           imageOut.setRGB(i, j, Color.black.getRGB());
+          // if the color is black
         } else if (c.equals(Color.black)) {
           imageOut.setRGB(i, j, Color.white.getRGB());
         } else {
           imageOut.setRGB(i, j, image.getRGB(i, j));
+          // set the rgb values
         }
       }
     }

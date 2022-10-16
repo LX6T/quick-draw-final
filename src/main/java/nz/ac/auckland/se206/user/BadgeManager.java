@@ -45,8 +45,10 @@ public class BadgeManager {
    */
   public static HashMap<String, Boolean> getEmptyBadges() {
     HashMap<String, Boolean> emptyBadges = new HashMap<>();
+    // set up the hash map
 
     for (String badgeName : badgeNames) {
+      // get badge names
       emptyBadges.put(badgeName, false);
     }
 
@@ -62,6 +64,7 @@ public class BadgeManager {
     awardAccuracyBadges(user);
     awardWordsBadges(user);
     awardTimeBadges(user);
+    // set all the setting for the users
     awardConfidenceBadges(user);
     awardStreakBadges(user);
     awardWinBadges(user);
@@ -79,6 +82,7 @@ public class BadgeManager {
         user.awardBadge("accuracy1");
         break;
       case "Medium":
+        // in case its medium
         user.awardBadge("accuracy2");
         break;
       case "Hard":
@@ -102,9 +106,11 @@ public class BadgeManager {
         user.awardBadge("words2");
         break;
       case "Hard":
+        // in case its hard
         user.awardBadge("words3");
         break;
       case "Master":
+        // in case its master
         user.awardBadge("words4");
         break;
     }
@@ -124,10 +130,12 @@ public class BadgeManager {
       case "Medium":
         user.awardBadge("time2");
         break;
+        // in case its hard
       case "Hard":
         user.awardBadge("time3");
         break;
       case "Master":
+        // in case its master
         user.awardBadge("time4");
         break;
     }
@@ -147,10 +155,12 @@ public class BadgeManager {
       case "Medium":
         user.awardBadge("confidence2");
         break;
+        // in case it's hard
       case "Hard":
         user.awardBadge("confidence3");
         break;
       case "Master":
+        // in case its master
         user.awardBadge("confidence4");
         break;
     }
@@ -169,9 +179,11 @@ public class BadgeManager {
       case 5:
         user.awardBadge("streak5");
       case 3:
+        // in case its 3
         user.awardBadge("streak3");
       case 2:
         user.awardBadge("streak2");
+        // in case its 2
     }
   }
 
@@ -185,9 +197,11 @@ public class BadgeManager {
     switch (user.getNumOfWin()) {
       case 50:
         user.awardBadge("win50");
+        // in case its 50
       case 20:
         user.awardBadge("win20");
       case 10:
+        // in case its 10
         user.awardBadge("win10");
       case 5:
         user.awardBadge("win5");

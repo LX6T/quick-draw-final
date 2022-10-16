@@ -24,38 +24,46 @@ public class Dictionary {
    * @throws WordNotFoundException if the word cannot be found
    */
   public static String searchDefinition(String word) throws IOException, WordNotFoundException {
-
+    // initialize the clients of the dictionary
     OkHttpClient client = new OkHttpClient();
     Request request = new Request.Builder().url(API_URL + word).build();
     Response response = client.newCall(request).execute();
+    // execute the call
     ResponseBody responseBody = response.body();
 
     assert responseBody != null;
     String jsonString = responseBody.string();
+    // get response body to string
 
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
+      // use Json objects to token
       String title = jsonObj.getString("title");
       throw new WordNotFoundException(title);
+      // throw new exception
     } catch (ClassCastException ignored) {
     }
 
     JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
+    // convert it to array
     List<String> definitions = new ArrayList<>();
 
     JSONObject jsonEntryObj = jArray.getJSONObject(0);
     JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
 
     JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(0);
+    // get the correct meaning of it
 
     JSONArray jsonDefinitions = jsonMeaningObj.getJSONArray("definitions");
 
     JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(0);
 
     String definition = jsonDefinitionObj.getString("definition");
+    // turn the definition into string
     if (!definition.isEmpty()) {
       definitions.add(definition);
     }
+    // if the definition is not empty
 
     return definitions.get(0);
   }
