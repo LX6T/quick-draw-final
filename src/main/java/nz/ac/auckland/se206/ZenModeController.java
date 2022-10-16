@@ -190,6 +190,10 @@ public class ZenModeController extends CanvasController implements Initializable
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    // set the opacity of the master pane
+    masterPane.setOpacity(0.2);
+    fadeIn();
+    // start the fade in function
     masterPane.setCursor(new ImageCursor(image, 2.5, 2.5));
     canvas.setCursor(new ImageCursor(imageOne, 2.5, 2.5));
     // set cursors for master pane and canvas
@@ -202,6 +206,7 @@ public class ZenModeController extends CanvasController implements Initializable
       e1.printStackTrace();
     }
     assert categorySelector != null;
+    // start the difficulty based on easy
     String randomWord = categorySelector.generateRandomCategory(Difficulty.E);
     // choose difficulty Easy as the start
     textToRefresh.setText(randomWord);
@@ -213,6 +218,7 @@ public class ZenModeController extends CanvasController implements Initializable
           currentX = e.getX();
           currentY = e.getY();
         });
+    // get the current mouse coordinate
 
     canvas.setOnMouseDragged(
         e -> {
@@ -234,6 +240,7 @@ public class ZenModeController extends CanvasController implements Initializable
           currentY = y;
         });
     Timer timer = new Timer(true);
+    // start a new timer
 
     try {
       // initiate the machine learning model
@@ -242,10 +249,12 @@ public class ZenModeController extends CanvasController implements Initializable
       e1.printStackTrace();
     }
     timer.scheduleAtFixedRate(
+        // perform the following task at a fixed rate
         new TimerTask() {
 
           @Override
           public void run() {
+            // access to the platform thread to perform the updating lists
             Platform.runLater(
                 () -> {
                   try {
@@ -397,8 +406,10 @@ public class ZenModeController extends CanvasController implements Initializable
    */
   @FXML
   private void onClickSave() throws IOException {
+    // sets up the animation of hover effect
     setZoomOnClick(imageOnSave);
     Task<Void> backgroundTask =
+        // add background task to it
         new Task<>() {
 
           @Override
@@ -406,13 +417,16 @@ public class ZenModeController extends CanvasController implements Initializable
 
             TextToSpeech speaker = new TextToSpeech();
             speaker.speak("Choose your file path");
+            // text to speech feature incorporated
 
             return null;
           }
         };
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
-    saveToFiles();
+    // start the background thread to work
+    onSave();
+    // save the current screen shot
   }
 
   /**
@@ -449,10 +463,13 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickReset() {
     setZoomOnClick(imageOnReset);
+    // set the hover effect animation for click
     String randomWord = null;
     CategorySelector categorySelector = null;
+    // instantiate the variables
     try {
       categorySelector = new CategorySelector();
+      // initiate category selector class
     } catch (IOException | CsvException | URISyntaxException e1) {
       // throws exceptions
       e1.printStackTrace();
@@ -460,6 +477,7 @@ public class ZenModeController extends CanvasController implements Initializable
     try {
       assert categorySelector != null;
       randomWord = categorySelector.generateRandomCategory(Difficulty.E);
+      // get a new word from difficult E
     } catch (Exception e) {
       // throws exceptions
       e.printStackTrace();
@@ -706,6 +724,8 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickOne() {
     setZoomOnClick(imageOnOne);
+
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageOne, 2.5, 2.5));
     graphic.setStroke(Color.BLACK);
   }
@@ -714,6 +734,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickTwo() {
     setZoomOnClick(imageOnTwo);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTwo, 2.5, 2.5));
     graphic.setStroke(Color.ORANGE);
   }
@@ -722,6 +743,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickThree() {
     setZoomOnClick(imageOnThree);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageThree, 2.5, 2.5));
     graphic.setStroke(Color.RED);
   }
@@ -730,6 +752,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickFour() {
     setZoomOnClick(imageOnFour);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageFour, 2.5, 2.5));
     graphic.setStroke(Color.AQUA);
   }
@@ -738,6 +761,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickFive() {
     setZoomOnClick(imageOnFive);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageFive, 2.5, 2.5));
     graphic.setStroke(Color.PURPLE);
   }
@@ -746,6 +770,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickSix() {
     setZoomOnClick(imageOnSix);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageSix, 2.5, 2.5));
     graphic.setStroke(Color.DARKCYAN);
   }
@@ -754,6 +779,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickSeven() {
     setZoomOnClick(imageOnSeven);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageSeven, 2.5, 2.5));
     graphic.setStroke(Color.YELLOW);
   }
@@ -762,6 +788,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickEight() {
     setZoomOnClick(imageOnEight);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageEight, 2.5, 2.5));
     graphic.setStroke(Color.GREY);
   }
@@ -770,6 +797,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickNine() {
     setZoomOnClick(imageOnNine);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageNine, 2.5, 2.5));
     graphic.setStroke(Color.LIGHTGREEN);
   }
@@ -778,6 +806,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickTen() {
     setZoomOnClick(imageOnTen);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTen, 2.5, 2.5));
     graphic.setStroke(Color.DARKGREY);
   }
@@ -786,6 +815,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickEleven() {
     setZoomOnClick(imageOnEleven);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageEleven, 2.5, 2.5));
     graphic.setStroke(Color.CADETBLUE);
   }
@@ -794,6 +824,7 @@ public class ZenModeController extends CanvasController implements Initializable
   @FXML
   private void onClickTwelve() {
     setZoomOnClick(imageOnTwelve);
+    // sets up the hover effect for click
     canvas.setCursor(new ImageCursor(imageTwelve, 2.5, 2.5));
     graphic.setStroke(Color.LIGHTPINK);
   }
@@ -804,6 +835,7 @@ public class ZenModeController extends CanvasController implements Initializable
    * @param image An image view
    */
   private void setZoomOnEnter(ImageView image) {
+    // sets up the hover effect for click
     image.setScaleX(1.1);
     image.setScaleY(1.1);
     image.setEffect(bloom);
@@ -816,6 +848,7 @@ public class ZenModeController extends CanvasController implements Initializable
    * @param image an image view
    */
   private void setZoomOnLeave(ImageView image) {
+    // sets up the hover effect for click
     image.setScaleX(1);
     image.setScaleY(1);
     image.setEffect(null);
@@ -827,6 +860,7 @@ public class ZenModeController extends CanvasController implements Initializable
    * @param image an image view
    */
   private void setZoomOnPress(ImageView image) {
+    // sets up the hover effect for click
     image.setScaleX(0.9);
     image.setScaleY(0.9);
   }

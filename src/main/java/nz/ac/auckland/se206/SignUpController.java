@@ -128,6 +128,10 @@ public class SignUpController implements Initializable {
 
   private final Glow glow = new Glow(1.0);
 
+  /**
+   * this method will be executed before any other methods are called and set up the transition
+   * animation for this scene
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     masterPane.setOpacity(0.2);
@@ -152,6 +156,10 @@ public class SignUpController implements Initializable {
     ft.play();
   }
 
+  /**
+   * this method will set up the fade out animation in transition between different scenes (sign up
+   * scene and the user scene) and add the set on finished tasks
+   */
   private void loadUserScene() {
     Scene sceneButtonIsIn = buttonOnBack.getScene();
     try {
@@ -386,22 +394,28 @@ public class SignUpController implements Initializable {
     // set the zoomed image to the current one
 
     int a = getRandomNumber();
+    // generate a random number
 
     switch (a) {
       case 1:
         imageOnZoom.setImage(imageOne);
+        // in case its one
         break;
       case 2:
         imageOnZoom.setImage(imageTwo);
+        // in case its two
         break;
       case 3:
         imageOnZoom.setImage(imageThree);
+        // in case its three
         break;
       case 4:
         imageOnZoom.setImage(imageFour);
+        // in case its four
         break;
       case 5:
         imageOnZoom.setImage(imageFive);
+        // in case its five
         break;
       case 6:
         imageOnZoom.setImage(imageSix);
@@ -412,6 +426,7 @@ public class SignUpController implements Initializable {
       case 8:
         imageOnZoom.setImage(imageEight);
         break;
+        // generate respective images based on the different numbers generated randomly
     }
   }
 
@@ -496,95 +511,118 @@ public class SignUpController implements Initializable {
     setPressedEffect(paneOnNine);
   }
 
+  /** this method will sets up the hover effect on enter for pane one when the mouse is entered */
   @FXML
   private void onEnterOne() {
     setHoverEffectOnEnter(paneOnOne);
   }
 
+  /**
+   * this method will call the random class to give a random number from 1 to 8
+   *
+   * @return an integer of a random number from 1 to 8
+   */
   private int getRandomNumber() {
     return (int) ((Math.random() * 7) + 1);
   }
 
+  /** this method will sets up the hover effect on enter for pane one when the mouse is leaved */
   @FXML
   private void onLeaveOne() {
     setHoverEffectOnLeave(paneOnOne);
   }
 
+  /** this method will sets up the hover effect on enter for pane two when the mouse is entered */
   @FXML
   private void onEnterTwo() {
     setHoverEffectOnEnter(paneOnTwo);
   }
 
+  /** this method will sets up the hover effect on enter for pane two when the mouse is leaved */
   @FXML
   private void onLeaveTwo() {
     setHoverEffectOnLeave(paneOnTwo);
   }
 
+  /** this method will sets up the hover effect on enter for pane three when the mouse is entered */
   @FXML
   private void onEnterThree() {
     setHoverEffectOnEnter(paneOnThree);
   }
 
+  /** this method will sets up the hover effect on enter for pane three when the mouse is leaved */
   @FXML
   private void onLeaveThree() {
     setHoverEffectOnLeave(paneOnThree);
   }
 
+  /** this method will sets up the hover effect on enter for pane four when the mouse is entered */
   @FXML
   private void onEnterFour() {
     setHoverEffectOnEnter(paneOnFour);
   }
 
+  /** this method will sets up the hover effect on enter for pane four when the mouse is leaved */
   @FXML
   private void onLeaveFour() {
     setHoverEffectOnLeave(paneOnFour);
   }
 
+  /** this method will sets up the hover effect on enter for pane five when the mouse is entered */
   @FXML
   private void onEnterFive() {
     setHoverEffectOnEnter(paneOnFive);
   }
 
+  /** this method will sets up the hover effect on enter for pane five when the mouse is leaved */
   @FXML
   private void onLeaveFive() {
     setHoverEffectOnLeave(paneOnFive);
   }
 
+  /** this method will sets up the hover effect on enter for pane six when the mouse is entered */
   @FXML
   private void onEnterSix() {
     setHoverEffectOnEnter(paneOnSix);
   }
 
+  /** this method will sets up the hover effect on enter for pane six when the mouse is leaved */
   @FXML
   private void onLeaveSix() {
     setHoverEffectOnLeave(paneOnSix);
   }
 
+  /** this method will sets up the hover effect on enter for pane seven when the mouse is entered */
   @FXML
   private void onEnterSeven() {
     setHoverEffectOnEnter(paneOnSeven);
   }
 
+  /** this method will sets up the hover effect on enter for pane seven when the mouse is leaved */
   @FXML
   private void onLeaveSeven() {
     setHoverEffectOnLeave(paneOnSeven);
   }
 
+  /** this method will sets up the hover effect on enter for pane eight when the mouse is entered */
   @FXML
   private void onEnterEight() {
     setHoverEffectOnEnter(paneOnEight);
   }
 
+  /** this method will sets up the hover effect on enter for pane eight when the mouse is leaved */
   @FXML
   private void onLeaveEight() {
     setHoverEffectOnLeave(paneOnEight);
   }
 
+  /** this method will sets up the hover effect on enter for pane nine when the mouse is entered */
   @FXML
   private void onEnterNine() {
     setHoverEffectOnEnter(paneOnNine);
   }
 
+  /** this method will sets up the hover effect on enter for pane nine when the mouse is leaved */
   @FXML
   private void onLeaveNine() {
     setHoverEffectOnLeave(paneOnNine);
@@ -600,8 +638,8 @@ public class SignUpController implements Initializable {
   }
 
   /**
-   * this method will confirm the signup phase of users taking the selected profile photo and
-   * entered username
+   * this method will confirm the sign up phase of users taking the selected profile photo and
+   * entered user name
    */
   @FXML
   private void onConfirm() {
@@ -652,6 +690,7 @@ public class SignUpController implements Initializable {
         ProfileRepository.updateHashMap(hashMap);
         ProfileRepository.updateProfiles();
         labelOnMessage.setTextFill(Color.GREEN);
+        // always load the newest version
         labelOnMessage.setText("User Created Successfully");
       }
     } else {
@@ -660,18 +699,36 @@ public class SignUpController implements Initializable {
     }
   }
 
+  /**
+   * this method sets up the basic parameter methods for any of the specific methods to have hover
+   * effect on
+   *
+   * @param anchorPane any panes
+   */
   private void setHoverEffectOnEnter(AnchorPane anchorPane) {
     anchorPane.setScaleX(1.1);
     anchorPane.setScaleY(1.1);
     anchorPane.setEffect(bloom);
   }
 
+  /**
+   * this method sets up the basic parameter methods for any of the specific methods to have hover
+   * effect on when mouse is leaved
+   *
+   * @param anchorPane any panes
+   */
   private void setHoverEffectOnLeave(AnchorPane anchorPane) {
     anchorPane.setScaleX(1);
     anchorPane.setScaleY(1);
     anchorPane.setEffect(null);
   }
 
+  /**
+   * this method sets up the basic parameter methods for any of the specific methods to have hover
+   * effect on when mouse is pressed
+   *
+   * @param anchorPane any panes
+   */
   private void setPressedEffect(AnchorPane pane) {
     pane.setScaleX(0.9);
     pane.setScaleY(0.9);

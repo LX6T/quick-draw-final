@@ -40,7 +40,7 @@
 						<Font name="Arial Bold" size="13.0" />
 					</font>
 				</JFXButton>
-				<JFXButton fx:id="buttonOnStart" layoutX="78.0" layoutY="360.0" onAction="#onStart" prefHeight="25.0" prefWidth="268.0" ripplerFill="#aaa262" style="-fx-background-radius: 15px;" styleClass="JFXButton" text="Play as Guest" textFill="#534747">
+				<JFXButton fx:id="buttonOnMode" layoutX="78.0" layoutY="360.0" onAction="#onLoad" prefHeight="25.0" prefWidth="268.0" ripplerFill="#aaa262" style="-fx-background-radius: 15px;" styleClass="JFXButton" text="Zen-Mode" textFill="#534747">
 					<font>
 						<Font name="Arial Bold" size="13.0" />
 					</font>
@@ -114,10 +114,5 @@
 				<Image url="@../images/1121885-200.png" />
 			</image>
 		</ImageView>
-      <JFXButton fx:id="buttonOnMode" layoutX="299.0" layoutY="427.0" onAction="#onLoad" text="Zen Mode" textFill="WHITE">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </JFXButton>
 	</children>
 </AnchorPane>
