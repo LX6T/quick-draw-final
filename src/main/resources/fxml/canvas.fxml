@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
@@ -75,6 +76,14 @@
                <image>
                   <Image url="@../images/icons8-loading-100.png" />
                </image>
+            </ImageView>
+            <ImageView fx:id="buttonOnHint" fitHeight="64.0" fitWidth="39.0" layoutX="35.0" layoutY="114.0" onMouseClicked="#onClickHint" onMouseEntered="#onEnterHint" onMouseExited="#onExitHint" onMousePressed="#onPressHint" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../images/icons8-help-58.png" />
+               </image>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
             </ImageView>
 			</children>
 		</Pane>
