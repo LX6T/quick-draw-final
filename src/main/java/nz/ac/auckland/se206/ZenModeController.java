@@ -192,6 +192,10 @@ public class ZenModeController extends CanvasController implements Initializable
     imageTwelve = new Image(cursorURLTwelve.toExternalForm());
   }
 
+  /**
+   * this method will be executed before any other operations are done, this also sets up the fade
+   * in transition animation for it
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     // set the opacity of the master pane

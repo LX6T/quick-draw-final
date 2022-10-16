@@ -13,14 +13,16 @@ public class SettingsData {
   }
 
   /**
-   * This method toggles whether hidden mode is on/off
+   * This method toggles whether hidden mode is on / off
    *
-   * @param hiddenMode is on(Yes) or off(No)
+   * @param hiddenMode is on (Yes) or off (No)
    */
   public void setHiddenMode(String hiddenMode) {
+    // set up the hidden mode
     if (hiddenMode.equals("Yes")) {
       this.hiddenMode = true;
     } else if (hiddenMode.equals("No")) {
+      // detect yes or no
       this.hiddenMode = false;
     }
   }
@@ -63,6 +65,7 @@ public class SettingsData {
    * @return whether the settings have been filled out
    */
   public boolean isComplete() {
+    // return if any of the case is missing
     return (accuracyDifficulty != null
         && wordsDifficulty != null
         && timeDifficulty != null
@@ -77,13 +80,16 @@ public class SettingsData {
    */
   public static int toDifficultyIndex(String difficulty) {
     switch (difficulty) {
+        // in case its easy
       case "Easy":
         return 0;
       case "Medium":
+        // in case its medium
         return 1;
       case "Hard":
         return 2;
       case "Master":
+        // in case its master
         return 3;
       default:
         return -1;
@@ -98,6 +104,7 @@ public class SettingsData {
    */
   public static int toModeIndex(boolean isMode) {
     if (isMode) {
+      // return integer based on its value
       return 0;
     } else {
       return 1;

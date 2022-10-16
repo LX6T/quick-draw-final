@@ -183,6 +183,7 @@ public class CanvasController extends App {
     canvas.setDisable(true);
     buttonOnReset.setDisable(false);
     buttonOnSave.setDisable(true);
+    // disable the correct things
     buttonOnErase.setDisable(true);
     buttonOnClear.setDisable(true);
     imageOnLoading.setVisible(false);
@@ -201,6 +202,7 @@ public class CanvasController extends App {
     timeDifficulty = setTime(settings.getTimeDifficulty());
     confidenceDifficulty = setConfidence(settings.getConfidenceDifficulty());
     hiddenWordMode = settings.isHiddenMode();
+    // get the settings
 
     CategorySelector cs = new CategorySelector();
     numberOfWords = cs.calculateNumOfWordsInDifficulty(wordDifficulty);
@@ -794,18 +796,20 @@ public class CanvasController extends App {
   }
 
   /**
-   * this methods notice the user by setting the visibility of the smile faces to inform about their drawings
+   * this methods notice the user by setting the visibility of the smile faces to inform about their
+   * drawings
+   *
    * @param currentPosition an integer of the position in the prediction list
    */
   private void noticeUser(int currentPosition) {
 
     if (currentPosition < historyPosition) {
-    	//if the current position is less than the history position then its good
+      // if the current position is less than the history position then its good
       imageSad.setVisible(false);
       imageSmile.setVisible(true);
     } else {
       imageSad.setVisible(true);
-      //set respective visibility
+      // set respective visibility
       imageSmile.setVisible(false);
     }
   }

@@ -22,13 +22,16 @@ public class TextToSpeech {
    */
   public static void main(final String[] args) {
     if (args.length == 0) {
+      // get the correct exception
       throw new IllegalArgumentException(
           "You are not providing any arguments. You need to provide one or more sentences.");
     }
 
     final TextToSpeech textToSpeech = new TextToSpeech();
+    // get the text to speech model
 
     textToSpeech.speak(args);
+    // speak a sentence
     textToSpeech.terminate();
   }
 
@@ -42,11 +45,13 @@ public class TextToSpeech {
     try {
       System.setProperty(
           "freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+      // sets up the basic properties of the system voice
       Central.registerEngineCentral("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
 
       synthesizer = Central.createSynthesizer(new SynthesizerModeDesc(java.util.Locale.ENGLISH));
 
       synthesizer.allocate();
+      // synthesize the voice based on the settings
     } catch (final EngineException e) {
       throw new TextToSpeechException(e.getMessage());
     }
@@ -61,6 +66,7 @@ public class TextToSpeech {
     boolean isFirst = true;
 
     for (final String sentence : sentences) {
+      // speak the list of sentences from word to words
       if (isFirst) {
         isFirst = false;
       } else {
@@ -80,12 +86,15 @@ public class TextToSpeech {
   public void speak(final String sentence) {
     if (sentence == null) {
       throw new IllegalArgumentException("Text cannot be null.");
+      // throw exceptions when needed
     }
 
     try {
       synthesizer.resume();
       synthesizer.speakPlainText(sentence, null);
+      // speak plain text
       synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+      // speak the list of sentences from word to words
     } catch (final AudioException | InterruptedException e) {
       throw new TextToSpeechException(e.getMessage());
     }
@@ -93,6 +102,7 @@ public class TextToSpeech {
 
   /** Sleeps a while to add some pause between sentences. */
   private void sleep() {
+    // sleep method
     try {
       Thread.sleep(100);
     } catch (final InterruptedException e) {
@@ -107,6 +117,7 @@ public class TextToSpeech {
   public void terminate() {
     try {
       synthesizer.deallocate();
+      // deallocate the synthesizer
     } catch (final EngineException e) {
       throw new TextToSpeechException(e.getMessage());
     }

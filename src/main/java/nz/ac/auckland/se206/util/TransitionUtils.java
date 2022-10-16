@@ -18,9 +18,11 @@ public class TransitionUtils {
    */
   public static FadeTransition getFadeTransition(Node node, int duration, double from, double to) {
     FadeTransition ft = new FadeTransition();
+    // set up the basic transition parameters of it
     ft.setDuration(Duration.millis(duration));
     ft.setNode(node);
     ft.setFromValue(from);
+    // from the value of opacity to value of opacity
     ft.setToValue(to);
     return ft;
   }

@@ -44,7 +44,7 @@ public class PageController implements Initializable {
   private MediaPlayer mediaPlayer = new MediaPlayer(backgroundMusic);
 
   /**
-   * This method initialises the menu page scene
+   * This method initialises the menu page scene run before any others are executed
    *
    * @param location is the URL location
    * @param resources are the resources needed
@@ -53,6 +53,7 @@ public class PageController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     if (musicIsOn) {
       masterPane.setOpacity(0.2);
+      // set the opacity of the master pane
       fadeIn();
     }
     sliderOnBrightness.setValue(50);
@@ -74,14 +75,14 @@ public class PageController implements Initializable {
     musicIsOn = true;
   }
 
-  /** This method exits the game */
+  /** This method exits the game of the platform and the system ending all the events */
   @FXML
   private void onExit() {
     Platform.exit();
     System.exit(0);
   }
 
-  /** This method resets the volume to the default value, 50% */
+  /** This method resets the volume to the default value, 50% which is also 50 on the bar */
   @FXML
   private void onAutoVolume() {
     // set the brightness to 50 when selected
@@ -93,7 +94,7 @@ public class PageController implements Initializable {
     }
   }
 
-  /** This method resets the brightness to the default value, 50% */
+  /** This method resets the brightness to the default value, 50% which is also 50 on the bar */
   @FXML
   private void onAutoBrightness() {
     // set the brightness to 50 when selected

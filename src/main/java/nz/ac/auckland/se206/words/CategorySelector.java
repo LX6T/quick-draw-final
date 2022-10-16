@@ -36,13 +36,14 @@ public class CategorySelector {
    */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficultyMap = new HashMap<>();
-    //initiate a hash map
+    // initiate a hash map
     for (Difficulty difficulty : Difficulty.values()) {
-    	//allocate the elements accordingly
+      // allocate the elements accordingly
       difficultyMap.put(difficulty, new ArrayList<>());
     }
 
     for (String[] line : getLines()) {
+      // get lines
       difficultyMap.get(Difficulty.valueOf(line[1])).add(line[0]);
     }
   }
@@ -55,14 +56,17 @@ public class CategorySelector {
    */
   public String generateRandomCategory(Difficulty difficulty) {
     String newWord;
+    // initialize the variable
 
     while (true) {
       newWord =
           difficultyMap
               .get(difficulty)
               .get(new Random().nextInt(difficultyMap.get(difficulty).size()));
+      // generate a difficulty randomly without any help
       if (!ProfileRepository.getCurrentUser().isContainedInHistory(newWord)) {
         break;
+        // break the while condition loop
       }
     }
 
@@ -71,32 +75,33 @@ public class CategorySelector {
 
   /**
    * this method calculates the number of words in each difficulty return the size of the list
+   *
    * @param wordDifficulty String input
    * @return an integer represents the size of the list
    */
   public int calculateNumOfWordsInDifficulty(String wordDifficulty) {
     int numOfWords = 0;
-    //initiate the numOfWords variable
+    // initiate the numOfWords variable
     switch (wordDifficulty) {
       case "Easy":
-    	  //in case it's easy
+        // in case it's easy
         numOfWords += difficultyMap.get(Difficulty.E).size();
         break;
       case "Medium":
-    	  //in case it's medium
+        // in case it's medium
         numOfWords +=
             difficultyMap.get(Difficulty.E).size() + difficultyMap.get(Difficulty.M).size();
         break;
       case "Hard":
-    	  // in case it's hard
+        // in case it's hard
         numOfWords +=
             difficultyMap.get(Difficulty.E).size()
                 + difficultyMap.get(Difficulty.M).size()
                 + difficultyMap.get(Difficulty.H).size();
-        //add the words into the hash map
+        // add the words into the hash map
         break;
       case "Master":
-    	  // in case it's master
+        // in case it's master
         numOfWords += difficultyMap.get(Difficulty.H).size();
         break;
     }
@@ -113,16 +118,16 @@ public class CategorySelector {
    */
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File file =
-    		//initiate a file variable
+        // initiate a file variable
         new File(
             Objects.requireNonNull(CategorySelector.class.getResource("/category_difficulty.csv"))
                 .toURI());
-    //get number of lines from the file due to its properties
+    // get number of lines from the file due to its properties
 
     try (FileReader fr = new FileReader(file, StandardCharsets.UTF_8);
         CSVReader reader = new CSVReader(fr)) {
       return reader.readAll();
-      //return a list of string
+      // return a list of string
     }
   }
 }

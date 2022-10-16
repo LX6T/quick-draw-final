@@ -59,12 +59,14 @@ public class DoodlePrediction {
     // for each prediction, allocate it to the proper position of a String
     for (final Classifications.Classification classification : predictions) {
       sb.append("TOP ")
+          // append everything to the prediction list
           .append(i)
           .append(" : ")
           .append(classification.getClassName())
           .append(" : ")
           .append(String.format("%.2f%%", 100 * classification.getProbability()))
           .append(System.lineSeparator());
+      // add separator
 
       i++;
     }
@@ -104,10 +106,12 @@ public class DoodlePrediction {
   public DoodlePrediction() throws ModelException, IOException {
     final ImageClassificationTranslator translator =
         ImageClassificationTranslator.builder()
+            // Predicts the categories of the input image
             .addTransform(new ToTensor())
             .optFlag(Image.Flag.GRAYSCALE)
             .optApplySoftmax(true)
             .build();
+    // build the algorithm
 
     final Criteria<Image, Classifications> criteria =
         Criteria.builder()
@@ -119,6 +123,7 @@ public class DoodlePrediction {
             .build();
 
     model = ModelZoo.loadModel(criteria);
+    // load the model
   }
 
   /**
@@ -138,11 +143,13 @@ public class DoodlePrediction {
     bufImg =
         Scalr.resize(
             bufImg, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, 65, 65, Scalr.OP_ANTIALIAS);
+    // size of image
 
     final Classifications classifications =
         model.newPredictor().predict(new BufferedImageFactory().fromImage(bufImg));
 
     return classifications.topK(k);
+    // get the top K predictions
   }
 
   /**
@@ -159,7 +166,9 @@ public class DoodlePrediction {
     if (!image.exists()) {
       throw new FileNotFoundException("The file " + image.getAbsolutePath() + " does not exist");
     }
+    // throw correct exception
 
     return getPredictions(ImageIO.read(image), k);
+    // returns the correct prediction lists
   }
 }
