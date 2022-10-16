@@ -149,4 +149,14 @@ public class UserProfile {
   public boolean hasBadge(String badgeName) {
     return badges.get(badgeName);
   }
+
+  /**
+   * This method checks whether a certain word has been encountered in a previous game.
+   *
+   * @param word to search for
+   * @return true if word has been encountered, false if not
+   */
+  public boolean isContainedInHistory(String word) {
+    return wordsHistory.contains(word);
+  }
 }
