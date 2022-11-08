@@ -30,13 +30,3 @@ Unix/MacOsX:
 
 Windows:  
 `.\mvnw.cmd clean javafx:run`
-
-**How to format the Java code?**
-
-You can format the code at any time by running the command:
-
-Unix/MacOsX:  
-`./mvnw git-code-format:format-code `
-
-Windows:  
-`.\mvnw.cmd git-code-format:format-code `
